@@ -1,5 +1,4 @@
 storage_mode = "google_cloud"
 google_cloud_bucket_name = "remote-habits-ios-signing"
-team_id = "2YC97BQN3N"
 readonly = true
 type = "development"
