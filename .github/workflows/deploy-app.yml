@@ -4,6 +4,10 @@ on:
   push:
     branches: [main, beta, alpha]
 
+env:
+  XCODE_VERSION: "13.0"
+  GITHUB_CONTEXT: ${{ toJSON(github) }}
+
 jobs:
   deploy-app:
     name: Deploy app

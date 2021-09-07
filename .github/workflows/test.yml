@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: ['*']
 
+env:
+  XCODE_VERSION: "13.0"
+  GITHUB_CONTEXT: ${{ toJSON(github) }}
+
 jobs:
   deploy-builds:
     runs-on: macos-11
@@ -38,9 +42,7 @@ jobs:
         skip-tracking: true
       env: 
         FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
-        GITHUB_CONTEXT: ${{ toJSON(github) }}
         APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
         APP_STORE_CONNECT_API_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}
         APP_STORE_CONNECT_API_KEY_CONTENT_B64: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT_B64 }}
-        
 
