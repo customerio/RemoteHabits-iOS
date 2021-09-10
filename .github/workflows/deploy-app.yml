@@ -1,0 +1,58 @@
+# Deploy the app to stable. Not builds for development/QA
+name: Deploy non-development builds 
+on:
+  push:
+    branches: [main, beta, alpha]
+
+env:
+  XCODE_VERSION: "13.0"
+  GITHUB_CONTEXT: ${{ toJSON(github) }}
+
+jobs:
+  deploy-app:
+    name: Deploy app
+    runs-on: macos-11
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Ruby to run Fastlane 
+        uses: ruby/setup-ruby@v1 
+        with:
+          ruby-version: 2.7.2
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+      - name: Prepare app for building and deploying 
+        run: |
+          echo "${{ secrets.GOOGLE_SERVICES_BASE64 }}" | base64 -d > "Remote Habits/GoogleService-Info.plist"
+          echo "${{ secrets.ENV_FILE_B64 }}" | base64 -d > "Remote Habits/Env.swift"
+          echo "${{ secrets.FIREBASE_APP_DISTRIBUTION_GOOGLE_AUTH }}" | base64 -d > firebase_appdistribution_service_account.json
+          echo "${{ secrets.MATCH_GOOGLE_CLOUD_KEYS_B64 }}" | base64 -d > gc_keys.json
+        env:
+          GOOGLE_SERVICES_BASE64: "${{ secrets.GOOGLE_SERVICES_BASE64 }}"
+          ENV_FILE_B64: "${{ secrets.ENV_FILE_B64 }}"
+          FIREBASE_APP_DISTRIBUTION_GOOGLE_AUTH: ${{ secrets.FIREBASE_APP_DISTRIBUTION_GOOGLE_AUTH }}
+          MATCH_GOOGLE_CLOUD_KEYS_B64: ${{ secrets.MATCH_GOOGLE_CLOUD_KEYS_B64 }}
+      - name: Setup Fastlane 
+        uses: maierj/fastlane-action@v2.0.1
+        with:
+          lane: 'list' # give action a lane that doesn't perform an action to get fastlane installed on machine to use later. 
+          skip-tracking: true
+      
+      # Perform git related tasks inside of semantic-release because `git config user...` is already setup. It's easier to run commands in there with exec plugin.
+      - name: Deploy app via semantic release 
+        uses: cycjimmy/semantic-release-action@v2
+        with: 
+          # version numbers below can be in many forms: M, M.m, M.m.p
+          semantic_version: 17
+          extra_plugins: |
+            @semantic-release/commit-analyzer@8
+            @semantic-release/release-notes-generator@9
+            @semantic-release/changelog@5
+            @semantic-release/git@9
+            @semantic-release/github@7
+            @semantic-release/exec@5
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_PUSH_TOKEN }} # for semantic release git push access 
+          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }} # for firebase app distribution 
+          APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+          APP_STORE_CONNECT_API_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}
+          APP_STORE_CONNECT_API_KEY_CONTENT_B64: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT_B64 }}
+          

@@ -31,6 +31,8 @@
 		F7A3960926D7E71000047DFA /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A3960826D7E71000047DFA /* StringExtensions.swift */; };
 		F7A3960C26D7F32400047DFA /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A3960B26D7F32400047DFA /* Profile.swift */; };
 		F7D1AD5F26D95E9000FDD423 /* Tracking in Frameworks */ = {isa = PBXBuildFile; productRef = F7D1AD5E26D95E9000FDD423 /* Tracking */; };
+		F7E9FABC26E7C564003F4187 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = F7E9FABB26E7C564003F4187 /* FirebaseCrashlytics */; };
+		F7E9FABE26E7CA58003F4187 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F7E9FABD26E7CA58003F4187 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,7 @@
 		F7A3960526D7E22C00047DFA /* Env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Env.swift; sourceTree = "<group>"; };
 		F7A3960826D7E71000047DFA /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		F7A3960B26D7F32400047DFA /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		F7E9FABD26E7CA58003F4187 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +91,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7D1AD5F26D95E9000FDD423 /* Tracking in Frameworks */,
+				F7E9FABC26E7C564003F4187 /* FirebaseCrashlytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +193,7 @@
 				F77512C026332F8200805CD4 /* RemoteHabitsApp.swift */,
 				F77512C226332F8200805CD4 /* ContentView.swift */,
 				F77512C426332F8400805CD4 /* Assets.xcassets */,
+				F7E9FABD26E7CA58003F4187 /* GoogleService-Info.plist */,
 				F77512C926332F8400805CD4 /* Info.plist */,
 				F77512C626332F8400805CD4 /* Preview Content */,
 				F7135AE026D6E0D80072D044 /* AppDelegate.swift */,
@@ -254,7 +259,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F77512E226332F8400805CD4 /* Build configuration list for PBXNativeTarget "Remote Habits" */;
 			buildPhases = (
-				F7135AFF26D7D8F10072D044 /* Generate sourcery */,
 				F77512B926332F8200805CD4 /* Sources */,
 				F77512BA26332F8200805CD4 /* Frameworks */,
 				F77512BB26332F8200805CD4 /* Resources */,
@@ -266,6 +270,7 @@
 			name = "Remote Habits";
 			packageProductDependencies = (
 				F7D1AD5E26D95E9000FDD423 /* Tracking */,
+				F7E9FABB26E7C564003F4187 /* FirebaseCrashlytics */,
 			);
 			productName = "Remote Habits";
 			productReference = F77512BD26332F8200805CD4 /* Remote Habits.app */;
@@ -340,6 +345,7 @@
 			mainGroup = F77512B426332F8200805CD4;
 			packageReferences = (
 				F7135ADD26D6DE560072D044 /* XCRemoteSwiftPackageReference "customerio-ios" */,
+				F7E9FABA26E7C564003F4187 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = F77512BE26332F8200805CD4 /* Products */;
 			projectDirPath = "";
@@ -359,6 +365,7 @@
 			files = (
 				F77512C826332F8400805CD4 /* Preview Assets.xcassets in Resources */,
 				F77512C526332F8400805CD4 /* Assets.xcassets in Resources */,
+				F7E9FABE26E7CA58003F4187 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,27 +384,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		F7135AFF26D7D8F10072D044 /* Generate sourcery */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Generate sourcery";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\nmake generate\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F77512B926332F8200805CD4 /* Sources */ = {
@@ -581,6 +567,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Remote Habits/Preview Content\"";
 				DEVELOPMENT_TEAM = 2YC97BQN3N;
 				ENABLE_PREVIEWS = YES;
@@ -590,6 +577,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = io.customer.remotehabits;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development io.customer.remotehabits";
@@ -756,6 +744,14 @@
 				revision = b59a08360d52130513f039d92b324f12a8cd96b2;
 			};
 		};
+		F7E9FABA26E7C564003F4187 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.6.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -763,6 +759,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F7135ADD26D6DE560072D044 /* XCRemoteSwiftPackageReference "customerio-ios" */;
 			productName = Tracking;
+		};
+		F7E9FABB26E7C564003F4187 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F7E9FABA26E7C564003F4187 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

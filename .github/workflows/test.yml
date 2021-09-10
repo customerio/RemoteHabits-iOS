@@ -1,0 +1,48 @@
+name: Tests
+on:  
+  push:
+    branches-ignore: [main, beta, alpha] # skip for deployment branches. 
+    tags-ignore: ['*']
+  pull_request:
+    branches: ['*']
+
+env:
+  XCODE_VERSION: "13.0"
+  GITHUB_CONTEXT: ${{ toJSON(github) }}
+
+jobs:
+  deploy-builds:
+    runs-on: macos-11
+    name: Deploy development builds 
+    # skip if '[skip ci]' exists in commit message 
+    if: ${{ !contains(format('{0} {1}', github.event.head_commit.message, github.event.pull_request.title), '[skip ci]') }}
+    steps:
+    - uses: actions/checkout@v2
+    - name: Prepare app for building and deploying 
+      run: |
+        echo "${{ secrets.GOOGLE_SERVICES_BASE64 }}" | base64 -d > "Remote Habits/GoogleService-Info.plist"
+        echo "${{ secrets.ENV_FILE_B64 }}" | base64 -d > "Remote Habits/Env.swift"
+        echo "${{ secrets.FIREBASE_APP_DISTRIBUTION_GOOGLE_AUTH }}" | base64 -d > firebase_appdistribution_service_account.json
+        echo "${{ secrets.MATCH_GOOGLE_CLOUD_KEYS_B64 }}" | base64 -d > gc_keys.json
+      env:
+        GOOGLE_SERVICES_BASE64: "${{ secrets.GOOGLE_SERVICES_BASE64 }}"
+        ENV_FILE_B64: "${{ secrets.ENV_FILE_B64 }}"
+        FIREBASE_APP_DISTRIBUTION_GOOGLE_AUTH: ${{ secrets.FIREBASE_APP_DISTRIBUTION_GOOGLE_AUTH }}
+        MATCH_GOOGLE_CLOUD_KEYS_B64: ${{ secrets.MATCH_GOOGLE_CLOUD_KEYS_B64 }}
+    - name: Setup Ruby to run Fastlane 
+      uses: ruby/setup-ruby@v1 
+      with:
+        ruby-version: 2.7.2
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically            
+
+    - name: Deploy development build via Fastlane 
+      uses: maierj/fastlane-action@v2.0.1
+      with:
+        lane: 'deploy_app'
+        skip-tracking: true
+      env: 
+        FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
+        APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+        APP_STORE_CONNECT_API_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}
+        APP_STORE_CONNECT_API_KEY_CONTENT_B64: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT_B64 }}
+

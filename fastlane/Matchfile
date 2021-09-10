@@ -1,5 +1,7 @@
-storage_mode = "google_cloud"
-google_cloud_bucket_name = "remote-habits-ios-signing"
-team_id = "2YC97BQN3N"
-readonly = true
-type = "development"
+# Values in here are meant to be for local development, not CI server. 
+# Makes it easy for developers to get up and running, fast. 
+# Configure CI server with parameters. 
+storage_mode "google_cloud"
+google_cloud_bucket_name "remote-habits-ios-signing"
+readonly true
+type "development"
