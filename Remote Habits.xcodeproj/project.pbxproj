@@ -259,7 +259,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F77512E226332F8400805CD4 /* Build configuration list for PBXNativeTarget "Remote Habits" */;
 			buildPhases = (
-				F7135AFF26D7D8F10072D044 /* Generate sourcery */,
 				F77512B926332F8200805CD4 /* Sources */,
 				F77512BA26332F8200805CD4 /* Frameworks */,
 				F77512BB26332F8200805CD4 /* Resources */,
@@ -385,27 +384,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		F7135AFF26D7D8F10072D044 /* Generate sourcery */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Generate sourcery";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\nmake generate\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F77512B926332F8200805CD4 /* Sources */ = {
