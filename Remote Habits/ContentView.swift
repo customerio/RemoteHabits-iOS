@@ -48,12 +48,6 @@ struct ContentView: View {
 
                 Text(identifiedEmail != nil ? "Identified profile: \(identifiedEmail!)" : "not logged in")
                 Text(loggedInState.error?.localizedDescription ?? "no error")
-
-                // Test crash reporting tool works
-//                Button("Crash app!") {
-//                    let numbers = [0]
-//                    _ = numbers[1]
-//                }.padding().accentColor(.red)
             }
         }.alert(isPresented: presentAlert) {
             Alert(title: Text("Error"),

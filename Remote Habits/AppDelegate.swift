@@ -10,6 +10,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     ) -> Bool {
         FirebaseApp.configure() // run first so crashes are caught before all other initialization.
 
+        CustomerIO.initialize(siteId: "", apiKey: "", region: Region.US)
+
         return true
     }
 }
