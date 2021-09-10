@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Customer.io",
+        "repositoryURL": "https://github.com/customerio/customerio-ios/",
+        "state": {
+          "branch": null,
+          "revision": "b59a08360d52130513f039d92b324f12a8cd96b2",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
