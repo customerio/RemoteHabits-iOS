@@ -1,6 +1,5 @@
 import CioTracking
 import Foundation
-import UIKit
 
 // sourcery: InjectRegister = "ProfileViewModel"
 class ProfileViewModel: ObservableObject {

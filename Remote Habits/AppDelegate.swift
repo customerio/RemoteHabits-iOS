@@ -15,6 +15,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         // initialize the SDK here in the `AppDelegate`.
         CustomerIO.initialize(siteId: "YOUR SITE ID", apiKey: "YOUR API KEY", region: Region.US)
 
+        // It's good practice to always register for remote push when the app starts.
+        // This asserts that the Customer.io SDK always has a valid APN device token to use.
         UIApplication.shared.registerForRemoteNotifications()
 
         return true
@@ -26,17 +28,17 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         let cioErrorUtil = DI.shared.customerIOErrorUtil
         var userManager = DI.shared.userManager
 
+        // At this time, the Customer.io SDK does not save APN device tokens to a customer profile for you.
+        // So, we are saving the device token for later when a profile is identified in the app to register
+        // a device token to the profile then.
         userManager.apnDeviceToken = deviceToken
 
-        // Customer.io SDK will return an error if a profile has not been identified with Customer.io yet.
-        // So, we check if a profile has been identified yet, else, leave.
+        // Customer.io SDK will return an error when attempting to register a device token if a profile has
+        // not been identified with Customer.io yet. Therefore, we check if a profile has been identified yet.
         guard userManager.isLoggedIn else {
             return
         }
 
-        // Note: At this time, if you call this function when you have not identified a customer,
-        // you will get a failure.
-        // Only call `registerNotifications()` until after you have successfully identified a profile in the SDK.
         cioMessagingPush
             .application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken) { result in
                 switch result {
@@ -53,6 +55,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         let cioErrorUtil = DI.shared.customerIOErrorUtil
         let cioMessagingPush = DI.shared.messagingPush
 
+        // This will delete the existing push token from the identified profile in Customer.io SDK.
         cioMessagingPush.application(application, didFailToRegisterForRemoteNotificationsWithError: error) { result in
             switch result {
             case .success:
