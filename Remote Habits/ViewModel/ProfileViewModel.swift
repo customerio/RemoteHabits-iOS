@@ -1,5 +1,6 @@
 import CioTracking
 import Foundation
+import UIKit
 
 // sourcery: InjectRegister = "ProfileViewModel"
 class ProfileViewModel: ObservableObject {
@@ -11,12 +12,14 @@ class ProfileViewModel: ObservableObject {
 
     private let cioTracking: Tracking
     private let profileRepository: ProfileRepository
+    private let notificationUtil: NotificationUtil
 
     @Published var loggedInProfileState = LoggedInProfileState(loggingIn: false, loggedInProfile: nil, error: nil)
 
-    init(cioTracking: Tracking, profileRepository: ProfileRepository) {
+    init(cioTracking: Tracking, profileRepository: ProfileRepository, notificationUtil: NotificationUtil) {
         self.cioTracking = cioTracking
         self.profileRepository = profileRepository
+        self.notificationUtil = notificationUtil
     }
 
     func loginUser(email: String, password: String, firstName: String) {
@@ -27,6 +30,10 @@ class ProfileViewModel: ObservableObject {
 
             switch result {
             case .success:
+                // Now that we have successfully identified a profile in the Customer.io SDK, we can safely
+                // register for APN push notifications so the device token is registered to a Customer.io profile.
+                self.notificationUtil.requestShowLocalNotifications()
+
                 self.loggedInProfileState = LoggedInProfileState(loggingIn: false,
                                                                  loggedInProfile: Profile(email: email), error: nil)
             case .failure(let error):
