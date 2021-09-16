@@ -21,6 +21,7 @@ struct ContentView: View {
 
     @State private var firstName = ""
     @State private var emailAddress = ""
+    @State private var generatedProfileRandomly = false
 
     var body: some View {
         VStack {
@@ -29,20 +30,32 @@ struct ContentView: View {
             } else {
                 let identifiedEmail = loggedInState.loggedInProfile?.email
 
-                TextField("First name", text: $firstName).padding()
-                TextField("Email address", text: $emailAddress)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
-                    .padding()
+                TextField("First name", text: $firstName) { isEditing in
+                    print("FN editing? \(isEditing)")
+                    if isEditing {
+                        generatedProfileRandomly = false
+                    }
+                }.padding()
+                TextField("Email address", text: $emailAddress) { isEditing in
+                    print("EM editing? \(isEditing)")
+                    if isEditing {
+                        generatedProfileRandomly = false
+                    }
+                }
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
+                .padding()
 
                 Button("Generate random profile") {
+                    generatedProfileRandomly = true
                     firstName = String.random
                     emailAddress = EmailAddress.randomEmail
                 }.padding()
 
                 if fieldsPopulated.wrappedValue {
                     Button("Identify customer") {
-                        profileViewModel.loginUser(email: emailAddress, password: "123", firstName: firstName)
+                        profileViewModel.loginUser(email: emailAddress, password: "123", firstName: firstName,
+                                                   generatedRandom: generatedProfileRandomly)
                     }.padding()
                 }
 

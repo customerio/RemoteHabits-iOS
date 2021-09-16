@@ -10,16 +10,18 @@ class ProfileViewModel: ObservableObject {
     }
 
     private let cioTracking: Tracking
+    private let cio: CustomerIO
     private let profileRepository: ProfileRepository
 
     @Published var loggedInProfileState = LoggedInProfileState(loggingIn: false, loggedInProfile: nil, error: nil)
 
-    init(cioTracking: Tracking, profileRepository: ProfileRepository) {
+    init(cioTracking: Tracking, profileRepository: ProfileRepository, cio: CustomerIO) {
         self.cioTracking = cioTracking
         self.profileRepository = profileRepository
+        self.cio = cio
     }
 
-    func loginUser(email: String, password: String, firstName: String) {
+    func loginUser(email: String, password: String, firstName: String, generatedRandom: Bool) {
         loggedInProfileState = LoggedInProfileState(loggingIn: true, loggedInProfile: nil, error: nil)
 
         profileRepository.loginUser(email: email, password: password, firstName: firstName) { [weak self] result in
@@ -29,6 +31,10 @@ class ProfileViewModel: ObservableObject {
             case .success:
                 self.loggedInProfileState = LoggedInProfileState(loggingIn: false,
                                                                  loggedInProfile: Profile(email: email), error: nil)
+
+                if generatedRandom {
+                    self.cio.track(name: "Name randomly generated") { _ in }
+                }
             case .failure(let error):
                 self.loggedInProfileState = LoggedInProfileState(loggingIn: false, loggedInProfile: nil, error: error)
             }
