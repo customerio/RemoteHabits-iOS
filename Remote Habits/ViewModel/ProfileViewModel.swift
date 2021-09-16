@@ -33,6 +33,10 @@ class ProfileViewModel: ObservableObject {
                                                                  loggedInProfile: Profile(email: email), error: nil)
 
                 if generatedRandom {
+                    // At this time, the Customer.io SDK does not handle errors that occur when tracking events.
+                    // If an error happens such as device being in airplane mode, you will lose that data.
+                    // However, for some apps whose customers are almost always online this may not be very risky
+                    // for you to do and you can simply not have any error handling like below.
                     self.cio.track(name: "Name randomly generated") { _ in }
                 }
             case .failure(let error):
