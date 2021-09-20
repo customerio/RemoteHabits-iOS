@@ -15,6 +15,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         // initialize the SDK here in the `AppDelegate`.
         CustomerIO.initialize(siteId: "YOUR SITE ID", apiKey: "YOUR API KEY", region: Region.US)
 
+        // Must call this function in order for `UNUserNotificationCenterDelegate` functions
+        // to be called.
+        UNUserNotificationCenter.current().delegate = self
+
         // It's good practice to always register for remote push when the app starts.
         // This asserts that the Customer.io SDK always has a valid APN device token to use.
         UIApplication.shared.registerForRemoteNotifications()
@@ -64,5 +68,35 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                 cioErrorUtil.parse(cioError)
             }
         }
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
+        let cioMessagingPush = DI.shared.messagingPush
+
+        let handled = cioMessagingPush.userNotificationCenter(center, didReceive: response,
+                                                              withCompletionHandler: completionHandler)
+
+        // If the Customer.io SDK does not handle the push, it's up to you to handle it and call the
+        // completion handler. If the SDK did handle it, it called the completion handler for you.
+        if !handled {
+            completionHandler()
+        }
+    }
+
+    // If you want your push UI to show even with the app in the foreground, override this function and call
+    // the completion handler.
+    @available(iOS 10.0, *)
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        completionHandler([.list, .banner, .badge, .sound])
     }
 }

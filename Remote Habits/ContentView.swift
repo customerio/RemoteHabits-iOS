@@ -53,7 +53,9 @@ struct ContentView: View {
             Alert(title: Text("Error"),
                   message: Text(loggedInState.error?.localizedDescription ?? ""),
                   dismissButton: .default(Text("Ok")))
-        }
+        }.onOpenURL(perform: { url in
+            print("Deep link pressed \(url.absoluteString)")
+        })
     }
 }
 
