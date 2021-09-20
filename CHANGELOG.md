@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.0.0...1.1.0) (2021-09-20)
+
+
+### Features
+
+* register APN device token to profile ([#15](https://github.com/customerio/RemoteHabits-iOS/issues/15)) ([34dac43](https://github.com/customerio/RemoteHabits-iOS/commit/34dac4394dec5d3a6dfd9810ef1944ccf85692b3))
+
 # 1.0.0 (2021-09-10)
 
 
