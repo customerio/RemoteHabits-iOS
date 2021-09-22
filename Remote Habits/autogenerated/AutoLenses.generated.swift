@@ -2,6 +2,7 @@
 // DO NOT EDIT
 // swiftlint:disable all
 
+import CioMessagingPush
 import CioTracking
 import Foundation
 

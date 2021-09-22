@@ -9,16 +9,16 @@ class ProfileViewModel: ObservableObject {
         let error: Error?
     }
 
-    private let cioTracking: Tracking
     private let cio: CustomerIO
     private let profileRepository: ProfileRepository
+    private let notificationUtil: NotificationUtil
 
     @Published var loggedInProfileState = LoggedInProfileState(loggingIn: false, loggedInProfile: nil, error: nil)
 
-    init(cioTracking: Tracking, profileRepository: ProfileRepository, cio: CustomerIO) {
-        self.cioTracking = cioTracking
-        self.profileRepository = profileRepository
+    init(cio: CustomerIO, profileRepository: ProfileRepository, notificationUtil: NotificationUtil) {
         self.cio = cio
+        self.profileRepository = profileRepository
+        self.notificationUtil = notificationUtil
     }
 
     func loginUser(email: String, password: String, firstName: String, generatedRandom: Bool) {
@@ -29,6 +29,10 @@ class ProfileViewModel: ObservableObject {
 
             switch result {
             case .success:
+                // Now that we have successfully identified a profile in the Customer.io SDK, we can safely
+                // register for APN push notifications so the device token is registered to a Customer.io profile.
+                self.notificationUtil.requestShowLocalNotifications()
+
                 self.loggedInProfileState = LoggedInProfileState(loggingIn: false,
                                                                  loggedInProfile: Profile(email: email), error: nil)
 

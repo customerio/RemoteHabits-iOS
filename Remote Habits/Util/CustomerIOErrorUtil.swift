@@ -2,6 +2,7 @@ import CioTracking
 import Foundation
 
 protocol CustomerIOErrorUtil {
+    @discardableResult
     func parse(_ error: CustomerIOError) -> HumanReadableError
 }
 
@@ -17,10 +18,11 @@ class AppCustomerIOErrorUtil: CustomerIOErrorUtil {
         var errorMessage = "Sorry! We found a problem with the app. We have been notified. Please, try again."
 
         switch error {
+        case .noCustomerIdentified:
+            logger
+                .reportError(message: "Tried to perform an action but can't because no customer is identified.")
         case .notInitialized:
             logger.reportError(message: "Customer.io SDK not intialized.")
-        case .noCustomerIdentified:
-            logger.reportError(message: "Can't perform action unless customer identified")
         case .http(let error):
             switch error {
             // Bad credentials given to SDK. Log error to fix it.

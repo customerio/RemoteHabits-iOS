@@ -1,3 +1,4 @@
+import CioMessagingPush
 import CioTracking
 import Foundation
 
@@ -13,11 +14,15 @@ protocol ProfileRepository {
 // sourcery: InjectRegister = "ProfileRepository"
 class AppProfileRepository: ProfileRepository {
     private let cio: CustomerIO
+    private let messagingPush: MessagingPush
     private let cioErrorUtil: CustomerIOErrorUtil
+    private var userManager: UserManager
 
-    init(cio: CustomerIO, cioErrorUtil: CustomerIOErrorUtil) {
+    init(cio: CustomerIO, cioErrorUtil: CustomerIOErrorUtil, userManager: UserManager, messagingPush: MessagingPush) {
         self.cio = cio
         self.cioErrorUtil = cioErrorUtil
+        self.userManager = userManager
+        self.messagingPush = messagingPush
     }
 
     /// Simulates a network call and will randomly succeed or fail to cover both use cases of the app.
@@ -32,15 +37,35 @@ class AppProfileRepository: ProfileRepository {
             let diceRoll = Int.random(in: 0 ..< 100)
 
             if diceRoll < 90 {
-                /// identify() calls callback on main thread.
-                self.cio.identify(identifier: email, body: ["first_name": firstName]) { [weak self] result in
+                self.deleteDeviceTokenFromPreviousProfile { [weak self] result in
                     guard let self = self else { return }
 
-                    switch result {
-                    case .success:
-                        return onComplete(.success(()))
-                    case .failure(let cioError):
+                    if case .failure(let cioError) = result {
                         return onComplete(.failure(self.cioErrorUtil.parse(cioError)))
+                    }
+
+                    /// identify() calls callback on main thread.
+                    self.cio.identify(identifier: email, body: ["first_name": firstName]) { [weak self] result in
+                        guard let self = self else { return }
+
+                        if case .failure(let cioError) = result {
+                            return onComplete(.failure(self.cioErrorUtil.parse(cioError)))
+                        }
+
+                        /// At this time, the Customer.io SDK does not register a device token to a newly identified
+                        /// profile. You must do this manually yourself. So, we register a device token to this
+                        /// new profile if a token has been assigned to this device.
+                        self.registerDeviceTokenNewProfile { result in
+                            switch result {
+                            case .success:
+                                /// Finally, the profile has been identified. This is the final success case.
+                                self.userManager.email = email
+
+                                return onComplete(.success(()))
+                            case .failure(let cioError):
+                                return onComplete(.failure(self.cioErrorUtil.parse(cioError)))
+                            }
+                        }
                     }
                 }
             } else {
@@ -50,5 +75,21 @@ class AppProfileRepository: ProfileRepository {
                 }
             }
         }
+    }
+
+    private func deleteDeviceTokenFromPreviousProfile(_ onComplete: @escaping (Result<Void, CustomerIOError>) -> Void) {
+        guard userManager.apnDeviceToken != nil else {
+            return onComplete(.success(()))
+        }
+
+        messagingPush.deleteDeviceToken(onComplete: onComplete)
+    }
+
+    private func registerDeviceTokenNewProfile(_ onComplete: @escaping (Result<Void, CustomerIOError>) -> Void) {
+        guard let existingApnDeviceToken = userManager.apnDeviceToken else {
+            return onComplete(.success(()))
+        }
+
+        messagingPush.registerDeviceToken(String(apnDeviceToken: existingApnDeviceToken), onComplete: onComplete)
     }
 }

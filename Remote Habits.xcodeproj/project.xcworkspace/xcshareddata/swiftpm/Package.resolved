@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/customerio/customerio-ios/",
         "state": {
           "branch": null,
-          "revision": "ed07ff72dc5b7c2654459238eb4bfceb1f1a5b26",
-          "version": null
+          "revision": "b570a0848959fc0c7b40981a3811ef1880d61854",
+          "version": "1.0.0-alpha.12"
         }
       },
       {

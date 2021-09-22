@@ -2,6 +2,7 @@
 // DO NOT EDIT
 // swiftlint:disable all
 
+import CioMessagingPush
 import CioTracking
 import Foundation
 
@@ -61,10 +62,14 @@ import Foundation
 enum Dependency: CaseIterable {
     case customerIOErrorUtil
     case logger
+    case notificationUtil
     case profileRepository
+    case userManager
     case customerIO
+    case messagingPush
     case profileViewModel
     case tracking
+    case userDefaults
 }
 
 /**
@@ -105,10 +110,14 @@ class DI {
         switch dep {
         case .customerIOErrorUtil: return customerIOErrorUtil as! T
         case .logger: return logger as! T
+        case .notificationUtil: return notificationUtil as! T
         case .profileRepository: return profileRepository as! T
+        case .userManager: return userManager as! T
         case .customerIO: return customerIO as! T
+        case .messagingPush: return messagingPush as! T
         case .profileViewModel: return profileViewModel as! T
         case .tracking: return tracking as! T
+        case .userDefaults: return userDefaults as! T
         }
     }
 
@@ -140,6 +149,18 @@ class DI {
         AppLogger()
     }
 
+    // NotificationUtil
+    internal var notificationUtil: NotificationUtil {
+        if let overridenDep = overrides[.notificationUtil] {
+            return overridenDep as! NotificationUtil
+        }
+        return newNotificationUtil
+    }
+
+    private var newNotificationUtil: NotificationUtil {
+        AppNotificationUtil()
+    }
+
     // ProfileRepository
     internal var profileRepository: ProfileRepository {
         if let overridenDep = overrides[.profileRepository] {
@@ -149,7 +170,20 @@ class DI {
     }
 
     private var newProfileRepository: ProfileRepository {
-        AppProfileRepository(cio: customerIO, cioErrorUtil: customerIOErrorUtil)
+        AppProfileRepository(cio: customerIO, cioErrorUtil: customerIOErrorUtil, userManager: userManager,
+                             messagingPush: messagingPush)
+    }
+
+    // UserManager
+    internal var userManager: UserManager {
+        if let overridenDep = overrides[.userManager] {
+            return overridenDep as! UserManager
+        }
+        return newUserManager
+    }
+
+    private var newUserManager: UserManager {
+        AppUserManager(userDefaults: userDefaults)
     }
 
     // CustomerIO (custom. property getter provided via extension)
@@ -158,6 +192,14 @@ class DI {
             return overridenDep as! CustomerIO
         }
         return customCustomerIO
+    }
+
+    // MessagingPush (custom. property getter provided via extension)
+    internal var messagingPush: MessagingPush {
+        if let overridenDep = overrides[.messagingPush] {
+            return overridenDep as! MessagingPush
+        }
+        return customMessagingPush
     }
 
     // ProfileViewModel
@@ -169,7 +211,7 @@ class DI {
     }
 
     private var newProfileViewModel: ProfileViewModel {
-        ProfileViewModel(cioTracking: tracking, profileRepository: profileRepository, cio: customerIO)
+        ProfileViewModel(cio: customerIO, profileRepository: profileRepository, notificationUtil: notificationUtil)
     }
 
     // Tracking (custom. property getter provided via extension)
@@ -178,5 +220,13 @@ class DI {
             return overridenDep as! Tracking
         }
         return customTracking
+    }
+
+    // UserDefaults (custom. property getter provided via extension)
+    internal var userDefaults: UserDefaults {
+        if let overridenDep = overrides[.userDefaults] {
+            return overridenDep as! UserDefaults
+        }
+        return customUserDefaults
     }
 }
