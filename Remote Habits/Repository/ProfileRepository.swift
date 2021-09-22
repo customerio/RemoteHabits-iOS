@@ -90,6 +90,6 @@ class AppProfileRepository: ProfileRepository {
             return onComplete(.success(()))
         }
 
-        messagingPush.registerDeviceToken(existingApnDeviceToken, onComplete: onComplete)
+        messagingPush.registerDeviceToken(String(apnDeviceToken: existingApnDeviceToken), onComplete: onComplete)
     }
 }

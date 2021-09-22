@@ -9,19 +9,19 @@ class ProfileViewModel: ObservableObject {
         let error: Error?
     }
 
-    private let cioTracking: Tracking
+    private let cio: CustomerIO
     private let profileRepository: ProfileRepository
     private let notificationUtil: NotificationUtil
 
     @Published var loggedInProfileState = LoggedInProfileState(loggingIn: false, loggedInProfile: nil, error: nil)
 
-    init(cioTracking: Tracking, profileRepository: ProfileRepository, notificationUtil: NotificationUtil) {
-        self.cioTracking = cioTracking
+    init(cio: CustomerIO, profileRepository: ProfileRepository, notificationUtil: NotificationUtil) {
+        self.cio = cio
         self.profileRepository = profileRepository
         self.notificationUtil = notificationUtil
     }
 
-    func loginUser(email: String, password: String, firstName: String) {
+    func loginUser(email: String, password: String, firstName: String, generatedRandom: Bool) {
         loggedInProfileState = LoggedInProfileState(loggingIn: true, loggedInProfile: nil, error: nil)
 
         profileRepository.loginUser(email: email, password: password, firstName: firstName) { [weak self] result in
@@ -35,6 +35,14 @@ class ProfileViewModel: ObservableObject {
 
                 self.loggedInProfileState = LoggedInProfileState(loggingIn: false,
                                                                  loggedInProfile: Profile(email: email), error: nil)
+
+                if generatedRandom {
+                    // At this time, the Customer.io SDK does not handle errors that occur when tracking events.
+                    // If an error happens such as device being in airplane mode, you will lose that data.
+                    // However, for some apps whose customers are almost always online this may not be very risky
+                    // for you to do and you can simply not have any error handling like below.
+                    self.cio.track(name: "Name randomly generated") { _ in }
+                }
             case .failure(let error):
                 self.loggedInProfileState = LoggedInProfileState(loggingIn: false, loggedInProfile: nil, error: error)
             }
