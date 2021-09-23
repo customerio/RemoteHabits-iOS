@@ -21,6 +21,7 @@ struct ContentView: View {
 
     @State private var firstName = ""
     @State private var emailAddress = ""
+    @State private var openedDeepLink = ""
     @State private var generatedProfileRandomly = false
 
     var body: some View {
@@ -61,12 +62,17 @@ struct ContentView: View {
 
                 Text(identifiedEmail != nil ? "Identified profile: \(identifiedEmail!)" : "not logged in")
                 Text(loggedInState.error?.localizedDescription ?? "no error")
+                if !openedDeepLink.isEmpty {
+                    Text("You opened a deep link! \(openedDeepLink)").padding(.top, 20)
+                }
             }
         }.alert(isPresented: presentAlert) {
             Alert(title: Text("Error"),
                   message: Text(loggedInState.error?.localizedDescription ?? ""),
                   dismissButton: .default(Text("Ok")))
-        }
+        }.onOpenURL(perform: { url in
+            openedDeepLink = url.absoluteString
+        })
     }
 }
 
