@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.3.0...1.4.0) (2021-09-24)
+
+
+### Features
+
+* rich push images ([#18](https://github.com/customerio/RemoteHabits-iOS/issues/18)) ([12421b6](https://github.com/customerio/RemoteHabits-iOS/commit/12421b6b63555a820754006ac00a383db0188106))
+
 # [1.3.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.2.0...1.3.0) (2021-09-23)
 
 
