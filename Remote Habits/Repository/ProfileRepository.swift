@@ -1,4 +1,5 @@
 import CioMessagingPush
+import CioMessagingPushAPN
 import CioTracking
 import Foundation
 
@@ -78,7 +79,7 @@ class AppProfileRepository: ProfileRepository {
     }
 
     private func deleteDeviceTokenFromPreviousProfile(_ onComplete: @escaping (Result<Void, CustomerIOError>) -> Void) {
-        guard userManager.apnDeviceToken != nil else {
+        guard userManager.apnDeviceToken != nil || userManager.fcmDeviceToken != nil else {
             return onComplete(.success(()))
         }
 
@@ -86,10 +87,13 @@ class AppProfileRepository: ProfileRepository {
     }
 
     private func registerDeviceTokenNewProfile(_ onComplete: @escaping (Result<Void, CustomerIOError>) -> Void) {
-        guard let existingApnDeviceToken = userManager.apnDeviceToken else {
-            return onComplete(.success(()))
+        if let existingDeviceToken = userManager.apnDeviceToken {
+            return messagingPush.registerDeviceToken(apnDeviceToken: existingDeviceToken, onComplete: onComplete)
+        }
+        if let existingDeviceToken = userManager.fcmDeviceToken {
+            return messagingPush.registerDeviceToken(existingDeviceToken, onComplete: onComplete)
         }
 
-        messagingPush.registerDeviceToken(String(apnDeviceToken: existingApnDeviceToken), onComplete: onComplete)
+        return onComplete(.success(()))
     }
 }
