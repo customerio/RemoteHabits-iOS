@@ -211,8 +211,7 @@ class DI {
     }
 
     private var newProfileViewModel: ProfileViewModel {
-        ProfileViewModel(cioTracking: tracking, profileRepository: profileRepository,
-                         notificationUtil: notificationUtil)
+        ProfileViewModel(cio: customerIO, profileRepository: profileRepository, notificationUtil: notificationUtil)
     }
 
     // Tracking (custom. property getter provided via extension)

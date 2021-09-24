@@ -1,3 +1,17 @@
+# [1.3.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.2.0...1.3.0) (2021-09-23)
+
+
+### Features
+
+* rich push with deep links ([#17](https://github.com/customerio/RemoteHabits-iOS/issues/17)) ([7f433fa](https://github.com/customerio/RemoteHabits-iOS/commit/7f433fa3740feae53cfbe8452461833049a42d19))
+
+# [1.2.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.1.0...1.2.0) (2021-09-22)
+
+
+### Features
+
+* track events using SDK ([#16](https://github.com/customerio/RemoteHabits-iOS/issues/16)) ([c8e9de8](https://github.com/customerio/RemoteHabits-iOS/commit/c8e9de84017483eea0e6f9d04caaf2f0db1cbcb0))
+
 # [1.1.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.0.0...1.1.0) (2021-09-20)
 
 
