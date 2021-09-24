@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.4.0...1.5.0) (2021-09-24)
+
+
+### Features
+
+* register FCM device token ([#19](https://github.com/customerio/RemoteHabits-iOS/issues/19)) ([190ec52](https://github.com/customerio/RemoteHabits-iOS/commit/190ec5284b7ddbe9d3fc6c29e8609859aab788f0))
+
 # [1.4.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.3.0...1.4.0) (2021-09-24)
 
 
