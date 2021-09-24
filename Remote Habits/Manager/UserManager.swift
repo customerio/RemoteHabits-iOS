@@ -3,6 +3,7 @@ import Foundation
 protocol UserManager {
     var email: String? { get set }
     var apnDeviceToken: Data? { get set }
+    var fcmDeviceToken: String? { get set }
     var isLoggedIn: Bool { get }
 }
 
@@ -25,6 +26,15 @@ class AppUserManager: UserManager {
         }
         set {
             userDefaults.set(newValue, forKey: UserDefaultKeys.apnDeviceToken.rawValue)
+        }
+    }
+
+    var fcmDeviceToken: String? {
+        get {
+            userDefaults.string(forKey: UserDefaultKeys.fcmDeviceToken.rawValue)
+        }
+        set {
+            userDefaults.set(newValue, forKey: UserDefaultKeys.fcmDeviceToken.rawValue)
         }
     }
 
