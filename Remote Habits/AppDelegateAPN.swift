@@ -4,7 +4,15 @@ import Firebase
 import Foundation
 import UIKit
 
-class AppDelegate: NSObject, UIApplicationDelegate {
+/**
+ AppDelegate for use with the APN push service.
+
+ Follow the code in this file to learn how to use APN with the Customer.io SDK.
+
+ If you want to use this file in the Remote Habits app:
+ 1. Open `RemoteHabitsApp` file and follow the instructions there.
+ */
+class AppDelegateAPN: NSObject, UIApplicationDelegate {
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
@@ -71,7 +79,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
 }
 
-extension AppDelegate: UNUserNotificationCenterDelegate {
+extension AppDelegateAPN: UNUserNotificationCenterDelegate {
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         didReceive response: UNNotificationResponse,
