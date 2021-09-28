@@ -43,7 +43,6 @@
 		F7135B0126D7D96F0072D044 /* DIDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7135B0026D7D96F0072D044 /* DIDependencies.swift */; };
 		F743FEFA26F3A46300604456 /* MessagingPushAPN in Frameworks */ = {isa = PBXBuildFile; productRef = F743FEF926F3A46300604456 /* MessagingPushAPN */; };
 		F743FEFC26F3A46300604456 /* Tracking in Frameworks */ = {isa = PBXBuildFile; productRef = F743FEFB26F3A46300604456 /* Tracking */; };
-		F74D93DF26FE39690037E06C /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = F74D93DE26FE39690037E06C /* FirebaseMessaging */; };
 		F74D93E126FE3A4C0037E06C /* AppDelegateFCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74D93E026FE3A4C0037E06C /* AppDelegateFCM.swift */; };
 		F74D93E326FE3A590037E06C /* MessagingPushFCM in Frameworks */ = {isa = PBXBuildFile; productRef = F74D93E226FE3A590037E06C /* MessagingPushFCM */; };
 		F751BAE926DD292B00ACB572 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F751BAE826DD292B00ACB572 /* ViewExtension.swift */; };
@@ -157,7 +156,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F74D93DF26FE39690037E06C /* FirebaseMessaging in Frameworks */,
 				F76F01FF26F1421600F16589 /* MessagingPushAPN in Frameworks */,
 				F7D1AD5F26D95E9000FDD423 /* Tracking in Frameworks */,
 				F7E9FABC26E7C564003F4187 /* FirebaseCrashlytics in Frameworks */,
@@ -389,7 +387,6 @@
 				F7D1AD5E26D95E9000FDD423 /* Tracking */,
 				F7E9FABB26E7C564003F4187 /* FirebaseCrashlytics */,
 				F76F01FE26F1421600F16589 /* MessagingPushAPN */,
-				F74D93DE26FE39690037E06C /* FirebaseMessaging */,
 				F74D93E226FE3A590037E06C /* MessagingPushFCM */,
 			);
 			productName = "Remote Habits";
@@ -964,7 +961,7 @@
 			repositoryURL = "https://github.com/customerio/customerio-ios/";
 			requirement = {
 				kind = exactVersion;
-				version = "1.0.0-alpha.14";
+				version = "1.0.0-alpha.15";
 			};
 		};
 		F7E9FABA26E7C564003F4187 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
@@ -987,11 +984,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F7135ADD26D6DE560072D044 /* XCRemoteSwiftPackageReference "customerio-ios" */;
 			productName = Tracking;
-		};
-		F74D93DE26FE39690037E06C /* FirebaseMessaging */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F7E9FABA26E7C564003F4187 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseMessaging;
 		};
 		F74D93E226FE3A590037E06C /* MessagingPushFCM */ = {
 			isa = XCSwiftPackageProductDependency;
