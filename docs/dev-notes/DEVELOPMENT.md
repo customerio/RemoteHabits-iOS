@@ -29,3 +29,42 @@ After you run this command above, you will see a message about a few different C
 Done! Now, exit and reopen the project in XCode. Then check to make sure there are no errors in the code signing section.
 
 ![Check xcode > project settings > signing and capabilities > signing certificate does now have any errors and instead has a name of the certificate listed](img/check_errors_signing_xcode.png)
+
+# Test push notifications 
+
+Testing rich push notifications can be difficult. Hopefully this doc is a good starting point to do so. 
+
+* Run app in XCode in debug on a test device. 
+* Send yourself a push notification. Your breakpoints will not trigger yet and that's ok. This first time you send yourself a push is just to "wake up" the Notification Service target in the project. 
+
+The push JSON content matters. It must contain this content at a minimum or your Notification Service will not be executed:
+
+```json
+{
+    "aps": {
+        "mutable-content": 1,
+        "alert": {
+            "title": "foo",
+            "body": "message here"
+        }
+    }
+}
+```
+
+* In XCode, select `Debug > Attach to process > Notification Service`. Notification Service should be at the top of the list. If it's not, confirm that a push notification successfully got sent because it could mean that none of the code in your Notification Service got executed. 
+* Now your XCode debugger is connected to the app *and* the notification service you made. Great!
+* Now, set breakpoints in the app and/or the SDK. Breakpoints work better then print statements I have found. I have not been able to see print statements in the console for code in the SDK. 
+* Send yourself a push again. This time your breakpoints should trigger. 
+
+# Test FCM push
+
+The Remote Habits app is setup to only work with APN at this time. You must follow these special instructions to get FCM push working with the app:
+
+1. Install the FCM SDK module. 
+![Install the swift package Firebase Messaging framework into your project via XCode target settings](img/xcode_add_fcm_messaging.jpeg)
+
+2. Open the file `AppDelegateFCM` and uncomment the file. It is commented out because the FCM SDK is uninstalled by default. 
+
+3. Open the file `RemoteHabitsApp` and follow the instructions for enabling FCM's AppDelegate. 
+
+4. If you have the Remote Habits app installed on your device right now using APN, you should delete the app and re-install this FCM build. 
