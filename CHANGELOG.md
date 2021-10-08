@@ -1,3 +1,15 @@
+# [1.6.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.5.0...1.6.0) (2021-10-08)
+
+
+### Bug Fixes
+
+* get APN working again ([#21](https://github.com/customerio/RemoteHabits-iOS/issues/21)) ([03c532a](https://github.com/customerio/RemoteHabits-iOS/commit/03c532a3c073c6fe4b2e9930b4fff5249f0efa6e))
+
+
+### Features
+
+* enable push metrics tracking ([#20](https://github.com/customerio/RemoteHabits-iOS/issues/20)) ([12aec37](https://github.com/customerio/RemoteHabits-iOS/commit/12aec37bef018532cea9067edcaee98c19aeb4b8))
+
 # [1.5.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.4.0...1.5.0) (2021-09-24)
 
 
