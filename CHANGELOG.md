@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/customerio/RemoteHabits-iOS/compare/1.6.0...1.6.1) (2021-10-08)
+
+
+### Bug Fixes
+
+* automtic opened push metrics ([#23](https://github.com/customerio/RemoteHabits-iOS/issues/23)) ([098c4bc](https://github.com/customerio/RemoteHabits-iOS/commit/098c4bc9d8599989b120c8a59c20eb8132a9bf77))
+
 # [1.6.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.5.0...1.6.0) (2021-10-08)
 
 
