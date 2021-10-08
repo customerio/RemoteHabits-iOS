@@ -1,3 +1,4 @@
+import CioMessagingPush
 import CioMessagingPushAPN
 import CioTracking
 import Firebase
@@ -13,6 +14,8 @@ import UIKit
  1. Open `RemoteHabitsApp` file and follow the instructions there.
  */
 class AppDelegateAPN: NSObject, UIApplicationDelegate {
+    private var messagingPush: MessagingPush?
+
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
@@ -86,6 +89,10 @@ extension AppDelegateAPN: UNUserNotificationCenterDelegate {
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
         let cioMessagingPush = DI.shared.messagingPush
+        // If not using the `MessagingPush.shared` singleton instance of the SDK, you need to keep a strong
+        // reference to `MessagingPush` to avoid the class being garbage collected before
+        // the completionHandler is called.
+        messagingPush = cioMessagingPush
 
         let handled = cioMessagingPush.userNotificationCenter(center, didReceive: response,
                                                               withCompletionHandler: completionHandler)

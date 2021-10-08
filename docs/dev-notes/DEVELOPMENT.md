@@ -30,17 +30,30 @@ Done! Now, exit and reopen the project in XCode. Then check to make sure there a
 
 ![Check xcode > project settings > signing and capabilities > signing certificate does now have any errors and instead has a name of the certificate listed](img/check_errors_signing_xcode.png)
 
-# Test push notifications 
+# Debugging rich push notifications in Xcode
 
-Testing rich push notifications can be difficult. Hopefully this doc is a good starting point to do so. 
+Debugging rich push notifications can be difficult. This is because you are using a *Notification Service Extension* to support rich push notifications and these extensions are separate *Xcode targets*. Hopefully this doc is a good starting point to do so. 
 
 * Run app in XCode in debug on a test device. 
-* Send yourself a push notification. Your breakpoints will not trigger yet and that's ok. This first time you send yourself a push is just to "wake up" the Notification Service target in the project. 
+* Send yourself a test rich push notification in Customer.io. Your breakpoints in Xcode will not trigger yet and that's ok. This first time you send yourself a push is just to "wake up" the Notification Service target in the project. 
 
 The push JSON content matters. It must contain this content at a minimum or your Notification Service will not be executed:
 
 ```json
 {
+    "CIO": {
+        "push": {
+            "image": "https://pixfeeds.com/images/animals/red-pandas/640-178167661-red-panda.jpg",
+            "link": "remote-habits://deep?message=hello&message2=world",
+            "buttons": [{
+                "title": "Shop",
+                "link": "remote-habits://deep?message=hello&message2=world"
+            }, {
+                "title": "Open",
+                "link": "remote-habits://deep?message=action&message2=opened"
+            }]
+        }
+    },
     "aps": {
         "mutable-content": 1,
         "alert": {
@@ -53,8 +66,19 @@ The push JSON content matters. It must contain this content at a minimum or your
 
 * In XCode, select `Debug > Attach to process > Notification Service`. Notification Service should be at the top of the list. If it's not, confirm that a push notification successfully got sent because it could mean that none of the code in your Notification Service got executed. 
 * Now your XCode debugger is connected to the app *and* the notification service you made. Great!
-* Now, set breakpoints in the app and/or the SDK. Breakpoints work better then print statements I have found. I have not been able to see print statements in the console for code in the SDK. 
-* Send yourself a push again. This time your breakpoints should trigger. 
+* Now, set breakpoints in the Notification Service Extension and/or in the Customer.io SDK. Breakpoints work better then print statements I have found in Service Extensions. I have not been able to see print statements in the console for code in the SDK. 
+* Send yourself the rich push again. This time your breakpoints should trigger. 
+
+# Test push metrics 
+
+If you want to test [push metrics](https://customer.io/docs/api/#operation/pushMetrics) in Customer.io, you cannot use the Customer.io push notification composer's test send feature. That is because push metrics must have a push notification delivery ID in order to track the metrics events. That means you have to use a real push campaign to test push metrics. 
+
+* Create a new Segment that has just your profile you're identified into your app with. That way you don't spam others with push notifications! It's easiest to create a Segment where people are added if "email contains <your name>". 
+* Create a new Broadcast that will be used just to send push notifications to you for testing. For the broadcast, select the Segment you created above. 
+* Create a Workflow in this Broadcast with the push contents you want to send. 
+* Open Broadcast > Triggering Details. Make sure the box `Via API` has the ID for your broadcast in it. You can check the Broadcast ID in the URL path: `.../broadcast/X`. Click *Trigger a Broadcast* > make sure the dialog box says you are only sending to 1 person > click *Send now*. 
+* Your device should receive a push notification. The payload contents of that push notification will contain information [the API expects](https://customer.io/docs/api/#operation/pushMetrics) such as `CIO-Delivery-ID` and `CIO-Delivery-Token`. You use this information for API calls for reporting push metrics. 
+* Check the Activity Log for your Workspace after you send API calls for reported push metrics. The Activity Log is the best place to check if your API call was successful. 
 
 # Test FCM push
 
