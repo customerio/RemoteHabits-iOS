@@ -20,7 +20,7 @@ After you run this command above, you will see a message about a few different C
 
 # Setup code signing (internal team member, only)
 
-1. Download the file `gc_keys.json` from 1Password. Download this file to the root directory of the Remote Habits iOS source code. 
+1. Download the files `app_store_connect_creds.json` and `gc_keys.json` from 1Password. Download this file to the root directory of the Remote Habits iOS source code. 
 2. Install the CLI tool [fastlane](https://docs.fastlane.tools/getting-started/ios/setup/#installing-fastlane) to your computer. It's highly recommended to use the `gem install` method as other install methods have caused issues in the past. 
 3. Run `fastlane dev_setup` in the root directory of the Remote Habits iOS source code. Fastlane should *not* ask you to login to your Apple or Google account. Instead, it should simply download the provisioning profile and certificates and give you a success message:
 
@@ -36,7 +36,8 @@ Done! Now, exit and reopen the project in XCode. Then check to make sure there a
 
 Do you have an iPhone that you want to install Remote Habits on for local development? No problem! 
 
-Just run the command: `fastlane register_new_device` on your machine and it will walk you through the steps to get the job done. 
+1. Follow the docs for "Setup code signing" in this document. 
+2. Run the command: `fastlane register_new_device` on your machine and it will walk you through the steps to get the job done. 
 
 *Note: `register_new_device` should automatically update the Apple provisioning profiles and certificates to include your new test device. This means that you should be able to go into Xcode and run the Remote Habits app on your test device. **You will probably need to restart Xcode for the new files to get read by Xcode!** If you see errors about provisioning profiles or certificates, ask mobile team engineers for help.*
 
