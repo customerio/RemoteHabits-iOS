@@ -21,6 +21,21 @@ or alternatively using `brew install fastlane`
 fastlane ios deploy_app
 ```
 
+### ios dev_setup
+```
+fastlane ios dev_setup
+```
+
+### ios update_dev_signing
+```
+fastlane ios update_dev_signing
+```
+
+### ios register_new_device
+```
+fastlane ios register_new_device
+```
+
 
 ----
 

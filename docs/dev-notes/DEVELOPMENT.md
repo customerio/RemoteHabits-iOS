@@ -18,17 +18,27 @@ After you run this command above, you will see a message about a few different C
 
 3. You need to authenticate with the Customer.io SDK. Run `cp "Remote Habits/Env.swift.example" "Remote Habits/Env.swift"` and then modify the values in the `Remote Habits/Env.swift` file with credentials for a Customer.io Workspace you want to send data to. This file is ignored for git so don't worry about sharing your keys.  
 
-# Setup code signing (internal team member)
+# Setup code signing (internal team member, only)
 
 1. Download the file `gc_keys.json` from 1Password. Download this file to the root directory of the Remote Habits iOS source code. 
-2. Install the CLI tool [fastlane](https://docs.fastlane.tools/getting-started/ios/setup/#installing-fastlane) to your computer. The `gem install` method is the recommended way but other ways may work just fine, too. 
-3. Run `fastlane match` in the root directory of the Remote Habits iOS source code. Fastlane should *not* ask you to login to your Apple or Google account. Instead, it should simply download the provisioning profile and certificates and give you a success message:
+2. Install the CLI tool [fastlane](https://docs.fastlane.tools/getting-started/ios/setup/#installing-fastlane) to your computer. It's highly recommended to use the `gem install` method as other install methods have caused issues in the past. 
+3. Run `fastlane dev_setup` in the root directory of the Remote Habits iOS source code. Fastlane should *not* ask you to login to your Apple or Google account. Instead, it should simply download the provisioning profile and certificates and give you a success message:
 
 ![if running fastlane match is successful, you should receive a message "All required keys, certificates, and provisioning profiles are installed"](img/fastlane_match_successs.png)
 
 Done! Now, exit and reopen the project in XCode. Then check to make sure there are no errors in the code signing section.
 
 ![Check xcode > project settings > signing and capabilities > signing certificate does now have any errors and instead has a name of the certificate listed](img/check_errors_signing_xcode.png)
+
+*Note: Xcode does give you the option of selecting "Automatic manage signing". Please, refrain from using that option as the team is setup to all share code signing files instead of Xcode creating new files for you.*
+
+# Add testing device (internal team member, only)
+
+Do you have an iPhone that you want to install Remote Habits on for local development? No problem! 
+
+Just run the command: `fastlane register_new_device` on your machine and it will walk you through the steps to get the job done. 
+
+*Note: `register_new_device` should automatically update the Apple provisioning profiles and certificates to include your new test device. This means that you should be able to go into Xcode and run the Remote Habits app on your test device. **You will probably need to restart Xcode for the new files to get read by Xcode!** If you see errors about provisioning profiles or certificates, ask mobile team engineers for help.*
 
 # Debugging rich push notifications in Xcode
 

@@ -176,4 +176,46 @@ platform :ios do
       release_notes: release_notes
     )       
   end
+
+  # download the latest code signing 
+  lane :dev_setup do |values| 
+    sync_code_signing(
+      type: "development",
+      readonly: true,
+      api_key_path: 'app_store_connect_creds.json'
+    )
+  end 
+
+  # update code signing for development. Usually called by lane `register_new_device`
+  lane :update_dev_signing do |values| 
+    sync_code_signing(
+      type: "development",
+      force_for_new_devices: true,
+      readonly: false,
+      api_key_path: 'app_store_connect_creds.json'
+    )    
+  end 
+
+  # Run if you have a new device that you want to test with. 
+  lane :register_new_device do |values|     
+    device_udid = prompt(text: "First, enter your device's UDID (find it here: https://help.apple.com/xcode/mac/current/#/dev93ef696c6) => ")
+
+    UI.message("Next, I need a description of the device to register. An example would be 'Dana iPhone 13 green' to describe the device and who uses it.")    
+    device_name = prompt(text: "Enter a name for the device to register: ")
+
+    UI.success("Device UDID => #{device_udid}")    
+    UI.success("Device description => #{device_name}")
+
+    continue = prompt(text: "Register the above device? [Ctrl+C to quit, otherwise press ENTER]")
+
+    register_devices(
+      devices: {
+        device_name => device_udid
+      },
+      api_key_path: 'app_store_connect_creds.json'
+    )
+
+    UI.success("Device registered. Now, refreshing signing info.")
+    update_dev_signing
+  end 
 end 
