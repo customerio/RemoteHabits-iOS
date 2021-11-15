@@ -27,15 +27,25 @@
 //        // to be called.
 //        UNUserNotificationCenter.current().delegate = self
 //
-//        // Set FCM messaging delegate
-//        Messaging.messaging().delegate = self
-//
 //        // It's good practice to always register for remote push when the app starts.
 //        // This asserts that the Customer.io SDK always has a valid APN device token to use.
 //        UIApplication.shared.registerForRemoteNotifications()
 //
+//        // Set FCM messaging delegate after registering for APN push notifications.
+//        Messaging.messaging().delegate = self
+//
 //        return true
 //    }
+//
+//     func application(_ application: UIApplication,
+//                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+//         let logger = DI.shared.logger
+//
+//         logger.log("Received APN token: \(String(apnDeviceToken: deviceToken))")
+//
+//         // because we disabled FCM method swizzling, we need to provide the APN token to the FCM SDK.
+//         Messaging.messaging().apnsToken = deviceToken
+//     }
 // }
 //
 // extension AppDelegateFCM: MessagingDelegate {
@@ -51,6 +61,8 @@
 //        // So, we are saving the device token for later when a profile is identified in the app to register
 //        // a device token to the profile then.
 //        userManager.fcmDeviceToken = fcmToken
+//
+//        logger.log("Received FCM token: \(fcmToken)")
 //
 //        // Customer.io SDK will return an error when attempting to register a device token if a profile has
 //        // not been identified with Customer.io yet. Therefore, we check if a profile has been identified yet.
