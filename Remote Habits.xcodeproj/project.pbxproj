@@ -960,8 +960,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/customerio/customerio-ios/";
 			requirement = {
-				kind = revision;
-				revision = 79d4685054800e8043a511dcfc47c580e8a0dff6;
+				kind = exactVersion;
+				version = "1.0.0-alpha.17";
 			};
 		};
 		F7E9FABA26E7C564003F4187 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
