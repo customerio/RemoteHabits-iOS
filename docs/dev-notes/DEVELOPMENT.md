@@ -103,3 +103,5 @@ The Remote Habits app is setup to only work with APN at this time. You must foll
 3. Open the file `RemoteHabitsApp` and follow the instructions for enabling FCM's AppDelegate. 
 
 4. If you have the Remote Habits app installed on your device right now using APN, you should delete the app and re-install this FCM build. 
+
+> Note: [This guide](https://www.raywenderlich.com/20201639-firebase-cloud-messaging-for-ios-push-notifications) was followed to help get FCM setup with SwiftUI. The [official FCM docs](https://firebase.google.com/docs/cloud-messaging/ios/client) do not cover how to get FCM setup with an app that uses SwiftUI and [there is a bug](https://github.com/firebase/firebase-ios-sdk/issues/8738) in the FCM SDK when building a SwiftUI app. The biggest change is [disabling method swizzling](https://firebase.google.com/docs/cloud-messaging/ios/client#method_swizzling_in) for the FCM SDK. When method swizzling was enabled, an APN token was never retrieved for the app. 
