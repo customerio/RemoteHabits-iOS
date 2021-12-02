@@ -1,0 +1,6 @@
+framework module Pods_Notification_Service {
+  umbrella header "Pods-Notification Service-umbrella.h"
+
+  export *
+  module * { export * }
+}

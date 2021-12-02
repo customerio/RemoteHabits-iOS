@@ -20,7 +20,7 @@ class RHStubData {
                          HabitData(icon: "brain", title: "Focus Time", subTitle: "Set reminders to focus", type: .toggleSwitch, habitDetail: habitInfo)]
         
         let habitInfo_1 = HabitDetail(isHabitEnabled: true, actionButtonValue: "Log out", actionType : .logout)
-        let habitInfo_2 = HabitDetail(isHabitEnabled: !isLoggedIn, actionButtonValue: "Switch", actionType : .switchWorkspace)
+        let habitInfo_2 = HabitDetail(isHabitEnabled: true, actionButtonValue: "Switch", actionType : .switchWorkspace)
         let anonymousHabitInfo = HabitDetail(isHabitEnabled: true, actionButtonValue: "Log In", actionType : .login)
         let anonymousUser = HabitData(icon: "guest", title: "Guest", subTitle: "Anonymous", type: .button, habitDetail: anonymousHabitInfo)
         let cioUser = HabitData(icon: "ciouser", title: "Bradley", subTitle: "bradley@customer.io", type: .button, habitDetail: habitInfo_1)
