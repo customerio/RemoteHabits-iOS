@@ -47,7 +47,7 @@ class RHLoginViewController: RHBaseViewController {
     func setupButtons() {
         
         // Buttons
-        loginButton.isEnabled = false // TODO : Disable when doing push
+        loginButton.isEnabled = false
         loginButton.titleLabel?.font = RHFont.SFProTextSemiBoldMedium
         loginButton.setTitleColor(UIColor.gray, for: .disabled)
         loginButton.setTitleColor(UIColor.white, for: .normal)
@@ -91,6 +91,15 @@ class RHLoginViewController: RHBaseViewController {
         return emailPred.evaluate(with: email)
     }
     
+    func route(withParam isGuestLogin : Bool = true) {
+        userNameInput.text = RHConstants.kEmptyValue
+        emailInput.text = RHConstants.kEmptyValue
+        loginButton.isEnabled = isGuestLogin
+        if let viewController  = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil).instantiateViewController(withIdentifier: RHConstants.kDashboardViewController) as? RHDashboardViewController {
+            viewController.isLoggedIn = isGuestLogin
+            navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
     
     // MARK: - --ACTIONS--
     @IBAction func emailDidChange(_ sender: Any) {
@@ -128,16 +137,11 @@ class RHLoginViewController: RHBaseViewController {
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
-        if let viewController  = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil).instantiateViewController(withIdentifier: RHConstants.kDashboardViewController) as? RHDashboardViewController {
-            navigationController?.pushViewController(viewController, animated: true)
-        }
+        route()
     }
     
     @IBAction func guestButtonTapped(_ sender: UIButton) {
-        if let viewController  = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil).instantiateViewController(withIdentifier: RHConstants.kDashboardViewController) as? RHDashboardViewController {
-            viewController.isLoggedIn = false
-            navigationController?.pushViewController(viewController, animated: true)
-        }
+        route(withParam: false)
     }
     
 }
