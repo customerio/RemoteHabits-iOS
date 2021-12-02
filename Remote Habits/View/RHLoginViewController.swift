@@ -94,7 +94,8 @@ class RHLoginViewController: RHBaseViewController {
     func route(withParam isGuestLogin : Bool = true) {
         userNameInput.text = RHConstants.kEmptyValue
         emailInput.text = RHConstants.kEmptyValue
-        loginButton.isEnabled = isGuestLogin
+        loginButton.isEnabled = false
+        view.endEditing(true)
         if let viewController  = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil).instantiateViewController(withIdentifier: RHConstants.kDashboardViewController) as? RHDashboardViewController {
             viewController.isLoggedIn = isGuestLogin
             navigationController?.pushViewController(viewController, animated: true)
