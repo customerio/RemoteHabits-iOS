@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Bold.otf">
+            <string>SFProText-Bold</string>
+        </array>
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HabitReminderTableViewCell" rowHeight="208" id="KGk-i7-Jjw" customClass="HabitReminderTableViewCell" customModule="Remote_Habits_Mobile_App" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="427" height="198"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="427" height="198"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="khv-1O-ji3">
+                        <rect key="frame" x="16" y="0.0" width="395" height="182"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reminders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LoZ-Ws-6ka">
+                                <rect key="frame" x="16" y="16" width="369" height="36"/>
+                                <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Aaj-nX-3CB">
+                                <rect key="frame" x="16" y="60" width="363" height="114"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="KeU-lF-0tt">
+                                        <rect key="frame" x="0.0" y="0.0" width="363" height="34"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="how many times per day ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CyQ-Jj-sIi">
+                                                <rect key="frame" x="0.0" y="0.0" width="183.5" height="34"/>
+                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                                <color key="textColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="right" contentVerticalAlignment="center" text="2" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YzT-v9-o5I">
+                                                <rect key="frame" x="288" y="0.0" width="75" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="75" id="KY1-Ng-h2N"/>
+                                                </constraints>
+                                                <color key="textColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="XwH-Xc-sHn">
+                                        <rect key="frame" x="0.0" y="40" width="363" height="34"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8j4-XE-HaH">
+                                                <rect key="frame" x="0.0" y="0.0" width="283" height="34"/>
+                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                                <color key="textColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="9:00 AM" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G7L-mU-emx">
+                                                <rect key="frame" x="288" y="0.0" width="75" height="34"/>
+                                                <color key="backgroundColor" red="0.92156862745098034" green="0.92549019607843142" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="75" id="kAe-NJ-Sof"/>
+                                                </constraints>
+                                                <color key="textColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="9EW-Nc-GHP">
+                                        <rect key="frame" x="0.0" y="80" width="363" height="34"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HabitReminderTableViewCell" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MZF-Gb-k9u">
+                                                <rect key="frame" x="0.0" y="0.0" width="283" height="34"/>
+                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                                <color key="textColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="5:00 PM" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m9D-OC-eEy">
+                                                <rect key="frame" x="288" y="0.0" width="75" height="34"/>
+                                                <color key="backgroundColor" red="0.92156862750000001" green="0.92549019610000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="75" id="1fm-47-VSO"/>
+                                                </constraints>
+                                                <color key="textColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="KeU-lF-0tt" secondAttribute="trailing" id="C3b-mx-oBe"/>
+                                    <constraint firstItem="XwH-Xc-sHn" firstAttribute="leading" secondItem="Aaj-nX-3CB" secondAttribute="leading" id="ElP-Tg-p5C"/>
+                                    <constraint firstItem="KeU-lF-0tt" firstAttribute="leading" secondItem="Aaj-nX-3CB" secondAttribute="leading" id="bbT-mt-ZPo"/>
+                                    <constraint firstAttribute="trailing" secondItem="XwH-Xc-sHn" secondAttribute="trailing" id="hDr-Is-1EE"/>
+                                    <constraint firstItem="9EW-Nc-GHP" firstAttribute="leading" secondItem="Aaj-nX-3CB" secondAttribute="leading" id="uqY-lj-SRn"/>
+                                    <constraint firstAttribute="trailing" secondItem="9EW-Nc-GHP" secondAttribute="trailing" id="ycw-Ta-izr"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Aaj-nX-3CB" firstAttribute="top" secondItem="LoZ-Ws-6ka" secondAttribute="bottom" constant="8" id="COM-JF-KOJ"/>
+                            <constraint firstAttribute="trailing" secondItem="LoZ-Ws-6ka" secondAttribute="trailing" constant="10" id="T65-Ee-bSK"/>
+                            <constraint firstAttribute="bottom" secondItem="Aaj-nX-3CB" secondAttribute="bottom" constant="8" id="ZVv-P4-aPS"/>
+                            <constraint firstItem="Aaj-nX-3CB" firstAttribute="leading" secondItem="khv-1O-ji3" secondAttribute="leading" constant="16" id="b9e-Nw-YO0"/>
+                            <constraint firstItem="LoZ-Ws-6ka" firstAttribute="top" secondItem="khv-1O-ji3" secondAttribute="top" constant="16" id="bJf-kj-dE1"/>
+                            <constraint firstItem="LoZ-Ws-6ka" firstAttribute="leading" secondItem="khv-1O-ji3" secondAttribute="leading" constant="16" id="gzt-Gr-4eM"/>
+                            <constraint firstAttribute="trailing" secondItem="Aaj-nX-3CB" secondAttribute="trailing" constant="16" id="hxX-vf-gky"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="khv-1O-ji3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="535-nE-qye"/>
+                    <constraint firstAttribute="trailing" secondItem="khv-1O-ji3" secondAttribute="trailing" constant="16" id="omS-n3-1TZ"/>
+                    <constraint firstItem="khv-1O-ji3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="qfh-HI-zrY"/>
+                    <constraint firstAttribute="bottom" secondItem="khv-1O-ji3" secondAttribute="bottom" constant="16" id="qoE-ao-8b2"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="frequencyLabel" destination="CyQ-Jj-sIi" id="3Cb-tR-k3i"/>
+                <outlet property="frequencyText" destination="YzT-v9-o5I" id="MhL-ef-l0p"/>
+                <outlet property="fromLabel" destination="8j4-XE-HaH" id="JQu-iA-JCQ"/>
+                <outlet property="fromTimeText" destination="G7L-mU-emx" id="l4c-DZ-ame"/>
+                <outlet property="headerTitle" destination="LoZ-Ws-6ka" id="uiL-dC-IYl"/>
+                <outlet property="mainCellView" destination="khv-1O-ji3" id="8mf-aM-tgl"/>
+                <outlet property="toLabel" destination="MZF-Gb-k9u" id="JVs-8L-AAM"/>
+                <outlet property="toTimeText" destination="m9D-OC-eEy" id="bRU-3H-vYn"/>
+            </connections>
+            <point key="canvasLocation" x="178.98550724637681" y="145.98214285714286"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

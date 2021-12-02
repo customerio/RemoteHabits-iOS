@@ -14,7 +14,7 @@ class ProfileViewModel: ObservableObject {
     private let notificationUtil: NotificationUtil
 
     @Published var loggedInProfileState = LoggedInProfileState(loggingIn: false, loggedInProfile: nil, error: nil)
-
+    
     init(cio: CustomerIO, profileRepository: ProfileRepository, notificationUtil: NotificationUtil) {
         self.cio = cio
         self.profileRepository = profileRepository
