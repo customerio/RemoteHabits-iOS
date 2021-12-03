@@ -39,46 +39,14 @@ class AppDelegateAPN: NSObject, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let cioMessagingPush = DI.shared.messagingPush
-        let logger = DI.shared.logger
-        let cioErrorUtil = DI.shared.customerIOErrorUtil
-        var userManager = DI.shared.userManager
 
-        // At this time, the Customer.io SDK does not save APN device tokens to a customer profile for you.
-        // So, we are saving the device token for later when a profile is identified in the app to register
-        // a device token to the profile then.
-        userManager.apnDeviceToken = deviceToken
-
-        // Customer.io SDK will return an error when attempting to register a device token if a profile has
-        // not been identified with Customer.io yet. Therefore, we check if a profile has been identified yet.
-        guard userManager.isLoggedIn else {
-            return
-        }
-
-        cioMessagingPush
-            .application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken) { result in
-                switch result {
-                case .success:
-                    logger.log("Successfully registered device push token")
-                case .failure(let cioError):
-                    cioErrorUtil.parse(cioError)
-                }
-            }
+        cioMessagingPush.application(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        let logger = DI.shared.logger
-        let cioErrorUtil = DI.shared.customerIOErrorUtil
         let cioMessagingPush = DI.shared.messagingPush
 
-        // This will delete the existing push token from the identified profile in Customer.io SDK.
-        cioMessagingPush.application(application, didFailToRegisterForRemoteNotificationsWithError: error) { result in
-            switch result {
-            case .success:
-                logger.log("Successfully reported error to CIO SDK for registered push notifications")
-            case .failure(let cioError):
-                cioErrorUtil.parse(cioError)
-            }
-        }
+        cioMessagingPush.application(application, didFailToRegisterForRemoteNotificationsWithError: error)
     }
 }
 
