@@ -32,6 +32,25 @@ Done! Now, exit and reopen the project in XCode. Then check to make sure there a
 
 *Note: Xcode does give you the option of selecting "Automatic manage signing". Please, refrain from using that option as the team is setup to all share code signing files instead of Xcode creating new files for you.*
 
+# Work on Remote Habits and the iOS SDK code bases together in the same Xcode window
+
+Did you just implement a bug fix or new feature to the [iOS SDK](https://github.com/customerio/customerio-ios) that you want to test locally in Remote Habits? Want to work on Remote Habits *and* the SDK all within 1 single Xcode window? You can! 
+
+All you need to do to make this happen is to have the iOS SDK source code exist at the same level in your file system as the Remote Habits source code *and* be named `customerio-ios`. 
+
+So, let's say that your Remote Habits source code exists in a directory: `~/code/RemoteHabits-iOS/` on your machine. That means you need to make sure the iOS SDK source code is located at `~/code/customerio-ios/`. 
+
+Then, you just need to open up Xcode 13. You should now see that you can open and edit the files in the iOS SDK:
+
+![demonstrating in file explorer of xcode you can see tree structure of ios sdk and remote habits source code](img/xcode-edit-sdk.jpeg)
+
+If Xcode does not find `../customerio-ios/` in the Remote Habits Xcode project, Xcode will compile the SDK version installed via SPM in Xcode. By having `../customerio-ios/`, you are simply able to override the version installed via SPM in Xcode. 
+
+Resources 
+* https://developer.apple.com/documentation/swift_packages/developing_a_swift_package_in_tandem_with_an_app
+* https://developer.apple.com/documentation/swift_packages/editing_a_package_dependency_as_a_local_package
+* https://stackoverflow.com/questions/59121844/add-dependency-on-a-local-swift-package-in-xcode-11
+
 # Add testing device (internal team member, only)
 
 Do you have an iPhone that you want to install Remote Habits on for local development? No problem! 
@@ -103,3 +122,5 @@ The Remote Habits app is setup to only work with APN at this time. You must foll
 3. Open the file `RemoteHabitsApp` and follow the instructions for enabling FCM's AppDelegate. 
 
 4. If you have the Remote Habits app installed on your device right now using APN, you should delete the app and re-install this FCM build. 
+
+> Note: [This guide](https://www.raywenderlich.com/20201639-firebase-cloud-messaging-for-ios-push-notifications) was followed to help get FCM setup with SwiftUI. The [official FCM docs](https://firebase.google.com/docs/cloud-messaging/ios/client) do not cover how to get FCM setup with an app that uses SwiftUI and [there is a bug](https://github.com/firebase/firebase-ios-sdk/issues/8738) in the FCM SDK when building a SwiftUI app. The biggest change is [disabling method swizzling](https://firebase.google.com/docs/cloud-messaging/ios/client#method_swizzling_in) for the FCM SDK. When method swizzling was enabled, an APN token was never retrieved for the app. 

@@ -58,7 +58,7 @@
 		F7A3960626D7E22C00047DFA /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A3960526D7E22C00047DFA /* Env.swift */; };
 		F7A3960926D7E71000047DFA /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A3960826D7E71000047DFA /* StringExtensions.swift */; };
 		F7A3960C26D7F32400047DFA /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A3960B26D7F32400047DFA /* Profile.swift */; };
-		F7CDBB0227332BB200B4D91F /* customerio-ios in Resources */ = {isa = PBXBuildFile; fileRef = F7E6C20527332ADB00CF4491 /* customerio-ios */; };
+		F7CDBB0227332BB200B4D91F /* (null) in Resources */ = {isa = PBXBuildFile; };
 		F7D1AD5F26D95E9000FDD423 /* Tracking in Frameworks */ = {isa = PBXBuildFile; productRef = F7D1AD5E26D95E9000FDD423 /* Tracking */; };
 		F7E9FABC26E7C564003F4187 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = F7E9FABB26E7C564003F4187 /* FirebaseCrashlytics */; };
 		F7E9FABE26E7CA58003F4187 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F7E9FABD26E7CA58003F4187 /* GoogleService-Info.plist */; };
@@ -140,7 +140,7 @@
 		F7A3960526D7E22C00047DFA /* Env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Env.swift; sourceTree = "<group>"; };
 		F7A3960826D7E71000047DFA /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		F7A3960B26D7F32400047DFA /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
-		F7E6C20527332ADB00CF4491 /* customerio-ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "customerio-ios"; path = "../customerio-ios"; sourceTree = "<group>"; };
+		F7B782712745AAA20037CC90 /* customerio-ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "customerio-ios"; path = "../customerio-ios"; sourceTree = "<group>"; };
 		F7E9FABD26E7CA58003F4187 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -251,7 +251,7 @@
 		F77512B426332F8200805CD4 = {
 			isa = PBXGroup;
 			children = (
-				F7E6C20527332ADB00CF4491 /* customerio-ios */,
+				F7B782712745AAA20037CC90 /* customerio-ios */,
 				F77512BF26332F8200805CD4 /* Remote Habits */,
 				F77512D126332F8400805CD4 /* Remote HabitsTests */,
 				F77512DC26332F8400805CD4 /* Remote HabitsUITests */,
@@ -495,7 +495,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F77512C826332F8400805CD4 /* Preview Assets.xcassets in Resources */,
-				F7CDBB0227332BB200B4D91F /* customerio-ios in Resources */,
+				F7CDBB0227332BB200B4D91F /* (null) in Resources */,
 				F77512C526332F8400805CD4 /* Assets.xcassets in Resources */,
 				F7E9FABE26E7CA58003F4187 /* GoogleService-Info.plist in Resources */,
 			);
@@ -965,7 +965,7 @@
 			repositoryURL = "https://github.com/customerio/customerio-ios/";
 			requirement = {
 				kind = revision;
-				revision = 2f90a19b2b109d5950b9a1ee27211cd55e0a4b3f;
+				revision = b1cf76ceb5c9fed34175a7fd64705ce25ad779d8;
 			};
 		};
 		F7E9FABA26E7C564003F4187 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {

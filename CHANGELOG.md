@@ -1,3 +1,10 @@
+## [1.6.2](https://github.com/customerio/RemoteHabits-iOS/compare/1.6.1...1.6.2) (2021-11-18)
+
+
+### Bug Fixes
+
+* fcm receive push ([#25](https://github.com/customerio/RemoteHabits-iOS/issues/25)) ([e055a08](https://github.com/customerio/RemoteHabits-iOS/commit/e055a0886bd1e0f81eaafd8bfdcf02d30ea6288e))
+
 ## [1.6.1](https://github.com/customerio/RemoteHabits-iOS/compare/1.6.0...1.6.1) (2021-10-08)
 
 
