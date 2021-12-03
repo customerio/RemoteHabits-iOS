@@ -23,10 +23,6 @@ extension DI {
 
         let cio = CustomerIO(siteId: Env.customerIOSiteId, apiKey: Env.customerIOApiKey, region: region)
 
-        cio.config { config in
-            config.backgroundQueueMinNumberOfTasks = 1
-        }
-
         return cio
     }
 }
