@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var profileViewModel = DI.shared.profileViewModel
+    let notificationUtil = DI.shared.notificationUtil
 
     private var loggedInState: ProfileViewModel.LoggedInProfileState {
         profileViewModel.loggedInProfileState
@@ -58,6 +59,10 @@ struct ContentView: View {
                         profileViewModel.loginUser(email: emailAddress, password: "123", firstName: firstName,
                                                    generatedRandom: generatedProfileRandomly)
                     }.padding()
+                }
+
+                Button("Ask for push permission") {
+                    self.notificationUtil.requestShowLocalNotifications()
                 }
 
                 Text(identifiedEmail != nil ? "Identified profile: \(identifiedEmail!)" : "not logged in")

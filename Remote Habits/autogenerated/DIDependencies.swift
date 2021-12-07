@@ -21,7 +21,9 @@ extension DI {
     var customCustomerIO: CustomerIO {
         let region = Env.customerIORegion == "us" ? Region.US : Region.EU
 
-        return CustomerIO(siteId: Env.customerIOSiteId, apiKey: Env.customerIOApiKey, region: region)
+        let cio = CustomerIO(siteId: Env.customerIOSiteId, apiKey: Env.customerIOApiKey, region: region)
+
+        return cio
     }
 }
 

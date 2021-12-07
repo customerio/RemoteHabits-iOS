@@ -50,35 +50,9 @@
 //
 // extension AppDelegateFCM: MessagingDelegate {
 //    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-//        guard let fcmToken = fcmToken else { return }
-//
 //        let cioMessagingPush = DI.shared.messagingPush
-//        let logger = DI.shared.logger
-//        let cioErrorUtil = DI.shared.customerIOErrorUtil
-//        var userManager = DI.shared.userManager
 //
-//        // At this time, the Customer.io SDK does not save APN device tokens to a customer profile for you.
-//        // So, we are saving the device token for later when a profile is identified in the app to register
-//        // a device token to the profile then.
-//        userManager.fcmDeviceToken = fcmToken
-//
-//        logger.log("Received FCM token: \(fcmToken)")
-//
-//        // Customer.io SDK will return an error when attempting to register a device token if a profile has
-//        // not been identified with Customer.io yet. Therefore, we check if a profile has been identified yet.
-//        guard userManager.isLoggedIn else {
-//            return
-//        }
-//
-//        cioMessagingPush
-//            .messaging(messaging, didReceiveRegistrationToken: fcmToken) { result in
-//                switch result {
-//                case .success:
-//                    logger.log("Successfully registered device push token")
-//                case .failure(let cioError):
-//                    cioErrorUtil.parse(cioError)
-//                }
-//            }
+//        cioMessagingPush.messaging(messaging, didReceiveRegistrationToken: fcmToken)
 //    }
 // }
 //
