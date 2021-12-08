@@ -1,6 +1,0 @@
-framework module Pods_Remote_Habits {
-  umbrella header "Pods-Remote Habits-umbrella.h"
-
-  export *
-  module * { export * }
-}
