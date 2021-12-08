@@ -108,7 +108,7 @@ class RHLoginViewController: RHBaseViewController {
         if let floatingLabelTextField = sender as? SkyFloatingLabelTextFieldWithIcon {
             if let text = floatingLabelTextField.text {
                 if(!validateEmail(text)) {
-                    floatingLabelTextField.errorMessage = RHConstants.kInvalidEmail
+                    floatingLabelTextField.errorMessage = RHConstants.errorMessageEmailNotValid
                 }
                 else {
                     floatingLabelTextField.errorMessage = RHConstants.kEmptyValue

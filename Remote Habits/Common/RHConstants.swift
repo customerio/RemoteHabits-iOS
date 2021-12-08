@@ -10,7 +10,7 @@ import Foundation
 struct RHConstants {
     // Strings
     static let kBackground = "background"
-    static let kInvalidEmail = "Invalid Email"
+    static let errorMessageEmailNotValid = "Invalid Email"
     static let kEmptyValue = ""
     static let kBabyBradley = "Baby Bradley"
     static let kCIO = "Customer.io"
