@@ -31,7 +31,7 @@ class RHBaseViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
-    func configureNavigationBar(titleColor: UIColor = .black, backgoundColor: UIColor = .white, title: String, hideBack : Bool, showLogo : Bool = false) {
+    func configureNavigationBar(title: String, hideBack : Bool, titleColor: UIColor = .black, backgoundColor: UIColor = .white, showLogo : Bool = false) {
         if hideBack {
             self.navigationItem.setHidesBackButton(hideBack, animated: true)
         }
