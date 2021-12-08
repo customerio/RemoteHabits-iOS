@@ -49,7 +49,7 @@
 	<key>CFBundleVersion</key>
 	<string>39f9d999</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
-	<false/>
+	<true/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIAppFonts</key>
