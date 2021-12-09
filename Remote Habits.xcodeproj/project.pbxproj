@@ -405,13 +405,6 @@
 			path = HabitDetail;
 			sourceTree = "<group>";
 		};
-		93CE60FFAF335824B4969A25 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		F706047926F3A11B00A9C64D /* Notification Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -429,7 +422,6 @@
 				F77512DC26332F8400805CD4 /* Remote HabitsUITests */,
 				F706047926F3A11B00A9C64D /* Notification Service */,
 				F77512BE26332F8200805CD4 /* Products */,
-				93CE60FFAF335824B4969A25 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
