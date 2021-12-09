@@ -10,9 +10,9 @@ class ProfileViewModel: ObservableObject {
     }
 
     private let cio: CustomerIO
+    private var userManager = DI.shared.userManager
     private let profileRepository: ProfileRepository
     private let notificationUtil: NotificationUtil
-
     @Published var loggedInProfileState = LoggedInProfileState(loggingIn: false, loggedInProfile: nil, error: nil)
     
     init(cio: CustomerIO, profileRepository: ProfileRepository, notificationUtil: NotificationUtil) {
@@ -21,7 +21,7 @@ class ProfileViewModel: ObservableObject {
         self.notificationUtil = notificationUtil
     }
 
-    func loginUser(email: String, password: String, firstName: String, generatedRandom: Bool) {
+    func loginUser(email: String, password: String, firstName: String, generatedRandom: Bool, completion: @escaping ((Bool) -> Void)) {
         loggedInProfileState = LoggedInProfileState(loggingIn: true, loggedInProfile: nil, error: nil)
 
         profileRepository.loginUser(email: email, password: password, firstName: firstName) { [weak self] result in
@@ -37,15 +37,26 @@ class ProfileViewModel: ObservableObject {
                                                                  loggedInProfile: Profile(email: email), error: nil)
 
                 if generatedRandom {
+                    
                     // At this time, the Customer.io SDK does not handle errors that occur when tracking events.
                     // If an error happens such as device being in airplane mode, you will lose that data.
                     // However, for some apps whose customers are almost always online this may not be very risky
                     // for you to do and you can simply not have any error handling like below.
                     self.cio.track(name: "Name randomly generated") { _ in }
                 }
+                completion(true)
             case .failure(let error):
+                print(error)
                 self.loggedInProfileState = LoggedInProfileState(loggingIn: false, loggedInProfile: nil, error: error)
+                completion(false)
             }
         }
+    }
+    
+    func logoutUser() {
+        userManager.email = nil
+        userManager.userName = nil
+        userManager.isGuestLogin = nil
+        profileRepository.logoutUser()
     }
 }

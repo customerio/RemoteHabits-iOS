@@ -10,7 +10,7 @@ import Foundation
 struct RHConstants {
     // Strings
     static let kBackground = "background"
-    static let errorMessageEmailNotValid = "Invalid Email"
+    static let errorMessageLoginScreenEmailNotValid = "Invalid Email"
     static let kEmptyValue = ""
     static let kBabyBradley = "Baby Bradley"
     static let kCIO = "Customer.io"
@@ -27,11 +27,20 @@ struct RHConstants {
     static let kHabitReminderTableViewCell = "HabitReminderTableViewCell"
     static let kHabitDetailToggleTableViewCell = "HabitDetailToggleTableViewCell"
     static let kHabitAddInfoTableViewCell = "HabitAddInfoTableViewCell"
+    static let kLoginViewController = "RHLoginViewController"
     
     // Images / Assets
     static let kLogo = "logo"
     static let kBack = "back"
     
+    // Login
+    static let kRandomEId = EmailAddress.randomEmail
+    static let kDefaultPassword = "123"
+    static let kRandomUsername = String.random
     
+    // Habits Tracking
+    static let kHabitClicked = "clicked_habit"
+    static let kHabitEnabled = "habit_enabled"
+    static let kHabitDisabled = "habit_disabled"
     
 }

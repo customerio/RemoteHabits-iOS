@@ -10,10 +10,22 @@ protocol ProfileRepository {
         firstName: String,
         onComplete: @escaping (Result<Void, HumanReadableError>) -> Void
     )
+    
+    func logoutUser()
+    
+    func validateWorkspace<T: Codable>(forSiteId siteId: String,
+                           and apiKey : String,
+                           onComplete : @escaping (Result<T, HumanReadableError>) -> Void)
 }
 
 // sourcery: InjectRegister = "ProfileRepository"
 class AppProfileRepository: ProfileRepository {
+    
+    func logoutUser() {
+        
+        self.cio.clearIdentify()
+    }
+    
     private let cio: CustomerIO
     private let messagingPush: MessagingPush
     private let cioErrorUtil: CustomerIOErrorUtil
@@ -37,7 +49,7 @@ class AppProfileRepository: ProfileRepository {
 
             let diceRoll = Int.random(in: 0 ..< 100)
 
-            if diceRoll < 90 {
+            if diceRoll < 100 {
                 self.deleteDeviceTokenFromPreviousProfile { [weak self] result in
                     guard let self = self else { return }
 
@@ -61,7 +73,7 @@ class AppProfileRepository: ProfileRepository {
                             case .success:
                                 /// Finally, the profile has been identified. This is the final success case.
                                 self.userManager.email = email
-
+                                self.userManager.userName = firstName
                                 return onComplete(.success(()))
                             case .failure(let cioError):
                                 return onComplete(.failure(self.cioErrorUtil.parse(cioError)))
@@ -95,5 +107,45 @@ class AppProfileRepository: ProfileRepository {
         }
 
         return onComplete(.success(()))
+    }
+    
+    func validateWorkspace<T: Codable>(forSiteId siteId : String, and apiKey : String, onComplete : @escaping(Result<T, HumanReadableError>) -> Void) {
+        
+        guard let url = URL(string: "https://track.customer.io/dexterity-check") else {
+            return onComplete(.failure(self.cioErrorUtil.parse(.notInitialized)))
+        }
+       
+        let headers = getHeaders(forSiteId: siteId, and: apiKey)
+        var request = URLRequest(url: url)
+        request.allHTTPHeaderFields = [
+            "Authorization" : "Basic \(headers)"
+        ]
+        
+        request.httpMethod = "GET"
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            guard let data = data else {
+                return onComplete(.failure(self.cioErrorUtil.parse(.notInitialized)))
+            }
+            do {
+                let responseObject = try JSONDecoder().decode(T.self, from: data)
+                DispatchQueue.main.async {
+                    // Complete the call with success response & the decoded data
+                    onComplete(.success(responseObject))
+                    return
+                }
+            }
+            catch (let error) {
+                onComplete(.failure(self.cioErrorUtil.parse(.notInitialized)))
+            }
+            
+        }.resume()
+    }
+    
+    private func getHeaders(forSiteId siteId : String, and apiKey : String) -> String {
+        let rawHeader = "\(siteId):\(apiKey)"
+        let encodedRawHeader = rawHeader.data(using: .utf8)!
+
+        return encodedRawHeader.base64EncodedString(options: NSData.Base64EncodingOptions(rawValue: 0))
     }
 }

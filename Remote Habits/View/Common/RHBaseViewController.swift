@@ -9,9 +9,9 @@ import UIKit
 
 class RHBaseViewController: UIViewController {
 
+    var loaderView : UIView?
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
     
@@ -31,7 +31,41 @@ class RHBaseViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
-    func configureNavigationBar(title: String, hideBack : Bool, titleColor: UIColor = .black, backgoundColor: UIColor = .white, showLogo : Bool = false) {
+    
+    private func addLoader() {
+        loaderView = UIView()
+        loaderView?.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height) // Set X and Y whatever you want
+        loaderView?.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+        
+        let miniSpace = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+        miniSpace.center = self.view.center
+        miniSpace.layer.cornerRadius = 40
+        
+        // add image for loader background
+        let imageBg = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+        imageBg.image = UIImage(named: RHConstants.kBackground)
+        imageBg.layer.cornerRadius = 40
+        imageBg.layer.masksToBounds = true
+        
+        
+        // add shadow
+        miniSpace.layer.shadowColor = UIColor.gray.cgColor
+        miniSpace.layer.shadowOpacity = 0.3
+        miniSpace.layer.shadowOffset = CGSize.zero
+        miniSpace.layer.shadowRadius = 6
+        
+        miniSpace.addSubview(imageBg)
+        miniSpace.rotate()
+        
+        let activityView = UIActivityIndicatorView(style: .large)
+        activityView.center = CGPoint(x: 40, y: 40)
+        miniSpace.addSubview(activityView)
+        loaderView?.addSubview(miniSpace)
+        self.view.addSubview(loaderView!)
+        activityView.startAnimating()
+    }
+    
+    func configureNavigationBar(titleColor: UIColor = .black, backgoundColor: UIColor = .white, title: String, hideBack : Bool, showLogo : Bool = false) {
         if hideBack {
             self.navigationItem.setHidesBackButton(hideBack, animated: true)
         }
@@ -77,6 +111,14 @@ class RHBaseViewController: UIViewController {
             navigationItem.title = title
         }
     }
+    
+    func showLoader() {
+        addLoader()
+    }
+    
+    func hideLoader() {
+        loaderView?.removeFromSuperview()
+    }
     /*
     // MARK: - --NAVIGATION--
 
@@ -87,4 +129,15 @@ class RHBaseViewController: UIViewController {
     }
     */
 
+}
+
+extension UIView{
+    func rotate() {
+        let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotation.toValue = NSNumber(value: Double.pi * 2)
+        rotation.duration = 2
+        rotation.isCumulative = true
+        rotation.repeatCount = Float.greatestFiniteMagnitude
+        self.layer.add(rotation, forKey: "rotationAnimation")
+    }
 }

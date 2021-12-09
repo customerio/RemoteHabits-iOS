@@ -17,9 +17,15 @@ class RHLoginViewController: RHBaseViewController {
     @IBOutlet weak var guestButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var mainView: UIView!
-
+    @IBOutlet weak var errorMessageLabel: UILabel!
+    
     // MARK: - --VARIABLES--
+    var userManager = DI.shared.userManager
     var textFields: [SkyFloatingLabelTextFieldWithIcon] = []
+    var profileViewModel = DI.shared.profileViewModel
+    var loggedInState: ProfileViewModel.LoggedInProfileState {
+        profileViewModel.loggedInProfileState
+    }
     
     // MARK: - --LIFECYCLE METHODS--
     override func viewDidLoad() {
@@ -31,6 +37,7 @@ class RHLoginViewController: RHBaseViewController {
         setUpTextFields()
         setupButtons()
         setUpMainView()
+        actOnError(toShow: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -49,10 +56,16 @@ class RHLoginViewController: RHBaseViewController {
         // Buttons
         loginButton.isEnabled = false
         loginButton.titleLabel?.font = RHFont.SFProTextSemiBoldMedium
-        loginButton.setTitleColor(UIColor.gray, for: .disabled)
+        loginButton.setTitleColor(UIColor(red: 138/225, green: 141/225, blue: 144/225, alpha: 1.0), for: .disabled)
         loginButton.setTitleColor(UIColor.white, for: .normal)
+        loginButton.layer.cornerRadius = 24
+        loginButtonState()
     }
     
+    func loginButtonState() {
+        
+        loginButton.backgroundColor = loginButton.isEnabled ? UIColor(red: 10/225, green: 132/225, blue: 255/225, alpha: 1.0) : UIColor(red: 205/225, green: 205/225, blue: 205/225, alpha: 1.0)
+    }
     func setUpTextFields() {
         for field in textFields {
             
@@ -91,13 +104,26 @@ class RHLoginViewController: RHBaseViewController {
         return emailPred.evaluate(with: email)
     }
     
-    func route(withParam isGuestLogin : Bool = true) {
+    func actOnError(toShow: Bool) {
+        
+        if toShow {
+            errorMessageLabel.isHidden = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                    self.errorMessageLabel.isHidden = true
+            }
+        }else {
+            errorMessageLabel.isHidden = true
+        }
+    }
+    func routeToDashboard(isGuestLogin : Bool = true) {
         userNameInput.text = RHConstants.kEmptyValue
         emailInput.text = RHConstants.kEmptyValue
         loginButton.isEnabled = false
-        view.endEditing(true)
+        
+        
+        userManager.isGuestLogin = isGuestLogin
         if let viewController  = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil).instantiateViewController(withIdentifier: RHConstants.kDashboardViewController) as? RHDashboardViewController {
-            viewController.isLoggedIn = isGuestLogin
+            viewController.isLoggedIn = !isGuestLogin
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
@@ -108,7 +134,7 @@ class RHLoginViewController: RHBaseViewController {
         if let floatingLabelTextField = sender as? SkyFloatingLabelTextFieldWithIcon {
             if let text = floatingLabelTextField.text {
                 if(!validateEmail(text)) {
-                    floatingLabelTextField.errorMessage = RHConstants.errorMessageEmailNotValid
+                    floatingLabelTextField.errorMessage = RHConstants.errorMessageLoginScreenEmailNotValid
                 }
                 else {
                     floatingLabelTextField.errorMessage = RHConstants.kEmptyValue
@@ -121,6 +147,7 @@ class RHLoginViewController: RHBaseViewController {
                 }
             }
         }
+        loginButtonState()
     }
     
     @IBAction func nameDidChange(_ sender: Any) {
@@ -135,16 +162,34 @@ class RHLoginViewController: RHBaseViewController {
                 }
             }
         }
+        loginButtonState()
     }
     
     @IBAction func loginButtonTapped(_ sender: Any) {
-        route()
+        guard let eId = emailInput.text, let username = userNameInput.text else {
+            return
+        }
+        validateCredentials(email: eId, pwd: RHConstants.kDefaultPassword, firstName: username, isGenRandom: false)
     }
     
     @IBAction func guestButtonTapped(_ sender: UIButton) {
-        route(withParam: false)
+        validateCredentials(email: RHConstants.kRandomEId, pwd: RHConstants.kDefaultPassword, firstName: RHConstants.kRandomUsername, isGenRandom: true)
     }
     
+    func validateCredentials(email : String, pwd : String, firstName : String, isGenRandom : Bool) {
+        showLoader()
+        view.endEditing(true)
+        profileViewModel.loginUser(email: email, password: pwd, firstName: firstName, generatedRandom: isGenRandom){ result in
+            
+            self.hideLoader()
+            if result {
+                self.routeToDashboard(isGuestLogin: isGenRandom)
+            }
+            else {
+                self.actOnError(toShow: true)
+            }
+        }
+    }
 }
 
 
