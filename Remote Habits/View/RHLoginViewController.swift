@@ -92,8 +92,8 @@ class RHLoginViewController: RHBaseViewController {
         mainView.layer.cornerRadius = 13
     }
     
-    func validateName(_ name : String) -> Bool {
-        return name.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) != RHConstants.kEmptyValue
+    func validateName(_ nameText : UITextField) -> Bool {
+        return !nameText.trimTextWithWhiteSpaces
     }
     
     func validateEmail(_ email: String) -> Bool {
@@ -140,7 +140,7 @@ class RHLoginViewController: RHBaseViewController {
                     floatingLabelTextField.errorMessage = RHConstants.kEmptyValue
                 }
                 
-                if validateName(userNameInput.text ?? RHConstants.kEmptyValue) && validateEmail(text){
+                if validateName(userNameInput) && validateEmail(text){
                     loginButton.isEnabled = true
                 }else {
                     loginButton.isEnabled = false
@@ -154,12 +154,10 @@ class RHLoginViewController: RHBaseViewController {
         
         if let field = sender as? UITextField {
             
-            if let text = field.text {
-                if validateName(text) && validateEmail(emailInput.text ?? RHConstants.kEmptyValue){
-                    loginButton.isEnabled = true
-                }else {
-                    loginButton.isEnabled = false
-                }
+            if validateName(field) && validateEmail(emailInput.text ?? RHConstants.kEmptyValue){
+                loginButton.isEnabled = true
+            }else {
+                loginButton.isEnabled = false
             }
         }
         loginButtonState()
@@ -196,7 +194,7 @@ class RHLoginViewController: RHBaseViewController {
 // MARK: - UITextFieldDelegate
 extension RHLoginViewController : UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == emailInput && textField.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == RHConstants.kEmptyValue {
+        if textField == emailInput && textField.trimTextWithWhiteSpaces {
             if let field = textField as? SkyFloatingLabelTextFieldWithIcon {
                 field.errorMessage = RHConstants.kEmptyValue
             }
