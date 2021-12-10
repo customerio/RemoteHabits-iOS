@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.7.0...1.8.0) (2021-12-10)
+
+
+### Features
+
+* new UI - login and habits selection ([#31](https://github.com/customerio/RemoteHabits-iOS/issues/31)) ([8ce40c0](https://github.com/customerio/RemoteHabits-iOS/commit/8ce40c04db1e966d2800530271f68ccb69c4b640))
+
 # [1.7.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.6.2...1.7.0) (2021-12-07)
 
 
