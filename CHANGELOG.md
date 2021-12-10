@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.6.2...1.7.0) (2021-12-07)
+
+
+### Features
+
+* switch to using the background queue ([#32](https://github.com/customerio/RemoteHabits-iOS/issues/32)) ([242560e](https://github.com/customerio/RemoteHabits-iOS/commit/242560e4877eced60f3c24b31aecf04645b18b29))
+
 ## [1.6.2](https://github.com/customerio/RemoteHabits-iOS/compare/1.6.1...1.6.2) (2021-11-18)
 
 
