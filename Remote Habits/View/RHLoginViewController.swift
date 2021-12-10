@@ -119,7 +119,7 @@ class RHLoginViewController: RHBaseViewController {
         userNameInput.text = RHConstants.kEmptyValue
         emailInput.text = RHConstants.kEmptyValue
         loginButton.isEnabled = false
-        
+        loginButtonState()
         
         userManager.isGuestLogin = isGuestLogin
         if let viewController  = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil).instantiateViewController(withIdentifier: RHConstants.kDashboardViewController) as? RHDashboardViewController {
