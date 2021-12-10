@@ -101,6 +101,22 @@
                                             <action selector="emailDidChange:" destination="BYZ-38-t0r" eventType="editingChanged" id="xUE-8t-2Ci"/>
                                         </connections>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="meJ-W5-nTw">
+                                        <rect key="frame" x="20" y="178" width="340" height="46"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="46" id="QCC-XM-gIk"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Login">
+                                            <backgroundConfiguration key="background" cornerRadius="24">
+                                                <color key="backgroundColor" red="0.039215686274509803" green="0.51764705882352935" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </backgroundConfiguration>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="loginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9qR-av-Qzf"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6O9-1w-tWa">
                                         <rect key="frame" x="20" y="244" width="340" height="31"/>
                                         <state key="normal" title="Button"/>
@@ -115,39 +131,26 @@
                                         <color key="textColor" red="0.99613457918167114" green="0.19977137446403503" blue="0.0042474423535168171" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pWm-CU-1wO">
-                                        <rect key="frame" x="20" y="178" width="340" height="46"/>
-                                        <color key="backgroundColor" systemColor="linkColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="46" id="ayK-ex-kUq"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Login">
-                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="loginButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9ax-1E-fIm"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="pWm-CU-1wO" firstAttribute="leading" secondItem="Drq-ms-iTN" secondAttribute="leading" id="1uh-Yr-3jT"/>
+                                    <constraint firstItem="meJ-W5-nTw" firstAttribute="leading" secondItem="Drq-ms-iTN" secondAttribute="leading" id="1Pk-gp-X5Q"/>
                                     <constraint firstItem="Drq-ms-iTN" firstAttribute="leading" secondItem="zHc-Ff-Nnh" secondAttribute="leading" id="3zb-qm-XVn"/>
+                                    <constraint firstItem="2SO-uo-DS7" firstAttribute="leading" secondItem="meJ-W5-nTw" secondAttribute="leading" id="5q6-2z-5go"/>
+                                    <constraint firstItem="meJ-W5-nTw" firstAttribute="top" secondItem="Drq-ms-iTN" secondAttribute="bottom" constant="40" id="9JZ-su-5yc"/>
+                                    <constraint firstItem="6O9-1w-tWa" firstAttribute="leading" secondItem="meJ-W5-nTw" secondAttribute="leading" id="ABQ-eK-HA5"/>
+                                    <constraint firstItem="6O9-1w-tWa" firstAttribute="centerX" secondItem="meJ-W5-nTw" secondAttribute="centerX" id="Bmj-B3-bah"/>
                                     <constraint firstItem="Drq-ms-iTN" firstAttribute="top" secondItem="zHc-Ff-Nnh" secondAttribute="bottom" constant="25" id="DHM-5A-9jr"/>
-                                    <constraint firstItem="6O9-1w-tWa" firstAttribute="top" secondItem="pWm-CU-1wO" secondAttribute="bottom" constant="20" id="F6J-al-XXN"/>
+                                    <constraint firstItem="meJ-W5-nTw" firstAttribute="trailing" secondItem="Drq-ms-iTN" secondAttribute="trailing" id="FDg-on-41i"/>
                                     <constraint firstItem="Drq-ms-iTN" firstAttribute="trailing" secondItem="zHc-Ff-Nnh" secondAttribute="trailing" id="Jzt-3n-FWf"/>
-                                    <constraint firstItem="pWm-CU-1wO" firstAttribute="top" secondItem="Drq-ms-iTN" secondAttribute="bottom" constant="40" id="KW1-oy-f6t"/>
                                     <constraint firstItem="zHc-Ff-Nnh" firstAttribute="leading" secondItem="lDa-6J-xfB" secondAttribute="leading" constant="20" id="UmM-kR-4hT"/>
+                                    <constraint firstItem="2SO-uo-DS7" firstAttribute="trailing" secondItem="meJ-W5-nTw" secondAttribute="trailing" id="YtL-A4-G6M"/>
                                     <constraint firstAttribute="trailing" secondItem="zHc-Ff-Nnh" secondAttribute="trailing" constant="20" id="dCA-yS-Lcr"/>
                                     <constraint firstAttribute="height" constant="300" id="hhS-Zf-Q7u"/>
-                                    <constraint firstItem="pWm-CU-1wO" firstAttribute="trailing" secondItem="Drq-ms-iTN" secondAttribute="trailing" id="jI1-IG-XwV"/>
+                                    <constraint firstItem="6O9-1w-tWa" firstAttribute="trailing" secondItem="meJ-W5-nTw" secondAttribute="trailing" id="lFs-1n-GvR"/>
                                     <constraint firstAttribute="bottom" secondItem="2SO-uo-DS7" secondAttribute="bottom" constant="1" id="lr4-Fi-vR5"/>
                                     <constraint firstItem="zHc-Ff-Nnh" firstAttribute="top" secondItem="lDa-6J-xfB" secondAttribute="top" constant="25" id="o5C-XW-Ovg"/>
-                                    <constraint firstItem="6O9-1w-tWa" firstAttribute="trailing" secondItem="pWm-CU-1wO" secondAttribute="trailing" id="qVJ-gj-qAo"/>
-                                    <constraint firstItem="2SO-uo-DS7" firstAttribute="leading" secondItem="6O9-1w-tWa" secondAttribute="leading" id="uDp-7L-JL7"/>
-                                    <constraint firstItem="2SO-uo-DS7" firstAttribute="trailing" secondItem="6O9-1w-tWa" secondAttribute="trailing" id="vsc-4d-4GR"/>
-                                    <constraint firstItem="6O9-1w-tWa" firstAttribute="leading" secondItem="pWm-CU-1wO" secondAttribute="leading" id="zeq-Wd-oT1"/>
+                                    <constraint firstItem="6O9-1w-tWa" firstAttribute="top" secondItem="meJ-W5-nTw" secondAttribute="bottom" constant="20" id="xa5-eo-1PO"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remote Habits" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RLF-oY-l1G">
@@ -185,7 +188,7 @@
                         <outlet property="emailInput" destination="Drq-ms-iTN" id="m5Y-lP-iR2"/>
                         <outlet property="errorMessageLabel" destination="2SO-uo-DS7" id="olx-xq-oqJ"/>
                         <outlet property="guestButton" destination="6O9-1w-tWa" id="Ti3-i5-YSA"/>
-                        <outlet property="loginButton" destination="pWm-CU-1wO" id="CF4-4d-I3W"/>
+                        <outlet property="loginButton" destination="meJ-W5-nTw" id="2Cz-Dr-7Qv"/>
                         <outlet property="mainView" destination="lDa-6J-xfB" id="ozc-H1-q5n"/>
                         <outlet property="userNameInput" destination="zHc-Ff-Nnh" id="PdI-rQ-Lq7"/>
                     </connections>
@@ -440,16 +443,16 @@
     </scenes>
     <designables>
         <designable name="Drq-ms-iTN">
-            <size key="intrinsicContentSize" width="39" height="22"/>
+            <size key="intrinsicContentSize" width="340" height="42.80078125"/>
         </designable>
         <designable name="Kh2-g3-Lmc">
-            <size key="intrinsicContentSize" width="46" height="22"/>
+            <size key="intrinsicContentSize" width="348" height="42.80078125"/>
         </designable>
         <designable name="Yof-KK-KUO">
-            <size key="intrinsicContentSize" width="55" height="22"/>
+            <size key="intrinsicContentSize" width="348" height="42.80078125"/>
         </designable>
         <designable name="zHc-Ff-Nnh">
-            <size key="intrinsicContentSize" width="43" height="22"/>
+            <size key="intrinsicContentSize" width="340" height="42.80078125"/>
         </designable>
     </designables>
     <resources>
@@ -460,9 +463,6 @@
         <image name="hydration" width="216" height="216"/>
         <image name="logo" width="216" height="216"/>
         <image name="paperleft" width="83" height="134"/>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -66,6 +66,7 @@ class RHBaseViewController: UIViewController {
     }
     
     func configureNavigationBar(titleColor: UIColor = .black, backgoundColor: UIColor = .white, title: String, hideBack : Bool, showLogo : Bool = false) {
+
         if hideBack {
             self.navigationItem.setHidesBackButton(hideBack, animated: true)
         }
@@ -119,6 +120,7 @@ class RHBaseViewController: UIViewController {
     func hideLoader() {
         loaderView?.removeFromSuperview()
     }
+
     /*
     // MARK: - --NAVIGATION--
 

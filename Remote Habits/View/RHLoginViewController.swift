@@ -66,6 +66,7 @@ class RHLoginViewController: RHBaseViewController {
         
         loginButton.backgroundColor = loginButton.isEnabled ? UIColor(red: 10/225, green: 132/225, blue: 255/225, alpha: 1.0) : UIColor(red: 205/225, green: 205/225, blue: 205/225, alpha: 1.0)
     }
+
     func setUpTextFields() {
         for field in textFields {
             
