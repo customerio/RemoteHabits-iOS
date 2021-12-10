@@ -23,6 +23,8 @@ class AppCustomerIOErrorUtil: CustomerIOErrorUtil {
                 .reportError(message: "Tried to perform an action but can't because no customer is identified.")
         case .notInitialized:
             logger.reportError(message: "Customer.io SDK not intialized.")
+        case .internalError(let message):
+            logger.reportError(message: message)
         case .http(let error):
             switch error {
             // Bad credentials given to SDK. Log error to fix it.

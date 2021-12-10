@@ -42,7 +42,7 @@ class ProfileViewModel: ObservableObject {
                     // If an error happens such as device being in airplane mode, you will lose that data.
                     // However, for some apps whose customers are almost always online this may not be very risky
                     // for you to do and you can simply not have any error handling like below.
-                    self.cio.track(name: "Name randomly generated") { _ in }
+                    self.cio.track(name: "Name randomly generated", data: ["foo": "bar"])
                 }
                 completion(true)
             case .failure(let error):
