@@ -56,7 +56,7 @@ class RHLoginViewController: RHBaseViewController {
         // Buttons
         loginButton.isEnabled = false
         loginButton.titleLabel?.font = RHFont.SFProTextSemiBoldMedium
-        loginButton.setTitleColor(UIColor(red: 138/225, green: 141/225, blue: 144/225, alpha: 1.0), for: .disabled)
+        loginButton.setTitleColor(RHColor.TextDisabled, for: .disabled)
         loginButton.setTitleColor(UIColor.white, for: .normal)
         loginButton.layer.cornerRadius = 24
         loginButtonState()
@@ -64,7 +64,7 @@ class RHLoginViewController: RHBaseViewController {
     
     func loginButtonState() {
         
-        loginButton.backgroundColor = loginButton.isEnabled ? UIColor(red: 10/225, green: 132/225, blue: 255/225, alpha: 1.0) : UIColor(red: 205/225, green: 205/225, blue: 205/225, alpha: 1.0)
+        loginButton.backgroundColor = loginButton.isEnabled ? RHColor.ButtonEnabled : RHColor.ButtonDisabled
     }
 
     func setUpTextFields() {
