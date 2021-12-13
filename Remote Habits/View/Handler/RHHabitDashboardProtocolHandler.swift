@@ -12,7 +12,7 @@ protocol RHDashboardActionHandler {
     func logoutUser()
     func loginUser()
     func switchWorkspace()
-    func toggleHabit(toValue isEnabled : Bool)
+    func toggleHabit(toValue isEnabled: Bool, habitData : SelectedHabitData)
 }
 
 

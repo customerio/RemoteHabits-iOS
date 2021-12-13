@@ -61,7 +61,8 @@ class HabitTableViewCell: UITableViewCell {
     }
     
     @IBAction func habitSwitchValueChanged(_ sender: UISwitch) {
-//        let selectedHabitData = SelectedHabitData(title: habitData?.title, frequency: habitData., startTime: <#T##Int?#>, endTime: <#T##Int?#>)
+        let selectedHabitData = SelectedHabitData(title: habitData?.title, frequency: habitData?.habitDetail?.frequency, startTime: habitData?.habitDetail?.startTime, endTime: habitData?.habitDetail?.endTime)
+        actionDelegate?.toggleHabit(toValue: sender.isOn, habitData: selectedHabitData)
     }
     
     @IBAction func habitActionButtonTapped(_ sender: UIButton) {

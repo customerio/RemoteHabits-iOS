@@ -141,8 +141,8 @@ extension RHDashboardViewController : UITableViewDataSource {
 
 // MARK: - Protocol - RHDashboardActionHandler
 extension RHDashboardViewController : RHDashboardActionHandler {
-    func toggleHabit(toValue isEnabled: Bool) {
-        print("value if isEnabled is \(isEnabled)")
+    func toggleHabit(toValue isEnabled: Bool, habitData : SelectedHabitData) {
+        trackerViewModel.trackHabitActivity(withName: isEnabled ? RHConstants.kHabitEnabled : RHConstants.kHabitDisabled, forHabit: habitData)
     }
     
     func logoutUser() {
