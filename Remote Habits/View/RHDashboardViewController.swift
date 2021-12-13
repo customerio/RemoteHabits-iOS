@@ -14,7 +14,6 @@ class RHDashboardViewController: RHBaseViewController {
     
     // MARK: - --VARIABLES--
     var dashboardData  = UserHabit()
-    var isLoggedIn : Bool = true // Change this by checking logged in user detail using CIO SDK
     var profileViewModel = DI.shared.profileViewModel
     var trackerViewModel = DI.shared.trackerViewModel
     

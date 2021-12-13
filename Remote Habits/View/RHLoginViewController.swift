@@ -124,7 +124,6 @@ class RHLoginViewController: RHBaseViewController {
         
         userManager.isGuestLogin = isGuestLogin
         if let viewController  = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil).instantiateViewController(withIdentifier: RHConstants.kDashboardViewController) as? RHDashboardViewController {
-            viewController.isLoggedIn = !isGuestLogin
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
