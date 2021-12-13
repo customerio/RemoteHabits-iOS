@@ -59,4 +59,29 @@ class ProfileViewModel: ObservableObject {
         userManager.isGuestLogin = nil
         profileRepository.logoutUser()
     }
+    
+    func validateWorkspace(forSiteId siteId: String, and apiKey : String, completion : @escaping (Bool) -> Void) {
+        profileRepository.validateWorkspace(forSiteId: siteId, and: apiKey) { (result: Result<ValidateWorkspaceResponse, HumanReadableError>) in
+         
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
+                    do {
+                        let response = try result.get()
+                        guard let message = response.meta?.message, message.lowercased() == "nice credentials." else {
+                            completion(false)
+                            return
+                        }
+                        completion(true)
+                        
+                    } catch {
+                        completion(false)
+                    }
+                case .failure(_):
+                    completion(false)
+                }
+            }
+            
+        }
+    }
 }

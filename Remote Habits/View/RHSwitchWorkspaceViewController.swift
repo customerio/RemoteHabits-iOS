@@ -15,6 +15,10 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
     @IBOutlet weak var siteIdInput: SkyFloatingLabelTextField!
     @IBOutlet weak var switchWorkspaceButton: UIButton!
     @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var errorLabel: UILabel!
+
+    // MARK: - VARIABLES
+    var profileViewModel = DI.shared.profileViewModel
     
     // MARK: - --LIFECYCLE METHODS--
     override func viewDidLoad() {
@@ -26,6 +30,7 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
         setUpMainView()
         setUpWorkspaceButton()
         setUpTextFields()
+        setUpLabels()
     }
     
     
@@ -39,6 +44,10 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
         switchWorkspaceButton.setTitleColor(UIColor.lightGray, for: .disabled)
         switchWorkspaceButton.setTitleColor(UIColor.white, for: .normal)
         switchWorkspaceButton.isEnabled = false
+    }
+    
+    func setUpLabels() {
+        errorLabel.isHidden = true
     }
 
     func setUpTextFields() {
@@ -55,6 +64,8 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
     }
     
     func didValueChange(_ sender: Any, otherValue : String) {
+        errorLabel.isHidden = true // In case, error label is visible, hide as soon as user starts typing
+        
         if let floatingLabelTextField = sender as? SkyFloatingLabelTextField {
             if let text = floatingLabelTextField.text {
                 if(!validateInput(with: text)) {
@@ -87,7 +98,21 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
         // Pass the selected object to the new view controller.
     }
     */
+    func routeToLogin() {
+        if let navController = self.parent as? UINavigationController, let presenter = navController.presentingViewController as? UINavigationController {
+            
+            let main = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil)
+            let vc = main.instantiateViewController(withIdentifier: RHConstants.kLoginViewController) as! RHLoginViewController
+            presenter.setViewControllers([vc], animated: true)
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+
     // MARK: - --ACTIONS--
     
     @IBAction func siteIdValueChanged(_ sender: Any) {
@@ -96,5 +121,24 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
     
     @IBAction func apiKeyValueChanged(_ sender: Any) {
         didValueChange(sender, otherValue: siteIdInput.text ?? RHConstants.kEmptyValue)
+    }
+    
+    @IBAction func switchWorkspaceButtonTapped(_ sender: UIButton) {
+        view.endEditing(true) // Close keyboard if it is open
+        showLoader()
+        guard let siteId = siteIdInput.text , let apikey = apiKeyInput.text else { return }
+        profileViewModel.validateWorkspace(forSiteId: siteId, and: apikey) { [weak self] result in
+            guard let self = self else { return }
+            
+            self.hideLoader()
+            if result {
+                self.profileViewModel.logoutUser()
+                self.routeToLogin()
+            }
+            else {
+                self.errorLabel.isHidden = false
+            }
+        }
+        
     }
 }

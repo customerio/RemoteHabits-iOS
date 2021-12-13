@@ -15,6 +15,8 @@ class RHDashboardViewController: RHBaseViewController {
     // MARK: - --VARIABLES--
     var dashboardData  = UserHabit()
     var isLoggedIn : Bool = true // Change this by checking logged in user detail using CIO SDK
+    var profileViewModel = DI.shared.profileViewModel
+    var trackerViewModel = DI.shared.trackerViewModel
     
     // MARK: - --LIFECYCLE METHODS--
     override func viewDidLoad() {
@@ -26,18 +28,29 @@ class RHDashboardViewController: RHBaseViewController {
         dashboardTableView.delegate = self
         dashboardTableView.dataSource = self
         // Do any additional setup after loading the view.
+        
+        
     }
     
     // MARK: - --FUNCTIONS--
     func setupDashboardTableView() {
         
-        dashboardData = RHStubData().getStubData(isLoggedIn: isLoggedIn)
+        dashboardData = RHStubData().getStubData()
         
         // HabitTableViewCell move to constant file
         dashboardTableView.register(UINib(nibName: RHConstants.kHabitTableViewCell, bundle: nil), forCellReuseIdentifier: RHConstants.kHabitTableViewCell)
         dashboardTableView.rowHeight = UITableView.automaticDimension
         dashboardTableView.estimatedRowHeight = 80
         
+    }
+    
+    func route(withData : HabitData) {
+        if let viewController  = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil).instantiateViewController(withIdentifier: RHConstants.kHabitDetailViewController) as? RHHabitDetailViewController {
+            
+            viewController.habitDetailData = withData
+            let navigation = UINavigationController.init(rootViewController: viewController)
+            self.present(navigation, animated: true, completion: nil)
+        }
     }
     /*
     // MARK: - --NAVIGATION--
@@ -79,11 +92,16 @@ extension RHDashboardViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.section != 0 { return }
-        if let viewController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: RHConstants.kHabitDetailViewController) as? RHHabitDetailViewController {
-            
-            let navigation = UINavigationController.init(rootViewController: viewController)
-            self.present(navigation, animated: true, completion: nil)
+        
+        guard let habitData = dashboardData[indexPath.section].first?.value[indexPath.row], let habitName = habitData.title else {
+            //Show error
+
+            return
         }
+        
+        let selectedHabit = SelectedHabitData(title: habitName, frequency: habitData.habitDetail?.frequency, startTime: habitData.habitDetail?.startTime, endTime: habitData.habitDetail?.endTime)
+        trackerViewModel.trackHabitActivity(withName: RHConstants.kHabitClicked, forHabit: selectedHabit)
+        self.route(withData : habitData)
     }
 }
 
@@ -98,42 +116,56 @@ extension RHDashboardViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RHConstants.kHabitTableViewCell, for: indexPath) as? HabitTableViewCell, let habitData = dashboardData[indexPath.section].first?.value[indexPath.row] else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RHConstants.kHabitTableViewCell, for: indexPath) as? HabitTableViewCell else {
             return UITableViewCell()
         }
+        
+        let habitData = dashboardData[indexPath.section].first?.value[indexPath.row]
         cell.selectionStyle = .none
         cell.actionDelegate = self
-        cell.habitIcon.image = UIImage(named: habitData.icon ?? RHConstants.kLogo)
-        cell.habitTitle.text = habitData.title
-        cell.habitSubTitle.text = habitData.subTitle
-        cell.actionType = habitData.habitDetail?.actionType
-        if let type = habitData.type {
-            if type == .toggleSwitch {
-                cell.habitSwitch.isHidden = false
-                cell.actionButton.isHidden = true
-                cell.habitSwitch.setOn(habitData.habitDetail?.isHabitEnabled ??  false, animated: true)
-            }
-            else if type == .button {
-                cell.actionButton.isHidden = false
-                cell.habitSwitch.isHidden = true
-                cell.actionButton.isEnabled = habitData.habitDetail?.isHabitEnabled ?? true
-                cell.actionButton.setTitle(habitData.habitDetail?.actionButtonValue, for: .normal)
-            }
-        }
-        else {
-            cell.actionButton.setTitle(RHConstants.kEmptyValue, for: .normal)
-            cell.habitSwitch.isHidden = true
-            cell.actionButton.isHidden = true
-        }
+        cell.habitData = habitData
+        cell.fillData()
+        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
     }
 }
 
 
 // MARK: - Protocol - RHDashboardActionHandler
 extension RHDashboardViewController : RHDashboardActionHandler {
+    func toggleHabit(toValue isEnabled: Bool) {
+        print("value if isEnabled is \(isEnabled)")
+    }
+    
     func logoutUser() {
-        self.navigationController?.popToRootViewController(animated: true)
+        self.profileViewModel.logoutUser()
+        
+        if let navController = self.parent as? UINavigationController {
+            
+            var isPushReqd = true
+            let viewControllers = navController.viewControllers
+            for vc in viewControllers {
+                if vc is RHLoginViewController {
+                    isPushReqd = false
+                    self.navigationController?.popToRootViewController(animated: true)
+                    break
+                }
+            }
+            
+            if isPushReqd {
+                let main = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil)
+                let vc = main.instantiateViewController(withIdentifier: RHConstants.kLoginViewController) as! RHLoginViewController
+                navigationController?.setViewControllers([vc], animated: true)
+            }
+        }
     }
     
     func loginUser() {

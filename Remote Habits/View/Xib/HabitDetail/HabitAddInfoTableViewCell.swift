@@ -9,6 +9,7 @@ import UIKit
 
 class HabitAddInfoTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var mainCellView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
