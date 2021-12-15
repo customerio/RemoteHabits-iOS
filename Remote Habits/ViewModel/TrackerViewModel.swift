@@ -5,17 +5,14 @@ import Foundation
 class TrackerViewModel: ObservableObject {
     
     private let cio: CustomerIO
-    private let trackRepository: TrackRepository
     
     
-    init(cio: CustomerIO, trackRepository : TrackRepository) {
+    init(cio: CustomerIO) {
         self.cio = cio
-        self.trackRepository = trackRepository
     }
     
     func trackHabitActivity(withName habitName: String, forHabit habitActivity: SelectedHabitData) {
        
-        trackRepository.trackHabit(habitName: habitName, params: habitActivity)
+        self.cio.track(name: habitName, data: habitActivity, jsonEncoder: nil)
     }
-
 }

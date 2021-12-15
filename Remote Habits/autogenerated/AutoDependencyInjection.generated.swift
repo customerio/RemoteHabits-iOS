@@ -5,8 +5,6 @@
 import Foundation
 import CioTracking
 import CioMessagingPush
-import CioMessagingPushAPN
-import CioMessagingPushFCM
 
 // File generated from Sourcery-DI project: https://github.com/levibostian/Sourcery-DI
 // Template version 1.0.0
@@ -66,7 +64,6 @@ DI.shared.resetOverrides()
     case logger
     case notificationUtil
     case profileRepository
-    case trackRepository
     case userManager
     case customerIO
     case messagingPush
@@ -118,7 +115,6 @@ DI.shared.resetOverrides()
             case .logger: return self.logger as! T 
             case .notificationUtil: return self.notificationUtil as! T 
             case .profileRepository: return self.profileRepository as! T 
-            case .trackRepository: return self.trackRepository as! T 
             case .userManager: return self.userManager as! T 
             case .customerIO: return self.customerIO as! T 
             case .messagingPush: return self.messagingPush as! T 
@@ -173,16 +169,6 @@ DI.shared.resetOverrides()
     private var newProfileRepository: ProfileRepository {    
         return AppProfileRepository(cio: self.customerIO, cioErrorUtil: self.customerIOErrorUtil, userManager: self.userManager, messagingPush: self.messagingPush)
     }
-    // TrackRepository
-    internal var trackRepository: TrackRepository {    
-        if let overridenDep = self.overrides[.trackRepository] {
-            return overridenDep as! TrackRepository
-        }
-        return self.newTrackRepository
-    }
-    private var newTrackRepository: TrackRepository {    
-        return AppTrackRepository(cio: self.customerIO, cioErrorUtil: self.customerIOErrorUtil, userManager: self.userManager)
-    }
     // UserManager
     internal var userManager: UserManager {    
         if let overridenDep = self.overrides[.userManager] {
@@ -225,7 +211,7 @@ DI.shared.resetOverrides()
         return self.newTrackerViewModel
     }
     private var newTrackerViewModel: TrackerViewModel {    
-        return TrackerViewModel(cio: self.customerIO, trackRepository: self.trackRepository)
+        return TrackerViewModel(cio: self.customerIO)
     }
     // Tracking (custom. property getter provided via extension)
     internal var tracking: Tracking {    

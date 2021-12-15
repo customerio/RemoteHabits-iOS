@@ -76,8 +76,6 @@
 		463D96392758F5B1000FF356 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 463D96382758F5B1000FF356 /* Info.plist */; };
 		463D963B2758F5C1000FF356 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 463D963A2758F5C1000FF356 /* Info.plist */; };
 		465F763127676599000A6C49 /* TrackerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F763027676599000A6C49 /* TrackerViewModel.swift */; };
-		465F7633276765A0000A6C49 /* TrackRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F7632276765A0000A6C49 /* TrackRepository.swift */; };
-		465F763427676B45000A6C49 /* TrackRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F7632276765A0000A6C49 /* TrackRepository.swift */; };
 		465F763527676B53000A6C49 /* TrackerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F763027676599000A6C49 /* TrackerViewModel.swift */; };
 		465F763627676B5B000A6C49 /* DashboardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D95E22758E282000FF356 /* DashboardData.swift */; };
 		466FEADC2762693000997AE7 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466FEADB2762693000997AE7 /* TextFieldExtension.swift */; };
@@ -186,7 +184,6 @@
 		463D96382758F5B1000FF356 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		463D963A2758F5C1000FF356 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		465F763027676599000A6C49 /* TrackerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackerViewModel.swift; sourceTree = "<group>"; };
-		465F7632276765A0000A6C49 /* TrackRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackRepository.swift; sourceTree = "<group>"; };
 		466FEADB2762693000997AE7 /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
 		46FEC8CF2758D34100A6A03F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46FEC8D12758D34100A6A03F /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -275,7 +272,6 @@
 		463D95D52758DD6B000FF356 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				465F7632276765A0000A6C49 /* TrackRepository.swift */,
 				463D95D62758DD85000FF356 /* ProfileRepository.swift */,
 			);
 			path = Repository;
@@ -690,7 +686,6 @@
 				463D95D32758DD3B000FF356 /* UserDefaultKeys.swift in Sources */,
 				463D95B72758DB8E000FF356 /* DIDependencies.swift in Sources */,
 				463D95E62758E284000FF356 /* Profile.swift in Sources */,
-				465F763427676B45000A6C49 /* TrackRepository.swift in Sources */,
 				465F763527676B53000A6C49 /* TrackerViewModel.swift in Sources */,
 				463D95B32758DB83000FF356 /* AutoDependencyInjection.generated.swift in Sources */,
 				463D95D42758DD3B000FF356 /* CustomerIOErrorUtil.swift in Sources */,
@@ -746,7 +741,6 @@
 				463D95AE2758DB7D000FF356 /* AutoMockable.generated.swift in Sources */,
 				463D95E42758E282000FF356 /* DashboardData.swift in Sources */,
 				463D95C32758DCC4000FF356 /* HumanReadableError.swift in Sources */,
-				465F7633276765A0000A6C49 /* TrackRepository.swift in Sources */,
 				463D95B12758DB7D000FF356 /* AutoLenses.generated.swift in Sources */,
 				463D96342758EACD000FF356 /* HabitAddInfoTableViewCell.swift in Sources */,
 				463D95DA2758DDEA000FF356 /* UserManager.swift in Sources */,
