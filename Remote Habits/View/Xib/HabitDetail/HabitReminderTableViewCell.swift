@@ -79,9 +79,7 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func formatDateForDisplay(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "h:mm a"
-        return formatter.string(from: date)
+        return date.formatDateToString(inFormat: .time12Hour)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

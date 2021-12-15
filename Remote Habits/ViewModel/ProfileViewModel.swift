@@ -66,17 +66,17 @@ class ProfileViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success:
-                    do {
-                        let response = try result.get()
-                        guard let message = response.meta?.message, message.lowercased() == "nice credentials." else {
+                        switch result {
+                        case .success(let response):
+                            guard let message = response.meta?.message, message.lowercased() == "nice credentials." else {
+                                completion(false)
+                                return
+                            }
+                            completion(true)
+                        default :
                             completion(false)
-                            return
+                            break
                         }
-                        completion(true)
-                        
-                    } catch {
-                        completion(false)
-                    }
                 case .failure(_):
                     completion(false)
                 }
