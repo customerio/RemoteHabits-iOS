@@ -125,12 +125,12 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
     
     @IBAction func switchWorkspaceButtonTapped(_ sender: UIButton) {
         view.endEditing(true) // Close keyboard if it is open
-        showLoader()
+        showLoadingView()
         guard let siteId = siteIdInput.text , let apikey = apiKeyInput.text else { return }
         profileViewModel.validateWorkspace(forSiteId: siteId, and: apikey) { [weak self] result in
             guard let self = self else { return }
             
-            self.hideLoader()
+            self.hideLoadingView()
             if result {
                 self.profileViewModel.logoutUser()
                 self.routeToLogin()

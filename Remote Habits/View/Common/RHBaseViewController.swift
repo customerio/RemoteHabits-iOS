@@ -113,11 +113,11 @@ class RHBaseViewController: UIViewController {
         }
     }
     
-    func showLoader() {
+    func showLoadingView() {
         addLoader()
     }
     
-    func hideLoader() {
+    func hideLoadingView() {
         loaderView?.removeFromSuperview()
     }
 
