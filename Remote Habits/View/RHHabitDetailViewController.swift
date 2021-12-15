@@ -82,7 +82,6 @@ extension RHHabitDetailViewController : UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.actionHandler = self
-            cell.selectionStyle = .none
             cell.habitSwitch.isOn = habitDetailData?.habitDetail?.isHabitEnabled ?? false
             return cell
         }
@@ -90,7 +89,6 @@ extension RHHabitDetailViewController : UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RHConstants.kHabitReminderTableViewCell, for: indexPath) as? HabitReminderTableViewCell else {
                 return UITableViewCell()
             }
-            cell.selectionStyle = .none
             cell.actionHandler = self
             cell.frequencyText.text = "\(habitDetailData?.habitDetail?.frequency ?? 0)"
             cell.fromTimeText.text = habitDetailData?.habitDetail?.startTime ?? "-"
@@ -101,7 +99,6 @@ extension RHHabitDetailViewController : UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RHConstants.kHabitAddInfoTableViewCell, for: indexPath) as? HabitAddInfoTableViewCell else {
                 return UITableViewCell()
             }
-            cell.selectionStyle = .none
             cell.descriptionLabel.text = habitDetailData?.habitDetail?.description ?? ""
             return cell
         }

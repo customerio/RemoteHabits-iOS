@@ -15,6 +15,7 @@ class HabitAddInfoTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         mainCellView.layer.cornerRadius = 13
+        selectionStyle = .none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
