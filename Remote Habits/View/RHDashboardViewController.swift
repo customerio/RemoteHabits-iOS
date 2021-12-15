@@ -14,6 +14,7 @@ class RHDashboardViewController: RHBaseViewController {
     
     // MARK: - --VARIABLES--
     var dashboardData  = UserHabit()
+    var isSourceLogin : Bool = false
     var profileViewModel = DI.shared.profileViewModel
     var trackerViewModel = DI.shared.trackerViewModel
     
@@ -139,23 +140,12 @@ extension RHDashboardViewController : RHDashboardActionHandler {
     func logoutUser() {
         self.profileViewModel.logoutUser()
         
-        if let navController = self.parent as? UINavigationController {
-            
-            var isPushReqd = true
-            let viewControllers = navController.viewControllers
-            for vc in viewControllers {
-                if vc is RHLoginViewController {
-                    isPushReqd = false
-                    self.navigationController?.popToRootViewController(animated: true)
-                    break
-                }
-            }
-            
-            if isPushReqd {
-                let main = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil)
-                let vc = main.instantiateViewController(withIdentifier: RHConstants.kLoginViewController) as! RHLoginViewController
-                navigationController?.setViewControllers([vc], animated: true)
-            }
+        if isSourceLogin {
+            self.navigationController?.popToRootViewController(animated: true)
+        }else  {
+            let main = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil)
+            let vc = main.instantiateViewController(withIdentifier: RHConstants.kLoginViewController) as! RHLoginViewController
+            navigationController?.setViewControllers([vc], animated: true)
         }
     }
     
