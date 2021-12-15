@@ -370,44 +370,39 @@
                                             <action selector="nameDidChange:" destination="BYZ-38-t0r" eventType="editingChanged" id="rh1-Qv-ec7"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muw-xM-zUT">
-                                        <rect key="frame" x="16" y="215" width="348" height="46"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="46" id="3on-0I-6TH"/>
-                                        </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Switch Workspace">
-                                            <backgroundConfiguration key="background" cornerRadius="24">
-                                                <color key="backgroundColor" red="0.039215686270000001" green="0.51764705879999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </backgroundConfiguration>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="switchWorkspaceButtonTapped:" destination="aRg-uH-tBU" eventType="touchUpInside" id="tF5-sI-C83"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oops! Invalid Credentials." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htA-do-Z20">
                                         <rect key="frame" x="16" y="266" width="348" height="18"/>
                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="15"/>
                                         <color key="textColor" red="0.99613457918167114" green="0.19977137446403503" blue="0.0042474423535168171" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azK-hz-wX0">
+                                        <rect key="frame" x="16" y="215" width="348" height="46"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="46" id="jMY-CR-Gk6"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Switch Workspace"/>
+                                        <connections>
+                                            <action selector="switchWorkspaceButtonTapped:" destination="aRg-uH-tBU" eventType="touchUpInside" id="o3c-Pe-eVR"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="muw-xM-zUT" firstAttribute="trailing" secondItem="Yof-KK-KUO" secondAttribute="trailing" id="1nE-lX-PS9"/>
                                     <constraint firstItem="Yof-KK-KUO" firstAttribute="leading" secondItem="Kh2-g3-Lmc" secondAttribute="leading" id="2yh-v4-a82"/>
                                     <constraint firstItem="Kh2-g3-Lmc" firstAttribute="top" secondItem="ZNo-aH-66I" secondAttribute="top" constant="47" id="3fk-RN-NwC"/>
+                                    <constraint firstItem="azK-hz-wX0" firstAttribute="top" secondItem="Yof-KK-KUO" secondAttribute="bottom" constant="40" id="3qh-0P-Jra"/>
                                     <constraint firstItem="htA-do-Z20" firstAttribute="leading" secondItem="Yof-KK-KUO" secondAttribute="leading" id="62p-pB-dCu"/>
+                                    <constraint firstItem="azK-hz-wX0" firstAttribute="leading" secondItem="Yof-KK-KUO" secondAttribute="leading" id="8GS-z7-TGa"/>
                                     <constraint firstItem="Yof-KK-KUO" firstAttribute="top" secondItem="Kh2-g3-Lmc" secondAttribute="bottom" constant="40" id="Cyk-7N-ceF"/>
                                     <constraint firstAttribute="trailing" secondItem="Kh2-g3-Lmc" secondAttribute="trailing" constant="16" id="IIG-Ti-Gph"/>
-                                    <constraint firstItem="htA-do-Z20" firstAttribute="top" secondItem="muw-xM-zUT" secondAttribute="bottom" constant="5" id="QHY-LL-iy0"/>
-                                    <constraint firstItem="muw-xM-zUT" firstAttribute="leading" secondItem="Yof-KK-KUO" secondAttribute="leading" id="RfK-Y4-CxK"/>
+                                    <constraint firstItem="htA-do-Z20" firstAttribute="top" secondItem="azK-hz-wX0" secondAttribute="bottom" constant="5" id="Lhh-E2-fVJ"/>
                                     <constraint firstItem="htA-do-Z20" firstAttribute="trailing" secondItem="Yof-KK-KUO" secondAttribute="trailing" id="Y48-GN-TCb"/>
                                     <constraint firstItem="Kh2-g3-Lmc" firstAttribute="leading" secondItem="ZNo-aH-66I" secondAttribute="leading" constant="16" id="gXr-PA-HEs"/>
                                     <constraint firstAttribute="height" constant="290" id="hVT-fW-CAo"/>
+                                    <constraint firstItem="azK-hz-wX0" firstAttribute="trailing" secondItem="Yof-KK-KUO" secondAttribute="trailing" id="iVA-5G-RUS"/>
                                     <constraint firstItem="Yof-KK-KUO" firstAttribute="trailing" secondItem="Kh2-g3-Lmc" secondAttribute="trailing" id="op5-9f-NbR"/>
-                                    <constraint firstItem="muw-xM-zUT" firstAttribute="top" secondItem="Yof-KK-KUO" secondAttribute="bottom" constant="40" id="tix-SJ-HIT"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -427,7 +422,7 @@
                         <outlet property="errorLabel" destination="htA-do-Z20" id="Nq8-jE-vGW"/>
                         <outlet property="mainView" destination="ZNo-aH-66I" id="kde-bG-Apq"/>
                         <outlet property="siteIdInput" destination="Kh2-g3-Lmc" id="qV3-zn-MnP"/>
-                        <outlet property="switchWorkspaceButton" destination="muw-xM-zUT" id="eYb-Et-mjw"/>
+                        <outlet property="switchWorkspaceButton" destination="azK-hz-wX0" id="grD-7v-e1l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="80l-t8-Iti" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -41,7 +41,7 @@ class RHStubData {
         
         // Sections
         let title = isLoggedIn ? userManager.userName : "Guest"
-        let section1 = HabitHeadersInfo(headerTitle: "\(title ?? "Your")'s Habit", titleFontSize: 34, titleFontName: "SFProDisplay-Bold")
+        let section1 = HabitHeadersInfo(headerTitle: "\(title ?? "Your")'s Habits", titleFontSize: 34, titleFontName: "SFProDisplay-Bold")
         let section2 = HabitHeadersInfo(headerTitle: "Details", titleFontSize: 17, titleFontName: "SFProDisplay-Bold")
         dashboardData.append([section1 : habitData])
         dashboardData.append([section2 : habitDetail])

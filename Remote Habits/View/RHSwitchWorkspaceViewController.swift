@@ -40,10 +40,17 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
     }
     
     func setUpWorkspaceButton() {
-        switchWorkspaceButton.titleLabel?.font = RHFont.SFProTextSemiBoldMedium
-        switchWorkspaceButton.setTitleColor(UIColor.lightGray, for: .disabled)
-        switchWorkspaceButton.setTitleColor(UIColor.white, for: .normal)
         switchWorkspaceButton.isEnabled = false
+        switchWorkspaceButton.titleLabel?.font = RHFont.SFProTextSemiBoldMedium
+        switchWorkspaceButton.setTitleColor(RHColor.TextDisabled, for: .disabled)
+        switchWorkspaceButton.setTitleColor(UIColor.white, for: .normal)
+        switchWorkspaceButton.layer.cornerRadius = 24
+        workspaceButtonState()
+    }
+    
+    func workspaceButtonState() {
+        
+        switchWorkspaceButton.backgroundColor = switchWorkspaceButton.isEnabled ? RHColor.ButtonEnabled : RHColor.ButtonDisabled
     }
     
     func setUpLabels() {
@@ -81,6 +88,8 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
                 }else {
                     switchWorkspaceButton.isEnabled = false
                 }
+                
+                workspaceButtonState()
             }
         }
     }
