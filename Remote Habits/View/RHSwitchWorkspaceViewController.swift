@@ -19,7 +19,7 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
 
     // MARK: - VARIABLES
     var profileViewModel = DI.shared.profileViewModel
-    
+    var userManager = DI.shared.userManager
     // MARK: - --LIFECYCLE METHODS--
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,6 +142,7 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
             self.hideLoadingView()
             if result {
                 self.profileViewModel.logoutUser()
+                self.userManager.workspaceID = siteId
                 self.routeToLogin()
             }
             else {
