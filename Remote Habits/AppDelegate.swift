@@ -20,11 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         updateWorkspaceInfo()
-        guard let workspaceId = userManager.workspaceID else {
+        guard let workspaceId = userManager.workspaceID, let apiKey = userManager.apiKey else {
             return true
         }
         // Step 1: Initialise CIO SDK
-        CustomerIO.initialize(siteId: workspaceId, apiKey: Env.customerIOApiKey, region: Region.US)
+        CustomerIO.initialize(siteId: workspaceId, apiKey: apiKey, region: Region.US)
                
         // Step 2: To display rich push notification
         UNUserNotificationCenter.current().delegate = self
@@ -59,8 +59,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func updateWorkspaceInfo() {
-        if userManager.workspaceID == nil{
+        if let workspaceId = userManager.workspaceID {
+            Env.customerIOSiteId = workspaceId
+        }else {
             userManager.workspaceID = Env.customerIOSiteId
+        }
+        
+        if let apiKey = userManager.apiKey {
+            Env.customerIOApiKey = apiKey
+        }else {
+            userManager.apiKey = Env.customerIOApiKey
         }
     }
 }

@@ -142,13 +142,20 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
             self.hideLoadingView()
             if result {
                 self.profileViewModel.logoutUser()
-                self.userManager.workspaceID = siteId
+                self.updateWorkspaceInfo(with : siteId , andApiKey : apikey)
                 self.routeToLogin()
             }
             else {
                 self.errorLabel.isHidden = false
             }
         }
-        
+    }
+    
+    private func updateWorkspaceInfo(with siteId : String, andApiKey apiKey : String) {
+        userManager.workspaceID = siteId
+        Env.customerIOSiteId = siteId
+        userManager.apiKey = apiKey
+        Env.customerIOApiKey = apiKey
+
     }
 }
