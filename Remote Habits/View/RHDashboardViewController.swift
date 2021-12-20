@@ -75,9 +75,9 @@ extension RHDashboardViewController : UITableViewDelegate {
         headerView.backgroundColor = self.view.backgroundColor
         let headerData = dashboardData[section].first?.key
         let label = UILabel()
-        label.frame = CGRect.init(x: 16, y: 5, width: headerView.frame.width-10, height: headerView.frame.height-10)
+        label.frame = CGRect.init(x: 16, y: 5, width: headerView.frame.width-20, height: headerView.frame.height-10)
         if section != 0 {
-            label.frame = CGRect.init(x: 16, y: 60, width: headerView.frame.width-10, height: 26)
+            label.frame = CGRect.init(x: 16, y: 60, width: headerView.frame.width-20, height: 26)
         }
         
         label.text = headerData?.headerTitle

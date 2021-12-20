@@ -35,13 +35,13 @@ class RHStubData {
         let cioUser = HabitData(icon: "ciouser", title: userManager.userName, subTitle: userManager.email, type: .button, habitDetail: habitInfo_1)
         
         let habitDetail = [isLoggedIn ? cioUser : anonymousUser,
-                           HabitData(icon: "ciologo", title: "Site Id", subTitle: Env.customerIOSiteId, type: .button, habitDetail: habitInfo_2),
+                           HabitData(icon: "ciologo", title: "Site Id", subTitle: userManager.workspaceID, type: .button, habitDetail: habitInfo_2),
                            HabitData(icon: "phone", title: "SDK", subTitle: "Customer.io iOS Client/1.0.0-alpha.18 (iPhone13,2; iOS 15.1) Remote Habits/pr.28", type: nil, habitDetail: nil)]
         
         
         // Sections
         let title = isLoggedIn ? userManager.userName : "Guest"
-        let section1 = HabitHeadersInfo(headerTitle: "\(title ?? "Your")'s Habit", titleFontSize: 34, titleFontName: "SFProDisplay-Bold")
+        let section1 = HabitHeadersInfo(headerTitle: "\(title ?? "Your")'s Habits", titleFontSize: 34, titleFontName: "SFProDisplay-Bold")
         let section2 = HabitHeadersInfo(headerTitle: "Details", titleFontSize: 17, titleFontName: "SFProDisplay-Bold")
         dashboardData.append([section1 : habitData])
         dashboardData.append([section2 : habitDetail])

@@ -15,11 +15,16 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
+    var userManager = DI.shared.userManager
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        updateWorkspaceInfo()
+        guard let workspaceId = userManager.workspaceID, let apiKey = userManager.apiKey else {
+            return true
+        }
         // Step 1: Initialise CIO SDK
-        CustomerIO.initialize(siteId: Env.customerIOSiteId, apiKey: Env.customerIOApiKey, region: Region.US)
+        CustomerIO.initialize(siteId: workspaceId, apiKey: apiKey, region: Region.US)
                
         // Step 2: To display rich push notification
         UNUserNotificationCenter.current().delegate = self
@@ -50,6 +55,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
      
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         MessagingPush.shared.application(application, didFailToRegisterForRemoteNotificationsWithError: error)
+    }
+    
+    func updateWorkspaceInfo() {
+        if let workspaceId = userManager.workspaceID {
+            Env.customerIOSiteId = workspaceId
+        }else {
+            userManager.workspaceID = Env.customerIOSiteId
+        }
+        
+        if let apiKey = userManager.apiKey {
+            Env.customerIOApiKey = apiKey
+        }else {
+            userManager.apiKey = Env.customerIOApiKey
+        }
     }
 }
 

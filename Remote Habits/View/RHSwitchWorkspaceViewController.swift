@@ -19,7 +19,7 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
 
     // MARK: - VARIABLES
     var profileViewModel = DI.shared.profileViewModel
-    
+    var userManager = DI.shared.userManager
     // MARK: - --LIFECYCLE METHODS--
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,10 +40,17 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
     }
     
     func setUpWorkspaceButton() {
-        switchWorkspaceButton.titleLabel?.font = RHFont.SFProTextSemiBoldMedium
-        switchWorkspaceButton.setTitleColor(UIColor.lightGray, for: .disabled)
-        switchWorkspaceButton.setTitleColor(UIColor.white, for: .normal)
         switchWorkspaceButton.isEnabled = false
+        switchWorkspaceButton.titleLabel?.font = RHFont.SFProTextSemiBoldMedium
+        switchWorkspaceButton.setTitleColor(RHColor.TextDisabled, for: .disabled)
+        switchWorkspaceButton.setTitleColor(UIColor.white, for: .normal)
+        switchWorkspaceButton.layer.cornerRadius = 24
+        workspaceButtonState()
+    }
+    
+    func workspaceButtonState() {
+        
+        switchWorkspaceButton.backgroundColor = switchWorkspaceButton.isEnabled ? RHColor.ButtonEnabled : RHColor.ButtonDisabled
     }
     
     func setUpLabels() {
@@ -81,6 +88,8 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
                 }else {
                     switchWorkspaceButton.isEnabled = false
                 }
+                
+                workspaceButtonState()
             }
         }
     }
@@ -133,12 +142,19 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
             self.hideLoadingView()
             if result {
                 self.profileViewModel.logoutUser()
+                self.updateWorkspaceInfo(with : siteId , andApiKey : apikey)
                 self.routeToLogin()
             }
             else {
                 self.errorLabel.isHidden = false
             }
         }
-        
+    }
+    
+    private func updateWorkspaceInfo(with siteId : String, andApiKey apiKey : String) {
+        userManager.workspaceID = siteId
+        Env.customerIOSiteId = siteId
+        userManager.apiKey = apiKey
+        Env.customerIOApiKey = apiKey
     }
 }
