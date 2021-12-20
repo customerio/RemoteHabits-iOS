@@ -76,7 +76,7 @@
 		465F763127676599000A6C49 /* TrackerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F763027676599000A6C49 /* TrackerViewModel.swift */; };
 		465F763527676B53000A6C49 /* TrackerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F763027676599000A6C49 /* TrackerViewModel.swift */; };
 		465F763627676B5B000A6C49 /* DashboardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D95E22758E282000FF356 /* DashboardData.swift */; };
-		465F7638276A46F7000A6C49 /* DateExtenions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F7637276A46F7000A6C49 /* DateExtenions.swift */; };
+		465F7638276A46F7000A6C49 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F7637276A46F7000A6C49 /* DateExtensions.swift */; };
 		465F763D276B5457000A6C49 /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F763C276B5457000A6C49 /* Env.swift */; };
 		465F763E276B5461000A6C49 /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F763C276B5457000A6C49 /* Env.swift */; };
 		466FEADC2762693000997AE7 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466FEADB2762693000997AE7 /* TextFieldExtension.swift */; };
@@ -184,7 +184,7 @@
 		463D96382758F5B1000FF356 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		463D963A2758F5C1000FF356 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		465F763027676599000A6C49 /* TrackerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackerViewModel.swift; sourceTree = "<group>"; };
-		465F7637276A46F7000A6C49 /* DateExtenions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtenions.swift; sourceTree = "<group>"; };
+		465F7637276A46F7000A6C49 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		465F763C276B5457000A6C49 /* Env.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Env.swift; sourceTree = "<group>"; };
 		466FEADB2762693000997AE7 /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
 		46FEC8CF2758D34100A6A03F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -311,7 +311,7 @@
 				463D95EB2758E2E6000FF356 /* StringExtensions.swift */,
 				463D95EA2758E2E6000FF356 /* ViewExtension.swift */,
 				466FEADB2762693000997AE7 /* TextFieldExtension.swift */,
-				465F7637276A46F7000A6C49 /* DateExtenions.swift */,
+				465F7637276A46F7000A6C49 /* DateExtensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -730,7 +730,7 @@
 				463D96022758E94A000FF356 /* RHConstants.swift in Sources */,
 				463D96052758E985000FF356 /* RHStubData.swift in Sources */,
 				463D96162758E9FD000FF356 /* RHBaseViewController.swift in Sources */,
-				465F7638276A46F7000A6C49 /* DateExtenions.swift in Sources */,
+				465F7638276A46F7000A6C49 /* DateExtensions.swift in Sources */,
 				463D96372758EACD000FF356 /* HabitReminderTableViewCell.swift in Sources */,
 				463D95CF2758DD2B000FF356 /* NotificationUtil.swift in Sources */,
 				463D95C42758DCC4000FF356 /* MessageError.swift in Sources */,
