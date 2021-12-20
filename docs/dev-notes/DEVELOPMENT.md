@@ -18,6 +18,10 @@ After you run this command above, you will see a message about a few different C
 
 3. You need to authenticate with the Customer.io SDK. Run `cp "Remote Habits/Env.swift.example" "Remote Habits/Env.swift"` and then modify the values in the `Remote Habits/Env.swift` file with credentials for a Customer.io Workspace you want to send data to. This file is ignored for git so don't worry about sharing your keys.  
 
+4. Download the file `GoogleService-Info.plist` from 1Password into `Remote Habits/GoogleService-Info.plist`.
+
+*Note: If you're not an internal team member, you will want to create a new Firebase project and download your GoogleService-Info.plist file*.
+
 # Setup code signing (internal team member, only)
 
 1. Download the files `app_store_connect_creds.json` and `gc_keys.json` from 1Password. Download this file to the root directory of the Remote Habits iOS source code. 

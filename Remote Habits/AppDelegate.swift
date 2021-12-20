@@ -31,7 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Step 3: Register for push notifications
         UIApplication.shared.registerForRemoteNotifications()
-        
         return true
     }
 

@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.8.0...1.9.0) (2021-12-17)
+
+
+### Features
+
+* add SDK logging for QA testing ([#33](https://github.com/customerio/RemoteHabits-iOS/issues/33)) ([88e37ba](https://github.com/customerio/RemoteHabits-iOS/commit/88e37ba97da83440d2b1d72b80817ef7d41b9c78))
+
 # [1.8.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.7.0...1.8.0) (2021-12-10)
 
 

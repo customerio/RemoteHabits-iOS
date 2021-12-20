@@ -156,6 +156,5 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
         Env.customerIOSiteId = siteId
         userManager.apiKey = apiKey
         Env.customerIOApiKey = apiKey
-
     }
 }
