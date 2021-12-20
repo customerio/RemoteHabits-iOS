@@ -24,13 +24,17 @@ struct HabitData {
     let title : String?
     let subTitle : String?
     let type : HabitElementType?
-    let habitDetail : HabitDetail?
+    var habitDetail : HabitDetail?
 }
 
 struct HabitDetail {
-    let isHabitEnabled : Bool?
-    let actionButtonValue : String?
-    let actionType : HabitActionType?
+    var isHabitEnabled : Bool?
+    var frequency : Int?
+    var startTime : String?
+    var endTime : String?
+    var description : String?
+    var actionButtonValue : String?
+    var actionType : HabitActionType?
 }
 
 
@@ -38,4 +42,11 @@ struct HabitHeadersInfo : Hashable {
     let headerTitle : String?
     let titleFontSize : Int?
     let titleFontName : String?
+}
+
+struct SelectedHabitData : Encodable {
+    let title : String?
+    let frequency : Int?
+    let startTime : String?
+    let endTime : String?
 }

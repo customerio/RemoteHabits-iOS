@@ -124,7 +124,7 @@ class RHLoginViewController: RHBaseViewController {
         
         userManager.isGuestLogin = isGuestLogin
         if let viewController  = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil).instantiateViewController(withIdentifier: RHConstants.kDashboardViewController) as? RHDashboardViewController {
-            viewController.isLoggedIn = !isGuestLogin
+            viewController.isSourceLogin = true
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
@@ -176,11 +176,11 @@ class RHLoginViewController: RHBaseViewController {
     }
     
     func validateCredentials(email : String, pwd : String, firstName : String, isGenRandom : Bool) {
-        showLoader()
+        showLoadingView()
         view.endEditing(true)
         profileViewModel.loginUser(email: email, password: pwd, firstName: firstName, generatedRandom: isGenRandom){ result in
             
-            self.hideLoader()
+            self.hideLoadingView()
             if result {
                 self.routeToDashboard(isGuestLogin: isGenRandom)
             }
