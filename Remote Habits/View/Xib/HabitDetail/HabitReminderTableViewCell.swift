@@ -19,6 +19,7 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var mainCellView: UIView!
     
     var actionHandler : RHDashboardDetailTimeHandler?
+    var habitData : Habits?
     override func awakeFromNib() {
         super.awakeFromNib()
         mainCellView.layer.cornerRadius = 13
@@ -33,6 +34,11 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
         // Configure the view for the selected state
     }
     
+    func fillHabitDetailData() {
+        frequencyText.text = "\(habitData?.frequency ?? 0)"
+        fromTimeText.text = habitData?.startTime?.formatDateToString(inFormat: .time12Hour)
+        toTimeText.text = habitData?.endTime?.formatDateToString(inFormat: .time12Hour)
+    }
     func setUpTextFieldsTimePicker() {
         
         let datePickerST = UIDatePicker()
@@ -64,18 +70,20 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     @objc func updateStartTime(_ sender : UIDatePicker) {
-        
         fromTimeText?.text = formatDateForDisplay(date: sender.date)
-        actionHandler?.updateTime(fromTime: fromTimeText.text ?? "",
-                                  toTime: toTimeText.text ?? "",
-                                  andFreq: Int(frequencyText.text ?? "0") ?? 0)
+        updateHabitTime()
     }
     
     @objc func updateEndTime(_ sender : UIDatePicker) {
         toTimeText.text = formatDateForDisplay(date: sender.date)
-        actionHandler?.updateTime(fromTime: fromTimeText.text ?? "",
-                                  toTime: toTimeText.text ?? "",
-                                  andFreq: Int(frequencyText.text ?? "0") ?? 0)
+        updateHabitTime()
+    }
+    
+    func updateHabitTime(withFreq freq : Int? = nil) {
+        let frequency = freq ?? Int(frequencyText.text ?? "0")
+        let selectedHabit = SelectedHabitData(title: habitData?.title, frequency: frequency, startTime: fromTimeText.text ?? "", endTime: toTimeText.text ?? "", id: Int(habitData?.id ?? 0), isEnabled: habitData?.isEnabled)
+        
+        actionHandler?.updateTime(with: selectedHabit)
     }
     
     func formatDateForDisplay(date: Date) -> String {
@@ -88,9 +96,7 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.tag == 1001 {
-            actionHandler?.updateTime(fromTime: fromTimeText.text ?? "",
-                                      toTime: toTimeText.text ?? "",
-                                      andFreq: Int(textField.text ?? "0") ?? 0)
+            updateHabitTime(withFreq: Int(textField.text ?? "0") ?? 0)
         }
     }
     

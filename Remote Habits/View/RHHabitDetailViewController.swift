@@ -87,7 +87,8 @@ extension RHHabitDetailViewController : UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.actionHandler = self
-            cell.habitSwitch.isOn = habitDetailData?.isEnabled ?? false
+            cell.habitData = habitDetailData
+            cell.fillHabitsData()
             return cell
         }
         else if indexPath.row == 1 || indexPath.row == 4{
@@ -95,9 +96,8 @@ extension RHHabitDetailViewController : UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.actionHandler = self
-            cell.frequencyText.text = "\(habitDetailData?.frequency ?? 0)"
-            cell.fromTimeText.text = habitDetailData?.startTime?.formatDateToString(inFormat: .time12Hour)
-            cell.toTimeText.text = habitDetailData?.endTime?.formatDateToString(inFormat: .time12Hour)
+            cell.habitData = habitDetailData
+            cell.fillHabitDetailData()
             return cell
         }
         else if indexPath.row == 2 || indexPath.row == 5 {
@@ -147,8 +147,7 @@ extension RHHabitDetailViewController : RHDashboardDetailActionHandler {
 
 
 extension RHHabitDetailViewController : RHDashboardDetailTimeHandler {
-    func updateTime(fromTime: String, toTime: String, andFreq freq : Int) {
-        let selectedHabit = SelectedHabitData(title: habitDetailData?.title, frequency: freq, startTime: fromTime, endTime: toTime, id: Int(habitDetailData?.id ?? 0), isEnabled: habitDetailData?.isEnabled)
+    func updateTime(with selectedHabit: SelectedHabitData) {
         updateHabits(with: selectedHabit)
     }
 }

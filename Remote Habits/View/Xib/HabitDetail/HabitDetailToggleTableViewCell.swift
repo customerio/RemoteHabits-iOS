@@ -13,6 +13,7 @@ class HabitDetailToggleTableViewCell: UITableViewCell {
     @IBOutlet weak var habitTitle: UILabel!
     @IBOutlet weak var mainCellView: UIView!
     var actionHandler : RHDashboardDetailActionHandler?
+    var habitData : Habits?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,6 +28,9 @@ class HabitDetailToggleTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func fillHabitsData() {
+        habitSwitch.isOn = habitData?.isEnabled ?? false
+    }
     
     @IBAction func habitSwitchValueChanged(_ sender: UISwitch) {
         actionHandler?.toggleHabit(toValue: sender.isOn)

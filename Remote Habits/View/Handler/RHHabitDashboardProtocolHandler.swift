@@ -21,5 +21,5 @@ protocol RHDashboardDetailActionHandler {
 }
 
 protocol RHDashboardDetailTimeHandler {
-    func updateTime(fromTime : String, toTime: String, andFreq : Int)
+    func updateTime(with : SelectedHabitData)
 }
