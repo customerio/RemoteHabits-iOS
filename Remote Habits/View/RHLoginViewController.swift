@@ -123,8 +123,7 @@ class RHLoginViewController: RHBaseViewController {
         loginButton.isEnabled = false
         loginButtonState()
         
-        userManager.isGuestLogin = isGuestLogin
-        fillHabitData()
+//        userManager.isGuestLogin = isGuestLogin
         if let viewController  = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil).instantiateViewController(withIdentifier: RHConstants.kDashboardViewController) as? RHDashboardViewController {
             viewController.isSourceLogin = true
             navigationController?.pushViewController(viewController, animated: true)
@@ -132,7 +131,7 @@ class RHLoginViewController: RHBaseViewController {
     }
     
     func fillHabitData() {
-        if habitsDataManager.isContextEmpty() {
+        if habitsDataManager.deleteHabits() {
             let data = RemoteHabitsData().getHabitsData()
             habitsDataManager.createHabit(forData: data)
         }
@@ -188,8 +187,8 @@ class RHLoginViewController: RHBaseViewController {
         showLoadingView()
         view.endEditing(true)
         profileViewModel.loginUser(email: email, password: pwd, firstName: firstName, generatedRandom: isGenRandom){ result in
-            
-//            self.habitsDataManager.updateProfile(withData: RemoteHabitsData().getUserData())
+            self.fillHabitData()
+
             self.hideLoadingView()
             if result {
                 self.routeToDashboard(isGuestLogin: isGenRandom)

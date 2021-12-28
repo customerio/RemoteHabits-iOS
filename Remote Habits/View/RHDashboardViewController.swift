@@ -141,8 +141,8 @@ extension RHDashboardViewController : RHDashboardActionHandler {
     
     func logoutUser() {
         self.profileViewModel.logoutUser()
-        self.habitsDataManager.deleteHabits()
-        let data = RemoteHabitsData().getHabitsData()
+//        self.habitsDataManager.deleteHabits()
+//        let data = RemoteHabitsData().getHabitsData()
 //        self.habitsDataManager.createHabit(forData: data)
         
         if isSourceLogin {
@@ -155,8 +155,8 @@ extension RHDashboardViewController : RHDashboardActionHandler {
     }
     
     func loginUser() {
-        self.habitsDataManager.deleteHabits()
-        let data = RemoteHabitsData().getHabitsData()
+//        self.habitsDataManager.deleteHabits()
+//        let data = RemoteHabitsData().getHabitsData()
 //        self.habitsDataManager.createHabit(forData: data)
         
         self.navigationController?.popToRootViewController(animated: true)

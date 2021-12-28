@@ -146,8 +146,8 @@ class HabitDataManager {
     }
     
     // Delete
-    func deleteHabits(){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+    func deleteHabits() -> Bool {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false}
         
         let managedContext = appDelegate.persistentContainer.viewContext
         
@@ -160,14 +160,16 @@ class HabitDataManager {
             }
             do {
                 try managedContext.save()
-                isContextEmpty()
             } catch let error as NSError {
                 print("Could not save Habit \(error.userInfo)")
+                return false
             }
         }
         catch let error as NSError {
             print("Could not save Habit \(error.userInfo)")
+            return false
         }
+        return true
     }
     
 //    func fillDataPostLogin() {
