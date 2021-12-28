@@ -79,6 +79,13 @@
 		465F7638276A46F7000A6C49 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F7637276A46F7000A6C49 /* DateExtensions.swift */; };
 		465F763D276B5457000A6C49 /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F763C276B5457000A6C49 /* Env.swift */; };
 		465F763E276B5461000A6C49 /* Env.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F763C276B5457000A6C49 /* Env.swift */; };
+		465F76412770DAFB000A6C49 /* RemoteHabits.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 465F763F2770DAFB000A6C49 /* RemoteHabits.xcdatamodeld */; };
+		465F764327730AF3000A6C49 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F764227730AF3000A6C49 /* DataManager.swift */; };
+		465F764627732211000A6C49 /* Habits+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F764427732211000A6C49 /* Habits+CoreDataClass.swift */; };
+		465F764727732211000A6C49 /* Habits+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F764527732211000A6C49 /* Habits+CoreDataProperties.swift */; };
+		465F76482773222C000A6C49 /* Habits+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F764427732211000A6C49 /* Habits+CoreDataClass.swift */; };
+		465F76492773222C000A6C49 /* Habits+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F764527732211000A6C49 /* Habits+CoreDataProperties.swift */; };
+		465F764E277497F7000A6C49 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F7637276A46F7000A6C49 /* DateExtensions.swift */; };
 		466FEADC2762693000997AE7 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466FEADB2762693000997AE7 /* TextFieldExtension.swift */; };
 		4698F3DE2760D10900EE48F3 /* SkyFloatingLabelTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 4698F3DD2760D10900EE48F3 /* SkyFloatingLabelTextField */; };
 		46FEC8D92758D34100A6A03F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FEC8CF2758D34100A6A03F /* AppDelegate.swift */; };
@@ -186,6 +193,10 @@
 		465F763027676599000A6C49 /* TrackerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackerViewModel.swift; sourceTree = "<group>"; };
 		465F7637276A46F7000A6C49 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		465F763C276B5457000A6C49 /* Env.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Env.swift; sourceTree = "<group>"; };
+		465F76402770DAFB000A6C49 /* RemoteHabits.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RemoteHabits.xcdatamodel; sourceTree = "<group>"; };
+		465F764227730AF3000A6C49 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		465F764427732211000A6C49 /* Habits+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Habits+CoreDataClass.swift"; sourceTree = "<group>"; };
+		465F764527732211000A6C49 /* Habits+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Habits+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		466FEADB2762693000997AE7 /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
 		46FEC8CF2758D34100A6A03F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46FEC8D12758D34100A6A03F /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -283,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				463D95D92758DDE9000FF356 /* UserManager.swift */,
+				465F764227730AF3000A6C49 /* DataManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -300,6 +312,8 @@
 			isa = PBXGroup;
 			children = (
 				463D95E22758E282000FF356 /* DashboardData.swift */,
+				465F764427732211000A6C49 /* Habits+CoreDataClass.swift */,
+				465F764527732211000A6C49 /* Habits+CoreDataProperties.swift */,
 				463D95E32758E282000FF356 /* Profile.swift */,
 			);
 			path = Model;
@@ -469,6 +483,7 @@
 				46FEC8D12758D34100A6A03F /* SceneDelegate.swift */,
 				463D95FA2758E45A000FF356 /* LaunchScreen.storyboard */,
 				463D95F82758E45A000FF356 /* Main.storyboard */,
+				465F763F2770DAFB000A6C49 /* RemoteHabits.xcdatamodeld */,
 			);
 			path = "Remote Habits";
 			sourceTree = "<group>";
@@ -688,8 +703,10 @@
 				465F763627676B5B000A6C49 /* DashboardData.swift in Sources */,
 				463D95D32758DD3B000FF356 /* UserDefaultKeys.swift in Sources */,
 				463D95B72758DB8E000FF356 /* DIDependencies.swift in Sources */,
+				465F76492773222C000A6C49 /* Habits+CoreDataProperties.swift in Sources */,
 				463D95E62758E284000FF356 /* Profile.swift in Sources */,
 				465F763527676B53000A6C49 /* TrackerViewModel.swift in Sources */,
+				465F764E277497F7000A6C49 /* DateExtensions.swift in Sources */,
 				463D95B32758DB83000FF356 /* AutoDependencyInjection.generated.swift in Sources */,
 				463D95D42758DD3B000FF356 /* CustomerIOErrorUtil.swift in Sources */,
 				F706047B26F3A11B00A9C64D /* NotificationService.swift in Sources */,
@@ -699,6 +716,7 @@
 				463D95E02758E1E4000FF356 /* ProfileViewModel.swift in Sources */,
 				463D95EE2758E2FB000FF356 /* ViewExtension.swift in Sources */,
 				463D95C62758DCCA000FF356 /* HumanReadableError.swift in Sources */,
+				465F76482773222C000A6C49 /* Habits+CoreDataClass.swift in Sources */,
 				463D95D12758DD3B000FF356 /* NotificationUtil.swift in Sources */,
 				463D95C52758DCC7000FF356 /* DeveloperError.swift in Sources */,
 				465F763E276B5461000A6C49 /* Env.swift in Sources */,
@@ -715,8 +733,10 @@
 				463D95E52758E282000FF356 /* Profile.swift in Sources */,
 				463D96292758EA9F000FF356 /* HabitTableViewCell.swift in Sources */,
 				46FEC8DB2758D34100A6A03F /* SceneDelegate.swift in Sources */,
+				465F764327730AF3000A6C49 /* DataManager.swift in Sources */,
 				463D96222758EA71000FF356 /* RHDashboardViewController.swift in Sources */,
 				463D95EC2758E2E6000FF356 /* ViewExtension.swift in Sources */,
+				465F76412770DAFB000A6C49 /* RemoteHabits.xcdatamodeld in Sources */,
 				463D961C2758EA54000FF356 /* RHHabitDashboardProtocolHandler.swift in Sources */,
 				463D96242758EA71000FF356 /* RHLoginViewController.swift in Sources */,
 				463D95CD2758DD2B000FF356 /* CustomerIOErrorUtil.swift in Sources */,
@@ -731,6 +751,7 @@
 				463D96052758E985000FF356 /* RHStubData.swift in Sources */,
 				463D96162758E9FD000FF356 /* RHBaseViewController.swift in Sources */,
 				465F7638276A46F7000A6C49 /* DateExtensions.swift in Sources */,
+				465F764727732211000A6C49 /* Habits+CoreDataProperties.swift in Sources */,
 				463D96372758EACD000FF356 /* HabitReminderTableViewCell.swift in Sources */,
 				463D95CF2758DD2B000FF356 /* NotificationUtil.swift in Sources */,
 				463D95C42758DCC4000FF356 /* MessageError.swift in Sources */,
@@ -739,6 +760,7 @@
 				465F763D276B5457000A6C49 /* Env.swift in Sources */,
 				463D95D02758DD2B000FF356 /* Logger.swift in Sources */,
 				463D96212758EA71000FF356 /* RHHabitDetailViewController.swift in Sources */,
+				465F764627732211000A6C49 /* Habits+CoreDataClass.swift in Sources */,
 				463D95DF2758E1E0000FF356 /* ProfileViewModel.swift in Sources */,
 				463D96352758EACD000FF356 /* HabitDetailToggleTableViewCell.swift in Sources */,
 				465F763127676599000A6C49 /* TrackerViewModel.swift in Sources */,
@@ -1226,6 +1248,19 @@
 			productName = FirebaseCrashlytics;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		465F763F2770DAFB000A6C49 /* RemoteHabits.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				465F76402770DAFB000A6C49 /* RemoteHabits.xcdatamodel */,
+			);
+			currentVersion = 465F76402770DAFB000A6C49 /* RemoteHabits.xcdatamodel */;
+			path = RemoteHabits.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F77512B526332F8200805CD4 /* Project object */;
 }

@@ -21,6 +21,7 @@ class RHLoginViewController: RHBaseViewController {
     
     // MARK: - --VARIABLES--
     var userManager = DI.shared.userManager
+    let habitsDataManager = HabitDataManager()
     var textFields: [SkyFloatingLabelTextFieldWithIcon] = []
     var profileViewModel = DI.shared.profileViewModel
     var loggedInState: ProfileViewModel.LoggedInProfileState {
@@ -123,9 +124,17 @@ class RHLoginViewController: RHBaseViewController {
         loginButtonState()
         
         userManager.isGuestLogin = isGuestLogin
+        fillHabitData()
         if let viewController  = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil).instantiateViewController(withIdentifier: RHConstants.kDashboardViewController) as? RHDashboardViewController {
             viewController.isSourceLogin = true
             navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
+    
+    func fillHabitData() {
+        if habitsDataManager.isContextEmpty() {
+            let data = RemoteHabitsData().getHabitsData()
+            habitsDataManager.createHabit(forData: data)
         }
     }
     
@@ -180,6 +189,7 @@ class RHLoginViewController: RHBaseViewController {
         view.endEditing(true)
         profileViewModel.loginUser(email: email, password: pwd, firstName: firstName, generatedRandom: isGenRandom){ result in
             
+//            self.habitsDataManager.updateProfile(withData: RemoteHabitsData().getUserData())
             self.hideLoadingView()
             if result {
                 self.routeToDashboard(isGuestLogin: isGenRandom)

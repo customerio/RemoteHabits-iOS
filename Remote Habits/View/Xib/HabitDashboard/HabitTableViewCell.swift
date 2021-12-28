@@ -15,8 +15,8 @@ class HabitTableViewCell: UITableViewCell {
     @IBOutlet weak var habitTitle: UILabel!
     @IBOutlet weak var habitIcon: UIImageView!
     @IBOutlet weak var mainCellView: UIView!
-    var actionType : HabitActionType?
-    var habitData : HabitData?
+    var actionType : ActionType?
+    var habitData : Habits?
     
     var actionDelegate: RHDashboardActionHandler?
     override func awakeFromNib() {
@@ -35,25 +35,23 @@ class HabitTableViewCell: UITableViewCell {
         guard let habitData = habitData else {
             return
         }
-
+        
         habitIcon.image = UIImage(named: habitData.icon ?? RHConstants.kLogo)
         habitTitle.text = habitData.title
-        habitSubTitle.text = habitData.subTitle
-        actionType = habitData.habitDetail?.actionType
-        if let type = habitData.type {
-            if type == .toggleSwitch {
-                habitSwitch.isHidden = false
-                actionButton.isHidden = true
-                habitSwitch.setOn(habitData.habitDetail?.isHabitEnabled ??  false, animated: true)
-            }
-            else if type == .button {
-                actionButton.isHidden = false
-                habitSwitch.isHidden = true
-                actionButton.isEnabled = habitData.habitDetail?.isHabitEnabled ?? true
-                actionButton.setTitle(habitData.habitDetail?.actionButtonValue, for: .normal)
-            }
-        }
-        else {
+        habitSubTitle.text = habitData.subtitle
+        actionType = habitData.actionType
+        let type = habitData.type
+        switch type {
+        case .toggleSwitch :
+            habitSwitch.isHidden = false
+            actionButton.isHidden = true
+            habitSwitch.setOn(habitData.isEnabled, animated: true)
+        case .button:
+            actionButton.isHidden = false
+            habitSwitch.isHidden = true
+            actionButton.isEnabled = habitData.isEnabled
+            actionButton.setTitle(habitData.actionName, for: .normal)
+        case .none :
             actionButton.setTitle(RHConstants.kEmptyValue, for: .normal)
             habitSwitch.isHidden = true
             actionButton.isHidden = true
@@ -61,7 +59,8 @@ class HabitTableViewCell: UITableViewCell {
     }
     
     @IBAction func habitSwitchValueChanged(_ sender: UISwitch) {
-        let selectedHabitData = SelectedHabitData(title: habitData?.title, frequency: habitData?.habitDetail?.frequency, startTime: habitData?.habitDetail?.startTime, endTime: habitData?.habitDetail?.endTime)
+        let selectedHabitData = SelectedHabitData(title: habitData?.title, frequency: Int(habitData?.frequency ?? 0), startTime: habitData?.startTime?.formatDateToString(inFormat: .time12Hour), endTime: habitData?.endTime?.formatDateToString(inFormat: .time12Hour), id: Int(habitData?.id ?? 0), isEnabled: sender.isOn)
+        
         actionDelegate?.toggleHabit(toValue: sender.isOn, habitData: selectedHabitData)
     }
     

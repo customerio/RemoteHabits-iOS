@@ -18,7 +18,7 @@ class RHHabitDetailViewController: RHBaseViewController {
     // MARK: - --VARIABLES--
     let headerViewMaxHeight : CGFloat = 180
     let headerViewMinHeight : CGFloat = 98
-    var habitDetailData : HabitData? = nil
+    var habitDetailData : Habits? = nil
     var trackerViewModel = DI.shared.trackerViewModel
 
     // MARK: - --LIFECYCLE METHODS--
@@ -82,7 +82,7 @@ extension RHHabitDetailViewController : UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.actionHandler = self
-            cell.habitSwitch.isOn = habitDetailData?.habitDetail?.isHabitEnabled ?? false
+            cell.habitSwitch.isOn = habitDetailData?.isEnabled ?? false
             return cell
         }
         else if indexPath.row == 1 || indexPath.row == 4{
@@ -90,16 +90,16 @@ extension RHHabitDetailViewController : UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.actionHandler = self
-            cell.frequencyText.text = "\(habitDetailData?.habitDetail?.frequency ?? 0)"
-            cell.fromTimeText.text = habitDetailData?.habitDetail?.startTime ?? "-"
-            cell.toTimeText.text = habitDetailData?.habitDetail?.endTime ?? "-"
+            cell.frequencyText.text = "\(habitDetailData?.frequency ?? 0)"
+            cell.fromTimeText.text = habitDetailData?.startTime?.formatDateToString(inFormat: .time12Hour)
+            cell.toTimeText.text = habitDetailData?.endTime?.formatDateToString(inFormat: .time12Hour)
             return cell
         }
         else if indexPath.row == 2 || indexPath.row == 5 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RHConstants.kHabitAddInfoTableViewCell, for: indexPath) as? HabitAddInfoTableViewCell else {
                 return UITableViewCell()
             }
-            cell.descriptionLabel.text = habitDetailData?.habitDetail?.description ?? ""
+            cell.descriptionLabel.text = habitDetailData?.habitDescription ?? ""
             return cell
         }
         return UITableViewCell()
@@ -134,12 +134,12 @@ extension RHHabitDetailViewController : RHDashboardDetailActionHandler {
     func toggleHabit(toValue isEnabled: Bool) {
         
         let activity = isEnabled ? RHConstants.kHabitEnabled : RHConstants.kHabitDisabled
-        let selectedHabitActivity = SelectedHabitData(title: habitDetailData?.title,
-                                                      frequency: habitDetailData?.habitDetail?.frequency,
-                                                      startTime: habitDetailData?.habitDetail?.startTime,
-                                                      endTime: habitDetailData?.habitDetail?.endTime)
+//        let selectedHabitActivity = SelectedHabitData(title: habitDetailData?.title,
+//                                                      frequency: habitDetailData?.frequency,
+//                                                      startTime: habitDetailData?.startTime,
+//                                                      endTime: habitDetailData?.endTime)
         
-        trackerViewModel.trackHabitActivity(withName: activity, forHabit: selectedHabitActivity)
+//        trackerViewModel.trackHabitActivity(withName: activity, forHabit: selectedHabitActivity)
     }
 }
 
@@ -147,8 +147,8 @@ extension RHHabitDetailViewController : RHDashboardDetailActionHandler {
 extension RHHabitDetailViewController : RHDashboardDetailTimeHandler {
     func updateTime(fromTime: String, toTime: String, andFreq freq : Int) {
         
-        habitDetailData?.habitDetail?.frequency = freq
-        habitDetailData?.habitDetail?.startTime = fromTime
-        habitDetailData?.habitDetail?.endTime = toTime
+//        habitDetailData?.frequency = freq
+//        habitDetailData?.startTime = fromTime
+//        habitDetailData?.endTime = toTime
     }
 }
