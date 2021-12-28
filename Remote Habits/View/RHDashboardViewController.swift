@@ -23,26 +23,25 @@ class RHDashboardViewController: RHBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        let habitsData = HabitDataManager().getHabit(forIds: dashboardHeaders.first?.ids)
         configureNavigationBar(title: RHConstants.kEmptyValue, hideBack: true, showLogo : true)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadHabitsData(notification:)), name: Notification.Name(RHConstants.kHabitsUpdatedIdentifier), object: nil)
+        addNotifierObserver()
         addDefaultBackground()
         setupDashboardTableView()
         // Do any additional setup after loading the view.
-        
-        
+    }
+    
+    // MARK: - --FUNCTIONS--
+    func addNotifierObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadHabitsData(notification:)), name: Notification.Name(RHConstants.kHabitsUpdatedIdentifier), object: nil)
     }
     
     @objc func reloadHabitsData(notification: Notification) {
         
         dashboardTableView.reloadData()
     }
-
     
-    // MARK: - --FUNCTIONS--
     func setupDashboardTableView() {
         
-        // HabitTableViewCell move to constant file
         dashboardTableView.register(UINib(nibName: RHConstants.kHabitTableViewCell, bundle: nil), forCellReuseIdentifier: RHConstants.kHabitTableViewCell)
         dashboardTableView.rowHeight = UITableView.automaticDimension
         dashboardTableView.estimatedRowHeight = 80
@@ -50,24 +49,35 @@ class RHDashboardViewController: RHBaseViewController {
         dashboardTableView.dataSource = self
     }
     
-    func route(withData : Habits) {
-        if let viewController  = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil).instantiateViewController(withIdentifier: RHConstants.kHabitDetailViewController) as? RHHabitDetailViewController {
+    // MARK: - --NAVIGATION--
+    func route(to controller: String, withData : Habits? = nil) {
+        
+        switch controller {
+        case RHConstants.kHabitDetailViewController:
+            navigateToDashboardDetail(withData: withData)
+        case RHConstants.kSwitchWorkspaceViewController:
+            navigateToWorkspace()
+        default:
+            break
+        }
+    }
+    
+    func navigateToDashboardDetail(withData : Habits?) {
+        if let viewController  = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil).instantiateViewController(withIdentifier: RHConstants.kHabitDetailViewController) as? RHHabitDetailViewController, let habitData = withData {
             
-            viewController.habitDetailData = withData
+            viewController.habitDetailData = habitData
             let navigation = UINavigationController.init(rootViewController: viewController)
             self.present(navigation, animated: true, completion: nil)
         }
     }
-    /*
-    // MARK: - --NAVIGATION--
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func navigateToWorkspace() {
+        if let viewController  = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil).instantiateViewController(withIdentifier: RHConstants.kSwitchWorkspaceViewController) as? RHSwitchWorkspaceViewController {
+            
+            let navigation = UINavigationController.init(rootViewController: viewController)
+            self.present(navigation, animated: true, completion: nil)
+        }
     }
-    */
-
 }
 
 // MARK: - --UITABLEVIEWDELEGATE--
@@ -106,7 +116,7 @@ extension RHDashboardViewController : UITableViewDelegate {
         let selectedHabit = SelectedHabitData(title: habitData.title, frequency: Int(habitData.frequency), startTime: habitData.startTime?.formatDateToString(inFormat: .time12Hour), endTime: habitData.endTime?.formatDateToString(inFormat: .time12Hour), id: Int(habitData.id), isEnabled: habitData.isEnabled)
         trackerViewModel.trackHabitActivity(withName: RHConstants.kHabitClicked, forHabit: selectedHabit)
         habitsDataManager.updateHabit(withData: selectedHabit)
-        self.route(withData : habitData)
+        self.route(to: RHConstants.kHabitDetailViewController, withData : habitData)
     }
 }
 
@@ -125,12 +135,10 @@ extension RHDashboardViewController : UITableViewDataSource {
             return UITableViewCell()
         }
         
-//        let id = dashboardHeaders[indexPath.section].ids?[indexPath.row] ?? 0
-//        let habitData = habitsDataManager.getHabit(forIds: [id])
         cell.selectionStyle = .none
         cell.actionDelegate = self
         cell.habitData = habitData
-        cell.fillData()
+        cell.fillHabitsData()
         
         return cell
     }
@@ -161,10 +169,6 @@ extension RHDashboardViewController : RHDashboardActionHandler {
     }
     
     func switchWorkspace() {
-        if let viewController  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: RHConstants.kSwitchWorkspaceViewController) as? RHSwitchWorkspaceViewController {
-            
-            let navigation = UINavigationController.init(rootViewController: viewController)
-            self.present(navigation, animated: true, completion: nil)
-        }
+        route(to: RHConstants.kSwitchWorkspaceViewController)
     }
 }

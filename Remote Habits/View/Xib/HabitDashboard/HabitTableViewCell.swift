@@ -31,7 +31,7 @@ class HabitTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func fillData() {
+    func fillHabitsData() {
         guard let habitData = habitData else {
             return
         }
