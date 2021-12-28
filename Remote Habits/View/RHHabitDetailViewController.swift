@@ -20,6 +20,7 @@ class RHHabitDetailViewController: RHBaseViewController {
     let headerViewMinHeight : CGFloat = 98
     var habitDetailData : Habits? = nil
     var trackerViewModel = DI.shared.trackerViewModel
+    let habitsDataManager = HabitDataManager()
 
     // MARK: - --LIFECYCLE METHODS--
     override func viewDidLoad() {
@@ -134,21 +135,16 @@ extension RHHabitDetailViewController : RHDashboardDetailActionHandler {
     func toggleHabit(toValue isEnabled: Bool) {
         
         let activity = isEnabled ? RHConstants.kHabitEnabled : RHConstants.kHabitDisabled
-//        let selectedHabitActivity = SelectedHabitData(title: habitDetailData?.title,
-//                                                      frequency: habitDetailData?.frequency,
-//                                                      startTime: habitDetailData?.startTime,
-//                                                      endTime: habitDetailData?.endTime)
-        
-//        trackerViewModel.trackHabitActivity(withName: activity, forHabit: selectedHabitActivity)
+        let selectedHabit = SelectedHabitData(title: habitDetailData?.title, frequency: Int(habitDetailData?.frequency ?? 0), startTime: habitDetailData?.startTime?.formatDateToString(inFormat: .time12Hour), endTime: habitDetailData?.endTime?.formatDateToString(inFormat: .time12Hour), id: Int(habitDetailData?.id ?? 0), isEnabled: isEnabled)
+        trackerViewModel.trackHabitActivity(withName: activity, forHabit: selectedHabit)
+        habitsDataManager.updateHabit(withData: selectedHabit)
     }
 }
 
 
 extension RHHabitDetailViewController : RHDashboardDetailTimeHandler {
     func updateTime(fromTime: String, toTime: String, andFreq freq : Int) {
-        
-//        habitDetailData?.frequency = freq
-//        habitDetailData?.startTime = fromTime
-//        habitDetailData?.endTime = toTime
+        let selectedHabit = SelectedHabitData(title: habitDetailData?.title, frequency: freq, startTime: fromTime, endTime: toTime, id: Int(habitDetailData?.id ?? 0), isEnabled: habitDetailData?.isEnabled)
+        habitsDataManager.updateHabit(withData: selectedHabit)
     }
 }
