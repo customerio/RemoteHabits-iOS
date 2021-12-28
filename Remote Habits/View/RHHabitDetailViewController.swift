@@ -57,6 +57,10 @@ class RHHabitDetailViewController: RHBaseViewController {
         }
     }
     
+    func updateHabits(with selectedHabit : SelectedHabitData) {
+        habitsDataManager.updateHabit(withData: selectedHabit)
+        NotificationCenter.default.post(name: Notification.Name(RHConstants.kHabitsUpdatedIdentifier), object: nil)
+    }
     
         /*
     // MARK: - --NAVIGATION--
@@ -137,7 +141,7 @@ extension RHHabitDetailViewController : RHDashboardDetailActionHandler {
         let activity = isEnabled ? RHConstants.kHabitEnabled : RHConstants.kHabitDisabled
         let selectedHabit = SelectedHabitData(title: habitDetailData?.title, frequency: Int(habitDetailData?.frequency ?? 0), startTime: habitDetailData?.startTime?.formatDateToString(inFormat: .time12Hour), endTime: habitDetailData?.endTime?.formatDateToString(inFormat: .time12Hour), id: Int(habitDetailData?.id ?? 0), isEnabled: isEnabled)
         trackerViewModel.trackHabitActivity(withName: activity, forHabit: selectedHabit)
-        habitsDataManager.updateHabit(withData: selectedHabit)
+        updateHabits(with: selectedHabit)
     }
 }
 
@@ -145,6 +149,6 @@ extension RHHabitDetailViewController : RHDashboardDetailActionHandler {
 extension RHHabitDetailViewController : RHDashboardDetailTimeHandler {
     func updateTime(fromTime: String, toTime: String, andFreq freq : Int) {
         let selectedHabit = SelectedHabitData(title: habitDetailData?.title, frequency: freq, startTime: fromTime, endTime: toTime, id: Int(habitDetailData?.id ?? 0), isEnabled: habitDetailData?.isEnabled)
-        habitsDataManager.updateHabit(withData: selectedHabit)
+        updateHabits(with: selectedHabit)
     }
 }

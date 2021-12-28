@@ -25,14 +25,19 @@ class RHDashboardViewController: RHBaseViewController {
 
 //        let habitsData = HabitDataManager().getHabit(forIds: dashboardHeaders.first?.ids)
         configureNavigationBar(title: RHConstants.kEmptyValue, hideBack: true, showLogo : true)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadHabitsData(notification:)), name: Notification.Name(RHConstants.kHabitsUpdatedIdentifier), object: nil)
         addDefaultBackground()
         setupDashboardTableView()
-        dashboardTableView.delegate = self
-        dashboardTableView.dataSource = self
         // Do any additional setup after loading the view.
         
         
     }
+    
+    @objc func reloadHabitsData(notification: Notification) {
+        
+        dashboardTableView.reloadData()
+    }
+
     
     // MARK: - --FUNCTIONS--
     func setupDashboardTableView() {
@@ -41,7 +46,8 @@ class RHDashboardViewController: RHBaseViewController {
         dashboardTableView.register(UINib(nibName: RHConstants.kHabitTableViewCell, bundle: nil), forCellReuseIdentifier: RHConstants.kHabitTableViewCell)
         dashboardTableView.rowHeight = UITableView.automaticDimension
         dashboardTableView.estimatedRowHeight = 80
-        
+        dashboardTableView.delegate = self
+        dashboardTableView.dataSource = self
     }
     
     func route(withData : Habits) {

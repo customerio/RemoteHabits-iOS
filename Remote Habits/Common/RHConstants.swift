@@ -16,6 +16,7 @@ struct RHConstants {
     static let kCIO = "Customer.io"
     static let kValue = "Value"
     static let kInvalid = "Invalid"
+    static let kHabitsUpdatedIdentifier = "HabitUpdatedIdentifier"
     
     
     // Storyboard / Xib
