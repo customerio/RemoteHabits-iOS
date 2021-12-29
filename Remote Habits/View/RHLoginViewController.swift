@@ -76,7 +76,6 @@ class RHLoginViewController: RHBaseViewController {
                 field.iconText = "\u{f007}"
             case emailInput:
                 field.iconText = "\u{f0e0}"
-                field.errorColor = UIColor.red
             default:
                 break
             }
@@ -146,8 +145,8 @@ class RHLoginViewController: RHBaseViewController {
                 }
                 else {
                     floatingLabelTextField.errorMessage = RHConstants.kEmptyValue
+                    floatingLabelTextField.text = floatingLabelTextField.text
                 }
-                
                 if validateName(userNameInput) && validateEmail(text){
                     loginButton.isEnabled = true
                 }else {
