@@ -25,7 +25,8 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
         mainCellView.layer.cornerRadius = 13
         selectionStyle = .none
         // Initialization code
-        setUpTextFieldsTimePicker()
+        let textFields = [frequencyText, fromTimeText, toTimeText]
+        setUpTextFieldsTimePicker(textFields)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -39,33 +40,40 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
         fromTimeText.text = habitData?.startTime?.formatDateToString(inFormat: .time12Hour)
         toTimeText.text = habitData?.endTime?.formatDateToString(inFormat: .time12Hour)
     }
-    func setUpTextFieldsTimePicker() {
+    
+    func setUpTextFieldsTimePicker(_ textFields : [UITextField?]) {
         
-        let datePickerST = UIDatePicker()
-        datePickerST.datePickerMode = .time
-        datePickerST.setDate(Date(), animated: true)
-        datePickerST.addTarget(self, action: #selector(updateStartTime(_:)), for: .valueChanged)
-        fromTimeText.inputView = datePickerST
-        
-        let datePickerET = UIDatePicker()
-        datePickerET.datePickerMode = .time
-        datePickerET.setDate(Date(), animated: true)
-        datePickerET.addTarget(self, action: #selector(updateEndTime(_:)), for: .valueChanged)
-        toTimeText.inputView = datePickerET
-        
-        let numberToolbar: UIToolbar = UIToolbar()
-        numberToolbar.barStyle = .default
-        numberToolbar.items = [UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(hideKeyboard))]
-        numberToolbar.sizeToFit()
-        frequencyText.inputAccessoryView = numberToolbar
-        
-        fromTimeText.delegate = self
-        toTimeText.delegate = self
-        frequencyText.delegate = self
+        for textField in textFields {
+            
+            // Add time picker view to Start time and end time
+            if textField == fromTimeText || textField == toTimeText {
+                let datePickerST = UIDatePicker()
+                datePickerST.datePickerMode = .time
+                datePickerST.setDate(Date(), animated: true)
+                
+                var selector = #selector(updateStartTime(_:))
+                if textField == toTimeText {
+                    selector = #selector(updateEndTime(_:))
+                }
+                datePickerST.addTarget(self, action: selector, for: .valueChanged)
+                datePickerST.preferredDatePickerStyle = .wheels
+                textField?.inputView = datePickerST
+            }
+            
+            // Done button accessory view for all textfields
+            let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 35))
+            doneToolbar.barStyle = .default
+            doneToolbar.items = [UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(hideKeyboard)), .flexibleSpace()]
+            doneToolbar.sizeToFit()
+            textField?.inputAccessoryView = doneToolbar
+            
+            // Set delegate for all textfields
+            textField?.delegate = self
+        }
     }
     
     @objc func hideKeyboard() {
-        frequencyText.resignFirstResponder()
+        self.endEditing(true)
     }
     
     @objc func updateStartTime(_ sender : UIDatePicker) {
