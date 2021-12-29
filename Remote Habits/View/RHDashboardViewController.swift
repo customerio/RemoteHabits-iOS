@@ -13,7 +13,8 @@ class RHDashboardViewController: RHBaseViewController {
     @IBOutlet weak var dashboardTableView: UITableView!
     
     // MARK: - --VARIABLES--
-    let dashboardHeaders = RemoteHabitsData().getHabitHeaders()
+    let remoteHabitsData = RemoteHabitsData()
+    var dashboardHeaders : [HabitHeadersInfo] = [HabitHeadersInfo]()
     var isSourceLogin : Bool = false
     let habitsDataManager = HabitDataManager()
     var profileViewModel = DI.shared.profileViewModel
@@ -23,6 +24,7 @@ class RHDashboardViewController: RHBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        dashboardHeaders = remoteHabitsData.getHabitHeaders()
         configureNavigationBar(title: RHConstants.kEmptyValue, hideBack: true, showLogo : true)
         addNotifierObserver()
         addDefaultBackground()

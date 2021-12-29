@@ -6,9 +6,6 @@
 //
 
 import Foundation
-import CioTracking
-
-typealias UserHabit = [[HabitHeadersInfo : [HabitData]]]
 
 class RemoteHabitsData {
     

@@ -102,49 +102,6 @@ class HabitDataManager {
         }
     }
     
-    func updateProfile(withData data: HabitsData){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let fetchRequest : NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: habitsEntity)
-        fetchRequest.predicate = NSPredicate(format: "ANY id IN %@", [data.id])
-        
-        do {
-            let managedFetch = try managedContext.fetch(fetchRequest)
-            let objectUpdate = managedFetch[0] as! NSManagedObject
-            
-            // Update only if value is not nil
-            if let icon = data.icon {
-                objectUpdate.setValue(icon, forKey: "icon")
-            }
-            
-            if let title = data.title {
-                objectUpdate.setValue(title, forKey: "title")
-            }
-            
-            if let subTitle = data.subtitle {
-                objectUpdate.setValue(subTitle, forKey: "subtitle")
-            }
-            
-            if let actionName = data.endTime {
-                objectUpdate.setValue(actionName, forKey: "actionName")
-            }
-            
-            if let actionType = data.actionType {
-                objectUpdate.setValue(actionType.rawValue, forKey: "actionType")
-            }
-            do {
-                try managedContext.save()
-            } catch let error as NSError {
-                print("Could not save Habit \(error.userInfo)")
-            }
-        }
-        catch{
-            print("Could not update Habit")
-        }
-    }
-    
     // Delete
     func deleteHabits() -> Bool {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false}
@@ -170,34 +127,5 @@ class HabitDataManager {
             return false
         }
         return true
-    }
-    
-//    func fillDataPostLogin() {
-//
-//        if isContextEmpty() {
-//
-//            let data = RemoteHabitsData().getHabitsData()
-//            createHabit(forData: data)
-//        }
-//        else {
-//            // Case 2: If local storage has some value
-//
-//            // if user is already logged in then do nothing
-//            if let isGuestLogin = userManager.isGuestLogin, isGuestLogin {
-//               print("Hello")
-//            }
-//        }
-//    }
-    func isContextEmpty() -> Bool {
-
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false}
-        let context = appDelegate.persistentContainer.viewContext
-        do {
-            let request = NSFetchRequest<NSFetchRequestResult>(entityName: habitsEntity)
-            let result  = try context.fetch(request)
-            return result.count == 0
-        } catch {
-            return true
-        }
     }
 }

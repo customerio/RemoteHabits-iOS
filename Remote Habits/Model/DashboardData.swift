@@ -7,38 +7,6 @@
 
 import Foundation
 
-enum HabitElementType {
-    case toggleSwitch
-    case button
-}
-
-enum HabitActionType {
-    case logout
-    case login
-    case switchWorkspace
-    case toggleSwitch
-}
-
-struct HabitData {
-    let icon : String?
-    let title : String?
-    let subTitle : String?
-    let type : HabitElementType?
-    var habitDetail : HabitDetail?
-}
-
-struct HabitDetail {
-    var id : Int
-    var isHabitEnabled : Bool?
-    var frequency : Int?
-    var startTime : String?
-    var endTime : String?
-    var description : String?
-    var actionButtonValue : String?
-    var actionType : HabitActionType?
-}
-
-
 struct HabitHeadersInfo : Hashable {
     let headerTitle : String?
     let titleFontSize : Int?
@@ -53,14 +21,6 @@ struct SelectedHabitData : Encodable {
     let endTime : String?
     let id : Int
     let isEnabled : Bool?
-}
-
-
-struct HabitDetails {
-    let icon : String?
-    let title : String?
-    let subTitle : String?
-    let type : HabitElementType?
 }
 
 @objc public enum ActionType : Int32 {
