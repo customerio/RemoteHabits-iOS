@@ -7,9 +7,17 @@
 
 import UIKit
 
+
+enum ControllerSource {
+    case habitdashboard
+    case habitdetail
+}
 class RHBaseViewController: UIViewController {
 
     var loaderView : UIView?
+    let habitsDataManager = HabitDataManager()
+    var trackerViewModel = DI.shared.trackerViewModel
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -121,6 +129,15 @@ class RHBaseViewController: UIViewController {
         loaderView?.removeFromSuperview()
     }
 
+    func updateHabit(forActivity activity: String?, selectedHabit: SelectedHabitData, andSource source : ControllerSource) {
+        habitsDataManager.updateHabit(withData: selectedHabit)
+        if let activity = activity {
+            trackerViewModel.trackHabitActivity(withName: activity, forHabit: selectedHabit)
+        }
+        if source == .habitdetail {
+            NotificationCenter.default.post(name: Notification.Name(RHConstants.kHabitsUpdatedIdentifier), object: nil)
+        }
+    }
     /*
     // MARK: - --NAVIGATION--
 

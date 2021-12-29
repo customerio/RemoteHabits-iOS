@@ -19,8 +19,6 @@ class RHHabitDetailViewController: RHBaseViewController {
     let headerViewMaxHeight : CGFloat = 180
     let headerViewMinHeight : CGFloat = 98
     var habitDetailData : Habits? = nil
-    var trackerViewModel = DI.shared.trackerViewModel
-    let habitsDataManager = HabitDataManager()
 
     // MARK: - --LIFECYCLE METHODS--
     override func viewDidLoad() {
@@ -140,14 +138,13 @@ extension RHHabitDetailViewController : RHDashboardDetailActionHandler {
         
         let activity = isEnabled ? RHConstants.kHabitEnabled : RHConstants.kHabitDisabled
         let selectedHabit = SelectedHabitData(title: habitDetailData?.title, frequency: Int(habitDetailData?.frequency ?? 0), startTime: habitDetailData?.startTime?.formatDateToString(inFormat: .time12Hour), endTime: habitDetailData?.endTime?.formatDateToString(inFormat: .time12Hour), id: Int(habitDetailData?.id ?? 0), isEnabled: isEnabled)
-        trackerViewModel.trackHabitActivity(withName: activity, forHabit: selectedHabit)
-        updateHabits(with: selectedHabit)
+        updateHabit(forActivity: activity, selectedHabit: selectedHabit, andSource: .habitdetail)
     }
 }
 
 
 extension RHHabitDetailViewController : RHDashboardDetailTimeHandler {
     func updateTime(with selectedHabit: SelectedHabitData) {
-        updateHabits(with: selectedHabit)
+        updateHabit(forActivity: nil, selectedHabit: selectedHabit, andSource: .habitdetail)
     }
 }

@@ -16,9 +16,8 @@ class RHDashboardViewController: RHBaseViewController {
     let remoteHabitsData = RemoteHabitsData()
     var dashboardHeaders : [HabitHeadersInfo] = [HabitHeadersInfo]()
     var isSourceLogin : Bool = false
-    let habitsDataManager = HabitDataManager()
     var profileViewModel = DI.shared.profileViewModel
-    var trackerViewModel = DI.shared.trackerViewModel
+    
     
     // MARK: - --LIFECYCLE METHODS--
     override func viewDidLoad() {
@@ -116,8 +115,7 @@ extension RHDashboardViewController : UITableViewDelegate {
         }
         
         let selectedHabit = SelectedHabitData(title: habitData.title, frequency: Int(habitData.frequency), startTime: habitData.startTime?.formatDateToString(inFormat: .time12Hour), endTime: habitData.endTime?.formatDateToString(inFormat: .time12Hour), id: Int(habitData.id), isEnabled: habitData.isEnabled)
-        trackerViewModel.trackHabitActivity(withName: RHConstants.kHabitClicked, forHabit: selectedHabit)
-        habitsDataManager.updateHabit(withData: selectedHabit)
+        updateHabit(forActivity: RHConstants.kHabitClicked, selectedHabit: selectedHabit, andSource: .habitdashboard)
         self.route(to: RHConstants.kHabitDetailViewController, withData : habitData)
     }
 }
@@ -151,8 +149,7 @@ extension RHDashboardViewController : UITableViewDataSource {
 extension RHDashboardViewController : RHDashboardActionHandler {
  
     func toggleHabit(toValue isEnabled: Bool, habitData : SelectedHabitData) {
-        trackerViewModel.trackHabitActivity(withName: isEnabled ? RHConstants.kHabitEnabled : RHConstants.kHabitDisabled, forHabit: habitData)
-        habitsDataManager.updateHabit(withData: habitData)
+        updateHabit(forActivity: isEnabled ? RHConstants.kHabitEnabled : RHConstants.kHabitDisabled, selectedHabit: habitData, andSource: .habitdashboard)
     }
     
     func logoutUser() {

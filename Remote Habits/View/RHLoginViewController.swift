@@ -21,7 +21,7 @@ class RHLoginViewController: RHBaseViewController {
     
     // MARK: - --VARIABLES--
     var userManager = DI.shared.userManager
-    let habitsDataManager = HabitDataManager()
+//    let habitsDataManager = HabitDataManager()
     var textFields: [SkyFloatingLabelTextFieldWithIcon] = []
     var profileViewModel = DI.shared.profileViewModel
     var loggedInState: ProfileViewModel.LoggedInProfileState {
@@ -123,7 +123,6 @@ class RHLoginViewController: RHBaseViewController {
         loginButton.isEnabled = false
         loginButtonState()
         
-//        userManager.isGuestLogin = isGuestLogin
         if let viewController  = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil).instantiateViewController(withIdentifier: RHConstants.kDashboardViewController) as? RHDashboardViewController {
             viewController.isSourceLogin = true
             navigationController?.pushViewController(viewController, animated: true)
