@@ -39,8 +39,8 @@ class RemoteHabitsData {
                                      type: .toggleSwitch,
                                      isEnabled: false,
                                      frequency: 8,
-                                     startTime: Date(),
-                                     endTime: Date(),
+                                     startTime: nil,
+                                     endTime: nil,
                                      habitDescription: "Drinking enough water each day is crucial for many reasons: to regulate body temperature, keep joints lubricated, prevent infections, deliver nutrients to cells, and keep organs functioning properly. Being well-hydrated also improves sleep quality, cognition, and mood.",
                                      actionName: nil,
                                      actionType: nil)
@@ -52,8 +52,8 @@ class RemoteHabitsData {
                                         type: .toggleSwitch,
                                         isEnabled: false,
                                         frequency: 5,
-                                        startTime: Date(),
-                                        endTime: Date(),
+                                        startTime: nil,
+                                        endTime: nil,
                                         habitDescription: "Taking a break improves focus and concentration and provides the opportunity for an employee's mental reset. After a break, work can resume with more energy and motivation. Working without taking one or more breaks only leads to mental and physical fatigue. It can even lead to burnout in the long run.",
                                         actionName: nil,
                                         actionType: nil)
@@ -65,8 +65,8 @@ class RemoteHabitsData {
                                         type: .toggleSwitch,
                                         isEnabled: false,
                                         frequency: 2,
-                                        startTime: Date(),
-                                        endTime: Date(),
+                                        startTime: nil,
+                                        endTime: nil,
                                         habitDescription: "Having scheduled, uninterrupted time to focus on deep work provides employees an opportunity to complete difficult tasks, produce high quality output, and generate new ideas. Time to focus increases productivity, improves decision making, and boosts creativity.",
                                         actionName: nil,
                                         actionType: nil)

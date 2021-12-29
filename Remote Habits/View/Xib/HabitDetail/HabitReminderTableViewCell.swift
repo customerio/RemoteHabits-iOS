@@ -37,8 +37,8 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     func fillHabitDetailData() {
         frequencyText.text = "\(habitData?.frequency ?? 0)"
-        fromTimeText.text = habitData?.startTime?.formatDateToString(inFormat: .time12Hour)
-        toTimeText.text = habitData?.endTime?.formatDateToString(inFormat: .time12Hour)
+        fromTimeText.text = habitData?.startTime?.formatDateToString(inFormat: .time12Hour) ?? Date().formatDateToString(inFormat: .time12Hour)
+        toTimeText.text = habitData?.endTime?.formatDateToString(inFormat: .time12Hour) ?? Date().formatDateToString(inFormat: .time12Hour)
     }
     
     func setUpTextFieldsTimePicker(_ textFields : [UITextField?]) {
