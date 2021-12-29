@@ -11,7 +11,7 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     @IBOutlet weak var toTimeText: UITextField!
     @IBOutlet weak var fromTimeText: UITextField!
-    @IBOutlet weak var frequencyText: UITextField!
+    @IBOutlet weak var frequencyText: FrequencyTextField!
     @IBOutlet weak var toLabel: UILabel!
     @IBOutlet weak var fromLabel: UILabel!
     @IBOutlet weak var frequencyLabel: UILabel!
@@ -62,7 +62,6 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
         fromTimeText.delegate = self
         toTimeText.delegate = self
         frequencyText.delegate = self
-        frequencyText.tag = 1001
     }
     
     @objc func hideKeyboard() {
@@ -91,11 +90,11 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return textField.tag == 1001 ? true : false
+        return ((textField as? FrequencyTextField) != nil) ? true : false
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField.tag == 1001 {
+        if ((textField as? FrequencyTextField) != nil) {
             updateHabitTime(withFreq: Int(textField.text ?? "0") ?? 0)
         }
     }
@@ -106,3 +105,14 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
     
 }
  
+class FrequencyTextField : UITextField {
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
+}
