@@ -80,6 +80,8 @@ class RHLoginViewController: RHBaseViewController {
                 break
             }
             
+            field.placeholderColor = RHColor.LabelGray
+            field.textColor = UIColor.black
             field.iconFont = RHFont.AwesomeFontLarge
             field.tintColor = RHColor.LabelGray
             field.lineColor = RHColor.LineGray
@@ -90,7 +92,7 @@ class RHLoginViewController: RHBaseViewController {
     }
     
     func setUpMainView() {
-        mainView.layer.cornerRadius = 13
+        mainView.setCornerRadius()
     }
     
     func validateName(_ nameText : UITextField) -> Bool {

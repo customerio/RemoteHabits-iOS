@@ -22,12 +22,16 @@ class HabitTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        mainCellView.backgroundColor = RHColor.WhiteBackground
+        habitTitle.textColor = RHColor.LabelBlack
+        habitSubTitle.textColor = RHColor.LabelLightGray
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        mainCellView.layer.cornerRadius = 13
+        mainCellView.setCornerRadius()
         // Configure the view for the selected state
     }
     

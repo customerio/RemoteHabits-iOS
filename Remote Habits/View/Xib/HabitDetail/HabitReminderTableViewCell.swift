@@ -22,10 +22,9 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
     var habitData : Habits?
     override func awakeFromNib() {
         super.awakeFromNib()
-        mainCellView.layer.cornerRadius = 13
-        selectionStyle = .none
         // Initialization code
         let textFields = [frequencyText, fromTimeText, toTimeText]
+        setUpCellView()
         setUpTextFieldsTimePicker(textFields)
     }
 
@@ -39,6 +38,18 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
         frequencyText.text = "\(habitData?.frequency ?? 0)"
         fromTimeText.text = habitData?.startTime?.formatDateToString(inFormat: .time12Hour) ?? Date().formatDateToString(inFormat: .time12Hour)
         toTimeText.text = habitData?.endTime?.formatDateToString(inFormat: .time12Hour) ?? Date().formatDateToString(inFormat: .time12Hour)
+    }
+    
+    func setUpCellView() {
+        mainCellView.customiseView()
+        frequencyLabel.textColor = RHColor.LabelLightGray
+        toLabel.textColor = RHColor.LabelLightGray
+        fromLabel.textColor = RHColor.LabelLightGray
+        fromTimeText.backgroundColor = RHColor.MediumGray
+        toTimeText.backgroundColor = RHColor.MediumGray
+        fromTimeText.textColor = RHColor.LabelLightGray
+        toTimeText.textColor = RHColor.LabelLightGray
+        selectionStyle = .none
     }
     
     func setUpTextFieldsTimePicker(_ textFields : [UITextField?]) {

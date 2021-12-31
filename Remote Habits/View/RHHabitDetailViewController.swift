@@ -50,6 +50,7 @@ class RHHabitDetailViewController: RHBaseViewController {
     
     func setUpHeader() {
         reminderLabel.text = "Set reminder to \(habitDetailData?.title ?? "good remote habits")"
+        reminderLabel.textColor = RHColor.LabelLightGray
         if let logo = habitDetailData?.icon {
             habitLogo.image = UIImage(named: logo)
         }

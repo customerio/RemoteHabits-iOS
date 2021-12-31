@@ -1,14 +1,14 @@
 import Foundation
-import SwiftUI
+import UIKit
 
-extension View {
-    func binding<Value>(_ getValue: @escaping () -> Value) -> Binding<Value> {
-        Binding.get(getValue)
+extension UIView {
+   
+    func setCornerRadius() {
+        self.layer.cornerRadius = 13
     }
-}
-
-extension Binding {
-    static func get(_ getValue: @escaping () -> Value) -> Binding<Value> {
-        Binding(get: getValue, set: { _ in })
+    
+    func customiseView() {
+        setCornerRadius()
+        self.backgroundColor = RHColor.WhiteBackground
     }
 }

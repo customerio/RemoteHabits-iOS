@@ -99,7 +99,7 @@ extension RHDashboardViewController : UITableViewDelegate {
         
         label.text = headerData.headerTitle ?? RHConstants.kEmptyValue
         label.font = UIFont(name: headerData.titleFontName ?? RHConstants.kEmptyValue, size: CGFloat(headerData.titleFontSize ?? 17))
-        label.textColor = .black
+        label.textColor = RHColor.LabelBlack
         
         headerView.addSubview(label)
         

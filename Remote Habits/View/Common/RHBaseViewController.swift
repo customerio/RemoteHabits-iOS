@@ -102,8 +102,8 @@ class RHBaseViewController: UIViewController {
         if #available(iOS 13.0, *) {
             let navBarAppearance = UINavigationBarAppearance()
             navBarAppearance.configureWithOpaqueBackground()
-            navBarAppearance.titleTextAttributes = [.foregroundColor: titleColor]
-            navBarAppearance.backgroundColor = backgoundColor
+            navBarAppearance.titleTextAttributes = [.foregroundColor: self.traitCollection.userInterfaceStyle == .dark ? RHColor.LabelBlack : titleColor]
+            navBarAppearance.backgroundColor = self.traitCollection.userInterfaceStyle == .dark ? RHColor.DefaultBackground : backgoundColor
             
             navigationController?.navigationBar.standardAppearance = navBarAppearance
             navigationController?.navigationBar.compactAppearance = navBarAppearance
