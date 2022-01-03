@@ -73,7 +73,7 @@ class RHBaseViewController: UIViewController {
         activityView.startAnimating()
     }
     
-    func configureNavigationBar(titleColor: UIColor = .black, backgoundColor: UIColor = .white, title: String, hideBack : Bool, showLogo : Bool = false) {
+    func configureNavigationBar(titleColor: UIColor? = nil, backgoundColor: UIColor? = nil, title: String, hideBack : Bool, showLogo : Bool = false) {
 
         if hideBack {
             self.navigationItem.setHidesBackButton(hideBack, animated: true)
@@ -102,8 +102,8 @@ class RHBaseViewController: UIViewController {
         if #available(iOS 13.0, *) {
             let navBarAppearance = UINavigationBarAppearance()
             navBarAppearance.configureWithOpaqueBackground()
-            navBarAppearance.titleTextAttributes = [.foregroundColor: self.traitCollection.userInterfaceStyle == .dark ? RHColor.LabelBlack : titleColor]
-            navBarAppearance.backgroundColor = self.traitCollection.userInterfaceStyle == .dark ? RHColor.DefaultBackground : backgoundColor
+            navBarAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? RHColor.LabelBlack]
+            navBarAppearance.backgroundColor = backgoundColor ?? RHColor.DefaultBackground
             
             navigationController?.navigationBar.standardAppearance = navBarAppearance
             navigationController?.navigationBar.compactAppearance = navBarAppearance
