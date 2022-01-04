@@ -104,7 +104,7 @@ class RemoteHabitsData {
     }
     
     func getUserData() -> HabitsData {
-        let isLoggedIn = !(userManager.isGuestLogin ?? true)
+        let isLoggedIn = !(userManager.isLoggedIn ?? true)
         return  HabitsData(id: 4,
                            icon: isLoggedIn ? "ciouser" : "guest",
                            title: isLoggedIn ? userManager.userName : "Guest",

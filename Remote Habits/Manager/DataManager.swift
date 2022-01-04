@@ -84,11 +84,11 @@ class HabitDataManager {
             }
             
             if let startTimeValue = data.startTime {
-                objectUpdate.setValue(startTimeValue.stringToDate(withFormat: .time12Hour), forKey: "startTime")
+                objectUpdate.setValue(startTimeValue.toDate(withFormat: .time12Hour), forKey: "startTime")
             }
             
             if let endTimeValue = data.endTime {
-                objectUpdate.setValue(endTimeValue.stringToDate(withFormat: .time12Hour), forKey: "endTime")
+                objectUpdate.setValue(endTimeValue.toDate(withFormat: .time12Hour), forKey: "endTime")
             }
             
             do {
