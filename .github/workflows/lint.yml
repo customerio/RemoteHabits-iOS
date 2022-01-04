@@ -17,7 +17,9 @@ jobs:
         run: |
           make lint && git diff --exit-code
       - name: Comment on PR if linting failed 
-        uses: thollander/actions-comment-pull-request@v1
+        uses: unsplash/comment-on-pr@v1.3.0
         # if: ${{ failure() }} # commenting out to test it works. 
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          message: 'Friendly reminder to run `make lint` on code base, fix all lint errors, then push up the code again. Tip: [you can setup git hooks](https://github.com/customerio/RemoteHabits-iOS/blob/main/docs/dev-notes/DEVELOPMENT.md) to run `make lint` automatically for you during development.'
+          msg: 'Friendly reminder to run `make lint` on code base, fix all lint errors, then push up the code again. Tip: [you can setup git hooks](https://github.com/customerio/RemoteHabits-iOS/blob/main/docs/dev-notes/DEVELOPMENT.md) to run `make lint` automatically for you during development.'
