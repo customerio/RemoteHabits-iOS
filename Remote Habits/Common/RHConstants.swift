@@ -1,10 +1,3 @@
-//
-//  RHConstants.swift
-//  Remote Habits Mobile App
-//
-//  Created by Amandeep Kaur on 25/11/21.
-//
-
 import Foundation
 
 struct RHConstants {
@@ -16,8 +9,7 @@ struct RHConstants {
     static let kCIO = "Customer.io"
     static let kValue = "Value"
     static let kInvalid = "Invalid"
-    
-    
+
     // Storyboard / Xib
     static let kStoryboardMain = "Main"
     static let kDashboardViewController = "RHDashboardViewController"
@@ -28,18 +20,20 @@ struct RHConstants {
     static let kHabitDetailToggleTableViewCell = "HabitDetailToggleTableViewCell"
     static let kHabitAddInfoTableViewCell = "HabitAddInfoTableViewCell"
     static let kLoginViewController = "RHLoginViewController"
-    
+
     // Images / Assets
     static let kLogo = "logo"
     static let kBack = "back"
-    
+
     // Login
     static let kRandomEId = EmailAddress.randomEmail
     static let kDefaultPassword = "123"
     static let kRandomUsername = String.random
-    
+
     // Habits Tracking
     static let kHabitClicked = "clicked_habit"
     static let kHabitEnabled = "habit_enabled"
     static let kHabitDisabled = "habit_disabled"
+
+    static let mockSdkInfo = "Customer.io iOS Client/1.0.0-alpha.18 (iPhone13,2; iOS 15.1) Remote Habits/pr.28"
 }

@@ -1,40 +1,35 @@
-//
-//  SceneDelegate.swift
-//  Remote Habits Mobile App
-//
-//  Created by Amandeep Kaur on 25/11/21.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
     let userManager = DI.shared.userManager
 
-
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
+    func scene(
+        _ scene: UIScene,
+        willConnectTo session: UISceneSession,
+        options connectionOptions: UIScene.ConnectionOptions
+    ) {
+        // Use this method to optionally configure and attach the UIWindow `window` to the
+        // provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        
+        // This delegate does not imply the connecting scene or session are new
+        // (see `application:configurationForConnectingSceneSession` instead).
+
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
+
         window = UIWindow(windowScene: windowScene)
-        
+
         // If previous user is not a guest login and credentials were used to login into the app
-        if let isGuestLogin = userManager.isGuestLogin, !isGuestLogin, let _ = userManager.email, let _ = userManager.userName {
-            let viewController = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil).instantiateViewController(withIdentifier: RHConstants.kDashboardViewController) as! RHDashboardViewController
-            
-            let navigationController = UINavigationController(rootViewController: viewController)
+        if let isGuestLogin = userManager.isGuestLogin,
+           !isGuestLogin,
+           userManager.email != nil,
+           userManager.userName != nil {
+            let navigationController = UINavigationController(rootViewController: RHDashboardViewController
+                .newInstance())
             window?.rootViewController = navigationController
-        }
-        else {
-            let viewController = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil).instantiateViewController(withIdentifier: RHConstants.kLoginViewController) as! RHLoginViewController
-            
-            let navigationController = UINavigationController(rootViewController: viewController)
+        } else {
+            let navigationController = UINavigationController(rootViewController: RHLoginViewController.newInstance())
             window?.rootViewController = navigationController
-           
         }
         window?.makeKeyAndVisible()
     }
@@ -43,7 +38,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
-        // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
+        // The scene may re-connect later, as its session was not necessarily discarded
+        // (see `application:didDiscardSceneSessions` instead).
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
@@ -66,7 +62,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
-

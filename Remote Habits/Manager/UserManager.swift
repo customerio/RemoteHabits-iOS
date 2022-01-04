@@ -2,16 +2,15 @@ import Foundation
 
 protocol UserManager {
     var email: String? { get set }
-    var userName : String? {get set}
-    var workspaceID : String? {get set}
-    var apiKey : String? {get set}
-    var isGuestLogin : Bool? {get set}
+    var userName: String? { get set }
+    var workspaceID: String? { get set }
+    var apiKey: String? { get set }
+    var isGuestLogin: Bool? { get set }
     var isLoggedIn: Bool { get }
 }
 
 // sourcery: InjectRegister = "UserManager"
 class AppUserManager: UserManager {
-    
     private let userDefaults: UserDefaults
 
     var apiKey: String? {
@@ -22,6 +21,7 @@ class AppUserManager: UserManager {
             userDefaults.set(newValue, forKey: UserDefaultKeys.apiKey.rawValue)
         }
     }
+
     var workspaceID: String? {
         get {
             userDefaults.string(forKey: UserDefaultKeys.workspaceId.rawValue)
@@ -30,7 +30,7 @@ class AppUserManager: UserManager {
             userDefaults.set(newValue, forKey: UserDefaultKeys.workspaceId.rawValue)
         }
     }
-    
+
     var userName: String? {
         get {
             userDefaults.string(forKey: UserDefaultKeys.userName.rawValue)
@@ -48,7 +48,7 @@ class AppUserManager: UserManager {
             userDefaults.set(newValue, forKey: UserDefaultKeys.guestLogin.rawValue)
         }
     }
-    
+
     var email: String? {
         get {
             userDefaults.string(forKey: UserDefaultKeys.loggedInUserEmail.rawValue)

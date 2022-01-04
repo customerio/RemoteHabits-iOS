@@ -93,6 +93,7 @@
 		F77512D326332F8400805CD4 /* Remote_HabitsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77512D226332F8400805CD4 /* Remote_HabitsTests.swift */; };
 		F77512DE26332F8400805CD4 /* Remote_HabitsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77512DD26332F8400805CD4 /* Remote_HabitsUITests.swift */; };
 		F7E9FABC26E7C564003F4187 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = F7E9FABB26E7C564003F4187 /* FirebaseCrashlytics */; };
+		F7FF07F22784BCEE0076BDE0 /* StorybordExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FF07F12784BCEE0076BDE0 /* StorybordExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -197,6 +198,7 @@
 		F77512D226332F8400805CD4 /* Remote_HabitsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remote_HabitsTests.swift; sourceTree = "<group>"; };
 		F77512D926332F8400805CD4 /* Remote HabitsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Remote HabitsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F77512DD26332F8400805CD4 /* Remote_HabitsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remote_HabitsUITests.swift; sourceTree = "<group>"; };
+		F7FF07F12784BCEE0076BDE0 /* StorybordExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorybordExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,6 +314,7 @@
 				463D95EA2758E2E6000FF356 /* ViewExtension.swift */,
 				466FEADB2762693000997AE7 /* TextFieldExtension.swift */,
 				465F7637276A46F7000A6C49 /* DateExtensions.swift */,
+				F7FF07F12784BCEE0076BDE0 /* StorybordExtensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -745,6 +748,7 @@
 				463D95AE2758DB7D000FF356 /* AutoMockable.generated.swift in Sources */,
 				463D95E42758E282000FF356 /* DashboardData.swift in Sources */,
 				463D95C32758DCC4000FF356 /* HumanReadableError.swift in Sources */,
+				F7FF07F22784BCEE0076BDE0 /* StorybordExtensions.swift in Sources */,
 				463D95B12758DB7D000FF356 /* AutoLenses.generated.swift in Sources */,
 				463D96342758EACD000FF356 /* HabitAddInfoTableViewCell.swift in Sources */,
 				463D95DA2758DDEA000FF356 /* UserManager.swift in Sources */,
