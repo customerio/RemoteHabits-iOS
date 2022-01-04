@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         // If previous user is not a guest login and credentials were used to login into the app
-        if let isGuestLogin = userManager.isGuestLogin, !isGuestLogin, let _ = userManager.email, let _ = userManager.userName {
+        if userManager.isLoggedIn {
             let viewController = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil).instantiateViewController(withIdentifier: RHConstants.kDashboardViewController) as! RHDashboardViewController
             
             let navigationController = UINavigationController(rootViewController: viewController)

@@ -116,7 +116,7 @@ class RHLoginViewController: RHBaseViewController {
             errorMessageLabel.isHidden = true
         }
     }
-    func routeToDashboard(isGuestLogin : Bool = true) {
+    func routeToDashboard() {
         userNameInput.text = RHConstants.kEmptyValue
         emailInput.text = RHConstants.kEmptyValue
         loginButton.isEnabled = false
@@ -189,7 +189,7 @@ class RHLoginViewController: RHBaseViewController {
 
             self.hideLoadingView()
             if result {
-                self.routeToDashboard(isGuestLogin: isGenRandom)
+                self.routeToDashboard()
             }
             else {
                 self.actOnError(toShow: true)

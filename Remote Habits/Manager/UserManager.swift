@@ -5,7 +5,6 @@ protocol UserManager {
     var userName : String? {get set}
     var workspaceID : String? {get set}
     var apiKey : String? {get set}
-    var isGuestLogin : Bool? {get set}
     var isLoggedIn: Bool { get }
 }
 
@@ -37,15 +36,6 @@ class AppUserManager: UserManager {
         }
         set {
             userDefaults.set(newValue, forKey: UserDefaultKeys.userName.rawValue)
-        }
-    }
-
-    var isGuestLogin: Bool? {
-        get {
-            userDefaults.bool(forKey: UserDefaultKeys.guestLogin.rawValue)
-        }
-        set {
-            userDefaults.set(newValue, forKey: UserDefaultKeys.guestLogin.rawValue)
         }
     }
     

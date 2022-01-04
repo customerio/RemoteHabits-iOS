@@ -13,7 +13,7 @@ class RemoteHabitsData {
     
     func getHabitHeaders() -> [HabitHeadersInfo] {
         
-        let isLoggedIn = !(userManager.isGuestLogin ?? true)
+        let isLoggedIn = userManager.isLoggedIn
         let title = isLoggedIn ? userManager.userName : "Guest"
         let section_first = HabitHeadersInfo(headerTitle: "\(title ?? "Your")'s Habits", titleFontSize: 34, titleFontName: "SFProDisplay-Bold", ids: [1,2,3])
         let section_second = HabitHeadersInfo(headerTitle: "Details", titleFontSize: 17, titleFontName: "SFProDisplay-Bold", ids: [4,5,6])
@@ -104,7 +104,7 @@ class RemoteHabitsData {
     }
     
     func getUserData() -> HabitsData {
-        let isLoggedIn = !(userManager.isLoggedIn ?? true)
+        let isLoggedIn = userManager.isLoggedIn
         return  HabitsData(id: 4,
                            icon: isLoggedIn ? "ciouser" : "guest",
                            title: isLoggedIn ? userManager.userName : "Guest",
