@@ -94,6 +94,8 @@
 		F77512DE26332F8400805CD4 /* Remote_HabitsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77512DD26332F8400805CD4 /* Remote_HabitsUITests.swift */; };
 		F7E9FABC26E7C564003F4187 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = F7E9FABB26E7C564003F4187 /* FirebaseCrashlytics */; };
 		F7FF07F22784BCEE0076BDE0 /* StorybordExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FF07F12784BCEE0076BDE0 /* StorybordExtensions.swift */; };
+		F7FF07F62784C29F0076BDE0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F7FF07F42784C29F0076BDE0 /* Localizable.strings */; };
+		F7FF07F82784C3590076BDE0 /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FF07F72784C3590076BDE0 /* AppStrings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -199,6 +201,8 @@
 		F77512D926332F8400805CD4 /* Remote HabitsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Remote HabitsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F77512DD26332F8400805CD4 /* Remote_HabitsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remote_HabitsUITests.swift; sourceTree = "<group>"; };
 		F7FF07F12784BCEE0076BDE0 /* StorybordExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorybordExtensions.swift; sourceTree = "<group>"; };
+		F7FF07F52784C29F0076BDE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		F7FF07F72784C3590076BDE0 /* AppStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStrings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -453,6 +457,7 @@
 		F77512BF26332F8200805CD4 /* Remote Habits */ = {
 			isa = PBXGroup;
 			children = (
+				F7FF07F32784C29F0076BDE0 /* en.lproj */,
 				463D96132758E9E7000FF356 /* View */,
 				463D96062758E99D000FF356 /* Supporting Files */,
 				463D96032758E960000FF356 /* Stub */,
@@ -472,6 +477,7 @@
 				46FEC8D12758D34100A6A03F /* SceneDelegate.swift */,
 				463D95FA2758E45A000FF356 /* LaunchScreen.storyboard */,
 				463D95F82758E45A000FF356 /* Main.storyboard */,
+				F7FF07F72784C3590076BDE0 /* AppStrings.swift */,
 			);
 			path = "Remote Habits";
 			sourceTree = "<group>";
@@ -492,6 +498,14 @@
 				F77512DD26332F8400805CD4 /* Remote_HabitsUITests.swift */,
 			);
 			path = "Remote HabitsUITests";
+			sourceTree = "<group>";
+		};
+		F7FF07F32784C29F0076BDE0 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				F7FF07F42784C29F0076BDE0 /* Localizable.strings */,
+			);
+			path = en.lproj;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -647,6 +661,7 @@
 				463D96322758EACD000FF356 /* HabitReminderTableViewCell.xib in Resources */,
 				463D96122758E9C9000FF356 /* fontawesome-webfont.ttf in Resources */,
 				463D960F2758E9C9000FF356 /* SFPRODISPLAYREGULAR.OTF in Resources */,
+				F7FF07F62784C29F0076BDE0 /* Localizable.strings in Resources */,
 				463D960D2758E9C9000FF356 /* SF-Pro-Text-Semibold.otf in Resources */,
 				463D95FC2758E45A000FF356 /* Main.storyboard in Resources */,
 				463D96362758EACD000FF356 /* HabitAddInfoTableViewCell.xib in Resources */,
@@ -744,6 +759,7 @@
 				463D96212758EA71000FF356 /* RHHabitDetailViewController.swift in Sources */,
 				463D95DF2758E1E0000FF356 /* ProfileViewModel.swift in Sources */,
 				463D96352758EACD000FF356 /* HabitDetailToggleTableViewCell.swift in Sources */,
+				F7FF07F82784C3590076BDE0 /* AppStrings.swift in Sources */,
 				465F763127676599000A6C49 /* TrackerViewModel.swift in Sources */,
 				463D95AE2758DB7D000FF356 /* AutoMockable.generated.swift in Sources */,
 				463D95E42758E282000FF356 /* DashboardData.swift in Sources */,
@@ -806,6 +822,14 @@
 				463D95FB2758E45A000FF356 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		F7FF07F42784C29F0076BDE0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F7FF07F52784C29F0076BDE0 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

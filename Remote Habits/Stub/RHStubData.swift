@@ -7,37 +7,40 @@ class RHStubData {
     var dashboardData: UserHabit = .init()
     let userManager = DI.shared.userManager
 
+    // Disable swiftlint rule until a possible refactor is done in the future. Not critical
+    // for this function that just provides stub data.
+    // swiftlint:disable:next function_body_length
     func getStubData() -> [[HabitHeadersInfo: [HabitData]]] {
         let isLoggedIn = !(userManager.isGuestLogin ?? true)
 
-        let habitInfo_hydration = HabitDetail(isHabitEnabled: false,
-                                              frequency: 8,
-                                              startTime: "9:00 AM",
-                                              endTime: "5:00 PM",
-                                              description: "Drinking enough water each day is crucial for many reasons: to regulate body temperature, keep joints lubricated, prevent infections, deliver nutrients to cells, and keep organs functioning properly. Being well-hydrated also improves sleep quality, cognition, and mood.",
-                                              actionButtonValue: nil, actionType: nil)
+        let habitInfoHydration = HabitDetail(isHabitEnabled: false,
+                                             frequency: 8,
+                                             startTime: "9:00 AM",
+                                             endTime: "5:00 PM",
+                                             description: AppStrings.habitInfoHydrationDescription.localized,
+                                             actionButtonValue: nil, actionType: nil)
 
-        let habitInfo_focus = HabitDetail(isHabitEnabled: false,
-                                          frequency: 2,
-                                          startTime: "9:00 AM",
-                                          endTime: "5:00 PM",
-                                          description: "Having scheduled, uninterrupted time to focus on deep work provides employees an opportunity to complete difficult tasks, produce high quality output, and generate new ideas. Time to focus increases productivity, improves decision making, and boosts creativity.",
-                                          actionButtonValue: nil, actionType: nil)
+        let habitInfoFocus = HabitDetail(isHabitEnabled: false,
+                                         frequency: 2,
+                                         startTime: "9:00 AM",
+                                         endTime: "5:00 PM",
+                                         description: AppStrings.habitInfoFocusDescription.localized,
+                                         actionButtonValue: nil, actionType: nil)
 
-        let habitInfo_break = HabitDetail(isHabitEnabled: false,
-                                          frequency: 5,
-                                          startTime: "9:00 AM",
-                                          endTime: "5:00 PM",
-                                          description: "Taking a break improves focus and concentration and provides the opportunity for an employee's mental reset. After a break, work can resume with more energy and motivation. Working without taking one or more breaks only leads to mental and physical fatigue. It can even lead to burnout in the long run.",
-                                          actionButtonValue: nil, actionType: nil)
+        let habitInfoBreak = HabitDetail(isHabitEnabled: false,
+                                         frequency: 5,
+                                         startTime: "9:00 AM",
+                                         endTime: "5:00 PM",
+                                         description: AppStrings.habitInfoBreakDescription.localized,
+                                         actionButtonValue: nil, actionType: nil)
 
         let habitData = [
             HabitData(icon: "coffee", title: "Hydration", subTitle: "Set reminders to drink water", type: .toggleSwitch,
-                      habitDetail: habitInfo_hydration),
+                      habitDetail: habitInfoHydration),
             HabitData(icon: "timer", title: "Taking Breaks", subTitle: "Set reminders to take breaks",
-                      type: .toggleSwitch, habitDetail: habitInfo_break),
+                      type: .toggleSwitch, habitDetail: habitInfoBreak),
             HabitData(icon: "brain", title: "Focus Time", subTitle: "Set reminders to focus", type: .toggleSwitch,
-                      habitDetail: habitInfo_focus)
+                      habitDetail: habitInfoFocus)
         ]
 
         let habitInfo1 = HabitDetail(isHabitEnabled: true, frequency: nil, startTime: nil, endTime: nil,
