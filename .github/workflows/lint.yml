@@ -1,3 +1,4 @@
+# Friendly reminder to run `make lint` on code base, fix all lint errors, then push up the code again. Tip: [you can setup git hooks](https://github.com/customerio/RemoteHabits-iOS/blob/main/docs/dev-notes/DEVELOPMENT.md) to run `make lint` automatically for you during development.
 name: Lint
 
 on: [pull_request]
@@ -16,10 +17,3 @@ jobs:
         # If `make lint` is run on the local dev machine before pushing, this should pass. 
         run: |
           make lint && git diff --exit-code
-      - name: Comment on PR if linting failed 
-        uses: unsplash/comment-on-pr@v1.3.0
-        # if: ${{ failure() }} # commenting out to test it works. 
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          msg: 'Friendly reminder to run `make lint` on code base, fix all lint errors, then push up the code again. Tip: [you can setup git hooks](https://github.com/customerio/RemoteHabits-iOS/blob/main/docs/dev-notes/DEVELOPMENT.md) to run `make lint` automatically for you during development.'
