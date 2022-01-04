@@ -9,11 +9,13 @@ import UIKit
 
 class HabitAddInfoTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var mainCellView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         mainCellView.layer.cornerRadius = 13
+        selectionStyle = .none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

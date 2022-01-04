@@ -1,3 +1,17 @@
+# [1.10.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.9.0...1.10.0) (2021-12-20)
+
+
+### Features
+
+* track habit on dashboard, habit detail, change workspace  ([#35](https://github.com/customerio/RemoteHabits-iOS/issues/35)) ([3aaf0a0](https://github.com/customerio/RemoteHabits-iOS/commit/3aaf0a086f3ac61c5cc62d8e15e2c2caaf154300))
+
+# [1.9.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.8.0...1.9.0) (2021-12-17)
+
+
+### Features
+
+* add SDK logging for QA testing ([#33](https://github.com/customerio/RemoteHabits-iOS/issues/33)) ([88e37ba](https://github.com/customerio/RemoteHabits-iOS/commit/88e37ba97da83440d2b1d72b80817ef7d41b9c78))
+
 # [1.8.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.7.0...1.8.0) (2021-12-10)
 
 

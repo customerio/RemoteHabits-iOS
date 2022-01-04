@@ -42,49 +42,30 @@ class AppProfileRepository: ProfileRepository {
     func loginUser(email: String,
                        password: String,
                        firstName: String,
-                       onComplete: @escaping (Result<Void, HumanReadableError>) -> Void) {
-            /// simulate a network call by sleeping and then performing action
-            DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 1) { [weak self] in
-                guard let self = self else { return }
-
-                let diceRoll = Int.random(in: 0 ..< 100)
-
-                if diceRoll < 90 { // successful login!
-                    self.userManager.email = email
-                    self.userManager.userName = firstName
-                    self.cio.identify(identifier: email, body: ["first_name": firstName])
-
-                    DispatchQueue.main.async {
-                        onComplete(.success(()))
-                    }
-                } else { // failed login
-                    DispatchQueue.main.async {
-                        // As an error, for demo purposes let's always make it that you don't have Internet connection.
-                        onComplete(.failure(HumanReadableError(message: "Sorry! There was a problem. (simulated error)")))
-                    }
+                   onComplete: @escaping (Result<Void, HumanReadableError>) -> Void) {
+        /// simulate a network call by sleeping and then performing action
+        DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 1) { [weak self] in
+            guard let self = self else { return }
+            
+            let diceRoll = Int.random(in: 0 ..< 100)
+            
+            if diceRoll < 90 { // successful login!
+                self.userManager.email = email
+                self.userManager.userName = firstName
+                self.cio.identify(identifier: email, body: ["first_name": firstName])
+                
+                DispatchQueue.main.async {
+                    onComplete(.success(()))
+                }
+            } else { // failed login
+                DispatchQueue.main.async {
+                    // As an error, for demo purposes let's always make it that you don't have Internet connection.
+                    onComplete(.failure(HumanReadableError(message: "Sorry! There was a problem. (simulated error)")))
                 }
             }
         }
-    
-//    private func deleteDeviceTokenFromPreviousProfile(_ onComplete: @escaping (Result<Void, CustomerIOError>) -> Void) {
-//        guard userManager.apnDeviceToken != nil || userManager.fcmDeviceToken != nil else {
-//            return onComplete(.success(()))
-//        }
-//
-//        messagingPush.deleteDeviceToken(onComplete: onComplete)
-//    }
-//
-//    private func registerDeviceTokenNewProfile(_ onComplete: @escaping (Result<Void, CustomerIOError>) -> Void) {
-//        if let existingDeviceToken = userManager.apnDeviceToken {
-//            return messagingPush.registerDeviceToken(apnDeviceToken: existingDeviceToken, onComplete: onComplete)
-//        }
-//        if let existingDeviceToken = userManager.fcmDeviceToken {
-//            return messagingPush.registerDeviceToken(existingDeviceToken, onComplete: onComplete)
-//        }
-//
-//        return onComplete(.success(()))
-//    }
-    
+    }
+        
     func validateWorkspace<T: Codable>(forSiteId siteId : String, and apiKey : String, onComplete : @escaping(Result<T, HumanReadableError>) -> Void) {
         
         guard let url = URL(string: "https://track.customer.io/dexterity-check") else {
@@ -111,7 +92,7 @@ class AppProfileRepository: ProfileRepository {
                     return
                 }
             }
-            catch (let error) {
+            catch (let _) {
                 onComplete(.failure(self.cioErrorUtil.parse(.notInitialized)))
             }
             

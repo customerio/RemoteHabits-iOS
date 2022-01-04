@@ -5,5 +5,7 @@ enum UserDefaultKeys: String {
     case apnDeviceToken
     case fcmDeviceToken
     case userName
+    case workspaceId
+    case apiKey
     case guestLogin
 }

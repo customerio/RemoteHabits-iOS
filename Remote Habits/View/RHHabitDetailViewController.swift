@@ -12,19 +12,24 @@ class RHHabitDetailViewController: RHBaseViewController {
     // MARK: - --OUTLETS--
     @IBOutlet weak var habitDetailTableView: RHCustomisedTableView!
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var reminderLabel: UILabel!
+    @IBOutlet weak var habitLogo: UIImageView!
     
     // MARK: - --VARIABLES--
     let headerViewMaxHeight : CGFloat = 180
     let headerViewMinHeight : CGFloat = 98
+    var habitDetailData : HabitData? = nil
+    var trackerViewModel = DI.shared.trackerViewModel
 
     // MARK: - --LIFECYCLE METHODS--
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        configureNavigationBar(title: RHConstants.kBabyBradley, hideBack: false, showLogo : false)
+        setUpHeader()
+        configureNavigationBar(title: habitDetailData?.title ?? "Remote Habits", hideBack: false, showLogo : false)
         addDefaultBackground()
-        
         setupHabitDetailTableView()
+        
     }
     
 
@@ -42,6 +47,16 @@ class RHHabitDetailViewController: RHBaseViewController {
         habitDetailTableView.setContentOffset(.zero , animated: false )
 
     }
+    
+    
+    func setUpHeader() {
+        reminderLabel.text = "Set reminder to \(habitDetailData?.title ?? "good remote habits")"
+        if let logo = habitDetailData?.icon {
+            habitLogo.image = UIImage(named: logo)
+        }
+    }
+    
+    
         /*
     // MARK: - --NAVIGATION--
 
@@ -66,19 +81,25 @@ extension RHHabitDetailViewController : UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RHConstants.kHabitDetailToggleTableViewCell, for: indexPath) as? HabitDetailToggleTableViewCell else {
                 return UITableViewCell()
             }
-
+            cell.actionHandler = self
+            cell.habitSwitch.isOn = habitDetailData?.habitDetail?.isHabitEnabled ?? false
             return cell
         }
         else if indexPath.row == 1 || indexPath.row == 4{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RHConstants.kHabitReminderTableViewCell, for: indexPath) as? HabitReminderTableViewCell else {
                 return UITableViewCell()
             }
+            cell.actionHandler = self
+            cell.frequencyText.text = "\(habitDetailData?.habitDetail?.frequency ?? 0)"
+            cell.fromTimeText.text = habitDetailData?.habitDetail?.startTime ?? "-"
+            cell.toTimeText.text = habitDetailData?.habitDetail?.endTime ?? "-"
             return cell
         }
         else if indexPath.row == 2 || indexPath.row == 5 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RHConstants.kHabitAddInfoTableViewCell, for: indexPath) as? HabitAddInfoTableViewCell else {
                 return UITableViewCell()
             }
+            cell.descriptionLabel.text = habitDetailData?.habitDetail?.description ?? ""
             return cell
         }
         return UITableViewCell()
@@ -106,4 +127,28 @@ func scrollViewDidScroll(_ scrollView: UIScrollView) {
        scrollView.contentOffset.y = 0 // block scroll view
     }
   }
+}
+
+
+extension RHHabitDetailViewController : RHDashboardDetailActionHandler {
+    func toggleHabit(toValue isEnabled: Bool) {
+        
+        let activity = isEnabled ? RHConstants.kHabitEnabled : RHConstants.kHabitDisabled
+        let selectedHabitActivity = SelectedHabitData(title: habitDetailData?.title,
+                                                      frequency: habitDetailData?.habitDetail?.frequency,
+                                                      startTime: habitDetailData?.habitDetail?.startTime,
+                                                      endTime: habitDetailData?.habitDetail?.endTime)
+        
+        trackerViewModel.trackHabitActivity(withName: activity, forHabit: selectedHabitActivity)
+    }
+}
+
+
+extension RHHabitDetailViewController : RHDashboardDetailTimeHandler {
+    func updateTime(fromTime: String, toTime: String, andFreq freq : Int) {
+        
+        habitDetailData?.habitDetail?.frequency = freq
+        habitDetailData?.habitDetail?.startTime = fromTime
+        habitDetailData?.habitDetail?.endTime = toTime
+    }
 }

@@ -1,4 +1,3 @@
-clean true 
 scheme "Remote Habits"
 configuration 'Release'
 export_method 'ad-hoc'
