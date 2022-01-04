@@ -9,15 +9,3 @@ enum AppStrings: String {
         NSLocalizedString(rawValue, comment: "")
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
