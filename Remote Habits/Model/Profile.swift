@@ -8,7 +8,7 @@ struct ValidateWorkspaceResponse: Codable {
     let meta: CredMessage?
 }
 
-struct CredMessage : Codable {
-    let message : String?
-    let error : String?
+struct CredMessage: Codable {
+    let message: String?
+    let error: String?
 }

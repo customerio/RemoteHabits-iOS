@@ -10,22 +10,20 @@ protocol ProfileRepository {
         firstName: String,
         onComplete: @escaping (Result<Void, HumanReadableError>) -> Void
     )
-    
+
     func logoutUser()
-    
+
     func validateWorkspace<T: Codable>(forSiteId siteId: String,
-                           and apiKey : String,
-                           onComplete : @escaping (Result<T, HumanReadableError>) -> Void)
+                                       and apiKey: String,
+                                       onComplete: @escaping (Result<T, HumanReadableError>) -> Void)
 }
 
 // sourcery: InjectRegister = "ProfileRepository"
 class AppProfileRepository: ProfileRepository {
-    
     func logoutUser() {
-        
-        self.cio.clearIdentify()
+        cio.clearIdentify()
     }
-    
+
     private let cio: CustomerIO
     private let messagingPush: MessagingPush
     private let cioErrorUtil: CustomerIOErrorUtil
@@ -40,20 +38,20 @@ class AppProfileRepository: ProfileRepository {
 
     /// Simulates a network call and will randomly succeed or fail to cover both use cases of the app.
     func loginUser(email: String,
-                       password: String,
-                       firstName: String,
+                   password: String,
+                   firstName: String,
                    onComplete: @escaping (Result<Void, HumanReadableError>) -> Void) {
         /// simulate a network call by sleeping and then performing action
         DispatchQueue.global(qos: .background).asyncAfter(deadline: .now() + 1) { [weak self] in
             guard let self = self else { return }
-            
+
             let diceRoll = Int.random(in: 0 ..< 100)
-            
+
             if diceRoll < 90 { // successful login!
                 self.userManager.email = email
                 self.userManager.userName = firstName
                 self.cio.identify(identifier: email, body: ["first_name": firstName])
-                
+
                 DispatchQueue.main.async {
                     onComplete(.success(()))
                 }
@@ -65,22 +63,25 @@ class AppProfileRepository: ProfileRepository {
             }
         }
     }
-        
-    func validateWorkspace<T: Codable>(forSiteId siteId : String, and apiKey : String, onComplete : @escaping(Result<T, HumanReadableError>) -> Void) {
-        
+
+    func validateWorkspace<T: Codable>(
+        forSiteId siteId: String,
+        and apiKey: String,
+        onComplete: @escaping (Result<T, HumanReadableError>) -> Void
+    ) {
         guard let url = URL(string: "https://track.customer.io/dexterity-check") else {
-            return onComplete(.failure(self.cioErrorUtil.parse(.notInitialized)))
+            return onComplete(.failure(cioErrorUtil.parse(.notInitialized)))
         }
-       
+
         let headers = getHeaders(forSiteId: siteId, and: apiKey)
         var request = URLRequest(url: url)
         request.allHTTPHeaderFields = [
-            "Authorization" : "Basic \(headers)"
+            "Authorization": "Basic \(headers)"
         ]
-        
+
         request.httpMethod = "GET"
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            
+        URLSession.shared.dataTask(with: request) { data, _, _ in
+
             guard let data = data else {
                 return onComplete(.failure(self.cioErrorUtil.parse(.notInitialized)))
             }
@@ -89,17 +90,15 @@ class AppProfileRepository: ProfileRepository {
                 DispatchQueue.main.async {
                     // Complete the call with success response & the decoded data
                     onComplete(.success(responseObject))
-                    return
                 }
-            }
-            catch (let _) {
+            } catch _ {
                 onComplete(.failure(self.cioErrorUtil.parse(.notInitialized)))
             }
-            
+
         }.resume()
     }
-    
-    private func getHeaders(forSiteId siteId : String, and apiKey : String) -> String {
+
+    private func getHeaders(forSiteId siteId: String, and apiKey: String) -> String {
         let rawHeader = "\(siteId):\(apiKey)"
         let encodedRawHeader = rawHeader.data(using: .utf8)!
 

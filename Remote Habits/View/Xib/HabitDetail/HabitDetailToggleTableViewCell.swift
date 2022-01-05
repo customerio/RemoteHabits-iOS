@@ -1,19 +1,11 @@
-//
-//  HabitDetailToggleTableViewCell.swift
-//  Remote Habits Mobile App
-//
-//  Created by Amandeep Kaur on 30/11/21.
-//
-
 import UIKit
 
 class HabitDetailToggleTableViewCell: UITableViewCell {
+    @IBOutlet var habitSwitch: UISwitch!
+    @IBOutlet var habitTitle: UILabel!
+    @IBOutlet var mainCellView: UIView!
+    var actionHandler: RHDashboardDetailActionHandler?
 
-    @IBOutlet weak var habitSwitch: UISwitch!
-    @IBOutlet weak var habitTitle: UILabel!
-    @IBOutlet weak var mainCellView: UIView!
-    var actionHandler : RHDashboardDetailActionHandler?
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,8 +18,7 @@ class HabitDetailToggleTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    
+
     @IBAction func habitSwitchValueChanged(_ sender: UISwitch) {
         actionHandler?.toggleHabit(toValue: sender.isOn)
     }
