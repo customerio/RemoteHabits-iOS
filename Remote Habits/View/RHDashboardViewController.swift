@@ -114,7 +114,7 @@ extension RHDashboardViewController : UITableViewDelegate {
             return
         }
         
-        let selectedHabit = SelectedHabitData(title: habitData.title, frequency: Int(habitData.frequency), startTime: habitData.startTime?.formatDateToString(inFormat: .time12Hour), endTime: habitData.endTime?.formatDateToString(inFormat: .time12Hour), id: Int(habitData.id), isEnabled: habitData.isEnabled)
+        let selectedHabit = SelectedHabitData(title: habitData.title, frequency: Int(habitData.frequency), startTime: (habitData.startTime ?? Date()).formatDateToString(inFormat: .time12Hour), endTime: (habitData.endTime ?? Date()).formatDateToString(inFormat: .time12Hour), id: Int(habitData.id), isEnabled: habitData.isEnabled)
         updateHabit(forActivity: RHConstants.kHabitClicked, selectedHabit: selectedHabit, andSource: .habitdashboard)
         self.route(to: RHConstants.kHabitDetailViewController, withData : habitData)
     }
