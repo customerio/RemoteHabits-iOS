@@ -49,8 +49,7 @@ class RHDashboardViewController: RHBaseViewController {
     func setupDashboardTableView() {
         
         dashboardTableView.register(UINib(nibName: RHConstants.kHabitTableViewCell, bundle: nil), forCellReuseIdentifier: RHConstants.kHabitTableViewCell)
-        dashboardTableView.rowHeight = UITableView.automaticDimension
-        dashboardTableView.estimatedRowHeight = 80
+        dashboardTableView.setAutomaticRowHeight(height: .defaultHeight)
         dashboardTableView.delegate = self
         dashboardTableView.dataSource = self
     }
@@ -115,7 +114,7 @@ extension RHDashboardViewController : UITableViewDelegate {
         
         if indexPath.section != 0 { return }
         
-        guard let id = dashboardHeaders[indexPath.section].ids?[indexPath.row], let habitData = habitsDataManager.getHabit(forIds: [id])?.first else {
+        guard let id = dashboardHeaders[indexPath.section].ids?[indexPath.row], let habitData = habitsDataManager.getHabit(forId: id) else {
             return
         }
         
@@ -136,7 +135,7 @@ extension RHDashboardViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RHConstants.kHabitTableViewCell, for: indexPath) as? HabitTableViewCell, let id = dashboardHeaders[indexPath.section].ids?[indexPath.row], let habitData = habitsDataManager.getHabit(forIds: [id])?.first else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RHConstants.kHabitTableViewCell, for: indexPath) as? HabitTableViewCell, let id = dashboardHeaders[indexPath.section].ids?[indexPath.row], let habitData = habitsDataManager.getHabit(forId: id) else {
             return UITableViewCell()
         }
         

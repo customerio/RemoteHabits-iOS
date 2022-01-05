@@ -41,8 +41,7 @@ class RHHabitDetailViewController: RHBaseViewController {
         habitDetailTableView.register(UINib(nibName: RHConstants.kHabitDetailToggleTableViewCell, bundle: nil), forCellReuseIdentifier: RHConstants.kHabitDetailToggleTableViewCell)
         habitDetailTableView.register(UINib(nibName: RHConstants.kHabitAddInfoTableViewCell, bundle: nil), forCellReuseIdentifier: RHConstants.kHabitAddInfoTableViewCell)
         
-        habitDetailTableView.estimatedRowHeight = 100
-        habitDetailTableView.rowHeight = UITableView.automaticDimension
+        habitDetailTableView.setAutomaticRowHeight(height: .height100)
         habitDetailTableView.setContentOffset(.zero , animated: false )
 
     }
