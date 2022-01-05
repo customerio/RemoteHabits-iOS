@@ -21,7 +21,6 @@ class RHLoginViewController: RHBaseViewController {
     
     // MARK: - --VARIABLES--
     var userManager = DI.shared.userManager
-//    let habitsDataManager = HabitDataManager()
     var textFields: [SkyFloatingLabelTextFieldWithIcon] = []
     var profileViewModel = DI.shared.profileViewModel
     var loggedInState: ProfileViewModel.LoggedInProfileState {
@@ -128,7 +127,7 @@ class RHLoginViewController: RHBaseViewController {
         }
     }
     
-    func fillHabitData() {
+    func populateInitialHabitData() {
         if habitsDataManager.deleteHabits() {
             let data = RemoteHabitsData().getHabitsData()
             habitsDataManager.createHabit(forData: data)
@@ -185,7 +184,7 @@ class RHLoginViewController: RHBaseViewController {
         showLoadingView()
         view.endEditing(true)
         profileViewModel.loginUser(email: email, password: pwd, firstName: firstName, generatedRandom: isGenRandom){ result in
-            self.fillHabitData()
+            self.populateInitialHabitData()
 
             self.hideLoadingView()
             if result {

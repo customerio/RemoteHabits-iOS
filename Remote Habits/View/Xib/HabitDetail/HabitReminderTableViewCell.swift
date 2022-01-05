@@ -61,7 +61,7 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
             }
             
             // Done button accessory view for all textfields
-            let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 35))
+            let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: RHConstants.kToolBarHeight))
             doneToolbar.barStyle = .default
             doneToolbar.items = [UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(hideKeyboard)), .flexibleSpace()]
             doneToolbar.sizeToFit()
@@ -98,11 +98,11 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return ((textField as? FrequencyTextField) != nil) ? true : false
+        return textField is FrequencyTextField
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if ((textField as? FrequencyTextField) != nil) {
+        if textField is FrequencyTextField {
             updateHabitTime(withFreq: Int(textField.text ?? "0") ?? 0)
         }
     }

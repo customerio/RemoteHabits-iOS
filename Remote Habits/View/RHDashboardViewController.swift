@@ -101,7 +101,7 @@ extension RHDashboardViewController : UITableViewDelegate {
             label.frame = CGRect.init(x: 16, y: 60, width: headerView.frame.width-20, height: 26)
         }
         
-        label.text = headerData.headerTitle ?? RHConstants.kEmptyValue
+        label.text = headerData.headerTitle ?? ""
         label.font = UIFont(name: headerData.titleFontName ?? RHConstants.kEmptyValue, size: CGFloat(headerData.titleFontSize ?? 17))
         label.textColor = .black
         

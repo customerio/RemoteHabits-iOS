@@ -53,12 +53,7 @@ class RHHabitDetailViewController: RHBaseViewController {
             habitLogo.image = UIImage(named: logo)
         }
     }
-    
-    func updateHabits(with selectedHabit : SelectedHabitData) {
-        habitsDataManager.updateHabit(withData: selectedHabit)
-        NotificationCenter.default.post(name: Notification.Name(RHConstants.kHabitsUpdatedIdentifier), object: nil)
-    }
-    
+
         /*
     // MARK: - --NAVIGATION--
 
