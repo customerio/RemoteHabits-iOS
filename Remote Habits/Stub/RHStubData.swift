@@ -16,7 +16,7 @@ class RemoteHabitsData {
         let isLoggedIn = !(userManager.isGuestLogin ?? true)
         let title = isLoggedIn ? userManager.userName : "Guest"
         let section_first = HabitHeadersInfo(headerTitle: "\(title ?? "Your")'s Habits", titleFontSize: 34, titleFontName: "SFProDisplay-Bold", ids: [1,2,3])
-        let section_second = HabitHeadersInfo(headerTitle: "Details", titleFontSize: 17, titleFontName: "SFProDisplay-Bold", ids: [4,5,6])
+        let section_second = HabitHeadersInfo(headerTitle: "Details", titleFontSize: 17, titleFontName: "SFProDisplay-Bold", ids: [4,5])
        
         return [section_first, section_second]
     }
