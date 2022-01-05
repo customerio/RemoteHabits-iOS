@@ -31,6 +31,11 @@ class RHDashboardViewController: RHBaseViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     // MARK: - --FUNCTIONS--
     func addNotifierObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.reloadHabitsData(notification:)), name: Notification.Name(RHConstants.kHabitsUpdatedIdentifier), object: nil)
