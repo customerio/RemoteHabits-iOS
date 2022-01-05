@@ -44,7 +44,7 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
         switchWorkspaceButton.titleLabel?.font = RHFont.SFProTextSemiBoldMedium
         switchWorkspaceButton.setTitleColor(RHColor.TextDisabled, for: .disabled)
         switchWorkspaceButton.setTitleColor(UIColor.white, for: .normal)
-        switchWorkspaceButton.layer.cornerRadius = 24
+        switchWorkspaceButton.setCornerRadius(.radius24)
         workspaceButtonState()
     }
     

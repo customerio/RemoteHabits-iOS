@@ -47,12 +47,12 @@ class RHBaseViewController: UIViewController {
         
         let miniSpace = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
         miniSpace.center = self.view.center
-        miniSpace.layer.cornerRadius = 40
+        miniSpace.setCornerRadius(.radius40)
         
         // add image for loader background
         let imageBg = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
         imageBg.image = UIImage(named: RHConstants.kBackground)
-        imageBg.layer.cornerRadius = 40
+        imageBg.setCornerRadius(.radius40)
         imageBg.layer.masksToBounds = true
         
         

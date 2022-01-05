@@ -59,7 +59,7 @@ class RHLoginViewController: RHBaseViewController {
         loginButton.titleLabel?.font = RHFont.SFProTextSemiBoldMedium
         loginButton.setTitleColor(RHColor.TextDisabled, for: .disabled)
         loginButton.setTitleColor(UIColor.white, for: .normal)
-        loginButton.layer.cornerRadius = 24
+        loginButton.setCornerRadius(.radius24)
         loginButtonState()
     }
     
@@ -92,7 +92,7 @@ class RHLoginViewController: RHBaseViewController {
     }
     
     func setUpMainView() {
-        mainView.setCornerRadius()
+        mainView.setCornerRadius(.radius13)
     }
     
     func validateName(_ nameText : UITextField) -> Bool {
