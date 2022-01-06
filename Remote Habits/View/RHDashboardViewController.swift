@@ -26,8 +26,7 @@ class RHDashboardViewController: RHBaseViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    deinit {
         NotificationCenter.default.removeObserver(self)
     }
     

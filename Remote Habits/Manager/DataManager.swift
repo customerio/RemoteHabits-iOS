@@ -68,25 +68,25 @@ class HabitDataManager {
         
         do {
             let managedFetch = try managedContext.fetch(fetchRequest)
-            let objectUpdate = managedFetch[0] as! NSManagedObject
-            
-            // Update only if value is not nil
-            if let isEnabledValue = data.isEnabled {
-                objectUpdate.setValue(isEnabledValue, forKey: "isEnabled")
+            if let objectUpdate = managedFetch[0] as? NSManagedObject {
+                
+                // Update only if value is not nil
+                if let isEnabledValue = data.isEnabled {
+                    objectUpdate.setValue(isEnabledValue, forKey: "isEnabled")
+                }
+                
+                if let frequencyValue = data.frequency {
+                    objectUpdate.setValue(frequencyValue, forKey: "frequency")
+                }
+                
+                if let startTimeValue = data.startTime {
+                    objectUpdate.setValue(startTimeValue.toDate(withFormat: .time12Hour), forKey: "startTime")
+                }
+                
+                if let endTimeValue = data.endTime {
+                    objectUpdate.setValue(endTimeValue.toDate(withFormat: .time12Hour), forKey: "endTime")
+                }
             }
-            
-            if let frequencyValue = data.frequency {
-                objectUpdate.setValue(frequencyValue, forKey: "frequency")
-            }
-            
-            if let startTimeValue = data.startTime {
-                objectUpdate.setValue(startTimeValue.toDate(withFormat: .time12Hour), forKey: "startTime")
-            }
-            
-            if let endTimeValue = data.endTime {
-                objectUpdate.setValue(endTimeValue.toDate(withFormat: .time12Hour), forKey: "endTime")
-            }
-            
             do {
                 try managedContext.save()
             } catch let error as NSError {
@@ -108,8 +108,10 @@ class HabitDataManager {
         
         do {
             let managedFetch = try managedContext.fetch(fetchRequest)
-            for data in managedFetch as! [NSManagedObject] {
-                managedContext.delete(data)
+            if let fetch = managedFetch as? [NSManagedObject]  {
+                for data in fetch {
+                    managedContext.delete(data)
+                }
             }
             do {
                 try managedContext.save()
