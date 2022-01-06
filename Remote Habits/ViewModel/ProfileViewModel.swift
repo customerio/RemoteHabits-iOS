@@ -14,14 +14,20 @@ class ProfileViewModel: ObservableObject {
     private let profileRepository: ProfileRepository
     private let notificationUtil: NotificationUtil
     @Published var loggedInProfileState = LoggedInProfileState(loggingIn: false, loggedInProfile: nil, error: nil)
-    
+
     init(cio: CustomerIO, profileRepository: ProfileRepository, notificationUtil: NotificationUtil) {
         self.cio = cio
         self.profileRepository = profileRepository
         self.notificationUtil = notificationUtil
     }
 
-    func loginUser(email: String, password: String, firstName: String, generatedRandom: Bool, completion: @escaping ((Bool) -> Void)) {
+    func loginUser(
+        email: String,
+        password: String,
+        firstName: String,
+        generatedRandom: Bool,
+        completion: @escaping ((Bool) -> Void)
+    ) {
         loggedInProfileState = LoggedInProfileState(loggingIn: true, loggedInProfile: nil, error: nil)
 
         profileRepository.loginUser(email: email, password: password, firstName: firstName) { [weak self] result in
@@ -32,14 +38,14 @@ class ProfileViewModel: ObservableObject {
                 // Now that we have successfully identified a profile in the Customer.io SDK, we can safely
                 // register for APN push notifications so the device token is registered to a Customer.io profile.
                 self.notificationUtil.requestShowLocalNotifications()
-                self.userManager.email = email
+                if !generatedRandom {
+                    self.userManager.email = email
+                }
                 self.userManager.userName = firstName
-                self.userManager.isGuestLogin = generatedRandom
                 self.loggedInProfileState = LoggedInProfileState(loggingIn: false,
                                                                  loggedInProfile: Profile(email: email), error: nil)
 
                 if generatedRandom {
-                    
                     // At this time, the Customer.io SDK does not handle errors that occur when tracking events.
                     // If an error happens such as device being in airplane mode, you will lose that data.
                     // However, for some apps whose customers are almost always online this may not be very risky
@@ -54,36 +60,37 @@ class ProfileViewModel: ObservableObject {
             }
         }
     }
-    
+
     func logoutUser() {
         userManager.email = nil
         userManager.userName = nil
-        userManager.isGuestLogin = nil
         profileRepository.logoutUser()
     }
-    
-    func validateWorkspace(forSiteId siteId: String, and apiKey : String, completion : @escaping (Bool) -> Void) {
-        profileRepository.validateWorkspace(forSiteId: siteId, and: apiKey) { (result: Result<ValidateWorkspaceResponse, HumanReadableError>) in
-         
-            DispatchQueue.main.async {
-                switch result {
-                case .success:
+
+    func validateWorkspace(forSiteId siteId: String, and apiKey: String, completion: @escaping (Bool) -> Void) {
+        profileRepository
+            .validateWorkspace(forSiteId: siteId,
+                               and: apiKey) { (result: Result<ValidateWorkspaceResponse, HumanReadableError>) in
+
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success:
                         switch result {
                         case .success(let response):
-                            guard let message = response.meta?.message, message.lowercased() == "nice credentials." else {
+                            guard let message = response.meta?.message,
+                                  message.lowercased() == "nice credentials."
+                            else {
                                 completion(false)
                                 return
                             }
                             completion(true)
-                        default :
+                        default:
                             completion(false)
-                            break
                         }
-                case .failure(_):
-                    completion(false)
+                    case .failure:
+                        completion(false)
+                    }
                 }
             }
-            
-        }
     }
 }

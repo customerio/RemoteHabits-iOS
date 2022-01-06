@@ -1,19 +1,13 @@
-//
-//  RHStubData.swift
-//  Remote Habits Mobile App
-//
-//  Created by Amandeep Kaur on 01/12/21.
-//
-
 import Foundation
 
 class RemoteHabitsData {
     
     let userManager = DI.shared.userManager
-    
+    private var isLoggedIn: Bool {
+        return userManager.isLoggedIn
+    }
     func getHabitHeaders() -> [HabitHeadersInfo] {
         
-        let isLoggedIn = !(userManager.isGuestLogin ?? true)
         let title = isLoggedIn ? userManager.userName : "Guest"
         let section_first = HabitHeadersInfo(headerTitle: "\(title ?? "Your")'s Habits", titleFontSize: 34, titleFontName: "SFProDisplay-Bold", ids: [1,2,3])
         let section_second = HabitHeadersInfo(headerTitle: "Details", titleFontSize: 17, titleFontName: "SFProDisplay-Bold", ids: [4,5])
@@ -104,7 +98,6 @@ class RemoteHabitsData {
     }
     
     func getUserData() -> HabitsData {
-        let isLoggedIn = !(userManager.isGuestLogin ?? true)
         return  HabitsData(id: 4,
                            icon: isLoggedIn ? "ciouser" : "guest",
                            title: isLoggedIn ? userManager.userName : "Guest",
@@ -119,7 +112,3 @@ class RemoteHabitsData {
                            actionType: isLoggedIn ? .logout : .login)
     }
 }
-/**
- 
- fresh login ->  
- */

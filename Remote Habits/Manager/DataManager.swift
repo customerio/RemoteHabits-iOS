@@ -39,24 +39,20 @@ class HabitDataManager {
     }
     
     // Read
-    func getHabit(forIds : [Int]?) -> [Habits]?{
+    func getHabit(forId id: Int?) -> Habits?{
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil}
         
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest : NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: habitsEntity)
-        
-        // If id is not nil then fetch only one record else retrieve all records
-        if let ids = forIds {
-//            for id in ids {
-                fetchRequest.predicate = NSPredicate(format: "ANY id IN %@", ids)
-//            }
+        if let id = id {
+                fetchRequest.predicate = NSPredicate(format: "id == \(id)")
         }
         do {
             guard let result = try managedContext.fetch(fetchRequest) as? [Habits] else { return nil}
-            return result
+            return result.first
         }
         catch let error as NSError {
-            print("Could not save Habit \(error.userInfo)")
+            print("Could not get Habit \(error.userInfo)")
         }
         return nil
     }
@@ -84,11 +80,11 @@ class HabitDataManager {
             }
             
             if let startTimeValue = data.startTime {
-                objectUpdate.setValue(startTimeValue.stringToDate(withFormat: .time12Hour), forKey: "startTime")
+                objectUpdate.setValue(startTimeValue.toDate(withFormat: .time12Hour), forKey: "startTime")
             }
             
             if let endTimeValue = data.endTime {
-                objectUpdate.setValue(endTimeValue.stringToDate(withFormat: .time12Hour), forKey: "endTime")
+                objectUpdate.setValue(endTimeValue.toDate(withFormat: .time12Hour), forKey: "endTime")
             }
             
             do {
