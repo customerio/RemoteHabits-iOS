@@ -15,5 +15,4 @@ jobs:
       - name: Running lint to verify it was run on local machine 
         # Script will fail if (1) the lint check failed or (2) for formatter formatted some code. 
         # If `make lint` is run on the local dev machine before pushing, this should pass. 
-        run: |
-          make lint && git diff --exit-code 
+        run: ./scripts/assert_lint.sh
