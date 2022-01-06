@@ -1,0 +1,19 @@
+# Friendly reminder to run `make lint` on code base, fix all lint errors, then push up the code again. Tip: [you can setup git hooks](https://github.com/customerio/RemoteHabits-iOS/blob/main/docs/dev-notes/DEVELOPMENT.md) to run `make lint` automatically for you during development.
+name: Lint
+
+on: [pull_request]
+
+jobs:
+  SwiftLint:
+    runs-on: macos-11
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install lint tools
+        run: |
+          rm '/usr/local/bin/swiftlint' # uninstall swiftlint to make sure we install the latest version 
+          brew install swiftlint swiftformat
+      - name: Running lint to verify it was run on local machine 
+        # Script will fail if (1) the lint check failed or (2) for formatter formatted some code. 
+        # If `make lint` is run on the local dev machine before pushing, this should pass. 
+        run: |
+          make lint && git diff --exit-code 

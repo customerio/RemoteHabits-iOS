@@ -10,7 +10,6 @@ protocol UserManager {
 
 // sourcery: InjectRegister = "UserManager"
 class AppUserManager: UserManager {
-    
     private let userDefaults: UserDefaults
 
     var apiKey: String? {
@@ -21,6 +20,7 @@ class AppUserManager: UserManager {
             userDefaults.set(newValue, forKey: UserDefaultKeys.apiKey.rawValue)
         }
     }
+
     var workspaceID: String? {
         get {
             userDefaults.string(forKey: UserDefaultKeys.workspaceId.rawValue)
@@ -29,7 +29,7 @@ class AppUserManager: UserManager {
             userDefaults.set(newValue, forKey: UserDefaultKeys.workspaceId.rawValue)
         }
     }
-    
+
     var userName: String? {
         get {
             userDefaults.string(forKey: UserDefaultKeys.userName.rawValue)
@@ -38,7 +38,7 @@ class AppUserManager: UserManager {
             userDefaults.set(newValue, forKey: UserDefaultKeys.userName.rawValue)
         }
     }
-    
+
     var email: String? {
         get {
             userDefaults.string(forKey: UserDefaultKeys.loggedInUserEmail.rawValue)

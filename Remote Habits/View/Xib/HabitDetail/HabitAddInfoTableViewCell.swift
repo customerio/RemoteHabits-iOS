@@ -1,16 +1,8 @@
-//
-//  HabitAddInfoTableViewCell.swift
-//  Remote Habits Mobile App
-//
-//  Created by Amandeep Kaur on 01/12/21.
-//
-
 import UIKit
 
 class HabitAddInfoTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var mainCellView: UIView!
+    @IBOutlet var descriptionLabel: UILabel!
+    @IBOutlet var mainCellView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,5 +15,4 @@ class HabitAddInfoTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
 }

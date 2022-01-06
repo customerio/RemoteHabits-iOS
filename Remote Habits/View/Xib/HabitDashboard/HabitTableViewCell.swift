@@ -1,14 +1,7 @@
-//
-//  HabitTableViewswift
-//  Remote Habits Mobile App
-//
-//  Created by Amandeep Kaur on 30/11/21.
-//
-
 import UIKit
 
 class HabitTableViewCell: UITableViewCell {
-
+  
     @IBOutlet weak var actionButton: UIButton!
     @IBOutlet weak var habitSwitch: UISwitch!
     @IBOutlet weak var habitSubTitle: UILabel!
@@ -19,6 +12,7 @@ class HabitTableViewCell: UITableViewCell {
     var habitData : Habits?
     
     var actionDelegate: RHDashboardActionHandler?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -30,6 +24,7 @@ class HabitTableViewCell: UITableViewCell {
         mainCellView.layer.cornerRadius = 13
         // Configure the view for the selected state
     }
+
     
     func fillHabitsData() {
         guard let habitData = habitData else {
@@ -57,24 +52,23 @@ class HabitTableViewCell: UITableViewCell {
             actionButton.isHidden = true
         }
     }
-    
+
     @IBAction func habitSwitchValueChanged(_ sender: UISwitch) {
         let selectedHabitData = SelectedHabitData(title: habitData?.title, frequency: Int(habitData?.frequency ?? 0), startTime: habitData?.startTime?.formatDateToString(inFormat: .time12Hour), endTime: habitData?.endTime?.formatDateToString(inFormat: .time12Hour), id: Int(habitData?.id ?? 0), isEnabled: sender.isOn)
         
         actionDelegate?.toggleHabit(toValue: sender.isOn, habitData: selectedHabitData)
     }
-    
+
     @IBAction func habitActionButtonTapped(_ sender: UIButton) {
-        switch (actionType) {
-        case .switchWorkspace :
+        switch actionType {
+        case .switchWorkspace:
             actionDelegate?.switchWorkspace()
-        case .logout :
+        case .logout:
             actionDelegate?.logoutUser()
-        case .login :
+        case .login:
             actionDelegate?.loginUser()
         default:
             break
-            
         }
     }
 }
