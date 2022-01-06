@@ -195,6 +195,7 @@
 		F706047826F3A11B00A9C64D /* Notification Service.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Notification Service.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F706047A26F3A11B00A9C64D /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		F706047C26F3A11B00A9C64D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F73FCDD227874D6A009DA02C /* customerio-ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "customerio-ios"; path = "../customerio-ios"; sourceTree = "<group>"; };
 		F77512BD26332F8200805CD4 /* Remote Habits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Remote Habits.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F77512CE26332F8400805CD4 /* Remote HabitsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Remote HabitsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F77512D226332F8400805CD4 /* Remote_HabitsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remote_HabitsTests.swift; sourceTree = "<group>"; };
@@ -435,6 +436,7 @@
 		F77512B426332F8200805CD4 = {
 			isa = PBXGroup;
 			children = (
+				F73FCDD227874D6A009DA02C /* customerio-ios */,
 				F77512BF26332F8200805CD4 /* Remote Habits */,
 				F77512D126332F8400805CD4 /* Remote HabitsTests */,
 				F77512DC26332F8400805CD4 /* Remote HabitsUITests */,
