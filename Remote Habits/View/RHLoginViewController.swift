@@ -8,6 +8,10 @@
 import UIKit
 import SkyFloatingLabelTextField
 
+enum Icons: String {
+    case user = "\u{f007}"
+    case email = "\u{f0e0}"
+}
 
 class RHLoginViewController: RHBaseViewController {
 
@@ -72,9 +76,9 @@ class RHLoginViewController: RHBaseViewController {
             
             switch(field) {
             case userNameInput :
-                field.iconText = "\u{f007}"
+                field.iconText = Icons.user.rawValue
             case emailInput:
-                field.iconText = "\u{f0e0}"
+                field.iconText = Icons.email.rawValue
             default:
                 break
             }
