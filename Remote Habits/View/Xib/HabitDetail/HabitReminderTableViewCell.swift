@@ -53,7 +53,7 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
             }
 
             // Done button accessory view for all textfields
-            let doneToolbar = Toolbar().standardToolBar([.done : #selector(hideKeyboard)])
+            let doneToolbar = Toolbar().standardToolBar([.done: #selector(hideKeyboard)])
             textField?.inputAccessoryView = doneToolbar
 
             // Set delegate for all textfields
