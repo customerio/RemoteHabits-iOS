@@ -1,7 +1,5 @@
-import Foundation
 import CoreData
+import Foundation
 
 @objc(Habits)
-public class Habits: NSManagedObject {
-
-}
+public class Habits: NSManagedObject {}

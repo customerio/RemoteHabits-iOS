@@ -21,7 +21,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // If previous user is not a guest login and credentials were used to login into the app
         if userManager.isLoggedIn {
-            
             let navigationController = UINavigationController(rootViewController: RHDashboardViewController
                 .newInstance())
             window?.rootViewController = navigationController

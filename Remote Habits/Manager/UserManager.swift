@@ -2,9 +2,9 @@ import Foundation
 
 protocol UserManager {
     var email: String? { get set }
-    var userName : String? {get set}
-    var workspaceID : String? {get set}
-    var apiKey : String? {get set}
+    var userName: String? { get set }
+    var workspaceID: String? { get set }
+    var apiKey: String? { get set }
     var isLoggedIn: Bool { get }
 }
 

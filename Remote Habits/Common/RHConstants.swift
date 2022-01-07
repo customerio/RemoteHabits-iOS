@@ -35,7 +35,7 @@ struct RHConstants {
     static let kHabitClicked = "clicked_habit"
     static let kHabitEnabled = "habit_enabled"
     static let kHabitDisabled = "habit_disabled"
-    
+
     // Toolbar
     static let kToolBarHeight = 35.0
 

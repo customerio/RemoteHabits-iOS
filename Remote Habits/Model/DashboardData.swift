@@ -1,22 +1,22 @@
 import Foundation
 
-struct HabitHeadersInfo : Hashable {
-    let headerTitle : String?
-    let titleFontSize : Int?
-    let titleFontName : String?
-    let ids : [Int]?
+struct HabitHeadersInfo: Hashable {
+    let headerTitle: String?
+    let titleFontSize: Int?
+    let titleFontName: String?
+    let ids: [Int]?
 }
 
-struct SelectedHabitData : Encodable {
-    let title : String?
-    let frequency : Int?
-    let startTime : String?
-    let endTime : String?
-    let id : Int
-    let isEnabled : Bool?
+struct SelectedHabitData: Encodable {
+    let title: String?
+    let frequency: Int?
+    let startTime: String?
+    let endTime: String?
+    let id: Int
+    let isEnabled: Bool?
 }
 
-@objc public enum ActionType : Int32 {
+@objc public enum ActionType: Int32 {
     case logout
     case login
     case switchWorkspace
@@ -24,7 +24,7 @@ struct SelectedHabitData : Encodable {
     case none
 }
 
-@objc public enum ElementType : Int32 {
+@objc public enum ElementType: Int32 {
     case toggleSwitch
     case button
     case none
@@ -43,28 +43,28 @@ struct HabitsData {
     let habitDescription: String?
     let actionName: String?
     let actionType: ActionType?
-//=======
-//enum HabitElementType {
+    // =======
+    // enum HabitElementType {
 //    case toggleSwitch
 //    case button
-//}
+    // }
 //
-//enum HabitActionType {
+    // enum HabitActionType {
 //    case logout
 //    case login
 //    case switchWorkspace
 //    case toggleSwitch
-//}
+    // }
 //
-//struct HabitData {
+    // struct HabitData {
 //    let icon: String?
 //    let title: String?
 //    let subTitle: String?
 //    let type: HabitElementType?
 //    var habitDetail: HabitDetail?
-//}
+    // }
 //
-//struct HabitDetail {
+    // struct HabitDetail {
 //    var isHabitEnabled: Bool?
 //    var frequency: Int?
 //    var startTime: String?
@@ -72,18 +72,18 @@ struct HabitsData {
 //    var description: String?
 //    var actionButtonValue: String?
 //    var actionType: HabitActionType?
-//}
+    // }
 //
-//struct HabitHeadersInfo: Hashable {
+    // struct HabitHeadersInfo: Hashable {
 //    let headerTitle: String?
 //    let titleFontSize: Int?
 //    let titleFontName: String?
-//}
+    // }
 //
-//struct SelectedHabitData: Encodable {
+    // struct SelectedHabitData: Encodable {
 //    let title: String?
 //    let frequency: Int?
 //    let startTime: String?
 //    let endTime: String?
-//>>>>>>> main
+    // >>>>>>> main
 }

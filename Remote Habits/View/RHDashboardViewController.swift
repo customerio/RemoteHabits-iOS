@@ -10,52 +10,56 @@ class RHDashboardViewController: RHBaseViewController {
     @IBOutlet var dashboardTableView: UITableView!
 
     // MARK: - --VARIABLES--
+
     let remoteHabitsData = RemoteHabitsData()
-    var dashboardHeaders : [HabitHeadersInfo] = [HabitHeadersInfo]()
-    var isSourceLogin : Bool = false
+    var dashboardHeaders: [HabitHeadersInfo] = .init()
+    var isSourceLogin: Bool = false
     var profileViewModel = DI.shared.profileViewModel
+
     // MARK: - --LIFECYCLE METHODS--
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         dashboardHeaders = remoteHabitsData.getHabitHeaders()
-        configureNavigationBar(title: RHConstants.kEmptyValue, hideBack: true, showLogo : true)
+        configureNavigationBar(title: RHConstants.kEmptyValue, hideBack: true, showLogo: true)
         addDefaultBackground()
         setupDashboardTableView()
         // Do any additional setup after loading the view.
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         addNotifierObserver()
     }
 
     // MARK: - --FUNCTIONS--
+
     func addNotifierObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadHabitsData(notification:)), name: Notification.Name(RHConstants.kHabitsUpdatedIdentifier), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadHabitsData(notification:)),
+                                               name: Notification.Name(RHConstants.kHabitsUpdatedIdentifier),
+                                               object: nil)
     }
-    
+
     @objc func reloadHabitsData(notification: Notification) {
-        
         dashboardTableView.reloadData()
     }
-    
+
     func setupDashboardTableView() {
-        
-        dashboardTableView.register(UINib(nibName: RHConstants.kHabitTableViewCell, bundle: nil), forCellReuseIdentifier: RHConstants.kHabitTableViewCell)
+        dashboardTableView.register(UINib(nibName: RHConstants.kHabitTableViewCell, bundle: nil),
+                                    forCellReuseIdentifier: RHConstants.kHabitTableViewCell)
         dashboardTableView.setAutomaticRowHeight(height: .defaultHeight)
         dashboardTableView.delegate = self
         dashboardTableView.dataSource = self
     }
-    
+
     // MARK: - --NAVIGATION--
-    func route(to controller: String, withData : Habits? = nil) {
-        
+
+    func route(to controller: String, withData: Habits? = nil) {
         switch controller {
         case RHConstants.kHabitDetailViewController:
             navigateToDashboardDetail(withData: withData)
@@ -65,21 +69,23 @@ class RHDashboardViewController: RHBaseViewController {
             break
         }
     }
-    
-    func navigateToDashboardDetail(withData : Habits?) {
-        if let viewController  = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil).instantiateViewController(withIdentifier: RHConstants.kHabitDetailViewController) as? RHHabitDetailViewController, let habitData = withData {
-            
+
+    func navigateToDashboardDetail(withData: Habits?) {
+        if let viewController = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil)
+            .instantiateViewController(withIdentifier: RHConstants
+                .kHabitDetailViewController) as? RHHabitDetailViewController, let habitData = withData {
             viewController.habitDetailData = habitData
-            let navigation = UINavigationController.init(rootViewController: viewController)
-            self.present(navigation, animated: true, completion: nil)
+            let navigation = UINavigationController(rootViewController: viewController)
+            present(navigation, animated: true, completion: nil)
         }
     }
-    
+
     func navigateToWorkspace() {
-        if let viewController  = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil).instantiateViewController(withIdentifier: RHConstants.kSwitchWorkspaceViewController) as? RHSwitchWorkspaceViewController {
-            
-            let navigation = UINavigationController.init(rootViewController: viewController)
-            self.present(navigation, animated: true, completion: nil)
+        if let viewController = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil)
+            .instantiateViewController(withIdentifier: RHConstants
+                .kSwitchWorkspaceViewController) as? RHSwitchWorkspaceViewController {
+            let navigation = UINavigationController(rootViewController: viewController)
+            present(navigation, animated: true, completion: nil)
         }
     }
 }
@@ -92,15 +98,15 @@ extension RHDashboardViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 97))
-        headerView.backgroundColor = self.view.backgroundColor
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 97))
+        headerView.backgroundColor = view.backgroundColor
         let headerData = dashboardHeaders[section]
         let label = UILabel()
         label.frame = CGRect(x: 16, y: 5, width: headerView.frame.width - 20, height: headerView.frame.height - 10)
         if section != 0 {
             label.frame = CGRect(x: 16, y: 60, width: headerView.frame.width - 20, height: 26)
         }
-        
+
         label.text = headerData.headerTitle ?? ""
         label.font = UIFont(name: headerData.titleFontName ?? RHConstants.kEmptyValue,
                             size: CGFloat(headerData.titleFontSize ?? 17))
@@ -114,18 +120,22 @@ extension RHDashboardViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section != 0 { return }
-        guard let id = dashboardHeaders[indexPath.section].ids?[indexPath.row], let habitData = habitsDataManager.getHabit(forId: id) else {
+        guard let id = dashboardHeaders[indexPath.section].ids?[indexPath.row],
+              let habitData = habitsDataManager.getHabit(forId: id)
+        else {
             return
         }
-        
+
         let selectedHabit = SelectedHabitData(title: habitData.title,
                                               frequency: Int(habitData.frequency),
-                                              startTime: (habitData.startTime ?? Date()).formatDateToString(inFormat: .time12Hour),
-                                              endTime: (habitData.endTime ?? Date()).formatDateToString(inFormat: .time12Hour),
+                                              startTime: (habitData.startTime ?? Date())
+                                                  .formatDateToString(inFormat: .time12Hour),
+                                              endTime: (habitData.endTime ?? Date())
+                                                  .formatDateToString(inFormat: .time12Hour),
                                               id: Int(habitData.id),
                                               isEnabled: habitData.isEnabled)
         updateHabit(forActivity: RHConstants.kHabitClicked, selectedHabit: selectedHabit, andSource: .habitdashboard)
-        self.route(to: RHConstants.kHabitDetailViewController, withData : habitData)
+        route(to: RHConstants.kHabitDetailViewController, withData: habitData)
     }
 }
 
@@ -133,18 +143,22 @@ extension RHDashboardViewController: UITableViewDelegate {
 
 extension RHDashboardViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return dashboardHeaders.count
+        dashboardHeaders.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dashboardHeaders[section].ids?.count ?? 0
+        dashboardHeaders[section].ids?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RHConstants.kHabitTableViewCell, for: indexPath) as? HabitTableViewCell, let id = dashboardHeaders[indexPath.section].ids?[indexPath.row], let habitData = habitsDataManager.getHabit(forId: id) else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: RHConstants.kHabitTableViewCell,
+                                                       for: indexPath) as? HabitTableViewCell,
+            let id = dashboardHeaders[indexPath.section].ids?[indexPath.row],
+            let habitData = habitsDataManager.getHabit(forId: id)
+        else {
             return UITableViewCell()
         }
-        
+
         cell.selectionStyle = .none
         cell.actionDelegate = self
         cell.habitData = habitData
@@ -154,11 +168,11 @@ extension RHDashboardViewController: UITableViewDataSource {
 }
 
 // MARK: - Protocol - RHDashboardActionHandler
-extension RHDashboardViewController : RHDashboardActionHandler {
- 
-    func toggleHabit(toValue isEnabled: Bool, habitData : SelectedHabitData) {
-        updateHabit(forActivity: isEnabled ? RHConstants.kHabitEnabled : RHConstants.kHabitDisabled, selectedHabit: habitData, andSource: .habitdashboard)
 
+extension RHDashboardViewController: RHDashboardActionHandler {
+    func toggleHabit(toValue isEnabled: Bool, habitData: SelectedHabitData) {
+        updateHabit(forActivity: isEnabled ? RHConstants.kHabitEnabled : RHConstants.kHabitDisabled,
+                    selectedHabit: habitData, andSource: .habitdashboard)
     }
 
     func logoutUser() {
