@@ -12,9 +12,4 @@ extension UIView {
     func setCornerRadius(_ radius : CornerRadius) {
         self.layer.cornerRadius = radius.rawValue
     }
-    
-    func customiseView() {
-        setCornerRadius(.radius13)
-        self.backgroundColor = RHColor.WhiteBackground
-    }
 }

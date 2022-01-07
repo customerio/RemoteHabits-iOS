@@ -36,7 +36,8 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
     // MARK: - --FUNCTIONS--
 
     func setUpMainView() {
-        mainView.customiseView()
+        mainView.setCornerRadius(.radius13)
+        mainView.backgroundColor = RHColor.WhiteBackground
     }
 
     func setUpWorkspaceButton() {

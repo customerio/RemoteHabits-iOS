@@ -10,7 +10,8 @@ class HabitDetailToggleTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        mainCellView.customiseView()
+        mainCellView.setCornerRadius(.radius13)
+        mainCellView.backgroundColor = RHColor.WhiteBackground
         selectionStyle = .none
     }
 
