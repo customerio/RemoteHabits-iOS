@@ -53,15 +53,7 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
             }
 
             // Done button accessory view for all textfields
-            let doneToolbar: UIToolbar =
-                .init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: RHConstants.kToolBarHeight))
-            doneToolbar.barStyle = .default
-            doneToolbar.items = [
-                UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self,
-                                action: #selector(hideKeyboard)),
-                .flexibleSpace()
-            ]
-            doneToolbar.sizeToFit()
+            let doneToolbar = Toolbar().standardToolBar([.done : #selector(hideKeyboard)])
             textField?.inputAccessoryView = doneToolbar
 
             // Set delegate for all textfields
