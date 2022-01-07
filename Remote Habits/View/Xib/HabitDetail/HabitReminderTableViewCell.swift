@@ -10,7 +10,7 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet var headerTitle: UILabel!
     @IBOutlet var mainCellView: UIView!
 
-    var habitData : Habits?
+    var habitData: Habits?
     var actionHandler: RHDashboardDetailTimeHandler?
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,13 +25,15 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
 
         // Configure the view for the selected state
     }
-    
+
     func fillHabitDetailData() {
         frequencyText.text = "\(habitData?.frequency ?? 0)"
-        fromTimeText.text = habitData?.startTime?.formatDateToString(inFormat: .time12Hour) ?? Date().formatDateToString(inFormat: .time12Hour)
-        toTimeText.text = habitData?.endTime?.formatDateToString(inFormat: .time12Hour) ?? Date().formatDateToString(inFormat: .time12Hour)
+        fromTimeText.text = habitData?.startTime?.formatDateToString(inFormat: .time12Hour) ?? Date()
+            .formatDateToString(inFormat: .time12Hour)
+        toTimeText.text = habitData?.endTime?.formatDateToString(inFormat: .time12Hour) ?? Date()
+            .formatDateToString(inFormat: .time12Hour)
     }
-    
+
     func setUpCellView() {
         mainCellView.setCornerRadius(.radius13)
         mainCellView.backgroundColor = RHColor.WhiteBackground
@@ -44,17 +46,15 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
         toTimeText.textColor = RHColor.LabelLightGray
         selectionStyle = .none
     }
-    
-    func setUpTextFieldsTimePicker(_ textFields : [UITextField?]) {
-        
+
+    func setUpTextFieldsTimePicker(_ textFields: [UITextField?]) {
         for textField in textFields {
-            
             // Add time picker view to Start time and end time
             if textField == fromTimeText || textField == toTimeText {
                 let datePickerST = UIDatePicker()
                 datePickerST.datePickerMode = .time
                 datePickerST.setDate(Date(), animated: true)
-                
+
                 var selector = #selector(updateStartTime(_:))
                 if textField == toTimeText {
                     selector = #selector(updateEndTime(_:))
@@ -63,21 +63,26 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
                 datePickerST.preferredDatePickerStyle = .wheels
                 textField?.inputView = datePickerST
             }
-            
+
             // Done button accessory view for all textfields
-            let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: RHConstants.kToolBarHeight))
+            let doneToolbar: UIToolbar =
+                .init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: RHConstants.kToolBarHeight))
             doneToolbar.barStyle = .default
-            doneToolbar.items = [UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self, action: #selector(hideKeyboard)), .flexibleSpace()]
+            doneToolbar.items = [
+                UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.plain, target: self,
+                                action: #selector(hideKeyboard)),
+                .flexibleSpace()
+            ]
             doneToolbar.sizeToFit()
             textField?.inputAccessoryView = doneToolbar
-            
+
             // Set delegate for all textfields
             textField?.delegate = self
         }
     }
 
     @objc func hideKeyboard() {
-        self.endEditing(true)
+        endEditing(true)
     }
 
     @objc func updateStartTime(_ sender: UIDatePicker) {
@@ -89,11 +94,13 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
         toTimeText.text = formatDateForDisplay(date: sender.date)
         updateHabitTime()
     }
-    
-    func updateHabitTime(withFreq freq : Int? = nil) {
+
+    func updateHabitTime(withFreq freq: Int? = nil) {
         let frequency = freq ?? Int(frequencyText.text ?? "0")
-        let selectedHabit = SelectedHabitData(title: habitData?.title, frequency: frequency, startTime: fromTimeText.text ?? "", endTime: toTimeText.text ?? "", id: Int(habitData?.id ?? 0), isEnabled: habitData?.isEnabled)
-        
+        let selectedHabit = SelectedHabitData(title: habitData?.title, frequency: frequency,
+                                              startTime: fromTimeText.text ?? "", endTime: toTimeText.text ?? "",
+                                              id: Int(habitData?.id ?? 0), isEnabled: habitData?.isEnabled)
+
         actionHandler?.updateTime(with: selectedHabit)
     }
 
@@ -103,7 +110,7 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
-        return textField is FrequencyTextField
+        textField is FrequencyTextField
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -114,15 +121,13 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     @IBAction func startTimeBeginEditing(_ sender: UITextField) {}
 }
- 
-class FrequencyTextField : UITextField {
 
+class FrequencyTextField: UITextField {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-
 }

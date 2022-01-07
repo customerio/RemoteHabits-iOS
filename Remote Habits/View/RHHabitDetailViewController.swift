@@ -13,9 +13,10 @@ class RHHabitDetailViewController: RHBaseViewController {
     @IBOutlet var habitLogo: UIImageView!
 
     // MARK: - --VARIABLES--
-    let headerViewMaxHeight : CGFloat = 180
-    let headerViewMinHeight : CGFloat = 98
-    var habitDetailData : Habits? = nil
+
+    let headerViewMaxHeight: CGFloat = 180
+    let headerViewMinHeight: CGFloat = 98
+    var habitDetailData: Habits?
 
     // MARK: - --LIFECYCLE METHODS--
 
@@ -33,16 +34,16 @@ class RHHabitDetailViewController: RHBaseViewController {
     func setupHabitDetailTableView() {
         habitDetailTableView.dataSource = self
         habitDetailTableView.delegate = self
-        
+
         habitDetailTableView.register(UINib(nibName: RHConstants.kHabitReminderTableViewCell, bundle: nil),
                                       forCellReuseIdentifier: RHConstants.kHabitReminderTableViewCell)
         habitDetailTableView.register(UINib(nibName: RHConstants.kHabitDetailToggleTableViewCell, bundle: nil),
                                       forCellReuseIdentifier: RHConstants.kHabitDetailToggleTableViewCell)
         habitDetailTableView.register(UINib(nibName: RHConstants.kHabitAddInfoTableViewCell, bundle: nil),
                                       forCellReuseIdentifier: RHConstants.kHabitAddInfoTableViewCell)
-        
+
         habitDetailTableView.setAutomaticRowHeight(height: .height100)
-        habitDetailTableView.setContentOffset(.zero , animated: false )
+        habitDetailTableView.setContentOffset(.zero, animated: false)
     }
 
     func setUpHeader() {
@@ -123,16 +124,17 @@ extension RHHabitDetailViewController: RHDashboardDetailActionHandler {
         let activity = isEnabled ? RHConstants.kHabitEnabled : RHConstants.kHabitDisabled
         let selectedHabit = SelectedHabitData(title: habitDetailData?.title,
                                               frequency: Int(habitDetailData?.frequency ?? 0),
-                                              startTime: habitDetailData?.startTime?.formatDateToString(inFormat: .time12Hour),
-                                              endTime: habitDetailData?.endTime?.formatDateToString(inFormat: .time12Hour),
+                                              startTime: habitDetailData?.startTime?
+                                                  .formatDateToString(inFormat: .time12Hour),
+                                              endTime: habitDetailData?.endTime?
+                                                  .formatDateToString(inFormat: .time12Hour),
                                               id: Int(habitDetailData?.id ?? 0),
                                               isEnabled: isEnabled)
         updateHabit(forActivity: activity, selectedHabit: selectedHabit, andSource: .habitdetail)
     }
 }
 
-
-extension RHHabitDetailViewController : RHDashboardDetailTimeHandler {
+extension RHHabitDetailViewController: RHDashboardDetailTimeHandler {
     func updateTime(with selectedHabit: SelectedHabitData) {
         updateHabit(forActivity: nil, selectedHabit: selectedHabit, andSource: .habitdetail)
     }

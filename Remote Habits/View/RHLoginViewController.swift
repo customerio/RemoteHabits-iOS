@@ -71,9 +71,8 @@ class RHLoginViewController: RHBaseViewController {
 
     func setUpTextFields() {
         for field in textFields {
-            
-            switch(field) {
-            case userNameInput :
+            switch field {
+            case userNameInput:
                 field.iconText = Icons.user.rawValue
 
             case emailInput:
@@ -81,7 +80,7 @@ class RHLoginViewController: RHBaseViewController {
             default:
                 break
             }
-            
+
             field.placeholderColor = RHColor.LabelGray
             field.textColor = UIColor.black
             field.iconFont = RHFont.AwesomeFontLarge
@@ -118,6 +117,7 @@ class RHLoginViewController: RHBaseViewController {
             errorMessageLabel.isHidden = true
         }
     }
+
     func routeToDashboard() {
         userNameInput.text = RHConstants.kEmptyValue
         emailInput.text = RHConstants.kEmptyValue
@@ -134,6 +134,7 @@ class RHLoginViewController: RHBaseViewController {
             habitsDataManager.createHabit(forData: data)
         }
     }
+
     // MARK: - --ACTIONS--
 
     @IBAction func emailDidChange(_ sender: Any) {
@@ -191,7 +192,6 @@ class RHLoginViewController: RHBaseViewController {
                 } else {
                     self.actOnError(toShow: true)
                 }
-
             }
     }
 }

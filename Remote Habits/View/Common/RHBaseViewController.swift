@@ -1,16 +1,15 @@
 import UIKit
 
-
 enum ControllerSource {
     case habitdashboard
     case habitdetail
 }
-class RHBaseViewController: UIViewController {
 
-    var loaderView : UIView?
+class RHBaseViewController: UIViewController {
+    var loaderView: UIView?
     let habitsDataManager = HabitDataManager()
     var trackerViewModel = DI.shared.trackerViewModel
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -43,9 +42,9 @@ class RHBaseViewController: UIViewController {
         loaderView?.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
 
         let miniSpace = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
-        miniSpace.center = self.view.center
+        miniSpace.center = view.center
         miniSpace.setCornerRadius(.radius40)
-        
+
         // add image for loader background
         let imageBg = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
         imageBg.image = UIImage(named: RHConstants.kBackground)
@@ -68,7 +67,6 @@ class RHBaseViewController: UIViewController {
         view.addSubview(loaderView!)
         activityView.startAnimating()
     }
-
 
     func configureNavigationBar(
         titleColor: UIColor? = nil,
@@ -103,7 +101,7 @@ class RHBaseViewController: UIViewController {
             navBarAppearance.configureWithOpaqueBackground()
             navBarAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? RHColor.LabelBlack]
             navBarAppearance.backgroundColor = backgoundColor ?? RHColor.DefaultBackground
-            
+
             navigationController?.navigationBar.standardAppearance = navBarAppearance
             navigationController?.navigationBar.compactAppearance = navBarAppearance
             navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
@@ -128,7 +126,11 @@ class RHBaseViewController: UIViewController {
         loaderView?.removeFromSuperview()
     }
 
-    func updateHabit(forActivity activity: String?, selectedHabit: SelectedHabitData, andSource source : ControllerSource) {
+    func updateHabit(
+        forActivity activity: String?,
+        selectedHabit: SelectedHabitData,
+        andSource source: ControllerSource
+    ) {
         habitsDataManager.updateHabit(withData: selectedHabit)
         if let activity = activity {
             trackerViewModel.trackHabitActivity(withName: activity, forHabit: selectedHabit)
