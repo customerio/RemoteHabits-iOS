@@ -23,6 +23,7 @@ class RHDashboardViewController: RHBaseViewController {
 
         dashboardHeaders = remoteHabitsData.getHabitHeaders()
         configureNavigationBar(title: RHConstants.kEmptyValue, hideBack: true, showLogo: true)
+        addNotifierObserver()
         addDefaultBackground()
         setupDashboardTableView()
         // Do any additional setup after loading the view.
@@ -30,11 +31,6 @@ class RHDashboardViewController: RHBaseViewController {
 
     deinit {
         NotificationCenter.default.removeObserver(self)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        addNotifierObserver()
     }
 
     // MARK: - --FUNCTIONS--
