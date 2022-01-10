@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.11.0...1.12.0) (2022-01-10)
+
+
+### Features
+
+* add dark mode support ([#44](https://github.com/customerio/RemoteHabits-iOS/issues/44)) ([e636d7e](https://github.com/customerio/RemoteHabits-iOS/commit/e636d7e54ca506a528e342889f459c3c39a02f73))
+
 # [1.11.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.10.0...1.11.0) (2022-01-10)
 
 
