@@ -1,11 +1,6 @@
 import SkyFloatingLabelTextField
 import UIKit
 
-enum Icons: String {
-    case user = "\u{f007}"
-    case email = "\u{f0e0}"
-}
-
 class RHLoginViewController: RHBaseViewController {
     // MARK: - --OUTLETS--
 
