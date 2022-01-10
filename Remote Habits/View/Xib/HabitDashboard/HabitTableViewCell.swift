@@ -16,7 +16,7 @@ class HabitTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
 
-        mainCellView.backgroundColor = RHColor.WhiteBackground
+        mainCellView.backgroundColor = RHColor.PrimaryBackground
         habitTitle.textColor = RHColor.LabelBlack
         habitSubTitle.textColor = RHColor.LabelLightGray
     }

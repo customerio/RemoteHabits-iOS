@@ -11,7 +11,7 @@ class HabitDetailToggleTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         mainCellView.setCornerRadius(.radius13)
-        mainCellView.backgroundColor = RHColor.WhiteBackground
+        mainCellView.backgroundColor = RHColor.PrimaryBackground
         selectionStyle = .none
     }
 

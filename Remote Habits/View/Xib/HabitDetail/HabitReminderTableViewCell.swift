@@ -36,7 +36,7 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     func setUpCellView() {
         mainCellView.setCornerRadius(.radius13)
-        mainCellView.backgroundColor = RHColor.WhiteBackground
+        mainCellView.backgroundColor = RHColor.PrimaryBackground
         frequencyLabel.textColor = RHColor.LabelLightGray
         toLabel.textColor = RHColor.LabelLightGray
         fromLabel.textColor = RHColor.LabelLightGray
