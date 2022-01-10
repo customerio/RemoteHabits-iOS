@@ -1,14 +1,14 @@
 import Foundation
-import SwiftUI
+import UIKit
 
-extension View {
-    func binding<Value>(_ getValue: @escaping () -> Value) -> Binding<Value> {
-        Binding.get(getValue)
-    }
+enum CornerRadius: CGFloat {
+    case radius13 = 13
+    case radius24 = 24
+    case radius40 = 40
 }
 
-extension Binding {
-    static func get(_ getValue: @escaping () -> Value) -> Binding<Value> {
-        Binding(get: getValue, set: { _ in })
+extension UIView {
+    func setCornerRadius(_ radius: CornerRadius) {
+        layer.cornerRadius = radius.rawValue
     }
 }

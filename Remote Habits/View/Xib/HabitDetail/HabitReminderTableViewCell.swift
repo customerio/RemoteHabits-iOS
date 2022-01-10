@@ -14,10 +14,9 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
     var actionHandler: RHDashboardDetailTimeHandler?
     override func awakeFromNib() {
         super.awakeFromNib()
-        mainCellView.layer.cornerRadius = 13
-        selectionStyle = .none
         // Initialization code
         let textFields = [frequencyText, fromTimeText, toTimeText]
+        setUpCellView()
         setUpTextFieldsTimePicker(textFields)
     }
 
@@ -33,6 +32,19 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
             .formatDateToString(inFormat: .time12Hour)
         toTimeText.text = habitData?.endTime?.formatDateToString(inFormat: .time12Hour) ?? Date()
             .formatDateToString(inFormat: .time12Hour)
+    }
+
+    func setUpCellView() {
+        mainCellView.setCornerRadius(.radius13)
+        mainCellView.backgroundColor = RHColor.PrimaryBackground
+        frequencyLabel.textColor = RHColor.LabelLightGray
+        toLabel.textColor = RHColor.LabelLightGray
+        fromLabel.textColor = RHColor.LabelLightGray
+        fromTimeText.backgroundColor = RHColor.MediumGray
+        toTimeText.backgroundColor = RHColor.MediumGray
+        fromTimeText.textColor = RHColor.LabelLightGray
+        toTimeText.textColor = RHColor.LabelLightGray
+        selectionStyle = .none
     }
 
     func setUpTextFieldsTimePicker(_ textFields: [UITextField?]) {
@@ -53,6 +65,7 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
             }
 
             // Done button accessory view for all textfields
+
             let doneToolbar = Toolbar().standardToolBar([.done: #selector(hideKeyboard)])
             textField?.inputAccessoryView = doneToolbar
 

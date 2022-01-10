@@ -43,12 +43,12 @@ class RHBaseViewController: UIViewController {
 
         let miniSpace = UIView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
         miniSpace.center = view.center
-        miniSpace.layer.cornerRadius = 40
+        miniSpace.setCornerRadius(.radius40)
 
         // add image for loader background
         let imageBg = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
         imageBg.image = UIImage(named: RHConstants.kBackground)
-        imageBg.layer.cornerRadius = 40
+        imageBg.setCornerRadius(.radius40)
         imageBg.layer.masksToBounds = true
 
         // add shadow
@@ -69,8 +69,8 @@ class RHBaseViewController: UIViewController {
     }
 
     func configureNavigationBar(
-        titleColor: UIColor = .black,
-        backgoundColor: UIColor = .white,
+        titleColor: UIColor? = nil,
+        backgoundColor: UIColor? = nil,
         title: String,
         hideBack: Bool,
         showLogo: Bool = false
@@ -99,8 +99,8 @@ class RHBaseViewController: UIViewController {
         if #available(iOS 13.0, *) {
             let navBarAppearance = UINavigationBarAppearance()
             navBarAppearance.configureWithOpaqueBackground()
-            navBarAppearance.titleTextAttributes = [.foregroundColor: titleColor]
-            navBarAppearance.backgroundColor = backgoundColor
+            navBarAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? RHColor.LabelBlack]
+            navBarAppearance.backgroundColor = backgoundColor ?? RHColor.DefaultBackground
 
             navigationController?.navigationBar.standardAppearance = navBarAppearance
             navigationController?.navigationBar.compactAppearance = navBarAppearance

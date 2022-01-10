@@ -6,7 +6,9 @@ class HabitAddInfoTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        mainCellView.layer.cornerRadius = 13
+        mainCellView.setCornerRadius(.radius13)
+        mainCellView.backgroundColor = RHColor.PrimaryBackground
+        descriptionLabel.textColor = RHColor.LabelLightGray
         selectionStyle = .none
     }
 

@@ -3,6 +3,16 @@
     {
       "filename" : "image.png",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "gradient.jpeg",
+      "idiom" : "universal"
     }
   ],
   "info" : {

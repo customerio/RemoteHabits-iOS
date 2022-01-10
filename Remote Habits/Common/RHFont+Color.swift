@@ -14,6 +14,10 @@ enum RHColor {
     static let ButtonEnabled = UIColor(named: "ButtonEnabled")
     static let ButtonDisabled = UIColor(named: "ButtonDisabled")
     static let TextDisabled = UIColor(named: "TextDisabled") ?? UIColor.gray
+    static let LabelBlack = UIColor(named: "LabelBlack") ?? UIColor.black
+    static let PrimaryBackground = UIColor(named: "PrimaryBackground") ?? UIColor.white
+    static let LabelLightGray = UIColor(named: "LabelLightGray") ?? RHColor.LabelGray
+    static let MediumGray = UIColor(named: "MediumGray") ?? UIColor.gray
 }
 
 // Medium - 17

@@ -11,7 +11,7 @@ class RemoteHabitsData {
         let sectionfirst = HabitHeadersInfo(headerTitle: "\(title ?? "Your")'s Habits", titleFontSize: 34,
                                             titleFontName: "SFProDisplay-Bold", ids: [1, 2, 3])
         let sectionsecond = HabitHeadersInfo(headerTitle: "Details", titleFontSize: 17,
-                                             titleFontName: "SFProDisplay-Bold", ids: [4, 5, 6])
+                                             titleFontName: "SFProDisplay-Bold", ids: [4, 5])
 
         return [sectionfirst, sectionsecond]
     }
