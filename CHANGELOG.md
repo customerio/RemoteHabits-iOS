@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.10.0...1.11.0) (2022-01-10)
+
+
+### Features
+
+* retain user data on dashboard  ([#42](https://github.com/customerio/RemoteHabits-iOS/issues/42)) ([18fa9ff](https://github.com/customerio/RemoteHabits-iOS/commit/18fa9ff15cb59d99da9ca2e22b9c0df1fa939849))
+
 # [1.10.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.9.0...1.10.0) (2021-12-20)
 
 
