@@ -47,7 +47,7 @@
                                                 <color key="textColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="right" contentVerticalAlignment="center" text="2" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YzT-v9-o5I">
+                                            <textField opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="right" contentVerticalAlignment="center" text="2" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YzT-v9-o5I" customClass="FrequencyTextField" customModule="Remote_Habits" customModuleProvider="target">
                                                 <rect key="frame" x="278" y="0.0" width="85" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="85" id="KY1-Ng-h2N"/>
@@ -137,7 +137,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="frequencyLabel" destination="CyQ-Jj-sIi" id="3Cb-tR-k3i"/>
-                <outlet property="frequencyText" destination="YzT-v9-o5I" id="MhL-ef-l0p"/>
+                <outlet property="frequencyText" destination="YzT-v9-o5I" id="sdT-tn-JYb"/>
                 <outlet property="fromLabel" destination="8j4-XE-HaH" id="JQu-iA-JCQ"/>
                 <outlet property="fromTimeText" destination="G7L-mU-emx" id="l4c-DZ-ame"/>
                 <outlet property="headerTitle" destination="LoZ-Ws-6ka" id="uiL-dC-IYl"/>

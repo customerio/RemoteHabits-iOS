@@ -16,8 +16,7 @@ class RHHabitDetailViewController: RHBaseViewController {
 
     let headerViewMaxHeight: CGFloat = 180
     let headerViewMinHeight: CGFloat = 98
-    var habitDetailData: HabitData?
-    var trackerViewModel = DI.shared.trackerViewModel
+    var habitDetailData: Habits?
 
     // MARK: - --LIFECYCLE METHODS--
 
@@ -43,8 +42,7 @@ class RHHabitDetailViewController: RHBaseViewController {
         habitDetailTableView.register(UINib(nibName: RHConstants.kHabitAddInfoTableViewCell, bundle: nil),
                                       forCellReuseIdentifier: RHConstants.kHabitAddInfoTableViewCell)
 
-        habitDetailTableView.estimatedRowHeight = 100
-        habitDetailTableView.rowHeight = UITableView.automaticDimension
+        habitDetailTableView.setAutomaticRowHeight(height: .height100)
         habitDetailTableView.setContentOffset(.zero, animated: false)
     }
 
@@ -54,16 +52,6 @@ class RHHabitDetailViewController: RHBaseViewController {
             habitLogo.image = UIImage(named: logo)
         }
     }
-
-    /*
-     // MARK: - --NAVIGATION--
-
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         // Get the new view controller using segue.destination.
-         // Pass the selected object to the new view controller.
-     }
-     */
 }
 
 // MARK: - --UITABLEVIEWDATASOURCE--
@@ -81,7 +69,8 @@ extension RHHabitDetailViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.actionHandler = self
-            cell.habitSwitch.isOn = habitDetailData?.habitDetail?.isHabitEnabled ?? false
+            cell.habitData = habitDetailData
+            cell.fillHabitsData()
             return cell
         } else if indexPath.row == 1 || indexPath.row == 4 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RHConstants.kHabitReminderTableViewCell,
@@ -90,9 +79,8 @@ extension RHHabitDetailViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.actionHandler = self
-            cell.frequencyText.text = "\(habitDetailData?.habitDetail?.frequency ?? 0)"
-            cell.fromTimeText.text = habitDetailData?.habitDetail?.startTime ?? "-"
-            cell.toTimeText.text = habitDetailData?.habitDetail?.endTime ?? "-"
+            cell.habitData = habitDetailData
+            cell.fillHabitDetailData()
             return cell
         } else if indexPath.row == 2 || indexPath.row == 5 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: RHConstants.kHabitAddInfoTableViewCell,
@@ -100,7 +88,7 @@ extension RHHabitDetailViewController: UITableViewDataSource {
             else {
                 return UITableViewCell()
             }
-            cell.descriptionLabel.text = habitDetailData?.habitDetail?.description ?? ""
+            cell.descriptionLabel.text = habitDetailData?.habitDescription ?? ""
             return cell
         }
         return UITableViewCell()
@@ -133,19 +121,20 @@ extension RHHabitDetailViewController: UIScrollViewDelegate {
 extension RHHabitDetailViewController: RHDashboardDetailActionHandler {
     func toggleHabit(toValue isEnabled: Bool) {
         let activity = isEnabled ? RHConstants.kHabitEnabled : RHConstants.kHabitDisabled
-        let selectedHabitActivity = SelectedHabitData(title: habitDetailData?.title,
-                                                      frequency: habitDetailData?.habitDetail?.frequency,
-                                                      startTime: habitDetailData?.habitDetail?.startTime,
-                                                      endTime: habitDetailData?.habitDetail?.endTime)
-
-        trackerViewModel.trackHabitActivity(withName: activity, forHabit: selectedHabitActivity)
+        let selectedHabit = SelectedHabitData(title: habitDetailData?.title,
+                                              frequency: Int(habitDetailData?.frequency ?? 0),
+                                              startTime: habitDetailData?.startTime?
+                                                  .formatDateToString(inFormat: .time12Hour),
+                                              endTime: habitDetailData?.endTime?
+                                                  .formatDateToString(inFormat: .time12Hour),
+                                              id: Int(habitDetailData?.id ?? 0),
+                                              isEnabled: isEnabled)
+        updateHabit(forActivity: activity, selectedHabit: selectedHabit, andSource: .habitdetail)
     }
 }
 
 extension RHHabitDetailViewController: RHDashboardDetailTimeHandler {
-    func updateTime(fromTime: String, toTime: String, andFreq freq: Int) {
-        habitDetailData?.habitDetail?.frequency = freq
-        habitDetailData?.habitDetail?.startTime = fromTime
-        habitDetailData?.habitDetail?.endTime = toTime
+    func updateTime(with selectedHabit: SelectedHabitData) {
+        updateHabit(forActivity: nil, selectedHabit: selectedHabit, andSource: .habitdetail)
     }
 }

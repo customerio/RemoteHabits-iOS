@@ -22,6 +22,13 @@ extension String {
     static func random(length: Int = 10) -> String {
         String((0 ..< length).map { _ in abcLetters.randomElement()! })
     }
+
+    func toDate(withFormat format: DateFormat) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format.rawValue
+        let date = dateFormatter.date(from: self)
+        return date
+    }
 }
 
 typealias EmailAddress = String

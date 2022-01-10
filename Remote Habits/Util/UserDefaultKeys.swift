@@ -7,5 +7,4 @@ enum UserDefaultKeys: String {
     case userName
     case workspaceId
     case apiKey
-    case guestLogin
 }

@@ -68,10 +68,10 @@ class RHLoginViewController: RHBaseViewController {
         for field in textFields {
             switch field {
             case userNameInput:
-                field.iconText = "\u{f007}"
+                field.iconText = Icons.user.rawValue
+
             case emailInput:
-                field.iconText = "\u{f0e0}"
-                field.errorColor = UIColor.red
+                field.iconText = Icons.email.rawValue
             default:
                 break
             }
@@ -111,16 +111,21 @@ class RHLoginViewController: RHBaseViewController {
         }
     }
 
-    func routeToDashboard(isGuestLogin: Bool = true) {
+    func routeToDashboard() {
         userNameInput.text = RHConstants.kEmptyValue
         emailInput.text = RHConstants.kEmptyValue
         loginButton.isEnabled = false
         loginButtonState()
-
-        userManager.isGuestLogin = isGuestLogin
         let viewController = RHDashboardViewController.newInstance()
         viewController.isSourceLogin = true
         navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func populateInitialHabitData() {
+        if habitsDataManager.deleteHabits() {
+            let data = RemoteHabitsData().getHabitsData()
+            habitsDataManager.createHabit(forData: data)
+        }
     }
 
     // MARK: - --ACTIONS--
@@ -132,8 +137,8 @@ class RHLoginViewController: RHBaseViewController {
                     floatingLabelTextField.errorMessage = RHConstants.errorMessageLoginScreenEmailNotValid
                 } else {
                     floatingLabelTextField.errorMessage = RHConstants.kEmptyValue
+                    floatingLabelTextField.text = floatingLabelTextField.text
                 }
-
                 if validateName(userNameInput), validateEmail(text) {
                     loginButton.isEnabled = true
                 } else {
@@ -170,12 +175,13 @@ class RHLoginViewController: RHBaseViewController {
     func validateCredentials(email: String, pwd: String, firstName: String, isGenRandom: Bool) {
         showLoadingView()
         view.endEditing(true)
+
         profileViewModel
             .loginUser(email: email, password: pwd, firstName: firstName, generatedRandom: isGenRandom) { result in
-
+                self.populateInitialHabitData()
                 self.hideLoadingView()
                 if result {
-                    self.routeToDashboard(isGuestLogin: isGenRandom)
+                    self.routeToDashboard()
                 } else {
                     self.actOnError(toShow: true)
                 }

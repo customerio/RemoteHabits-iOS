@@ -38,7 +38,10 @@ class ProfileViewModel: ObservableObject {
                 // Now that we have successfully identified a profile in the Customer.io SDK, we can safely
                 // register for APN push notifications so the device token is registered to a Customer.io profile.
                 self.notificationUtil.requestShowLocalNotifications()
-
+                if !generatedRandom {
+                    self.userManager.email = email
+                }
+                self.userManager.userName = firstName
                 self.loggedInProfileState = LoggedInProfileState(loggingIn: false,
                                                                  loggedInProfile: Profile(email: email), error: nil)
 
@@ -61,7 +64,6 @@ class ProfileViewModel: ObservableObject {
     func logoutUser() {
         userManager.email = nil
         userManager.userName = nil
-        userManager.isGuestLogin = nil
         profileRepository.logoutUser()
     }
 

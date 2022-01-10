@@ -9,6 +9,7 @@ struct RHConstants {
     static let kCIO = "Customer.io"
     static let kValue = "Value"
     static let kInvalid = "Invalid"
+    static let kHabitsUpdatedIdentifier = "HabitUpdatedIdentifier"
 
     // Storyboard / Xib
     static let kStoryboardMain = "Main"
@@ -34,6 +35,9 @@ struct RHConstants {
     static let kHabitClicked = "clicked_habit"
     static let kHabitEnabled = "habit_enabled"
     static let kHabitDisabled = "habit_disabled"
+
+    // Toolbar
+    static let kToolBarHeight = 35.0
 
     static let mockSdkInfo = "Customer.io iOS Client/1.0.0-alpha.18 (iPhone13,2; iOS 15.1) Remote Habits/pr.28"
 }
