@@ -1,6 +1,6 @@
 import Foundation
 
-enum habitRowType : Int {
+enum HabitRowType: Int {
     case hydration = 1
     case breaks = 2
     case focus = 3
@@ -8,11 +8,12 @@ enum habitRowType : Int {
     case workspaceInfo = 5
     case sdkInfo = 6
 }
+
 struct HabitHeadersInfo: Hashable {
     let headerTitle: String?
     let titleFontSize: Int?
     let titleFontName: String?
-    let rowType: [habitRowType]?
+    let rowType: [HabitRowType]?
 }
 
 struct SelectedHabitData: Encodable {

@@ -146,7 +146,7 @@ extension DashboardViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.kHabitTableViewCell,
                                                        for: indexPath) as? HabitTableViewCell,
-              let id = dashboardHeaders[indexPath.section].rowType?[indexPath.row].rawValue,
+            let id = dashboardHeaders[indexPath.section].rowType?[indexPath.row].rawValue,
             let habitData = habitsDataManager.getHabit(forId: id)
         else {
             return UITableViewCell()
