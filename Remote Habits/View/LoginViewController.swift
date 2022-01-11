@@ -1,11 +1,11 @@
 import SkyFloatingLabelTextField
 import UIKit
 
-class RHLoginViewController: RHBaseViewController {
+class LoginViewController: BaseViewController {
     // MARK: - --OUTLETS--
 
-    static func newInstance() -> RHLoginViewController {
-        UIStoryboard.getViewController(identifier: RHConstants.kLoginViewController)
+    static func newInstance() -> LoginViewController {
+        UIStoryboard.getViewController(identifier: Constants.kLoginViewController)
     }
 
     @IBOutlet var userNameInput: SkyFloatingLabelTextFieldWithIcon!
@@ -53,15 +53,15 @@ class RHLoginViewController: RHBaseViewController {
     func setupButtons() {
         // Buttons
         loginButton.isEnabled = false
-        loginButton.titleLabel?.font = RHFont.SFProTextSemiBoldMedium
-        loginButton.setTitleColor(RHColor.TextDisabled, for: .disabled)
+        loginButton.titleLabel?.font = Font.SFProTextSemiBoldMedium
+        loginButton.setTitleColor(Color.TextDisabled, for: .disabled)
         loginButton.setTitleColor(UIColor.white, for: .normal)
         loginButton.setCornerRadius(.radius24)
         loginButtonState()
     }
 
     func loginButtonState() {
-        loginButton.backgroundColor = loginButton.isEnabled ? RHColor.ButtonEnabled : RHColor.ButtonDisabled
+        loginButton.backgroundColor = loginButton.isEnabled ? Color.ButtonEnabled : Color.ButtonDisabled
     }
 
     func setUpTextFields() {
@@ -76,13 +76,13 @@ class RHLoginViewController: RHBaseViewController {
                 break
             }
 
-            field.placeholderColor = RHColor.LabelGray
+            field.placeholderColor = Color.LabelGray
             field.textColor = UIColor.black
-            field.iconFont = RHFont.AwesomeFontLarge
-            field.tintColor = RHColor.LabelGray
-            field.lineColor = RHColor.LineGray
-            field.selectedTitleColor = RHColor.LabelGray
-            field.selectedLineColor = RHColor.SelectedLineGray
+            field.iconFont = Font.AwesomeFontLarge
+            field.tintColor = Color.LabelGray
+            field.lineColor = Color.LineGray
+            field.selectedTitleColor = Color.LabelGray
+            field.selectedLineColor = Color.SelectedLineGray
             field.delegate = self
         }
     }
@@ -114,11 +114,11 @@ class RHLoginViewController: RHBaseViewController {
     }
 
     func routeToDashboard() {
-        userNameInput.text = RHConstants.kEmptyValue
-        emailInput.text = RHConstants.kEmptyValue
+        userNameInput.text = Constants.kEmptyValue
+        emailInput.text = Constants.kEmptyValue
         loginButton.isEnabled = false
         loginButtonState()
-        let viewController = RHDashboardViewController.newInstance()
+        let viewController = DashboardViewController.newInstance()
         viewController.isSourceLogin = true
         navigationController?.pushViewController(viewController, animated: true)
     }
@@ -136,9 +136,9 @@ class RHLoginViewController: RHBaseViewController {
         if let floatingLabelTextField = sender as? SkyFloatingLabelTextFieldWithIcon {
             if let text = floatingLabelTextField.text {
                 if !validateEmail(text) {
-                    floatingLabelTextField.errorMessage = RHConstants.errorMessageLoginScreenEmailNotValid
+                    floatingLabelTextField.errorMessage = Constants.errorMessageLoginScreenEmailNotValid
                 } else {
-                    floatingLabelTextField.errorMessage = RHConstants.kEmptyValue
+                    floatingLabelTextField.errorMessage = Constants.kEmptyValue
                     floatingLabelTextField.text = floatingLabelTextField.text
                 }
                 if validateName(userNameInput), validateEmail(text) {
@@ -153,7 +153,7 @@ class RHLoginViewController: RHBaseViewController {
 
     @IBAction func nameDidChange(_ sender: Any) {
         if let field = sender as? UITextField {
-            if validateName(field), validateEmail(emailInput.text ?? RHConstants.kEmptyValue) {
+            if validateName(field), validateEmail(emailInput.text ?? Constants.kEmptyValue) {
                 loginButton.isEnabled = true
             } else {
                 loginButton.isEnabled = false
@@ -166,12 +166,12 @@ class RHLoginViewController: RHBaseViewController {
         guard let eId = emailInput.text, let username = userNameInput.text else {
             return
         }
-        validateCredentials(email: eId, pwd: RHConstants.kDefaultPassword, firstName: username, isGenRandom: false)
+        validateCredentials(email: eId, pwd: Constants.kDefaultPassword, firstName: username, isGenRandom: false)
     }
 
     @IBAction func guestButtonTapped(_ sender: UIButton) {
-        validateCredentials(email: RHConstants.kRandomEId, pwd: RHConstants.kDefaultPassword,
-                            firstName: RHConstants.kRandomUsername, isGenRandom: true)
+        validateCredentials(email: Constants.kRandomEId, pwd: Constants.kDefaultPassword,
+                            firstName: Constants.kRandomUsername, isGenRandom: true)
     }
 
     func validateCredentials(email: String, pwd: String, firstName: String, isGenRandom: Bool) {
@@ -193,11 +193,11 @@ class RHLoginViewController: RHBaseViewController {
 
 // MARK: - UITextFieldDelegate
 
-extension RHLoginViewController: UITextFieldDelegate {
+extension LoginViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == emailInput, textField.trimTextWithWhiteSpaces {
             if let field = textField as? SkyFloatingLabelTextFieldWithIcon {
-                field.errorMessage = RHConstants.kEmptyValue
+                field.errorMessage = Constants.kEmptyValue
             }
         }
     }

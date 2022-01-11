@@ -1,6 +1,6 @@
 import Foundation
 
-struct RHConstants {
+struct Constants {
     // Strings
     static let kBackground = "background"
     static let errorMessageLoginScreenEmailNotValid = "Invalid Email"
@@ -13,14 +13,14 @@ struct RHConstants {
 
     // Storyboard / Xib
     static let kStoryboardMain = "Main"
-    static let kDashboardViewController = "RHDashboardViewController"
+    static let kDashboardViewController = "DashboardViewController"
     static let kHabitTableViewCell = "HabitTableViewCell"
-    static let kHabitDetailViewController = "RHHabitDetailViewController"
-    static let kSwitchWorkspaceViewController = "RHSwitchWorkspaceViewController"
+    static let kHabitDetailViewController = "HabitDetailViewController"
+    static let kSwitchWorkspaceViewController = "SwitchWorkspaceViewController"
     static let kHabitReminderTableViewCell = "HabitReminderTableViewCell"
     static let kHabitDetailToggleTableViewCell = "HabitDetailToggleTableViewCell"
     static let kHabitAddInfoTableViewCell = "HabitAddInfoTableViewCell"
-    static let kLoginViewController = "RHLoginViewController"
+    static let kLoginViewController = "LoginViewController"
 
     // Images / Assets
     static let kLogo = "logo"

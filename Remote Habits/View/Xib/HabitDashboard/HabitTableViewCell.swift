@@ -10,15 +10,15 @@ class HabitTableViewCell: UITableViewCell {
     var actionType: ActionType?
     var habitData: Habits?
 
-    weak var actionDelegate: RHDashboardActionHandler?
+    weak var actionDelegate: DashboardActionHandler?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
 
-        mainCellView.backgroundColor = RHColor.PrimaryBackground
-        habitTitle.textColor = RHColor.LabelBlack
-        habitSubTitle.textColor = RHColor.LabelLightGray
+        mainCellView.backgroundColor = Color.PrimaryBackground
+        habitTitle.textColor = Color.LabelBlack
+        habitSubTitle.textColor = Color.LabelLightGray
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -33,7 +33,7 @@ class HabitTableViewCell: UITableViewCell {
             return
         }
 
-        habitIcon.image = UIImage(named: habitData.icon ?? RHConstants.kLogo)
+        habitIcon.image = UIImage(named: habitData.icon ?? Constants.kLogo)
         habitTitle.text = habitData.title
         habitSubTitle.text = habitData.subtitle
         actionType = habitData.actionType
@@ -49,7 +49,7 @@ class HabitTableViewCell: UITableViewCell {
             actionButton.isEnabled = habitData.isEnabled
             actionButton.setTitle(habitData.actionName, for: .normal)
         case .none:
-            actionButton.setTitle(RHConstants.kEmptyValue, for: .normal)
+            actionButton.setTitle(Constants.kEmptyValue, for: .normal)
             habitSwitch.isHidden = true
             actionButton.isHidden = true
         }

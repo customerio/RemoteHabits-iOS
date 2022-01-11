@@ -85,7 +85,7 @@ class RemoteHabitsData {
         let sdkData = HabitsData(id: 6,
                                  icon: "phone",
                                  title: "SDK",
-                                 subtitle: RHConstants.mockSdkInfo,
+                                 subtitle: Constants.mockSdkInfo,
                                  type: ElementType.none,
                                  isEnabled: nil,
                                  frequency: nil,

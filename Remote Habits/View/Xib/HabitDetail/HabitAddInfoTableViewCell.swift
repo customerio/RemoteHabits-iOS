@@ -7,8 +7,8 @@ class HabitAddInfoTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         mainCellView.setCornerRadius(.radius13)
-        mainCellView.backgroundColor = RHColor.PrimaryBackground
-        descriptionLabel.textColor = RHColor.LabelLightGray
+        mainCellView.backgroundColor = Color.PrimaryBackground
+        descriptionLabel.textColor = Color.LabelLightGray
         selectionStyle = .none
     }
 
