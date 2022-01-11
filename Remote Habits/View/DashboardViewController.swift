@@ -113,7 +113,7 @@ extension DashboardViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section != 0 { return }
-        guard let id = dashboardHeaders[indexPath.section].ids?[indexPath.row],
+        guard let id = dashboardHeaders[indexPath.section].rowType?[indexPath.row].rawValue,
               let habitData = habitsDataManager.getHabit(forId: id)
         else {
             return
@@ -140,13 +140,13 @@ extension DashboardViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        dashboardHeaders[section].ids?.count ?? 0
+        dashboardHeaders[section].rowType?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.kHabitTableViewCell,
                                                        for: indexPath) as? HabitTableViewCell,
-            let id = dashboardHeaders[indexPath.section].ids?[indexPath.row],
+              let id = dashboardHeaders[indexPath.section].rowType?[indexPath.row].rawValue,
             let habitData = habitsDataManager.getHabit(forId: id)
         else {
             return UITableViewCell()

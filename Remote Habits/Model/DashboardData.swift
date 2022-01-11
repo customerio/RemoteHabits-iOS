@@ -1,10 +1,18 @@
 import Foundation
 
+enum habitRowType : Int {
+    case hydration = 1
+    case breaks = 2
+    case focus = 3
+    case user = 4
+    case workspaceInfo = 5
+    case sdkInfo = 6
+}
 struct HabitHeadersInfo: Hashable {
     let headerTitle: String?
     let titleFontSize: Int?
     let titleFontName: String?
-    let ids: [Int]?
+    let rowType: [habitRowType]?
 }
 
 struct SelectedHabitData: Encodable {
@@ -43,47 +51,4 @@ struct HabitsData {
     let habitDescription: String?
     let actionName: String?
     let actionType: ActionType?
-    // =======
-    // enum HabitElementType {
-//    case toggleSwitch
-//    case button
-    // }
-//
-    // enum HabitActionType {
-//    case logout
-//    case login
-//    case switchWorkspace
-//    case toggleSwitch
-    // }
-//
-    // struct HabitData {
-//    let icon: String?
-//    let title: String?
-//    let subTitle: String?
-//    let type: HabitElementType?
-//    var habitDetail: HabitDetail?
-    // }
-//
-    // struct HabitDetail {
-//    var isHabitEnabled: Bool?
-//    var frequency: Int?
-//    var startTime: String?
-//    var endTime: String?
-//    var description: String?
-//    var actionButtonValue: String?
-//    var actionType: HabitActionType?
-    // }
-//
-    // struct HabitHeadersInfo: Hashable {
-//    let headerTitle: String?
-//    let titleFontSize: Int?
-//    let titleFontName: String?
-    // }
-//
-    // struct SelectedHabitData: Encodable {
-//    let title: String?
-//    let frequency: Int?
-//    let startTime: String?
-//    let endTime: String?
-    // >>>>>>> main
 }
