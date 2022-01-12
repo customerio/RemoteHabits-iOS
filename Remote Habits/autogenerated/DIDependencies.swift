@@ -23,8 +23,6 @@ extension DI {
 
         let cio = CustomerIO(siteId: Env.customerIOSiteId, apiKey: Env.customerIOApiKey, region: region)
 
-        // This app is used internally for QA testing the Customer.io SDK. Therefore, we set the log level
-        // However, you probably don't need to modify it as the default will be useful for you.
         cio.config {
             $0.logLevel = .debug
         }
