@@ -8,7 +8,7 @@ extension UIStoryboard {
         // the app is able to be viewed (meaning all ViewControllers were instantiated
         // successfully), then this code is safe. Using a force cast here is to avoid
         // the annoyance of deciding what to do when there is a developer bug.
-        UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil)
+        UIStoryboard(name: Constants.kStoryboardMain, bundle: nil)
             // swiftlint:disable:next force_cast
             .instantiateViewController(withIdentifier: identifier) as! VC
     }

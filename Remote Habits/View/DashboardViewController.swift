@@ -1,8 +1,8 @@
 import UIKit
 
-class RHDashboardViewController: RHBaseViewController {
-    static func newInstance() -> RHDashboardViewController {
-        UIStoryboard.getViewController(identifier: RHConstants.kDashboardViewController)
+class DashboardViewController: BaseViewController {
+    static func newInstance() -> DashboardViewController {
+        UIStoryboard.getViewController(identifier: Constants.kDashboardViewController)
     }
 
     // MARK: - --OUTLETS--
@@ -22,7 +22,7 @@ class RHDashboardViewController: RHBaseViewController {
         super.viewDidLoad()
 
         dashboardHeaders = remoteHabitsData.getHabitHeaders()
-        configureNavigationBar(title: RHConstants.kEmptyValue, hideBack: true, showLogo: true)
+        configureNavigationBar(title: Constants.kEmptyValue, hideBack: true, showLogo: true)
         addNotifierObserver()
         addDefaultBackground()
         setupDashboardTableView()
@@ -37,7 +37,7 @@ class RHDashboardViewController: RHBaseViewController {
 
     func addNotifierObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(reloadHabitsData(notification:)),
-                                               name: Notification.Name(RHConstants.kHabitsUpdatedIdentifier),
+                                               name: Notification.Name(Constants.kHabitsUpdatedIdentifier),
                                                object: nil)
     }
 
@@ -46,8 +46,8 @@ class RHDashboardViewController: RHBaseViewController {
     }
 
     func setupDashboardTableView() {
-        dashboardTableView.register(UINib(nibName: RHConstants.kHabitTableViewCell, bundle: nil),
-                                    forCellReuseIdentifier: RHConstants.kHabitTableViewCell)
+        dashboardTableView.register(UINib(nibName: Constants.kHabitTableViewCell, bundle: nil),
+                                    forCellReuseIdentifier: Constants.kHabitTableViewCell)
         dashboardTableView.setAutomaticRowHeight(height: .defaultHeight)
         dashboardTableView.delegate = self
         dashboardTableView.dataSource = self
@@ -57,9 +57,9 @@ class RHDashboardViewController: RHBaseViewController {
 
     func route(to controller: String, withData: Habits? = nil) {
         switch controller {
-        case RHConstants.kHabitDetailViewController:
+        case Constants.kHabitDetailViewController:
             navigateToDashboardDetail(withData: withData)
-        case RHConstants.kSwitchWorkspaceViewController:
+        case Constants.kSwitchWorkspaceViewController:
             navigateToWorkspace()
         default:
             break
@@ -67,9 +67,9 @@ class RHDashboardViewController: RHBaseViewController {
     }
 
     func navigateToDashboardDetail(withData: Habits?) {
-        if let viewController = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil)
-            .instantiateViewController(withIdentifier: RHConstants
-                .kHabitDetailViewController) as? RHHabitDetailViewController, let habitData = withData {
+        if let viewController = UIStoryboard(name: Constants.kStoryboardMain, bundle: nil)
+            .instantiateViewController(withIdentifier: Constants
+                .kHabitDetailViewController) as? HabitDetailViewController, let habitData = withData {
             viewController.habitDetailData = habitData
             let navigation = UINavigationController(rootViewController: viewController)
             present(navigation, animated: true, completion: nil)
@@ -77,9 +77,9 @@ class RHDashboardViewController: RHBaseViewController {
     }
 
     func navigateToWorkspace() {
-        if let viewController = UIStoryboard(name: RHConstants.kStoryboardMain, bundle: nil)
-            .instantiateViewController(withIdentifier: RHConstants
-                .kSwitchWorkspaceViewController) as? RHSwitchWorkspaceViewController {
+        if let viewController = UIStoryboard(name: Constants.kStoryboardMain, bundle: nil)
+            .instantiateViewController(withIdentifier: Constants
+                .kSwitchWorkspaceViewController) as? SwitchWorkspaceViewController {
             let navigation = UINavigationController(rootViewController: viewController)
             present(navigation, animated: true, completion: nil)
         }
@@ -88,7 +88,7 @@ class RHDashboardViewController: RHBaseViewController {
 
 // MARK: - --UITABLEVIEWDELEGATE--
 
-extension RHDashboardViewController: UITableViewDelegate {
+extension DashboardViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         97.0
     }
@@ -105,7 +105,7 @@ extension RHDashboardViewController: UITableViewDelegate {
 
         label.text = headerData.headerTitle ?? ""
         label.font = UIFont(name: headerData.titleFontName ?? "", size: CGFloat(headerData.titleFontSize ?? 17))
-        label.textColor = RHColor.LabelBlack
+        label.textColor = Color.LabelBlack
         headerView.addSubview(label)
 
         return headerView
@@ -113,7 +113,7 @@ extension RHDashboardViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section != 0 { return }
-        guard let id = dashboardHeaders[indexPath.section].ids?[indexPath.row],
+        guard let id = dashboardHeaders[indexPath.section].rowType?[indexPath.row].rawValue,
               let habitData = habitsDataManager.getHabit(forId: id)
         else {
             return
@@ -127,26 +127,26 @@ extension RHDashboardViewController: UITableViewDelegate {
                                                   .formatDateToString(inFormat: .time12Hour),
                                               id: Int(habitData.id),
                                               isEnabled: habitData.isEnabled)
-        updateHabit(forActivity: RHConstants.kHabitClicked, selectedHabit: selectedHabit, andSource: .habitdashboard)
-        route(to: RHConstants.kHabitDetailViewController, withData: habitData)
+        updateHabit(forActivity: Constants.kHabitClicked, selectedHabit: selectedHabit, andSource: .habitdashboard)
+        route(to: Constants.kHabitDetailViewController, withData: habitData)
     }
 }
 
 // MARK: - --UITABLEVIEWDATASOURCE--
 
-extension RHDashboardViewController: UITableViewDataSource {
+extension DashboardViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         dashboardHeaders.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        dashboardHeaders[section].ids?.count ?? 0
+        dashboardHeaders[section].rowType?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: RHConstants.kHabitTableViewCell,
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.kHabitTableViewCell,
                                                        for: indexPath) as? HabitTableViewCell,
-            let id = dashboardHeaders[indexPath.section].ids?[indexPath.row],
+            let id = dashboardHeaders[indexPath.section].rowType?[indexPath.row].rawValue,
             let habitData = habitsDataManager.getHabit(forId: id)
         else {
             return UITableViewCell()
@@ -160,11 +160,11 @@ extension RHDashboardViewController: UITableViewDataSource {
     }
 }
 
-// MARK: - Protocol - RHDashboardActionHandler
+// MARK: - Protocol - DashboardActionHandler
 
-extension RHDashboardViewController: RHDashboardActionHandler {
+extension DashboardViewController: DashboardActionHandler {
     func toggleHabit(toValue isEnabled: Bool, habitData: SelectedHabitData) {
-        updateHabit(forActivity: isEnabled ? RHConstants.kHabitEnabled : RHConstants.kHabitDisabled,
+        updateHabit(forActivity: isEnabled ? Constants.kHabitEnabled : Constants.kHabitDisabled,
                     selectedHabit: habitData, andSource: .habitdashboard)
     }
 
@@ -173,7 +173,7 @@ extension RHDashboardViewController: RHDashboardActionHandler {
         if isSourceLogin {
             navigationController?.popToRootViewController(animated: true)
         } else {
-            navigationController?.setViewControllers([RHLoginViewController.newInstance()], animated: true)
+            navigationController?.setViewControllers([LoginViewController.newInstance()], animated: true)
         }
     }
 
@@ -182,6 +182,6 @@ extension RHDashboardViewController: RHDashboardActionHandler {
     }
 
     func switchWorkspace() {
-        route(to: RHConstants.kSwitchWorkspaceViewController)
+        route(to: Constants.kSwitchWorkspaceViewController)
     }
 }

@@ -4,14 +4,14 @@ class HabitDetailToggleTableViewCell: UITableViewCell {
     @IBOutlet var habitSwitch: UISwitch!
     @IBOutlet var habitTitle: UILabel!
     @IBOutlet var mainCellView: UIView!
-    var actionHandler: RHDashboardDetailActionHandler?
+    var actionHandler: DashboardDetailActionHandler?
     var habitData: Habits?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         mainCellView.setCornerRadius(.radius13)
-        mainCellView.backgroundColor = RHColor.PrimaryBackground
+        mainCellView.backgroundColor = Color.PrimaryBackground
         selectionStyle = .none
     }
 

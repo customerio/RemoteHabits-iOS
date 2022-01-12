@@ -21,11 +21,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // If previous user is not a guest login and credentials were used to login into the app
         if userManager.isLoggedIn {
-            let navigationController = UINavigationController(rootViewController: RHDashboardViewController
+            let navigationController = UINavigationController(rootViewController: DashboardViewController
                 .newInstance())
             window?.rootViewController = navigationController
         } else {
-            let navigationController = UINavigationController(rootViewController: RHLoginViewController.newInstance())
+            let navigationController = UINavigationController(rootViewController: LoginViewController.newInstance())
             window?.rootViewController = navigationController
         }
         window?.makeKeyAndVisible()

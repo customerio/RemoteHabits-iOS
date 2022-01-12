@@ -9,7 +9,7 @@ class Toolbar: UIToolbar {
     // Standard tool bar with height 35
     func standardToolBar(_ withItems: [ToolBarButtonItem: Selector]) -> UIToolbar {
         let toolbar: UIToolbar =
-            .init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: RHConstants.kToolBarHeight))
+            .init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: Constants.kToolBarHeight))
         toolbar.barStyle = .default
         toolbar.sizeToFit()
         var barButtonItems = [UIBarButtonItem]()

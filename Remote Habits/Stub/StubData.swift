@@ -9,9 +9,9 @@ class RemoteHabitsData {
     func getHabitHeaders() -> [HabitHeadersInfo] {
         let title = isLoggedIn ? userManager.userName : "Guest"
         let sectionfirst = HabitHeadersInfo(headerTitle: "\(title ?? "Your")'s Habits", titleFontSize: 34,
-                                            titleFontName: "SFProDisplay-Bold", ids: [1, 2, 3])
+                                            titleFontName: "SFProDisplay-Bold", rowType: [.hydration, .breaks, .focus])
         let sectionsecond = HabitHeadersInfo(headerTitle: "Details", titleFontSize: 17,
-                                             titleFontName: "SFProDisplay-Bold", ids: [4, 5])
+                                             titleFontName: "SFProDisplay-Bold", rowType: [.user, .workspaceInfo])
 
         return [sectionfirst, sectionsecond]
     }
@@ -85,7 +85,7 @@ class RemoteHabitsData {
         let sdkData = HabitsData(id: 6,
                                  icon: "phone",
                                  title: "SDK",
-                                 subtitle: RHConstants.mockSdkInfo,
+                                 subtitle: Constants.mockSdkInfo,
                                  type: ElementType.none,
                                  isEnabled: nil,
                                  frequency: nil,

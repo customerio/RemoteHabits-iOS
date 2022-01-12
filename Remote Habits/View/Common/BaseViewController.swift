@@ -5,7 +5,7 @@ enum ControllerSource {
     case habitdetail
 }
 
-class RHBaseViewController: UIViewController {
+class BaseViewController: UIViewController {
     var loaderView: UIView?
     let habitsDataManager = HabitDataManager()
     var trackerViewModel = DI.shared.trackerViewModel
@@ -18,14 +18,14 @@ class RHBaseViewController: UIViewController {
     // MARK: - Common Methods
 
     func addDefaultBackground() {
-        view.backgroundColor = RHColor.DefaultBackground
+        view.backgroundColor = Color.DefaultBackground
     }
 
     func addLoginBackground() {
         let imageBg =
             UIImageView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width,
                                       height: UIScreen.main.bounds.height))
-        imageBg.image = UIImage(named: RHConstants.kBackground)
+        imageBg.image = UIImage(named: Constants.kBackground)
         view.addSubview(imageBg)
         view.sendSubviewToBack(imageBg)
     }
@@ -47,7 +47,7 @@ class RHBaseViewController: UIViewController {
 
         // add image for loader background
         let imageBg = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
-        imageBg.image = UIImage(named: RHConstants.kBackground)
+        imageBg.image = UIImage(named: Constants.kBackground)
         imageBg.setCornerRadius(.radius40)
         imageBg.layer.masksToBounds = true
 
@@ -79,7 +79,7 @@ class RHBaseViewController: UIViewController {
             navigationItem.setHidesBackButton(hideBack, animated: true)
         } else {
             let btnLeftOnBar: UIButton = .init()
-            btnLeftOnBar.setImage(UIImage(named: RHConstants.kBack), for: .normal)
+            btnLeftOnBar.setImage(UIImage(named: Constants.kBack), for: .normal)
             btnLeftOnBar.addTarget(self, action: #selector(goBack), for: .touchUpInside)
             btnLeftOnBar.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
             let barButton = UIBarButtonItem(customView: btnLeftOnBar)
@@ -89,7 +89,7 @@ class RHBaseViewController: UIViewController {
             let headerView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
             let imageView = UIImageView(frame: CGRect(x: headerView.center.x - 24, y: 0, width: 24, height: 24))
             imageView.contentMode = .scaleAspectFit
-            let image = UIImage(named: RHConstants.kLogo)
+            let image = UIImage(named: Constants.kLogo)
             imageView.image = image
             headerView.addSubview(imageView)
             navigationItem.titleView = headerView
@@ -99,8 +99,8 @@ class RHBaseViewController: UIViewController {
         if #available(iOS 13.0, *) {
             let navBarAppearance = UINavigationBarAppearance()
             navBarAppearance.configureWithOpaqueBackground()
-            navBarAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? RHColor.LabelBlack]
-            navBarAppearance.backgroundColor = backgoundColor ?? RHColor.DefaultBackground
+            navBarAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? Color.LabelBlack]
+            navBarAppearance.backgroundColor = backgoundColor ?? Color.DefaultBackground
 
             navigationController?.navigationBar.standardAppearance = navBarAppearance
             navigationController?.navigationBar.compactAppearance = navBarAppearance
@@ -136,7 +136,7 @@ class RHBaseViewController: UIViewController {
             trackerViewModel.trackHabitActivity(withName: activity, forHabit: selectedHabit)
         }
         if source == .habitdetail {
-            NotificationCenter.default.post(name: Notification.Name(RHConstants.kHabitsUpdatedIdentifier), object: nil)
+            NotificationCenter.default.post(name: Notification.Name(Constants.kHabitsUpdatedIdentifier), object: nil)
         }
     }
     /*

@@ -50,22 +50,22 @@
 		463D95EF2758E2FE000FF356 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D95EB2758E2E6000FF356 /* StringExtensions.swift */; };
 		463D95FC2758E45A000FF356 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463D95F82758E45A000FF356 /* Main.storyboard */; };
 		463D95FD2758E45A000FF356 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463D95FA2758E45A000FF356 /* LaunchScreen.storyboard */; };
-		463D96012758E94A000FF356 /* RHFont+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D95FF2758E94A000FF356 /* RHFont+Color.swift */; };
-		463D96022758E94A000FF356 /* RHConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D96002758E94A000FF356 /* RHConstants.swift */; };
-		463D96052758E985000FF356 /* RHStubData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D96042758E985000FF356 /* RHStubData.swift */; };
+		463D96012758E94A000FF356 /* Font+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D95FF2758E94A000FF356 /* Font+Color.swift */; };
+		463D96022758E94A000FF356 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D96002758E94A000FF356 /* Constants.swift */; };
+		463D96052758E985000FF356 /* StubData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D96042758E985000FF356 /* StubData.swift */; };
 		463D960D2758E9C9000FF356 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 463D96072758E9C8000FF356 /* SF-Pro-Text-Semibold.otf */; };
 		463D960E2758E9C9000FF356 /* SFPRODISPLAYBOLD.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 463D96082758E9C8000FF356 /* SFPRODISPLAYBOLD.OTF */; };
 		463D960F2758E9C9000FF356 /* SFPRODISPLAYREGULAR.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 463D96092758E9C8000FF356 /* SFPRODISPLAYREGULAR.OTF */; };
 		463D96102758E9C9000FF356 /* SF-Pro-Text-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 463D960A2758E9C8000FF356 /* SF-Pro-Text-Bold.otf */; };
 		463D96112758E9C9000FF356 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 463D960B2758E9C9000FF356 /* SF-Pro-Text-Regular.otf */; };
 		463D96122758E9C9000FF356 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 463D960C2758E9C9000FF356 /* fontawesome-webfont.ttf */; };
-		463D96162758E9FD000FF356 /* RHBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D96152758E9FD000FF356 /* RHBaseViewController.swift */; };
-		463D96192758EA31000FF356 /* RHCustomisedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D96182758EA31000FF356 /* RHCustomisedTableView.swift */; };
-		463D961C2758EA54000FF356 /* RHHabitDashboardProtocolHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D961B2758EA54000FF356 /* RHHabitDashboardProtocolHandler.swift */; };
-		463D96212758EA71000FF356 /* RHHabitDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D961D2758EA71000FF356 /* RHHabitDetailViewController.swift */; };
-		463D96222758EA71000FF356 /* RHDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D961E2758EA71000FF356 /* RHDashboardViewController.swift */; };
-		463D96232758EA71000FF356 /* RHSwitchWorkspaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D961F2758EA71000FF356 /* RHSwitchWorkspaceViewController.swift */; };
-		463D96242758EA71000FF356 /* RHLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D96202758EA71000FF356 /* RHLoginViewController.swift */; };
+		463D96162758E9FD000FF356 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D96152758E9FD000FF356 /* BaseViewController.swift */; };
+		463D96192758EA31000FF356 /* CustomisedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D96182758EA31000FF356 /* CustomisedTableView.swift */; };
+		463D961C2758EA54000FF356 /* HabitDashboardProtocolHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D961B2758EA54000FF356 /* HabitDashboardProtocolHandler.swift */; };
+		463D96212758EA71000FF356 /* HabitDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D961D2758EA71000FF356 /* HabitDetailViewController.swift */; };
+		463D96222758EA71000FF356 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D961E2758EA71000FF356 /* DashboardViewController.swift */; };
+		463D96232758EA71000FF356 /* SwitchWorkspaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D961F2758EA71000FF356 /* SwitchWorkspaceViewController.swift */; };
+		463D96242758EA71000FF356 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D96202758EA71000FF356 /* LoginViewController.swift */; };
 		463D96292758EA9F000FF356 /* HabitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D96272758EA9F000FF356 /* HabitTableViewCell.swift */; };
 		463D962A2758EA9F000FF356 /* HabitTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 463D96282758EA9F000FF356 /* HabitTableViewCell.xib */; };
 		463D96322758EACD000FF356 /* HabitReminderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 463D962C2758EACC000FF356 /* HabitReminderTableViewCell.xib */; };
@@ -91,7 +91,7 @@
 		465F764E277497F7000A6C49 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F7637276A46F7000A6C49 /* DateExtensions.swift */; };
 		466FEADC2762693000997AE7 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466FEADB2762693000997AE7 /* TextFieldExtension.swift */; };
 		4698F3DE2760D10900EE48F3 /* SkyFloatingLabelTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 4698F3DD2760D10900EE48F3 /* SkyFloatingLabelTextField */; };
-		46A6CCBC277F3C3D007820B3 /* RHFont+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D95FF2758E94A000FF356 /* RHFont+Color.swift */; };
+		46A6CCBC277F3C3D007820B3 /* Font+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D95FF2758E94A000FF356 /* Font+Color.swift */; };
 		46FEC8D92758D34100A6A03F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FEC8CF2758D34100A6A03F /* AppDelegate.swift */; };
 		46FEC8DB2758D34100A6A03F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FEC8D12758D34100A6A03F /* SceneDelegate.swift */; };
 		46FEC8DE2758D4C500A6A03F /* Tracking in Frameworks */ = {isa = PBXBuildFile; productRef = 46FEC8DD2758D4C500A6A03F /* Tracking */; };
@@ -174,22 +174,22 @@
 		463D95F02758E390000FF356 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		463D95F92758E45A000FF356 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		463D95FB2758E45A000FF356 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		463D95FF2758E94A000FF356 /* RHFont+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RHFont+Color.swift"; sourceTree = "<group>"; };
-		463D96002758E94A000FF356 /* RHConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHConstants.swift; sourceTree = "<group>"; };
-		463D96042758E985000FF356 /* RHStubData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHStubData.swift; sourceTree = "<group>"; };
+		463D95FF2758E94A000FF356 /* Font+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Font+Color.swift"; sourceTree = "<group>"; };
+		463D96002758E94A000FF356 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		463D96042758E985000FF356 /* StubData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StubData.swift; sourceTree = "<group>"; };
 		463D96072758E9C8000FF356 /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
 		463D96082758E9C8000FF356 /* SFPRODISPLAYBOLD.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFPRODISPLAYBOLD.OTF; sourceTree = "<group>"; };
 		463D96092758E9C8000FF356 /* SFPRODISPLAYREGULAR.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = SFPRODISPLAYREGULAR.OTF; sourceTree = "<group>"; };
 		463D960A2758E9C8000FF356 /* SF-Pro-Text-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.otf"; sourceTree = "<group>"; };
 		463D960B2758E9C9000FF356 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		463D960C2758E9C9000FF356 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
-		463D96152758E9FD000FF356 /* RHBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHBaseViewController.swift; sourceTree = "<group>"; };
-		463D96182758EA31000FF356 /* RHCustomisedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHCustomisedTableView.swift; sourceTree = "<group>"; };
-		463D961B2758EA54000FF356 /* RHHabitDashboardProtocolHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHHabitDashboardProtocolHandler.swift; sourceTree = "<group>"; };
-		463D961D2758EA71000FF356 /* RHHabitDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHHabitDetailViewController.swift; sourceTree = "<group>"; };
-		463D961E2758EA71000FF356 /* RHDashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHDashboardViewController.swift; sourceTree = "<group>"; };
-		463D961F2758EA71000FF356 /* RHSwitchWorkspaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHSwitchWorkspaceViewController.swift; sourceTree = "<group>"; };
-		463D96202758EA71000FF356 /* RHLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RHLoginViewController.swift; sourceTree = "<group>"; };
+		463D96152758E9FD000FF356 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		463D96182758EA31000FF356 /* CustomisedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomisedTableView.swift; sourceTree = "<group>"; };
+		463D961B2758EA54000FF356 /* HabitDashboardProtocolHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitDashboardProtocolHandler.swift; sourceTree = "<group>"; };
+		463D961D2758EA71000FF356 /* HabitDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitDetailViewController.swift; sourceTree = "<group>"; };
+		463D961E2758EA71000FF356 /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		463D961F2758EA71000FF356 /* SwitchWorkspaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchWorkspaceViewController.swift; sourceTree = "<group>"; };
+		463D96202758EA71000FF356 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		463D96272758EA9F000FF356 /* HabitTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitTableViewCell.swift; sourceTree = "<group>"; };
 		463D96282758EA9F000FF356 /* HabitTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitTableViewCell.xib; sourceTree = "<group>"; };
 		463D962C2758EACC000FF356 /* HabitReminderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HabitReminderTableViewCell.xib; sourceTree = "<group>"; };
@@ -350,8 +350,8 @@
 		463D95FE2758E91F000FF356 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				463D96002758E94A000FF356 /* RHConstants.swift */,
-				463D95FF2758E94A000FF356 /* RHFont+Color.swift */,
+				463D96002758E94A000FF356 /* Constants.swift */,
+				463D95FF2758E94A000FF356 /* Font+Color.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -359,7 +359,7 @@
 		463D96032758E960000FF356 /* Stub */ = {
 			isa = PBXGroup;
 			children = (
-				463D96042758E985000FF356 /* RHStubData.swift */,
+				463D96042758E985000FF356 /* StubData.swift */,
 			);
 			path = Stub;
 			sourceTree = "<group>";
@@ -381,10 +381,10 @@
 			isa = PBXGroup;
 			children = (
 				463D96252758EA7F000FF356 /* Xib */,
-				463D961E2758EA71000FF356 /* RHDashboardViewController.swift */,
-				463D961D2758EA71000FF356 /* RHHabitDetailViewController.swift */,
-				463D96202758EA71000FF356 /* RHLoginViewController.swift */,
-				463D961F2758EA71000FF356 /* RHSwitchWorkspaceViewController.swift */,
+				463D961E2758EA71000FF356 /* DashboardViewController.swift */,
+				463D961D2758EA71000FF356 /* HabitDetailViewController.swift */,
+				463D96202758EA71000FF356 /* LoginViewController.swift */,
+				463D961F2758EA71000FF356 /* SwitchWorkspaceViewController.swift */,
 				463D961A2758EA3E000FF356 /* Handler */,
 				463D96172758EA07000FF356 /* Customisation */,
 				463D96142758E9EF000FF356 /* Common */,
@@ -395,7 +395,7 @@
 		463D96142758E9EF000FF356 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				463D96152758E9FD000FF356 /* RHBaseViewController.swift */,
+				463D96152758E9FD000FF356 /* BaseViewController.swift */,
 				462ABD4327886D4200CA4585 /* ToolbarUtil.swift */,
 			);
 			path = Common;
@@ -404,7 +404,7 @@
 		463D96172758EA07000FF356 /* Customisation */ = {
 			isa = PBXGroup;
 			children = (
-				463D96182758EA31000FF356 /* RHCustomisedTableView.swift */,
+				463D96182758EA31000FF356 /* CustomisedTableView.swift */,
 			);
 			path = Customisation;
 			sourceTree = "<group>";
@@ -412,7 +412,7 @@
 		463D961A2758EA3E000FF356 /* Handler */ = {
 			isa = PBXGroup;
 			children = (
-				463D961B2758EA54000FF356 /* RHHabitDashboardProtocolHandler.swift */,
+				463D961B2758EA54000FF356 /* HabitDashboardProtocolHandler.swift */,
 			);
 			path = Handler;
 			sourceTree = "<group>";
@@ -727,7 +727,7 @@
 			files = (
 				463D95B42758DB86000FF356 /* Autogenerated.swift in Sources */,
 				463D95B62758DB8B000FF356 /* AutoMockable.generated.swift in Sources */,
-				46A6CCBC277F3C3D007820B3 /* RHFont+Color.swift in Sources */,
+				46A6CCBC277F3C3D007820B3 /* Font+Color.swift in Sources */,
 				463D95B52758DB88000FF356 /* AutoLenses.generated.swift in Sources */,
 				463D95DC2758DE64000FF356 /* ProfileRepository.swift in Sources */,
 				463D95DB2758DE5F000FF356 /* UserManager.swift in Sources */,
@@ -759,29 +759,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				46FEC8D92758D34100A6A03F /* AppDelegate.swift in Sources */,
-				463D96192758EA31000FF356 /* RHCustomisedTableView.swift in Sources */,
-				463D96012758E94A000FF356 /* RHFont+Color.swift in Sources */,
+				463D96192758EA31000FF356 /* CustomisedTableView.swift in Sources */,
+				463D96012758E94A000FF356 /* Font+Color.swift in Sources */,
 				463D95E52758E282000FF356 /* Profile.swift in Sources */,
 				463D96292758EA9F000FF356 /* HabitTableViewCell.swift in Sources */,
 				46FEC8DB2758D34100A6A03F /* SceneDelegate.swift in Sources */,
 				465F764327730AF3000A6C49 /* DataManager.swift in Sources */,
-				463D96222758EA71000FF356 /* RHDashboardViewController.swift in Sources */,
+				463D96222758EA71000FF356 /* DashboardViewController.swift in Sources */,
 				463D95EC2758E2E6000FF356 /* ViewExtension.swift in Sources */,
 				465F76412770DAFB000A6C49 /* RemoteHabits.xcdatamodeld in Sources */,
-				463D961C2758EA54000FF356 /* RHHabitDashboardProtocolHandler.swift in Sources */,
-				463D96242758EA71000FF356 /* RHLoginViewController.swift in Sources */,
+				463D961C2758EA54000FF356 /* HabitDashboardProtocolHandler.swift in Sources */,
+				463D96242758EA71000FF356 /* LoginViewController.swift in Sources */,
 				463D95CD2758DD2B000FF356 /* CustomerIOErrorUtil.swift in Sources */,
 				462ABD4427886D4200CA4585 /* ToolbarUtil.swift in Sources */,
 				463D95D72758DD85000FF356 /* ProfileRepository.swift in Sources */,
-				463D96232758EA71000FF356 /* RHSwitchWorkspaceViewController.swift in Sources */,
+				463D96232758EA71000FF356 /* SwitchWorkspaceViewController.swift in Sources */,
 				466FEADC2762693000997AE7 /* TextFieldExtension.swift in Sources */,
 				463D95ED2758E2E6000FF356 /* StringExtensions.swift in Sources */,
 				463D95CE2758DD2B000FF356 /* UserDefaultKeys.swift in Sources */,
 				463D95B02758DB7D000FF356 /* Autogenerated.swift in Sources */,
 				463D95AF2758DB7D000FF356 /* AutoDependencyInjection.generated.swift in Sources */,
-				463D96022758E94A000FF356 /* RHConstants.swift in Sources */,
-				463D96052758E985000FF356 /* RHStubData.swift in Sources */,
-				463D96162758E9FD000FF356 /* RHBaseViewController.swift in Sources */,
+				463D96022758E94A000FF356 /* Constants.swift in Sources */,
+				463D96052758E985000FF356 /* StubData.swift in Sources */,
+				463D96162758E9FD000FF356 /* BaseViewController.swift in Sources */,
 				465F7638276A46F7000A6C49 /* DateExtensions.swift in Sources */,
 				465F764727732211000A6C49 /* Habits+CoreDataProperties.swift in Sources */,
 				463D96372758EACD000FF356 /* HabitReminderTableViewCell.swift in Sources */,
@@ -792,7 +792,7 @@
 				463D95B22758DB7D000FF356 /* DIDependencies.swift in Sources */,
 				465F763D276B5457000A6C49 /* Env.swift in Sources */,
 				463D95D02758DD2B000FF356 /* Logger.swift in Sources */,
-				463D96212758EA71000FF356 /* RHHabitDetailViewController.swift in Sources */,
+				463D96212758EA71000FF356 /* HabitDetailViewController.swift in Sources */,
 				465F764627732211000A6C49 /* Habits+CoreDataClass.swift in Sources */,
 				463D95DF2758E1E0000FF356 /* ProfileViewModel.swift in Sources */,
 				463D96352758EACD000FF356 /* HabitDetailToggleTableViewCell.swift in Sources */,

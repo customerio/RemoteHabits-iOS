@@ -11,7 +11,7 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet var mainCellView: UIView!
 
     var habitData: Habits?
-    var actionHandler: RHDashboardDetailTimeHandler?
+    var actionHandler: DashboardDetailTimeHandler?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -36,14 +36,14 @@ class HabitReminderTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     func setUpCellView() {
         mainCellView.setCornerRadius(.radius13)
-        mainCellView.backgroundColor = RHColor.PrimaryBackground
-        frequencyLabel.textColor = RHColor.LabelLightGray
-        toLabel.textColor = RHColor.LabelLightGray
-        fromLabel.textColor = RHColor.LabelLightGray
-        fromTimeText.backgroundColor = RHColor.MediumGray
-        toTimeText.backgroundColor = RHColor.MediumGray
-        fromTimeText.textColor = RHColor.LabelLightGray
-        toTimeText.textColor = RHColor.LabelLightGray
+        mainCellView.backgroundColor = Color.PrimaryBackground
+        frequencyLabel.textColor = Color.LabelLightGray
+        toLabel.textColor = Color.LabelLightGray
+        fromLabel.textColor = Color.LabelLightGray
+        fromTimeText.backgroundColor = Color.MediumGray
+        toTimeText.backgroundColor = Color.MediumGray
+        fromTimeText.textColor = Color.LabelLightGray
+        toTimeText.textColor = Color.LabelLightGray
         selectionStyle = .none
     }
 

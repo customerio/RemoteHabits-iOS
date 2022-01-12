@@ -1,9 +1,9 @@
 import SkyFloatingLabelTextField
 import UIKit
 
-class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate {
-    static func newInstance() -> RHSwitchWorkspaceViewController {
-        UIStoryboard.getViewController(identifier: RHConstants.kSwitchWorkspaceViewController)
+class SwitchWorkspaceViewController: BaseViewController, UITextFieldDelegate {
+    static func newInstance() -> SwitchWorkspaceViewController {
+        UIStoryboard.getViewController(identifier: Constants.kSwitchWorkspaceViewController)
     }
 
     // MARK: - --OUTLETS--
@@ -25,7 +25,7 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        configureNavigationBar(title: RHConstants.kCIO, hideBack: false, showLogo: false)
+        configureNavigationBar(title: Constants.kCIO, hideBack: false, showLogo: false)
         addDefaultBackground()
         setUpMainView()
         setUpWorkspaceButton()
@@ -37,20 +37,20 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
 
     func setUpMainView() {
         mainView.setCornerRadius(.radius13)
-        mainView.backgroundColor = RHColor.PrimaryBackground
+        mainView.backgroundColor = Color.PrimaryBackground
     }
 
     func setUpWorkspaceButton() {
         switchWorkspaceButton.isEnabled = false
-        switchWorkspaceButton.titleLabel?.font = RHFont.SFProTextSemiBoldMedium
-        switchWorkspaceButton.setTitleColor(RHColor.TextDisabled, for: .disabled)
+        switchWorkspaceButton.titleLabel?.font = Font.SFProTextSemiBoldMedium
+        switchWorkspaceButton.setTitleColor(Color.TextDisabled, for: .disabled)
         switchWorkspaceButton.setTitleColor(UIColor.white, for: .normal)
         switchWorkspaceButton.setCornerRadius(.radius24)
         workspaceButtonState()
     }
 
     func workspaceButtonState() {
-        switchWorkspaceButton.backgroundColor = switchWorkspaceButton.isEnabled ? RHColor.ButtonEnabled : RHColor
+        switchWorkspaceButton.backgroundColor = switchWorkspaceButton.isEnabled ? Color.ButtonEnabled : Color
             .ButtonDisabled
     }
 
@@ -62,12 +62,12 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
         let textFields = [siteIdInput, apiKeyInput]
         for field in textFields {
             field?.errorColor = UIColor.red
-            field?.tintColor = RHColor.LabelGray
-            field?.lineColor = RHColor.LineGray
-            field?.selectedTitleColor = RHColor.LabelLightGray
-            field?.selectedLineColor = RHColor.SelectedLineGray
-            field?.placeholderColor = RHColor.LabelLightGray
-            field?.textColor = RHColor.LabelBlack
+            field?.tintColor = Color.LabelGray
+            field?.lineColor = Color.LineGray
+            field?.selectedTitleColor = Color.LabelLightGray
+            field?.selectedLineColor = Color.SelectedLineGray
+            field?.placeholderColor = Color.LabelLightGray
+            field?.textColor = Color.LabelBlack
             field?.delegate = self
         }
     }
@@ -78,10 +78,10 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
         if let floatingLabelTextField = sender as? SkyFloatingLabelTextField {
             if let text = floatingLabelTextField.text {
                 if !validateInput(with: text) {
-                    let errorSuffix = floatingLabelTextField.placeholder ?? RHConstants.kValue
-                    floatingLabelTextField.errorMessage = "\(RHConstants.kInvalid) \(errorSuffix)"
+                    let errorSuffix = floatingLabelTextField.placeholder ?? Constants.kValue
+                    floatingLabelTextField.errorMessage = "\(Constants.kInvalid) \(errorSuffix)"
                 } else {
-                    floatingLabelTextField.errorMessage = RHConstants.kEmptyValue
+                    floatingLabelTextField.errorMessage = Constants.kEmptyValue
                 }
 
                 if validateInput(with: otherValue), validateInput(with: text) {
@@ -96,7 +96,7 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
     }
 
     func validateInput(with text: String) -> Bool {
-        text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) != RHConstants.kEmptyValue
+        text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) != Constants.kEmptyValue
     }
 
     /*
@@ -111,7 +111,7 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
     func routeToLogin() {
         if let navController = parent as? UINavigationController,
            let presenter = navController.presentingViewController as? UINavigationController {
-            presenter.setViewControllers([RHLoginViewController.newInstance()], animated: true)
+            presenter.setViewControllers([LoginViewController.newInstance()], animated: true)
             dismiss(animated: true, completion: nil)
         }
     }
@@ -124,11 +124,11 @@ class RHSwitchWorkspaceViewController: RHBaseViewController, UITextFieldDelegate
     // MARK: - --ACTIONS--
 
     @IBAction func siteIdValueChanged(_ sender: Any) {
-        didValueChange(sender, otherValue: apiKeyInput.text ?? RHConstants.kEmptyValue)
+        didValueChange(sender, otherValue: apiKeyInput.text ?? Constants.kEmptyValue)
     }
 
     @IBAction func apiKeyValueChanged(_ sender: Any) {
-        didValueChange(sender, otherValue: siteIdInput.text ?? RHConstants.kEmptyValue)
+        didValueChange(sender, otherValue: siteIdInput.text ?? Constants.kEmptyValue)
     }
 
     @IBAction func switchWorkspaceButtonTapped(_ sender: UIButton) {

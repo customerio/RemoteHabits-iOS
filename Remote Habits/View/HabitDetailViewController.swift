@@ -1,13 +1,13 @@
 import UIKit
 
-class RHHabitDetailViewController: RHBaseViewController {
-    static func newInstance() -> RHHabitDetailViewController {
-        UIStoryboard.getViewController(identifier: RHConstants.kHabitDetailViewController)
+class HabitDetailViewController: BaseViewController {
+    static func newInstance() -> HabitDetailViewController {
+        UIStoryboard.getViewController(identifier: Constants.kHabitDetailViewController)
     }
 
     // MARK: - --OUTLETS--
 
-    @IBOutlet var habitDetailTableView: RHCustomisedTableView!
+    @IBOutlet var habitDetailTableView: CustomisedTableView!
     @IBOutlet var headerHeightConstraint: NSLayoutConstraint!
     @IBOutlet var reminderLabel: UILabel!
     @IBOutlet var habitLogo: UIImageView!
@@ -35,12 +35,12 @@ class RHHabitDetailViewController: RHBaseViewController {
         habitDetailTableView.dataSource = self
         habitDetailTableView.delegate = self
 
-        habitDetailTableView.register(UINib(nibName: RHConstants.kHabitReminderTableViewCell, bundle: nil),
-                                      forCellReuseIdentifier: RHConstants.kHabitReminderTableViewCell)
-        habitDetailTableView.register(UINib(nibName: RHConstants.kHabitDetailToggleTableViewCell, bundle: nil),
-                                      forCellReuseIdentifier: RHConstants.kHabitDetailToggleTableViewCell)
-        habitDetailTableView.register(UINib(nibName: RHConstants.kHabitAddInfoTableViewCell, bundle: nil),
-                                      forCellReuseIdentifier: RHConstants.kHabitAddInfoTableViewCell)
+        habitDetailTableView.register(UINib(nibName: Constants.kHabitReminderTableViewCell, bundle: nil),
+                                      forCellReuseIdentifier: Constants.kHabitReminderTableViewCell)
+        habitDetailTableView.register(UINib(nibName: Constants.kHabitDetailToggleTableViewCell, bundle: nil),
+                                      forCellReuseIdentifier: Constants.kHabitDetailToggleTableViewCell)
+        habitDetailTableView.register(UINib(nibName: Constants.kHabitAddInfoTableViewCell, bundle: nil),
+                                      forCellReuseIdentifier: Constants.kHabitAddInfoTableViewCell)
 
         habitDetailTableView.setAutomaticRowHeight(height: .height100)
         habitDetailTableView.setContentOffset(.zero, animated: false)
@@ -48,7 +48,7 @@ class RHHabitDetailViewController: RHBaseViewController {
 
     func setUpHeader() {
         reminderLabel.text = "Set reminder to \(habitDetailData?.title ?? "good remote habits")"
-        reminderLabel.textColor = RHColor.LabelLightGray
+        reminderLabel.textColor = Color.LabelLightGray
         if let logo = habitDetailData?.icon {
             habitLogo.image = UIImage(named: logo)
         }
@@ -57,14 +57,14 @@ class RHHabitDetailViewController: RHBaseViewController {
 
 // MARK: - --UITABLEVIEWDATASOURCE--
 
-extension RHHabitDetailViewController: UITableViewDataSource {
+extension HabitDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         3
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 || indexPath.row == 3 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: RHConstants.kHabitDetailToggleTableViewCell,
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.kHabitDetailToggleTableViewCell,
                                                            for: indexPath) as? HabitDetailToggleTableViewCell
             else {
                 return UITableViewCell()
@@ -74,7 +74,7 @@ extension RHHabitDetailViewController: UITableViewDataSource {
             cell.fillHabitsData()
             return cell
         } else if indexPath.row == 1 || indexPath.row == 4 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: RHConstants.kHabitReminderTableViewCell,
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.kHabitReminderTableViewCell,
                                                            for: indexPath) as? HabitReminderTableViewCell
             else {
                 return UITableViewCell()
@@ -84,7 +84,7 @@ extension RHHabitDetailViewController: UITableViewDataSource {
             cell.fillHabitDetailData()
             return cell
         } else if indexPath.row == 2 || indexPath.row == 5 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: RHConstants.kHabitAddInfoTableViewCell,
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.kHabitAddInfoTableViewCell,
                                                            for: indexPath) as? HabitAddInfoTableViewCell
             else {
                 return UITableViewCell()
@@ -98,11 +98,11 @@ extension RHHabitDetailViewController: UITableViewDataSource {
 
 // MARK: - --UITABLEVIEWDELEGATE--
 
-extension RHHabitDetailViewController: UITableViewDelegate {}
+extension HabitDetailViewController: UITableViewDelegate {}
 
 // MARK: - --UISCROLLVIEWDELEGATE--
 
-extension RHHabitDetailViewController: UIScrollViewDelegate {
+extension HabitDetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY: CGFloat = scrollView.contentOffset.y
         guard let headerViewHeightConstraint = headerHeightConstraint else { return }
@@ -119,9 +119,9 @@ extension RHHabitDetailViewController: UIScrollViewDelegate {
     }
 }
 
-extension RHHabitDetailViewController: RHDashboardDetailActionHandler {
+extension HabitDetailViewController: DashboardDetailActionHandler {
     func toggleHabit(toValue isEnabled: Bool) {
-        let activity = isEnabled ? RHConstants.kHabitEnabled : RHConstants.kHabitDisabled
+        let activity = isEnabled ? Constants.kHabitEnabled : Constants.kHabitDisabled
         let selectedHabit = SelectedHabitData(title: habitDetailData?.title,
                                               frequency: Int(habitDetailData?.frequency ?? 0),
                                               startTime: habitDetailData?.startTime?
@@ -134,7 +134,7 @@ extension RHHabitDetailViewController: RHDashboardDetailActionHandler {
     }
 }
 
-extension RHHabitDetailViewController: RHDashboardDetailTimeHandler {
+extension HabitDetailViewController: DashboardDetailTimeHandler {
     func updateTime(with selectedHabit: SelectedHabitData) {
         updateHabit(forActivity: nil, selectedHabit: selectedHabit, andSource: .habitdetail)
     }

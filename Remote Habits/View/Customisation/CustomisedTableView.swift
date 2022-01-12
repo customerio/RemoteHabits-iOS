@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class RHCustomisedTableView: UITableView {
+class CustomisedTableView: UITableView {
     override var adjustedContentInset: UIEdgeInsets {
         if frame.height > contentSize.height {
             let heightBottom =

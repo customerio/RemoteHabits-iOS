@@ -1,16 +1,16 @@
 import Foundation
 
-protocol RHDashboardActionHandler: AnyObject {
+protocol DashboardActionHandler: AnyObject {
     func logoutUser()
     func loginUser()
     func switchWorkspace()
     func toggleHabit(toValue isEnabled: Bool, habitData: SelectedHabitData)
 }
 
-protocol RHDashboardDetailActionHandler {
+protocol DashboardDetailActionHandler {
     func toggleHabit(toValue isEnabled: Bool)
 }
 
-protocol RHDashboardDetailTimeHandler {
+protocol DashboardDetailTimeHandler {
     func updateTime(with: SelectedHabitData)
 }
