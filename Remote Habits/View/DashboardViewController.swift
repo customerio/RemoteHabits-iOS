@@ -39,6 +39,10 @@ class DashboardViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(reloadHabitsData(notification:)),
                                                name: Notification.Name(Constants.kHabitsUpdatedIdentifier),
                                                object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleSwitchWorkspace(notification:)),
+                                               name: Notification.Name(Constants.kSwitchWorkspaceNotificationIdentifier),
+                                               object: nil)
     }
 
     @objc func reloadHabitsData(notification: Notification) {
@@ -52,15 +56,24 @@ class DashboardViewController: BaseViewController {
         dashboardTableView.delegate = self
         dashboardTableView.dataSource = self
     }
+    
+    @objc func handleSwitchWorkspace(notification: Notification) {
+        guard let site_id = notification.userInfo?["site_id"] as? String, let api_key = notification.userInfo?["api_key"] as? String else{
+            route(to: Constants.kSwitchWorkspaceViewController)
+            return
+        }
+        let workspaceData = WorkspaceData(apiKey: api_key, siteId: site_id)
+        route(to: Constants.kSwitchWorkspaceViewController, withData: workspaceData)
+    }
 
     // MARK: - --NAVIGATION--
 
-    func route(to controller: String, withData: Habits? = nil) {
+    func route(to controller: String, withData: Any? = nil) {
         switch controller {
         case Constants.kHabitDetailViewController:
-            navigateToDashboardDetail(withData: withData)
+            navigateToDashboardDetail(withData: withData as? Habits)
         case Constants.kSwitchWorkspaceViewController:
-            navigateToWorkspace()
+            navigateToWorkspace(withData: withData as? WorkspaceData)
         default:
             break
         }
@@ -76,10 +89,11 @@ class DashboardViewController: BaseViewController {
         }
     }
 
-    func navigateToWorkspace() {
+    func navigateToWorkspace(withData workspaceData : WorkspaceData?) {
         if let viewController = UIStoryboard(name: Constants.kStoryboardMain, bundle: nil)
             .instantiateViewController(withIdentifier: Constants
                 .kSwitchWorkspaceViewController) as? SwitchWorkspaceViewController {
+            viewController.workspaceData = workspaceData
             let navigation = UINavigationController(rootViewController: viewController)
             present(navigation, animated: true, completion: nil)
         }

@@ -18,6 +18,7 @@ class SwitchWorkspaceViewController: BaseViewController, UITextFieldDelegate {
 
     var profileViewModel = DI.shared.profileViewModel
     var userManager = DI.shared.userManager
+    var workspaceData : WorkspaceData?
 
     // MARK: - --LIFECYCLE METHODS--
 
@@ -69,7 +70,17 @@ class SwitchWorkspaceViewController: BaseViewController, UITextFieldDelegate {
             field?.placeholderColor = Color.LabelLightGray
             field?.textColor = Color.LabelBlack
             field?.delegate = self
+            
+            switch(field) {
+            case siteIdInput :
+                field?.text = workspaceData?.siteId ?? ""
+            case apiKeyInput :
+                field?.text = workspaceData?.apiKey ?? ""
+            default:
+                break
+            }
         }
+        validateInputsAndHandleWorkspaceButton(with: siteIdInput.text ?? "", andApiKey: apiKeyInput.text ?? "")
     }
 
     func didValueChange(_ sender: Any, otherValue: String) {
@@ -83,16 +94,18 @@ class SwitchWorkspaceViewController: BaseViewController, UITextFieldDelegate {
                 } else {
                     floatingLabelTextField.errorMessage = Constants.kEmptyValue
                 }
-
-                if validateInput(with: otherValue), validateInput(with: text) {
-                    switchWorkspaceButton.isEnabled = true
-                } else {
-                    switchWorkspaceButton.isEnabled = false
-                }
-
-                workspaceButtonState()
+                validateInputsAndHandleWorkspaceButton(with: text, andApiKey: otherValue)
             }
         }
+    }
+    
+    func validateInputsAndHandleWorkspaceButton(with textValue : String, andApiKey otherTextValue : String) {
+        if validateInput(with: textValue), validateInput(with: otherTextValue) {
+            switchWorkspaceButton.isEnabled = true
+        } else {
+            switchWorkspaceButton.isEnabled = false
+        }
+        workspaceButtonState()
     }
 
     func validateInput(with text: String) -> Bool {
