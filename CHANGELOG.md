@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.13.0...1.14.0) (2022-01-14)
+
+
+### Features
+
+* add support for screen tracking in remote habits ([#56](https://github.com/customerio/RemoteHabits-iOS/issues/56)) ([9969563](https://github.com/customerio/RemoteHabits-iOS/commit/9969563ca44bbeba526959c6ad8a842f834faf3b))
+
 # [1.13.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.12.0...1.13.0) (2022-01-12)
 
 
