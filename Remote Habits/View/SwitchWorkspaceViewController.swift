@@ -18,7 +18,7 @@ class SwitchWorkspaceViewController: BaseViewController, UITextFieldDelegate {
 
     var profileViewModel = DI.shared.profileViewModel
     var userManager = DI.shared.userManager
-    var workspaceData : WorkspaceData?
+    var workspaceData: WorkspaceData?
 
     // MARK: - --LIFECYCLE METHODS--
 
@@ -70,11 +70,11 @@ class SwitchWorkspaceViewController: BaseViewController, UITextFieldDelegate {
             field?.placeholderColor = Color.LabelLightGray
             field?.textColor = Color.LabelBlack
             field?.delegate = self
-            
-            switch(field) {
-            case siteIdInput :
+
+            switch field {
+            case siteIdInput:
                 field?.text = workspaceData?.siteId ?? ""
-            case apiKeyInput :
+            case apiKeyInput:
                 field?.text = workspaceData?.apiKey ?? ""
             default:
                 break
@@ -98,8 +98,8 @@ class SwitchWorkspaceViewController: BaseViewController, UITextFieldDelegate {
             }
         }
     }
-    
-    func validateInputsAndHandleWorkspaceButton(with textValue : String, andApiKey otherTextValue : String) {
+
+    func validateInputsAndHandleWorkspaceButton(with textValue: String, andApiKey otherTextValue: String) {
         if validateInput(with: textValue), validateInput(with: otherTextValue) {
             switchWorkspaceButton.isEnabled = true
         } else {

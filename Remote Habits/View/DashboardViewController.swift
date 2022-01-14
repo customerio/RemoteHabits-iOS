@@ -39,9 +39,10 @@ class DashboardViewController: BaseViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(reloadHabitsData(notification:)),
                                                name: Notification.Name(Constants.kHabitsUpdatedIdentifier),
                                                object: nil)
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(handleSwitchWorkspace(notification:)),
-                                               name: Notification.Name(Constants.kSwitchWorkspaceNotificationIdentifier),
+                                               name: Notification
+                                                   .Name(Constants.kSwitchWorkspaceNotificationIdentifier),
                                                object: nil)
     }
 
@@ -56,13 +57,15 @@ class DashboardViewController: BaseViewController {
         dashboardTableView.delegate = self
         dashboardTableView.dataSource = self
     }
-    
+
     @objc func handleSwitchWorkspace(notification: Notification) {
-        guard let site_id = notification.userInfo?["site_id"] as? String, let api_key = notification.userInfo?["api_key"] as? String else{
+        guard let siteId = notification.userInfo?["site_id"] as? String,
+              let apiKey = notification.userInfo?["api_key"] as? String
+        else {
             route(to: Constants.kSwitchWorkspaceViewController)
             return
         }
-        let workspaceData = WorkspaceData(apiKey: api_key, siteId: site_id)
+        let workspaceData = WorkspaceData(apiKey: siteId, siteId: apiKey)
         route(to: Constants.kSwitchWorkspaceViewController, withData: workspaceData)
     }
 
@@ -89,7 +92,7 @@ class DashboardViewController: BaseViewController {
         }
     }
 
-    func navigateToWorkspace(withData workspaceData : WorkspaceData?) {
+    func navigateToWorkspace(withData workspaceData: WorkspaceData?) {
         if let viewController = UIStoryboard(name: Constants.kStoryboardMain, bundle: nil)
             .instantiateViewController(withIdentifier: Constants
                 .kSwitchWorkspaceViewController) as? SwitchWorkspaceViewController {

@@ -48,11 +48,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-    
+
     // Deep linking
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-        var siteId : String = ""
-        var apikey : String = ""
+        var siteId = ""
+        var apikey = ""
         for context in URLContexts {
             let url = context.url
             if url.host == "switch_workspace" {
@@ -60,21 +60,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     let splitQuery = query.split(separator: "&")
                     for credentials in splitQuery {
                         if credentials.contains("site_id") {
-                            let site_id = credentials.replacingOccurrences(of: "site_id=", with: "")
-                            siteId = site_id
-                        }
-                        else if credentials.contains("apikey") {
-                            let api_key = credentials.replacingOccurrences(of: "apikey=", with: "")
-                            apikey = api_key
+                            let siteIdValue = credentials.replacingOccurrences(of: "site_id=", with: "")
+                            siteId = siteIdValue
+                        } else if credentials.contains("apikey") {
+                            let apiKeyValue = credentials.replacingOccurrences(of: "apikey=", with: "")
+                            apikey = apiKeyValue
                         }
                     }
                 }
             }
         }
-        let userInfo = ["site_id" : siteId, "api_key" : apikey]
-        NotificationCenter.default.post(name: Notification.Name(Constants.kSwitchWorkspaceNotificationIdentifier), object: nil, userInfo: userInfo)
+        let userInfo = ["site_id": siteId, "api_key": apikey]
+        NotificationCenter.default.post(name: Notification.Name(Constants.kSwitchWorkspaceNotificationIdentifier),
+                                        object: nil, userInfo: userInfo)
     }
-    
+
     func setVisibleWindow() {
         // If previous user is not a guest login and credentials were used to login into the app
         if userManager.isLoggedIn {
