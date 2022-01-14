@@ -93,7 +93,7 @@ class DashboardViewController: BaseViewController {
     }
 
     func navigateToWorkspace(withData workspaceData: WorkspaceData?) {
-        if let presented = self.presentedViewController {
+        if let presented = presentedViewController {
             presented.dismiss(animated: false)
         }
         if let viewController = UIStoryboard(name: Constants.kStoryboardMain, bundle: nil)
