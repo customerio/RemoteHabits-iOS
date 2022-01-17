@@ -51,8 +51,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     // Deep linking
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-        var siteId = ""
-        var apikey = ""
+        var siteId: String?
+        var apikey: String?
         for context in URLContexts {
             let url = context.url
             if url.host == "switch_workspace" {
@@ -62,17 +62,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                         if credentials.contains("site_id") {
                             let siteIdValue = credentials.replacingOccurrences(of: "site_id=", with: "")
                             siteId = siteIdValue
-                        } else if credentials.contains("apikey") {
-                            let apiKeyValue = credentials.replacingOccurrences(of: "apikey=", with: "")
+                        } else if credentials.contains("api_key") {
+                            let apiKeyValue = credentials.replacingOccurrences(of: "api_key=", with: "")
                             apikey = apiKeyValue
                         }
                     }
                 }
             }
         }
+
+        if siteId == nil || apikey == nil {
+            siteId = nil
+            apikey = nil
+        }
         let userInfo = ["site_id": siteId, "api_key": apikey]
-        NotificationCenter.default.post(name: Notification.Name(Constants.kSwitchWorkspaceNotificationIdentifier),
-                                        object: nil, userInfo: userInfo)
+        let identifier = userManager.isLoggedIn ? Constants.kSwitchWorkspaceNotificationIdentifier : Constants
+            .kSwitchWorkspacePreLoginIdentifier
+        NotificationCenter.default
+            .post(name: Notification.Name(identifier),
+                  object: nil, userInfo: userInfo as [AnyHashable: Any])
     }
 
     func setVisibleWindow() {

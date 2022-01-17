@@ -29,6 +29,10 @@ extension String {
         let date = dateFormatter.date(from: self)
         return date
     }
+
+    func isEmpty() -> Bool {
+        trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == ""
+    }
 }
 
 typealias EmailAddress = String

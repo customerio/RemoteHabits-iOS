@@ -19,6 +19,7 @@ class SwitchWorkspaceViewController: BaseViewController, UITextFieldDelegate {
     var profileViewModel = DI.shared.profileViewModel
     var userManager = DI.shared.userManager
     var workspaceData: WorkspaceData?
+    var switchWorkspaceRouter: SwitchWorkspaceRouting?
 
     // MARK: - --LIFECYCLE METHODS--
 
@@ -27,6 +28,7 @@ class SwitchWorkspaceViewController: BaseViewController, UITextFieldDelegate {
 
         // Do any additional setup after loading the view.
         configureNavigationBar(title: Constants.kCIO, hideBack: false, showLogo: false)
+        configureSwitchWorkspaceRouter()
         addDefaultBackground()
         setUpMainView()
         setUpWorkspaceButton()
@@ -39,6 +41,12 @@ class SwitchWorkspaceViewController: BaseViewController, UITextFieldDelegate {
     func setUpMainView() {
         mainView.setCornerRadius(.radius13)
         mainView.backgroundColor = Color.PrimaryBackground
+    }
+
+    func configureSwitchWorkspaceRouter() {
+        let router = SwitchWorkspaceRouter()
+        switchWorkspaceRouter = router
+        router.switchWorkspaceViewController = self
     }
 
     func setUpWorkspaceButton() {
@@ -112,6 +120,11 @@ class SwitchWorkspaceViewController: BaseViewController, UITextFieldDelegate {
         text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) != Constants.kEmptyValue
     }
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return false
+    }
+
     /*
      // MARK: - --NAVIGATION--
 
@@ -121,18 +134,6 @@ class SwitchWorkspaceViewController: BaseViewController, UITextFieldDelegate {
          // Pass the selected object to the new view controller.
      }
      */
-    func routeToLogin() {
-        if let navController = parent as? UINavigationController,
-           let presenter = navController.presentingViewController as? UINavigationController {
-            presenter.setViewControllers([LoginViewController.newInstance()], animated: true)
-            dismiss(animated: true, completion: nil)
-        }
-    }
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        view.endEditing(true)
-        return false
-    }
 
     // MARK: - --ACTIONS--
 
@@ -155,7 +156,7 @@ class SwitchWorkspaceViewController: BaseViewController, UITextFieldDelegate {
             if result {
                 self.profileViewModel.logoutUser()
                 self.updateWorkspaceInfo(with: siteId, andApiKey: apikey)
-                self.routeToLogin()
+                self.switchWorkspaceRouter?.routeToLogin()
             } else {
                 self.errorLabel.isHidden = false
             }

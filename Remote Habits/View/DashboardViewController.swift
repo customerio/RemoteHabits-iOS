@@ -14,6 +14,7 @@ class DashboardViewController: BaseViewController {
     let remoteHabitsData = RemoteHabitsData()
     var dashboardHeaders: [HabitHeadersInfo] = .init()
     var isSourceLogin: Bool = false
+    var dashboardRouter: DashboardRouting?
     var profileViewModel = DI.shared.profileViewModel
 
     // MARK: - --LIFECYCLE METHODS--
@@ -22,6 +23,7 @@ class DashboardViewController: BaseViewController {
         super.viewDidLoad()
 
         dashboardHeaders = remoteHabitsData.getHabitHeaders()
+        configureDashboardRouter()
         configureNavigationBar(title: Constants.kEmptyValue, hideBack: true, showLogo: true)
         addNotifierObserver()
         addDefaultBackground()
@@ -50,6 +52,12 @@ class DashboardViewController: BaseViewController {
         dashboardTableView.reloadData()
     }
 
+    func configureDashboardRouter() {
+        let router = DashboardRouter()
+        dashboardRouter = router
+        router.dashboardViewController = self
+    }
+
     func setupDashboardTableView() {
         dashboardTableView.register(UINib(nibName: Constants.kHabitTableViewCell, bundle: nil),
                                     forCellReuseIdentifier: Constants.kHabitTableViewCell)
@@ -62,48 +70,14 @@ class DashboardViewController: BaseViewController {
         guard let siteId = notification.userInfo?["site_id"] as? String,
               let apiKey = notification.userInfo?["api_key"] as? String
         else {
-            route(to: Constants.kSwitchWorkspaceViewController)
+            dashboardRouter?.routeToSwitchWorkspace(withData: nil)
             return
         }
         let workspaceData = WorkspaceData(apiKey: siteId, siteId: apiKey)
-        route(to: Constants.kSwitchWorkspaceViewController, withData: workspaceData)
+        dashboardRouter?.routeToSwitchWorkspace(withData: workspaceData)
     }
 
     // MARK: - --NAVIGATION--
-
-    func route(to controller: String, withData: Any? = nil) {
-        switch controller {
-        case Constants.kHabitDetailViewController:
-            navigateToDashboardDetail(withData: withData as? Habits)
-        case Constants.kSwitchWorkspaceViewController:
-            navigateToWorkspace(withData: withData as? WorkspaceData)
-        default:
-            break
-        }
-    }
-
-    func navigateToDashboardDetail(withData: Habits?) {
-        if let viewController = UIStoryboard(name: Constants.kStoryboardMain, bundle: nil)
-            .instantiateViewController(withIdentifier: Constants
-                .kHabitDetailViewController) as? HabitDetailViewController, let habitData = withData {
-            viewController.habitDetailData = habitData
-            let navigation = UINavigationController(rootViewController: viewController)
-            present(navigation, animated: true, completion: nil)
-        }
-    }
-
-    func navigateToWorkspace(withData workspaceData: WorkspaceData?) {
-        if let presented = presentedViewController {
-            presented.dismiss(animated: false)
-        }
-        if let viewController = UIStoryboard(name: Constants.kStoryboardMain, bundle: nil)
-            .instantiateViewController(withIdentifier: Constants
-                .kSwitchWorkspaceViewController) as? SwitchWorkspaceViewController {
-            viewController.workspaceData = workspaceData
-            let navigation = UINavigationController(rootViewController: viewController)
-            present(navigation, animated: true, completion: nil)
-        }
-    }
 }
 
 // MARK: - --UITABLEVIEWDELEGATE--
@@ -148,7 +122,7 @@ extension DashboardViewController: UITableViewDelegate {
                                               id: Int(habitData.id),
                                               isEnabled: habitData.isEnabled)
         updateHabit(forActivity: Constants.kHabitClicked, selectedHabit: selectedHabit, andSource: .habitdashboard)
-        route(to: Constants.kHabitDetailViewController, withData: habitData)
+        dashboardRouter?.routeToDashboardDetail(withData: habitData)
     }
 }
 
@@ -191,17 +165,18 @@ extension DashboardViewController: DashboardActionHandler {
     func logoutUser() {
         profileViewModel.logoutUser()
         if isSourceLogin {
-            navigationController?.popToRootViewController(animated: true)
+            dashboardRouter?.routeToLogin()
         } else {
-            navigationController?.setViewControllers([LoginViewController.newInstance()], animated: true)
+            dashboardRouter?.routeSetToLogin()
         }
     }
 
     func loginUser() {
-        navigationController?.popToRootViewController(animated: true)
+        // This will logout the existing guest profile and take the user back to login screen
+        logoutUser()
     }
 
     func switchWorkspace() {
-        route(to: Constants.kSwitchWorkspaceViewController)
+        dashboardRouter?.routeToSwitchWorkspace(withData: nil)
     }
 }

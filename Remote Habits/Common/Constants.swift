@@ -11,6 +11,7 @@ struct Constants {
     static let kInvalid = "Invalid"
     static let kHabitsUpdatedIdentifier = "HabitUpdatedIdentifier"
     static let kSwitchWorkspaceNotificationIdentifier = "SwitchWorkspaceNotificationIdentifier"
+    static let kSwitchWorkspacePreLoginIdentifier = "SwitchWorkspacePreLoginIdentifier"
 
     // Storyboard / Xib
     static let kStoryboardMain = "Main"
