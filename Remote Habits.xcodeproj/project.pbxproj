@@ -1241,8 +1241,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/customerio/customerio-ios/";
 			requirement = {
-				kind = exactVersion;
-				version = "1.0.0-beta.2";
+				branch = "levi/fix-active-workspaces";
+				kind = branch;
 			};
 		};
 		F7E9FABA26E7C564003F4187 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
