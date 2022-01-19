@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.14.0...1.15.0) (2022-01-19)
+
+
+### Features
+
+* support deep linking for switch workspace in remote habits app ([#58](https://github.com/customerio/RemoteHabits-iOS/issues/58)) ([22bdecd](https://github.com/customerio/RemoteHabits-iOS/commit/22bdecdfb7f82665943e699dd51c3870e23cd914))
+
 # [1.14.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.13.0...1.14.0) (2022-01-14)
 
 
