@@ -1241,7 +1241,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/customerio/customerio-ios/";
 			requirement = {
-				branch = "levi/fix-active-workspaces";
+				branch = "levi/logs-screenview";
 				kind = branch;
 			};
 		};
