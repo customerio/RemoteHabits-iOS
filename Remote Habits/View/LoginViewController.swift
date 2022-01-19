@@ -20,6 +20,7 @@ class LoginViewController: BaseViewController {
     var userManager = DI.shared.userManager
     var textFields: [SkyFloatingLabelTextFieldWithIcon] = []
     var profileViewModel = DI.shared.profileViewModel
+    var loginRouter: LoginRouting?
     var loggedInState: ProfileViewModel.LoggedInProfileState {
         profileViewModel.loggedInProfileState
     }
@@ -30,6 +31,8 @@ class LoginViewController: BaseViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
+        configureLoginRouter()
+        addNotifierObserver()
         addLoginBackground()
         textFields = [userNameInput, emailInput]
         setUpTextFields()
@@ -48,7 +51,35 @@ class LoginViewController: BaseViewController {
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
     // MARK: - --FUNCTIONS--
+
+    func addNotifierObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleSwitchWorkspace(notification:)),
+                                               name: Notification
+                                                   .Name(Constants.kSwitchWorkspacePreLoginIdentifier),
+                                               object: nil)
+    }
+
+    @objc func handleSwitchWorkspace(notification: Notification) {
+        guard let siteId = notification.userInfo?["site_id"] as? String,
+              let apiKey = notification.userInfo?["api_key"] as? String
+        else {
+            loginRouter?.routeToWorkspace(withData: nil)
+            return
+        }
+        let workspaceData = WorkspaceData(apiKey: apiKey, siteId: siteId)
+        loginRouter?.routeToWorkspace(withData: workspaceData)
+    }
+
+    func configureLoginRouter() {
+        let router = LoginRouter()
+        loginRouter = router
+        router.loginViewController = self
+    }
 
     func setupButtons() {
         // Buttons
@@ -118,9 +149,7 @@ class LoginViewController: BaseViewController {
         emailInput.text = Constants.kEmptyValue
         loginButton.isEnabled = false
         loginButtonState()
-        let viewController = DashboardViewController.newInstance()
-        viewController.isSourceLogin = true
-        navigationController?.pushViewController(viewController, animated: true)
+        loginRouter?.routeToDashboard()
     }
 
     func populateInitialHabitData() {

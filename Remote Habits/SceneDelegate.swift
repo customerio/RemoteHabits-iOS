@@ -2,8 +2,7 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
-    let userManager = DI.shared.userManager
-
+    var userManager = DI.shared.userManager
     func scene(
         _ scene: UIScene,
         willConnectTo session: UISceneSession,
@@ -18,17 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         window = UIWindow(windowScene: windowScene)
-
-        // If previous user is not a guest login and credentials were used to login into the app
-        if userManager.isLoggedIn {
-            let navigationController = UINavigationController(rootViewController: DashboardViewController
-                .newInstance())
-            window?.rootViewController = navigationController
-        } else {
-            let navigationController = UINavigationController(rootViewController: LoginViewController.newInstance())
-            window?.rootViewController = navigationController
-        }
-        window?.makeKeyAndVisible()
+        setVisibleWindow()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -58,5 +47,52 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+    }
+
+    // Deep linking
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        var siteId: String?
+        var apikey: String?
+        for context in URLContexts {
+            let url = context.url
+            if url.host == "switch_workspace" {
+                if let query = url.query {
+                    let splitQuery = query.split(separator: "&")
+                    for credentials in splitQuery {
+                        if credentials.contains("site_id") {
+                            let siteIdValue = credentials.replacingOccurrences(of: "site_id=", with: "")
+                            siteId = siteIdValue
+                        } else if credentials.contains("api_key") {
+                            let apiKeyValue = credentials.replacingOccurrences(of: "api_key=", with: "")
+                            apikey = apiKeyValue
+                        }
+                    }
+                }
+            }
+        }
+
+        if siteId == nil || apikey == nil {
+            siteId = nil
+            apikey = nil
+        }
+        let userInfo = ["site_id": siteId, "api_key": apikey]
+        let identifier = userManager.isLoggedIn ? Constants.kSwitchWorkspaceNotificationIdentifier : Constants
+            .kSwitchWorkspacePreLoginIdentifier
+        NotificationCenter.default
+            .post(name: Notification.Name(identifier),
+                  object: nil, userInfo: userInfo as [AnyHashable: Any])
+    }
+
+    func setVisibleWindow() {
+        // If previous user is not a guest login and credentials were used to login into the app
+        if userManager.isLoggedIn {
+            let navigationController = UINavigationController(rootViewController: DashboardViewController
+                .newInstance())
+            window?.rootViewController = navigationController
+        } else {
+            let navigationController = UINavigationController(rootViewController: LoginViewController.newInstance())
+            window?.rootViewController = navigationController
+        }
+        window?.makeKeyAndVisible()
     }
 }
