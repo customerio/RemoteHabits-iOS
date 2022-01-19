@@ -38,6 +38,9 @@ class AppCustomerIOErrorUtil: CustomerIOErrorUtil {
             // Cancelled requests are bad in that the request was not successful. However, it could also be
             // because the user left a screen and garbage collected the object making the request.
             case .cancelled: break
+            // The SDK is not making any HTTP requests for a moment. Probably because the API is down.
+            // Nothing to worry about. Your data will attempt to be synced again soon.
+            case .requestsPaused: break
             }
         // Misc error of the SDK. Log it in case need to report to SDK developers.
         case .underlying(let error):
