@@ -20,15 +20,6 @@
         }
       },
       {
-        "package": "Customer.io",
-        "repositoryURL": "https://github.com/customerio/customerio-ios/",
-        "state": {
-          "branch": null,
-          "revision": "3ad46c8e9d1fea94b9afe1c594418deebcfb698c",
-          "version": "1.0.0-alpha.23"
-        }
-      },
-      {
         "package": "Firebase",
         "repositoryURL": "https://github.com/firebase/firebase-ios-sdk.git",
         "state": {

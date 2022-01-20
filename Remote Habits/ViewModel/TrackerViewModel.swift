@@ -14,6 +14,6 @@ class TrackerViewModel: ObservableObject {
         let starttime = habitActivity.startTime ?? Date().formatDateToString(inFormat: .time12Hour)
         let endtime = habitActivity.endTime ?? Date().formatDateToString(inFormat: .time12Hour)
         let param = ["title": title, "frequency": "\(freq)", "startTime": starttime, "endTime": endtime]
-        cio.track(name: habitName, data: param, jsonEncoder: nil)
+        cio.track(name: habitName, data: param)
     }
 }
