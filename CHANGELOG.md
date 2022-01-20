@@ -1,3 +1,10 @@
+# [1.16.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.15.0...1.16.0) (2022-01-20)
+
+
+### Features
+
+* Upgrade RemoteHabits to customerio-ios 1.0.0 ([#60](https://github.com/customerio/RemoteHabits-iOS/issues/60)) ([0bd2f06](https://github.com/customerio/RemoteHabits-iOS/commit/0bd2f06059dca3127a140823738f973d60980f00))
+
 # [1.15.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.14.0...1.15.0) (2022-01-19)
 
 
