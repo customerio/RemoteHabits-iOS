@@ -28,6 +28,46 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "MessagingPushAPNTests"
+               BuildableName = "MessagingPushAPNTests"
+               BlueprintName = "MessagingPushAPNTests"
+               ReferencedContainer = "container:../../CIO SDK/customerio-ios">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "MessagingPushFCMTests"
+               BuildableName = "MessagingPushFCMTests"
+               BlueprintName = "MessagingPushFCMTests"
+               ReferencedContainer = "container:../../CIO SDK/customerio-ios">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "MessagingPushTests"
+               BuildableName = "MessagingPushTests"
+               BlueprintName = "MessagingPushTests"
+               ReferencedContainer = "container:../../CIO SDK/customerio-ios">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "TrackingTests"
+               BuildableName = "TrackingTests"
+               BlueprintName = "TrackingTests"
+               ReferencedContainer = "container:../../CIO SDK/customerio-ios">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

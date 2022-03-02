@@ -1,3 +1,4 @@
+import CioTracking
 import SkyFloatingLabelTextField
 import UIKit
 
@@ -17,6 +18,7 @@ class LoginViewController: BaseViewController {
 
     // MARK: - --VARIABLES--
 
+    var floatingButton: UIButton!
     var userManager = DI.shared.userManager
     var textFields: [SkyFloatingLabelTextFieldWithIcon] = []
     var profileViewModel = DI.shared.profileViewModel
@@ -31,6 +33,7 @@ class LoginViewController: BaseViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
+        floatingSettingButton()
         configureLoginRouter()
         addNotifierObserver()
         addLoginBackground()
@@ -218,6 +221,10 @@ class LoginViewController: BaseViewController {
                 }
             }
     }
+
+    @objc func floatingButtonTapped() {
+        loginRouter?.routeToConfigureCioSdk()
+    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -229,5 +236,16 @@ extension LoginViewController: UITextFieldDelegate {
                 field.errorMessage = Constants.kEmptyValue
             }
         }
+    }
+}
+
+// MARK: - Floating Button
+
+extension LoginViewController {
+    func floatingSettingButton() {
+        floatingButton = UIButton(type: .custom)
+        floatingButton.makeFloating()
+        floatingButton.addTarget(self, action: #selector(LoginViewController.floatingButtonTapped), for: .touchUpInside)
+        view.addSubview(floatingButton)
     }
 }

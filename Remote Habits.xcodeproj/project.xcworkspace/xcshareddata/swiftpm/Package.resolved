@@ -20,6 +20,24 @@
         }
       },
       {
+        "package": "Customer.io",
+        "repositoryURL": "https://github.com/customerio/customerio-ios/",
+        "state": {
+          "branch": null,
+          "revision": "01afed4a137ac000031361a8d31dcae19e48cb42",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "DropDown",
+        "repositoryURL": "https://github.com/AssistoLab/DropDown.git",
+        "state": {
+          "branch": "master",
+          "revision": "2ab6f6ce19f0117d1a76ea043ef8f57722c65d16",
+          "version": null
+        }
+      },
+      {
         "package": "Firebase",
         "repositoryURL": "https://github.com/firebase/firebase-ios-sdk.git",
         "state": {
