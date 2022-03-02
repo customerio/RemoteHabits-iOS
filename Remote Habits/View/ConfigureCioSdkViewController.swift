@@ -7,8 +7,7 @@ class ConfigureCioSdkViewController: BaseViewController {
     static func newInstance() -> ConfigureCioSdkViewController {
         UIStoryboard.getViewController(identifier: Constants.kConfigureCioSdkViewController)
     }
-
-    var userManager = DI.shared.userManager
+    // MARK: - --OUTLETS--
     @IBOutlet var trackingApiUrlText: SkyFloatingLabelTextField!
     @IBOutlet var customDeviceAttributesText: SkyFloatingLabelTextField!
     @IBOutlet var updateConfigButton: UIButton!
@@ -18,8 +17,10 @@ class ConfigureCioSdkViewController: BaseViewController {
     @IBOutlet var deviceAttributesSwitch: UISwitch!
     @IBOutlet var screenViewsSwitch: UISwitch!
 
+    // MARK: - --VARIABLES--
     let logTypeDropdown = DropDown()
 
+    // MARK: - --LIFECYCLE METHODS--
     override func viewDidLoad() {
         super.viewDidLoad()
         setupFormFields()
