@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Setup environment for building and releasing app 
-      uses: ./.github/actions/prepare-for-app-build.yml         
+      uses: ./.github/actions/prepare-for-app-build
 
     - name: Deploy development build via Fastlane 
       uses: maierj/fastlane-action@v2.0.1

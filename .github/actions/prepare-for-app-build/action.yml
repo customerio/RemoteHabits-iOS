@@ -1,7 +1,7 @@
 # Boilerplate github action code to setup CI environment for building and deploying app. 
 # use in github action like:
 # - name: Setup environment for building and releasing app 
-#   uses: ./.github/actions/prepare-for-app-build.yml
+#   uses: ./.github/actions/prepare-for-app-build
 name: 'Prepare for building and releasing app'
 description: 'Do setup steps to setup the CI environment to be able to successfully build and deploy the app.'
 runs:

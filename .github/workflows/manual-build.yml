@@ -27,7 +27,7 @@ jobs:
           ref: ${{ env.LATEST_GIT_TAG }}
           
       - name: Setup environment for building and releasing app 
-        uses: ./.github/actions/prepare-for-app-build.yml
+        uses: ./.github/actions/prepare-for-app-build
 
       - name: Build and re-release app 
         uses: maierj/fastlane-action@v2.0.1

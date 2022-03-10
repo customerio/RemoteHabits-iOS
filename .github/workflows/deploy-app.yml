@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Setup environment for building and releasing app 
-        uses: ./.github/actions/prepare-for-app-build.yml
+        uses: ./.github/actions/prepare-for-app-build
       
       # Perform git related tasks inside of semantic-release because `git config user...` is already setup. It's easier to run commands in there with exec plugin.
       - name: Deploy app via semantic release 
