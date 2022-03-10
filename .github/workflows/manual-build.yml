@@ -28,6 +28,11 @@ jobs:
           
       - name: Setup environment for building and releasing app 
         uses: ./.github/actions/prepare-for-app-build
+        env:
+          GOOGLE_SERVICES_BASE64: "${{ secrets.GOOGLE_SERVICES_BASE64 }}"
+          ENV_FILE_B64: "${{ secrets.ENV_FILE_B64 }}"
+          FIREBASE_APP_DISTRIBUTION_GOOGLE_AUTH: ${{ secrets.FIREBASE_APP_DISTRIBUTION_GOOGLE_AUTH }}
+          MATCH_GOOGLE_CLOUD_KEYS_B64: ${{ secrets.MATCH_GOOGLE_CLOUD_KEYS_B64 }}  
 
       - name: Build and re-release app 
         uses: maierj/fastlane-action@v2.0.1
