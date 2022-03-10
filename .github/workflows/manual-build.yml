@@ -1,0 +1,36 @@
+# Deploy the app to stable. Not builds for development/QA
+name: Manually build latest stable 
+on: 
+  workflow_dispatch: # manually run the action
+
+env:
+  XCODE_VERSION: "13.0"
+  GITHUB_CONTEXT: ${{ toJSON(github) }} # used by fastlane for deploying app 
+
+jobs:
+  deploy-app:
+    name: Re-release the latest stable build 
+    runs-on: macos-11
+    steps:
+      - name: Get latest git tag 
+        uses: octokit/request-action@v2.1.4
+        id: get_latest_release
+        with:
+          route: GET /repos/customerio/RemoteHabits-iOS/releases/latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}                    
+      - run: echo "LATEST_GIT_TAG=${{ steps.get_latest_release.outputs.data.tag_name }}" >> $GITHUB_ENV      
+
+      - name: Checkout latest git tag 
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ env.LATEST_GIT_TAG }}
+          
+      - name: Setup environment for building and releasing app 
+        uses: ./.github/actions/prepare-for-app-build.yml
+
+      - name: Build and re-release app 
+        uses: maierj/fastlane-action@v2.0.1
+        with:
+          lane: 'deploy_app version:${{ env.LATEST_GIT_TAG }}'
+          skip-tracking: true
