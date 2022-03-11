@@ -21,6 +21,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}                    
       - run: echo "LATEST_GIT_TAG=${{ fromJson(steps.get_latest_release.outputs.data).tag_name }}" >> $GITHUB_ENV      
 
+      - uses: actions/checkout@v2 # checkout to be able to run CI config files below 
       - name: Setup environment for building and releasing app 
         uses: ./.github/actions/prepare-for-app-build
         with:
