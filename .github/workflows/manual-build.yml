@@ -19,7 +19,7 @@ jobs:
           route: GET /repos/customerio/RemoteHabits-iOS/releases/latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}                    
-      - run: echo "LATEST_GIT_TAG=${{ steps.get_latest_release.outputs.data.tag_name }}" >> $GITHUB_ENV      
+      - run: echo "LATEST_GIT_TAG=${{ fromJson(steps.get_latest_release.outputs.data).tag_name }}" >> $GITHUB_ENV      
 
       - name: Checkout latest git tag 
         uses: actions/checkout@v2
@@ -39,3 +39,9 @@ jobs:
         with:
           lane: 'deploy_app version:${{ env.LATEST_GIT_TAG }}'
           skip-tracking: true
+        env:
+          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }} # for firebase app distribution 
+          APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+          APP_STORE_CONNECT_API_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}
+          APP_STORE_CONNECT_API_KEY_CONTENT_B64: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT_B64 }}
+          
