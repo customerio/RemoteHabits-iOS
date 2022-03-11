@@ -21,11 +21,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}                    
       - run: echo "LATEST_GIT_TAG=${{ fromJson(steps.get_latest_release.outputs.data).tag_name }}" >> $GITHUB_ENV      
 
-      - name: Checkout latest git tag 
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ env.LATEST_GIT_TAG }}
-          
       - name: Setup environment for building and releasing app 
         uses: ./.github/actions/prepare-for-app-build
         with:
@@ -33,6 +28,13 @@ jobs:
           ENV_FILE_B64: "${{ secrets.ENV_FILE_B64 }}"
           FIREBASE_APP_DISTRIBUTION_GOOGLE_AUTH: ${{ secrets.FIREBASE_APP_DISTRIBUTION_GOOGLE_AUTH }}
           MATCH_GOOGLE_CLOUD_KEYS_B64: ${{ secrets.MATCH_GOOGLE_CLOUD_KEYS_B64 }}  
+
+      # Checkout the git tag right before building since older git tags might not have the necessary files 
+      # that the newer CI config asks for. Do all CI environment prep before checking out the git tag. 
+      - name: Checkout latest git tag 
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ env.LATEST_GIT_TAG }}
 
       - name: Build and re-release app 
         uses: maierj/fastlane-action@v2.0.1
