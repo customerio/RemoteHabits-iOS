@@ -19,6 +19,7 @@ enum Color {
     static let PrimaryBackground = UIColor(named: "PrimaryBackground") ?? UIColor.white
     static let LabelLightGray = UIColor(named: "LabelLightGray") ?? Color.LabelGray
     static let MediumGray = UIColor(named: "MediumGray") ?? UIColor.gray
+    static let DisabledGray = UIColor(named: "DisabledGray") ?? UIColor.gray
 }
 
 // Medium - 17
