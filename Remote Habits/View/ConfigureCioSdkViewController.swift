@@ -40,7 +40,7 @@ class ConfigureCioSdkViewController: BaseViewController {
     }
 
     func configureLogLevelDropdown() {
-        logTypeButton.addLightGrayBorder()
+        logTypeButton.addColoredBorder(color: UIColor.lightGray.withAlphaComponent(0.5))
         logTypeDropdown.anchorView = logTypeButton
         logTypeDropdown.dataSource = ["debug", "info", "error"]
         logTypeDropdown.selectionAction = { [unowned self] (_: Int, item: String) in

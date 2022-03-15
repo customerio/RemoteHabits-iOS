@@ -1,12 +1,12 @@
 import UIKit
 extension UIButton {
-    func addLightGrayBorder() {
+    func addColoredBorder(color : UIColor) {
         layer.borderWidth = 0.5
-        layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
+        layer.borderColor = color.cgColor
         layer.cornerRadius = 5
     }
 
-    func makeFloating() {
+    func customiseFloating() {
         let xCoordinates = Int(UIScreen.main.bounds.width - 56)
         let widthHeight = 40
         frame = CGRect(x: xCoordinates, y: 50, width: widthHeight, height: widthHeight)

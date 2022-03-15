@@ -25,6 +25,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Step 3: Register for push notifications
         UIApplication.shared.registerForRemoteNotifications()
+        
+        CustomerIO.config {
+            $0.logLevel = .debug
+        }
         return true
     }
 

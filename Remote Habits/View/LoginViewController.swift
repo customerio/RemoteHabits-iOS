@@ -244,7 +244,7 @@ extension LoginViewController: UITextFieldDelegate {
 extension LoginViewController {
     func floatingSettingButton() {
         floatingButton = UIButton(type: .custom)
-        floatingButton.makeFloating()
+        floatingButton.customiseFloating()
         floatingButton.addTarget(self, action: #selector(LoginViewController.floatingButtonTapped), for: .touchUpInside)
         view.addSubview(floatingButton)
     }
