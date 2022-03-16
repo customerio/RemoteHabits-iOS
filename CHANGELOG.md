@@ -1,3 +1,10 @@
+# [1.17.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.16.0...1.17.0) (2022-03-16)
+
+
+### Features
+
+* configure cio sdk in app ([#61](https://github.com/customerio/RemoteHabits-iOS/issues/61)) ([eff858d](https://github.com/customerio/RemoteHabits-iOS/commit/eff858d508a43171c9f65fdf08ddbb95448a77b6))
+
 # [1.16.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.15.0...1.16.0) (2022-01-20)
 
 
