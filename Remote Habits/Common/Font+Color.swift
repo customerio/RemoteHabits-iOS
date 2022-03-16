@@ -3,6 +3,7 @@ import UIKit
 
 struct Font {
     static let SFProTextSemiBoldMedium = UIFont(name: "SFProText-Semibold", size: 17)
+    static let SFProTextSemiBoldXSmall = UIFont(name: "SFProText-Semibold", size: 10)
     static let AwesomeFontLarge = UIFont(name: "FontAwesome", size: 20)
 }
 
@@ -18,8 +19,10 @@ enum Color {
     static let PrimaryBackground = UIColor(named: "PrimaryBackground") ?? UIColor.white
     static let LabelLightGray = UIColor(named: "LabelLightGray") ?? Color.LabelGray
     static let MediumGray = UIColor(named: "MediumGray") ?? UIColor.gray
+    static let DisabledGray = UIColor(named: "DisabledGray") ?? UIColor.gray
 }
 
 // Medium - 17
 // Small - 15
+// XSmall - 13
 // Large - 20

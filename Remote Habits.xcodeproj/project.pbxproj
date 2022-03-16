@@ -94,6 +94,9 @@
 		465F76492773222C000A6C49 /* Habits+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F764527732211000A6C49 /* Habits+CoreDataProperties.swift */; };
 		465F764E277497F7000A6C49 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F7637276A46F7000A6C49 /* DateExtensions.swift */; };
 		466FEADC2762693000997AE7 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466FEADB2762693000997AE7 /* TextFieldExtension.swift */; };
+		468C37B027CD005200753542 /* ConfigureCioSdkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468C37AF27CD005200753542 /* ConfigureCioSdkViewController.swift */; };
+		468C37B327CD2F8A00753542 /* DropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 468C37B227CD2F8A00753542 /* DropDown */; };
+		468C37B527CE54A800753542 /* ButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468C37B427CE54A800753542 /* ButtonExtension.swift */; };
 		4698F3DE2760D10900EE48F3 /* SkyFloatingLabelTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 4698F3DD2760D10900EE48F3 /* SkyFloatingLabelTextField */; };
 		46A6CCBC277F3C3D007820B3 /* Font+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463D95FF2758E94A000FF356 /* Font+Color.swift */; };
 		46FEC8D92758D34100A6A03F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FEC8CF2758D34100A6A03F /* AppDelegate.swift */; };
@@ -216,6 +219,8 @@
 		465F764427732211000A6C49 /* Habits+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Habits+CoreDataClass.swift"; sourceTree = "<group>"; };
 		465F764527732211000A6C49 /* Habits+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Habits+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		466FEADB2762693000997AE7 /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
+		468C37AF27CD005200753542 /* ConfigureCioSdkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureCioSdkViewController.swift; sourceTree = "<group>"; };
+		468C37B427CE54A800753542 /* ButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtension.swift; sourceTree = "<group>"; };
 		46FEC8CF2758D34100A6A03F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46FEC8D12758D34100A6A03F /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F706047826F3A11B00A9C64D /* Notification Service.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Notification Service.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -247,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46FEC8E22758D4CB00A6A03F /* MessagingPushFCM in Frameworks */,
+				468C37B327CD2F8A00753542 /* DropDown in Frameworks */,
 				4698F3DE2760D10900EE48F3 /* SkyFloatingLabelTextField in Frameworks */,
 				46FEC8E02758D4CB00A6A03F /* MessagingPushAPN in Frameworks */,
 				F7E9FABC26E7C564003F4187 /* FirebaseCrashlytics in Frameworks */,
@@ -362,6 +368,7 @@
 				465F7637276A46F7000A6C49 /* DateExtensions.swift */,
 				462ABD3F2785B33400CA4585 /* TableViewExtension.swift */,
 				F7FF07F12784BCEE0076BDE0 /* StorybordExtensions.swift */,
+				468C37B427CE54A800753542 /* ButtonExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -403,6 +410,7 @@
 				463D961E2758EA71000FF356 /* DashboardViewController.swift */,
 				463D961D2758EA71000FF356 /* HabitDetailViewController.swift */,
 				463D96202758EA71000FF356 /* LoginViewController.swift */,
+				468C37AF27CD005200753542 /* ConfigureCioSdkViewController.swift */,
 				463D961F2758EA71000FF356 /* SwitchWorkspaceViewController.swift */,
 				463D961A2758EA3E000FF356 /* Handler */,
 				463D96172758EA07000FF356 /* Customisation */,
@@ -600,6 +608,7 @@
 				46FEC8DF2758D4CB00A6A03F /* MessagingPushAPN */,
 				46FEC8E12758D4CB00A6A03F /* MessagingPushFCM */,
 				4698F3DD2760D10900EE48F3 /* SkyFloatingLabelTextField */,
+				468C37B227CD2F8A00753542 /* DropDown */,
 			);
 			productName = "Remote Habits";
 			productReference = F77512BD26332F8200805CD4 /* Remote Habits.app */;
@@ -680,6 +689,7 @@
 				F7135ADD26D6DE560072D044 /* XCRemoteSwiftPackageReference "customerio-ios" */,
 				F7E9FABA26E7C564003F4187 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				4698F3DC2760D10800EE48F3 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */,
+				468C37B127CD2F8A00753542 /* XCRemoteSwiftPackageReference "DropDown" */,
 			);
 			productRefGroup = F77512BE26332F8200805CD4 /* Products */;
 			projectDirPath = "";
@@ -785,6 +795,7 @@
 				463D96292758EA9F000FF356 /* HabitTableViewCell.swift in Sources */,
 				46FEC8DB2758D34100A6A03F /* SceneDelegate.swift in Sources */,
 				465F764327730AF3000A6C49 /* DataManager.swift in Sources */,
+				468C37B027CD005200753542 /* ConfigureCioSdkViewController.swift in Sources */,
 				463D96222758EA71000FF356 /* DashboardViewController.swift in Sources */,
 				463D95EC2758E2E6000FF356 /* ViewExtension.swift in Sources */,
 				465F76412770DAFB000A6C49 /* RemoteHabits.xcdatamodeld in Sources */,
@@ -804,6 +815,7 @@
 				463D96162758E9FD000FF356 /* BaseViewController.swift in Sources */,
 				465F7638276A46F7000A6C49 /* DateExtensions.swift in Sources */,
 				465F764727732211000A6C49 /* Habits+CoreDataProperties.swift in Sources */,
+				468C37B527CE54A800753542 /* ButtonExtension.swift in Sources */,
 				463D96372758EACD000FF356 /* HabitReminderTableViewCell.swift in Sources */,
 				463D95CF2758DD2B000FF356 /* NotificationUtil.swift in Sources */,
 				462ABD522791FC4800CA4585 /* DashboardRouter.swift in Sources */,
@@ -1253,6 +1265,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		468C37B127CD2F8A00753542 /* XCRemoteSwiftPackageReference "DropDown" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AssistoLab/DropDown.git";
+			requirement = {
+				kind = revision;
+				revision = 2ab6f6ce19f0117d1a76ea043ef8f57722c65d16;
+			};
+		};
 		4698F3DC2760D10800EE48F3 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Skyscanner/SkyFloatingLabelTextField.git";
@@ -1266,7 +1286,7 @@
 			repositoryURL = "https://github.com/customerio/customerio-ios/";
 			requirement = {
 				kind = exactVersion;
-				version = "1.0.0";
+				version = 1.0.0;
 			};
 		};
 		F7E9FABA26E7C564003F4187 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
@@ -1280,6 +1300,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		468C37B227CD2F8A00753542 /* DropDown */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 468C37B127CD2F8A00753542 /* XCRemoteSwiftPackageReference "DropDown" */;
+			productName = DropDown;
+		};
 		4698F3DD2760D10900EE48F3 /* SkyFloatingLabelTextField */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4698F3DC2760D10800EE48F3 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */;

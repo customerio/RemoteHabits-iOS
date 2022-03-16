@@ -20,20 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         // Step 1: Initialise CIO SDK
         CustomerIO.initialize(siteId: workspaceId, apiKey: apiKey, region: Region.US)
-        // Optionally configure the SDK if you want to customize it.
-        CustomerIO.config {
-            // This app is used internally for QA testing the Customer.io SDK. Therefore, we set the log level.
-            // However, you probably don't need to modify it as the default will be useful for you.
-            $0.logLevel = .debug
-            // Enabling `autoTrackScreenViews` will automatically track
-            // the screen and generate events as users visit them
-            $0.autoTrackScreenViews = true
-        }
         // Step 2: To display rich push notification
         UNUserNotificationCenter.current().delegate = self
 
         // Step 3: Register for push notifications
         UIApplication.shared.registerForRemoteNotifications()
+        
+        CustomerIO.config {
+            $0.logLevel = .debug
+            $0.autoTrackScreenViews = true
+        }
         return true
     }
 
