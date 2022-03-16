@@ -57,6 +57,8 @@ class ConfigureCioSdkViewController: BaseViewController {
 
     func configureUpdateConfigButton() {
         updateConfigButton.titleLabel?.font = Font.SFProTextSemiBoldMedium
+        // Since Update button is always enabled so the
+        // background color and text color is white, hence using UIColor.white
         updateConfigButton.setTitleColor(UIColor.white, for: .normal)
         updateConfigButton.setCornerRadius(.radius24)
         updateConfigButton.backgroundColor = Color.ButtonEnabled

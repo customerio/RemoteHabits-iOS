@@ -3,7 +3,7 @@ extension UIButton {
     func addColoredBorder(color : UIColor) {
         layer.borderWidth = 0.5
         layer.borderColor = color.cgColor
-        layer.cornerRadius = 5
+        self.setCornerRadius(.radius5)
     }
 
     func customiseFloating() {

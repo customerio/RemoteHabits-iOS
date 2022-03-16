@@ -1269,8 +1269,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AssistoLab/DropDown.git";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = revision;
+				revision = 2ab6f6ce19f0117d1a76ea043ef8f57722c65d16;
 			};
 		};
 		4698F3DC2760D10800EE48F3 /* XCRemoteSwiftPackageReference "SkyFloatingLabelTextField" */ = {

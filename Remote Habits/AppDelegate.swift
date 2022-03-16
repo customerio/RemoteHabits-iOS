@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         CustomerIO.config {
             $0.logLevel = .debug
+            $0.autoTrackScreenViews = true
         }
         return true
     }
