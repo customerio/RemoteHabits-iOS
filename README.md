@@ -2,8 +2,6 @@
 
 Sample app using the [Customer.io iOS SDK](https://github.com/customerio/customerio-ios). 
 
-**Note: This project is a work in progress and not very useful at this time. Check out the [Customer.io iOS SDK](https://github.com/customerio/customerio-ios) to learn more about the progress of our mobile SDK and signup for early access.**
-
 # Contributing
 
 Thank you for your interest in wanting to contribute to the project! Let's get your development environment setup so you can get developing.
