@@ -18,18 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let workspaceId = userManager.workspaceID, let apiKey = userManager.apiKey else {
             return true
         }
-        // Step 1: Initialise CIO SDK
+        // Step 1: Initialise CustomerIO SDK
         CustomerIO.initialize(siteId: workspaceId, apiKey: apiKey, region: Region.US)
+        // Optionally configure the CustomerIO SDK:
+        CustomerIO.config {
+            $0.logLevel = .debug
+            $0.autoTrackScreenViews = true
+        }
         // Step 2: To display rich push notification
         UNUserNotificationCenter.current().delegate = self
 
         // Step 3: Register for push notifications
         UIApplication.shared.registerForRemoteNotifications()
-        
-        CustomerIO.config {
-            $0.logLevel = .debug
-            $0.autoTrackScreenViews = true
-        }
+
         return true
     }
 

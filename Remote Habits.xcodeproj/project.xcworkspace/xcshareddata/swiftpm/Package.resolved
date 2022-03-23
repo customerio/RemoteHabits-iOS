@@ -2,7 +2,7 @@
   "object": {
     "pins": [
       {
-        "package": "abseil",
+        "package": "abseil-cpp-SwiftPM",
         "repositoryURL": "https://github.com/firebase/abseil-cpp-SwiftPM.git",
         "state": {
           "branch": null,
@@ -11,7 +11,7 @@
         }
       },
       {
-        "package": "BoringSSL-GRPC",
+        "package": "boringssl-SwiftPM",
         "repositoryURL": "https://github.com/firebase/boringssl-SwiftPM.git",
         "state": {
           "branch": null,
@@ -20,25 +20,16 @@
         }
       },
       {
-        "package": "Customer.io",
-        "repositoryURL": "https://github.com/customerio/customerio-ios/",
-        "state": {
-          "branch": null,
-          "revision": "01afed4a137ac000031361a8d31dcae19e48cb42",
-          "version": "1.0.0"
-        }
-      },
-      {
         "package": "DropDown",
         "repositoryURL": "https://github.com/AssistoLab/DropDown.git",
         "state": {
-          "branch": "master",
+          "branch": null,
           "revision": "2ab6f6ce19f0117d1a76ea043ef8f57722c65d16",
           "version": null
         }
       },
       {
-        "package": "Firebase",
+        "package": "firebase-ios-sdk",
         "repositoryURL": "https://github.com/firebase/firebase-ios-sdk.git",
         "state": {
           "branch": null,
@@ -74,7 +65,7 @@
         }
       },
       {
-        "package": "gRPC",
+        "package": "grpc-SwiftPM",
         "repositoryURL": "https://github.com/firebase/grpc-SwiftPM.git",
         "state": {
           "branch": null,
@@ -83,7 +74,7 @@
         }
       },
       {
-        "package": "GTMSessionFetcher",
+        "package": "gtm-session-fetcher",
         "repositoryURL": "https://github.com/google/gtm-session-fetcher.git",
         "state": {
           "branch": null,
@@ -110,7 +101,7 @@
         }
       },
       {
-        "package": "Promises",
+        "package": "promises",
         "repositoryURL": "https://github.com/google/promises.git",
         "state": {
           "branch": null,
@@ -128,7 +119,7 @@
         }
       },
       {
-        "package": "SwiftProtobuf",
+        "package": "swift-protobuf",
         "repositoryURL": "https://github.com/apple/swift-protobuf.git",
         "state": {
           "branch": null,
