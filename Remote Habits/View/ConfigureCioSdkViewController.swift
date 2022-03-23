@@ -106,27 +106,25 @@ class ConfigureCioSdkViewController: BaseViewController {
 
     @IBAction func updateConfigButtonTapped(_ sender: UIButton) {
         CustomerIO.config {
-            
-            
-            
             $0.trackingApiUrl = !trackingApiUrlText.trimTextWithWhiteSpaces ? trackingApiUrlText.text! : ""
             $0.autoTrackDeviceAttributes = deviceAttributesSwitch.isOn
+
             // MARK: - Enable with latest version of SDK
+
             /*
-            if !customDeviceAttributesText.trimTextWithWhiteSpaces {
-                let object = customDeviceAttributesText.text!
-                if let data = object.data(using: .utf8) {
-                    do {
-                        if let dict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: String] {
-                            CustomerIO.shared.deviceAttributes = dict
-                        }
-                    } catch {
-                        print(error.localizedDescription)
-                    }
-                }
-            }*/
-            
-            
+             if !customDeviceAttributesText.trimTextWithWhiteSpaces {
+                 let object = customDeviceAttributesText.text!
+                 if let data = object.data(using: .utf8) {
+                     do {
+                         if let dict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: String] {
+                             CustomerIO.shared.deviceAttributes = dict
+                         }
+                     } catch {
+                         print(error.localizedDescription)
+                     }
+                 }
+             }*/
+
             $0.logLevel = findLogLevel()
             $0.autoTrackScreenViews = screenViewsSwitch.isOn
             $0.backgroundQueueSecondsDelay = !bgQueueDelayText
@@ -147,8 +145,9 @@ extension ConfigureCioSdkViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         // in case we plan to add validation for tracking url at later point of time
     }
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
+        view.endEditing(true)
         return false
     }
 }
