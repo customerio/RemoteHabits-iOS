@@ -31,9 +31,7 @@ struct Constants {
     static let kBack = "back"
 
     // Login
-    static let kRandomEId = EmailAddress.randomEmail
     static let kDefaultPassword = "123"
-    static let kRandomUsername = String.random
 
     // Habits Tracking
     static let kHabitClicked = "clicked_habit"

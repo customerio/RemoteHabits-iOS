@@ -202,8 +202,8 @@ class LoginViewController: BaseViewController {
     }
 
     @IBAction func guestButtonTapped(_ sender: UIButton) {
-        validateCredentials(email: Constants.kRandomEId, pwd: Constants.kDefaultPassword,
-                            firstName: Constants.kRandomUsername, isGenRandom: true)
+        validateCredentials(email: EmailAddress.randomEmail, pwd: Constants.kDefaultPassword,
+                            firstName: String.random, isGenRandom: true)
     }
 
     func validateCredentials(email: String, pwd: String, firstName: String, isGenRandom: Bool) {

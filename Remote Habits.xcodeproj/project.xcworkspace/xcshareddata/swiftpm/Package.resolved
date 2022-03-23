@@ -2,7 +2,7 @@
   "object": {
     "pins": [
       {
-        "package": "abseil-cpp-SwiftPM",
+        "package": "abseil",
         "repositoryURL": "https://github.com/firebase/abseil-cpp-SwiftPM.git",
         "state": {
           "branch": null,
@@ -11,12 +11,21 @@
         }
       },
       {
-        "package": "boringssl-SwiftPM",
+        "package": "BoringSSL-GRPC",
         "repositoryURL": "https://github.com/firebase/boringssl-SwiftPM.git",
         "state": {
           "branch": null,
           "revision": "734a8247442fde37df4364c21f6a0085b6a36728",
           "version": "0.7.2"
+        }
+      },
+      {
+        "package": "Customer.io",
+        "repositoryURL": "https://github.com/customerio/customerio-ios/",
+        "state": {
+          "branch": null,
+          "revision": "8f40be2915f2fb743eb98f17bd0a93375ec35620",
+          "version": "1.1.0-alpha.1"
         }
       },
       {
@@ -29,7 +38,7 @@
         }
       },
       {
-        "package": "firebase-ios-sdk",
+        "package": "Firebase",
         "repositoryURL": "https://github.com/firebase/firebase-ios-sdk.git",
         "state": {
           "branch": null,
@@ -65,7 +74,7 @@
         }
       },
       {
-        "package": "grpc-SwiftPM",
+        "package": "gRPC",
         "repositoryURL": "https://github.com/firebase/grpc-SwiftPM.git",
         "state": {
           "branch": null,
@@ -74,7 +83,7 @@
         }
       },
       {
-        "package": "gtm-session-fetcher",
+        "package": "GTMSessionFetcher",
         "repositoryURL": "https://github.com/google/gtm-session-fetcher.git",
         "state": {
           "branch": null,
@@ -101,7 +110,7 @@
         }
       },
       {
-        "package": "promises",
+        "package": "Promises",
         "repositoryURL": "https://github.com/google/promises.git",
         "state": {
           "branch": null,
@@ -119,7 +128,7 @@
         }
       },
       {
-        "package": "swift-protobuf",
+        "package": "SwiftProtobuf",
         "repositoryURL": "https://github.com/apple/swift-protobuf.git",
         "state": {
           "branch": null,

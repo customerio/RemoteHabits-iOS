@@ -40,8 +40,10 @@ class ConfigureCioSdkViewController: BaseViewController {
     }
 
     func setupFormFields() {
-        trackingApiUrlText.isEnabled = false
-        deviceAttributesSwitch.isEnabled = false
+        trackingApiUrlText.delegate = self
+        customDeviceAttributesText.delegate = self
+        bgQueueDelayText.delegate = self
+        bgQueueMinTasksText.delegate = self
         customDeviceAttributesText.isEnabled = false
     }
 
@@ -77,12 +79,12 @@ class ConfigureCioSdkViewController: BaseViewController {
     }
 
     func setupField(_ textField: SkyFloatingLabelTextField) {
-        textField.placeholderColor = Color.LabelGray
+        textField.placeholderColor = Color.LineGray
         textField.disabledColor = Color.DisabledGray
-        textField.textColor = UIColor.black
+        textField.textColor = Color.LabelBlack
         textField.tintColor = Color.LabelGray
         textField.lineColor = Color.LineGray
-        textField.selectedTitleColor = Color.LabelGray
+        textField.selectedTitleColor = Color.DisabledGray
         textField.selectedLineColor = Color.SelectedLineGray
         textField.delegate = self
     }
@@ -104,25 +106,27 @@ class ConfigureCioSdkViewController: BaseViewController {
 
     @IBAction func updateConfigButtonTapped(_ sender: UIButton) {
         CustomerIO.config {
+            
+            
+            
+            $0.trackingApiUrl = !trackingApiUrlText.trimTextWithWhiteSpaces ? trackingApiUrlText.text! : ""
+            $0.autoTrackDeviceAttributes = deviceAttributesSwitch.isOn
             // MARK: - Enable with latest version of SDK
-
             /*
-             $0.trackingApiUrl = !trackingApiUrlText.trimTextWithWhiteSpaces ? trackingApiUrlText.text! : ""
-             $0.autoTrackDeviceAttributes = deviceAttributesSwitch.isOn
-             if !customDeviceAttributesText.trimTextWithWhiteSpaces {
-             let object = customDeviceAttributesText.text!
-             if let data = object.data(using: .utf8) {
-             do {
-             if let dict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: String] {
-             CustomerIO.shared.deviceAttributes = dict
-             }
-             } catch {
-             print(error.localizedDescription)
-             }
-             }
-             }
-             */
-
+            if !customDeviceAttributesText.trimTextWithWhiteSpaces {
+                let object = customDeviceAttributesText.text!
+                if let data = object.data(using: .utf8) {
+                    do {
+                        if let dict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: String] {
+                            CustomerIO.shared.deviceAttributes = dict
+                        }
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+            }*/
+            
+            
             $0.logLevel = findLogLevel()
             $0.autoTrackScreenViews = screenViewsSwitch.isOn
             $0.backgroundQueueSecondsDelay = !bgQueueDelayText
@@ -142,5 +146,9 @@ class ConfigureCioSdkViewController: BaseViewController {
 extension ConfigureCioSdkViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         // in case we plan to add validation for tracking url at later point of time
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }
