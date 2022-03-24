@@ -1,3 +1,4 @@
+import CioTracking
 import SkyFloatingLabelTextField
 import UIKit
 
@@ -26,6 +27,12 @@ class SwitchWorkspaceViewController: BaseViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Sending custom attributes to the workspace
+        CustomerIO.shared.deviceAttributes = [
+            "name": userManager.userName ?? "Guest",
+            "currentScreen": "SwitchWorkspace",
+            "isAuthorizedUser": userManager.isLoggedIn
+        ]
         // Do any additional setup after loading the view.
         configureNavigationBar(title: Constants.kCIO, hideBack: false, showLogo: false)
         configureSwitchWorkspaceRouter()
