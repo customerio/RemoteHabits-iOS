@@ -109,7 +109,11 @@ class ConfigureCioSdkViewController: BaseViewController {
             $0.trackingApiUrl = !trackingApiUrlText.trimTextWithWhiteSpaces ? trackingApiUrlText.text! : ""
             $0.autoTrackDeviceAttributes = deviceAttributesSwitch.isOn
 
-            // MARK: - Enable with latest version of SDK
+            // MARK: - Future release
+            // This property can only be updated when the user is logged in
+            // Will have to provide the flexibility to the user to update this only
+            // when they are logged in.
+            // Issue created - https://github.com/customerio/issues/issues/7041
 
             /*
              if !customDeviceAttributesText.trimTextWithWhiteSpaces {
