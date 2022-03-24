@@ -7,7 +7,9 @@ class ConfigureCioSdkViewController: BaseViewController {
     static func newInstance() -> ConfigureCioSdkViewController {
         UIStoryboard.getViewController(identifier: Constants.kConfigureCioSdkViewController)
     }
+
     // MARK: - --OUTLETS--
+
     @IBOutlet var trackingApiUrlText: SkyFloatingLabelTextField!
     @IBOutlet var customDeviceAttributesText: SkyFloatingLabelTextField!
     @IBOutlet var updateConfigButton: UIButton!
@@ -16,12 +18,14 @@ class ConfigureCioSdkViewController: BaseViewController {
     @IBOutlet var bgQueueMinTasksText: UITextField!
     @IBOutlet var deviceAttributesSwitch: UISwitch!
     @IBOutlet var screenViewsSwitch: UISwitch!
-    @IBOutlet weak var mainView: UIView!
-    
+    @IBOutlet var mainView: UIView!
+
     // MARK: - --VARIABLES--
+
     let logTypeDropdown = DropDown()
 
     // MARK: - --LIFECYCLE METHODS--
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupFormFields()
@@ -36,16 +40,18 @@ class ConfigureCioSdkViewController: BaseViewController {
     }
 
     func setupFormFields() {
-        trackingApiUrlText.isEnabled = false
-        deviceAttributesSwitch.isEnabled = false
+        trackingApiUrlText.delegate = self
+        customDeviceAttributesText.delegate = self
+        bgQueueDelayText.delegate = self
+        bgQueueMinTasksText.delegate = self
         customDeviceAttributesText.isEnabled = false
     }
-    
+
     func setUpMainView() {
         mainView.setCornerRadius(.radius13)
         mainView.backgroundColor = Color.PrimaryBackground
     }
-    
+
     func configureLogLevelDropdown() {
         logTypeButton.addColoredBorder(color: UIColor.lightGray.withAlphaComponent(0.5))
         logTypeDropdown.anchorView = logTypeButton
@@ -73,12 +79,12 @@ class ConfigureCioSdkViewController: BaseViewController {
     }
 
     func setupField(_ textField: SkyFloatingLabelTextField) {
-        textField.placeholderColor = Color.LabelGray
+        textField.placeholderColor = Color.LineGray
         textField.disabledColor = Color.DisabledGray
-        textField.textColor = UIColor.black
+        textField.textColor = Color.LabelBlack
         textField.tintColor = Color.LabelGray
         textField.lineColor = Color.LineGray
-        textField.selectedTitleColor = Color.LabelGray
+        textField.selectedTitleColor = Color.DisabledGray
         textField.selectedLineColor = Color.SelectedLineGray
         textField.delegate = self
     }
@@ -100,24 +106,29 @@ class ConfigureCioSdkViewController: BaseViewController {
 
     @IBAction func updateConfigButtonTapped(_ sender: UIButton) {
         CustomerIO.config {
-            // MARK: - Enable with latest version of SDK
+            $0.trackingApiUrl = !trackingApiUrlText.trimTextWithWhiteSpaces ? trackingApiUrlText.text! : ""
+            $0.autoTrackDeviceAttributes = deviceAttributesSwitch.isOn
+
+            // MARK: - Future release
+
+            // This property can only be updated when the user is logged in
+            // Will have to provide the flexibility to the user to update this only
+            // when they are logged in.
+            // Issue created - https://github.com/customerio/issues/issues/7041
 
             /*
-             $0.trackingApiUrl = !trackingApiUrlText.trimTextWithWhiteSpaces ? trackingApiUrlText.text! : ""
-             $0.autoTrackDeviceAttributes = deviceAttributesSwitch.isOn
              if !customDeviceAttributesText.trimTextWithWhiteSpaces {
-             let object = customDeviceAttributesText.text!
-             if let data = object.data(using: .utf8) {
-             do {
-             if let dict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: String] {
-             CustomerIO.shared.deviceAttributes = dict
-             }
-             } catch {
-             print(error.localizedDescription)
-             }
-             }
-             }
-             */
+                 let object = customDeviceAttributesText.text!
+                 if let data = object.data(using: .utf8) {
+                     do {
+                         if let dict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: String] {
+                             CustomerIO.shared.deviceAttributes = dict
+                         }
+                     } catch {
+                         print(error.localizedDescription)
+                     }
+                 }
+             }*/
 
             $0.logLevel = findLogLevel()
             $0.autoTrackScreenViews = screenViewsSwitch.isOn
@@ -138,5 +149,10 @@ class ConfigureCioSdkViewController: BaseViewController {
 extension ConfigureCioSdkViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         // in case we plan to add validation for tracking url at later point of time
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return false
     }
 }

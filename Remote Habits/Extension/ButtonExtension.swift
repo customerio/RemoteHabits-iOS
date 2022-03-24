@@ -1,9 +1,9 @@
 import UIKit
 extension UIButton {
-    func addColoredBorder(color : UIColor) {
+    func addColoredBorder(color: UIColor) {
         layer.borderWidth = 0.5
         layer.borderColor = color.cgColor
-        self.setCornerRadius(.radius5)
+        setCornerRadius(.radius5)
     }
 
     func customiseFloating() {

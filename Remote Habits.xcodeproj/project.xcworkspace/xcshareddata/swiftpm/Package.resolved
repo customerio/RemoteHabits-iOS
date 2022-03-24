@@ -24,15 +24,15 @@
         "repositoryURL": "https://github.com/customerio/customerio-ios/",
         "state": {
           "branch": null,
-          "revision": "01afed4a137ac000031361a8d31dcae19e48cb42",
-          "version": "1.0.0"
+          "revision": "8f40be2915f2fb743eb98f17bd0a93375ec35620",
+          "version": "1.1.0-alpha.1"
         }
       },
       {
         "package": "DropDown",
         "repositoryURL": "https://github.com/AssistoLab/DropDown.git",
         "state": {
-          "branch": "master",
+          "branch": null,
           "revision": "2ab6f6ce19f0117d1a76ea043ef8f57722c65d16",
           "version": null
         }
