@@ -1,3 +1,10 @@
+# [1.18.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.17.0...1.18.0) (2022-03-24)
+
+
+### Features
+
+* add device attributes ([#66](https://github.com/customerio/RemoteHabits-iOS/issues/66)) ([93a947e](https://github.com/customerio/RemoteHabits-iOS/commit/93a947e81f53d525802f2cba9ac9f589bd57888a))
+
 # [1.17.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.16.0...1.17.0) (2022-03-16)
 
 
