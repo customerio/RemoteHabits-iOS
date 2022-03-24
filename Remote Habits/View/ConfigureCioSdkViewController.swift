@@ -110,6 +110,7 @@ class ConfigureCioSdkViewController: BaseViewController {
             $0.autoTrackDeviceAttributes = deviceAttributesSwitch.isOn
 
             // MARK: - Future release
+
             // This property can only be updated when the user is logged in
             // Will have to provide the flexibility to the user to update this only
             // when they are logged in.
