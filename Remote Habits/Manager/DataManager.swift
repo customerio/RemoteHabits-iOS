@@ -3,14 +3,11 @@ import Foundation
 import UIKit
 
 // sourcery: InjectRegister = "HabitDataManager"
-class HabitDataManager {
+class HabitDataManager: CoreDataManager {
     let habitsEntity = "Habits"
 
-    // Create
     func createHabit(forData data: [HabitsData]) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = persistentContainer.viewContext
 
         guard let habitEntity = NSEntityDescription.entity(forEntityName: habitsEntity, in: managedContext)
         else { return }
@@ -38,11 +35,8 @@ class HabitDataManager {
         }
     }
 
-    // Read
     func getHabit(forId id: Int?) -> Habits? {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return nil }
-
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: habitsEntity)
         if let id = id {
             fetchRequest.predicate = NSPredicate(format: "id == \(id)")
@@ -56,11 +50,8 @@ class HabitDataManager {
         return nil
     }
 
-    //
     func updateHabit(withData data: SelectedHabitData) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = persistentContainer.viewContext
 
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: habitsEntity)
         fetchRequest.predicate = NSPredicate(format: "ANY id IN %@", [data.id])
@@ -95,11 +86,8 @@ class HabitDataManager {
         }
     }
 
-    // Delete
     func deleteHabits() -> Bool {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return false }
-
-        let managedContext = appDelegate.persistentContainer.viewContext
+        let managedContext = persistentContainer.viewContext
 
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: habitsEntity)
 

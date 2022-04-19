@@ -1,4 +1,4 @@
-import CioMessagingPush
+import CioMessagingPushAPN
 import CioTracking
 import Foundation
 import UIKit
