@@ -1,3 +1,10 @@
+# [1.19.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.18.0...1.19.0) (2022-04-19)
+
+
+### Features
+
+* update SDK to 1.1.0 ([#67](https://github.com/customerio/RemoteHabits-iOS/issues/67)) ([5886224](https://github.com/customerio/RemoteHabits-iOS/commit/5886224bfc5548a9c407ce4e2260df691248e7d5))
+
 # [1.18.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.17.0...1.18.0) (2022-03-24)
 
 
