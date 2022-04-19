@@ -1,8 +1,8 @@
-// Generated using Sourcery 1.6.0 — https://github.com/krzysztofzablocki/Sourcery
+// Generated using Sourcery 1.6.1 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
 // swiftlint:disable all
 
-import CioMessagingPush
+import CioMessagingPushAPN
 import CioTracking
 import Foundation
 
@@ -66,6 +66,7 @@ enum Dependency: CaseIterable {
     case profileRepository
     case userManager
     case customerIO
+    case habitDataManager
     case messagingPush
     case profileViewModel
     case trackerViewModel
@@ -115,6 +116,7 @@ class DI {
         case .profileRepository: return profileRepository as! T
         case .userManager: return userManager as! T
         case .customerIO: return customerIO as! T
+        case .habitDataManager: return habitDataManager as! T
         case .messagingPush: return messagingPush as! T
         case .profileViewModel: return profileViewModel as! T
         case .trackerViewModel: return trackerViewModel as! T
@@ -194,6 +196,18 @@ class DI {
             return overridenDep as! CustomerIO
         }
         return customCustomerIO
+    }
+
+    // HabitDataManager
+    internal var habitDataManager: HabitDataManager {
+        if let overridenDep = overrides[.habitDataManager] {
+            return overridenDep as! HabitDataManager
+        }
+        return newHabitDataManager
+    }
+
+    private var newHabitDataManager: HabitDataManager {
+        HabitDataManager()
     }
 
     // MessagingPush (custom. property getter provided via extension)
