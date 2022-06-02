@@ -1,3 +1,4 @@
+import CioMessagingInApp
 import CioMessagingPushAPN
 import CioTracking
 import CoreData
@@ -24,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             $0.logLevel = .debug
             $0.autoTrackScreenViews = true
         }
+        // Setup In-app messaging
+        MessagingInApp.shared.initialize(organizationId: Env.customerIOInAppOrganizationId)
         // Step 2: To display rich push notification
         UNUserNotificationCenter.current().delegate = self
 

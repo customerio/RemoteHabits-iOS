@@ -70,7 +70,6 @@ enum Dependency: CaseIterable {
     case messagingPush
     case profileViewModel
     case trackerViewModel
-    case tracking
     case userDefaults
 }
 
@@ -120,7 +119,6 @@ class DI {
         case .messagingPush: return messagingPush as! T
         case .profileViewModel: return profileViewModel as! T
         case .trackerViewModel: return trackerViewModel as! T
-        case .tracking: return tracking as! T
         case .userDefaults: return userDefaults as! T
         }
     }
@@ -240,14 +238,6 @@ class DI {
 
     private var newTrackerViewModel: TrackerViewModel {
         TrackerViewModel(cio: customerIO)
-    }
-
-    // Tracking (custom. property getter provided via extension)
-    internal var tracking: Tracking {
-        if let overridenDep = overrides[.tracking] {
-            return overridenDep as! Tracking
-        }
-        return customTracking
     }
 
     // UserDefaults (custom. property getter provided via extension)

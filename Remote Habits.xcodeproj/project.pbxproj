@@ -111,6 +111,7 @@
 		F706047F26F3A11B00A9C64D /* Notification Service.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F706047826F3A11B00A9C64D /* Notification Service.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F77512D326332F8400805CD4 /* Remote_HabitsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77512D226332F8400805CD4 /* Remote_HabitsTests.swift */; };
 		F77512DE26332F8400805CD4 /* Remote_HabitsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77512DD26332F8400805CD4 /* Remote_HabitsUITests.swift */; };
+		F7D83E02283EC911004D826E /* MessagingInApp in Frameworks */ = {isa = PBXBuildFile; productRef = F7D83E01283EC911004D826E /* MessagingInApp */; };
 		F7E9FABC26E7C564003F4187 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = F7E9FABB26E7C564003F4187 /* FirebaseCrashlytics */; };
 		F7FE36B5280F40A60094BCE4 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 465F764227730AF3000A6C49 /* DataManager.swift */; };
 		F7FE36B8280F41D80094BCE4 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FE36B7280F41D80094BCE4 /* CoreDataManager.swift */; };
@@ -262,6 +263,7 @@
 				4698F3DE2760D10900EE48F3 /* SkyFloatingLabelTextField in Frameworks */,
 				46FEC8E02758D4CB00A6A03F /* MessagingPushAPN in Frameworks */,
 				F7E9FABC26E7C564003F4187 /* FirebaseCrashlytics in Frameworks */,
+				F7D83E02283EC911004D826E /* MessagingInApp in Frameworks */,
 				46FEC8DE2758D4C500A6A03F /* Tracking in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -501,6 +503,7 @@
 				F77512DC26332F8400805CD4 /* Remote HabitsUITests */,
 				F706047926F3A11B00A9C64D /* Notification Service */,
 				F77512BE26332F8200805CD4 /* Products */,
+				F7D83E00283EC911004D826E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -563,6 +566,13 @@
 			path = "Remote HabitsUITests";
 			sourceTree = "<group>";
 		};
+		F7D83E00283EC911004D826E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F7FF07F32784C29F0076BDE0 /* en.lproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -617,6 +627,7 @@
 				46FEC8E12758D4CB00A6A03F /* MessagingPushFCM */,
 				4698F3DD2760D10900EE48F3 /* SkyFloatingLabelTextField */,
 				468C37B227CD2F8A00753542 /* DropDown */,
+				F7D83E01283EC911004D826E /* MessagingInApp */,
 			);
 			productName = "Remote Habits";
 			productReference = F77512BD26332F8200805CD4 /* Remote Habits.app */;
@@ -1297,8 +1308,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/customerio/customerio-ios/";
 			requirement = {
-				kind = exactVersion;
-				version = "1.1.0-alpha.3";
+				branch = "levi/in-app-sdk";
+				kind = branch;
 			};
 		};
 		F7E9FABA26E7C564003F4187 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
@@ -1346,6 +1357,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F7135ADD26D6DE560072D044 /* XCRemoteSwiftPackageReference "customerio-ios" */;
 			productName = Tracking;
+		};
+		F7D83E01283EC911004D826E /* MessagingInApp */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MessagingInApp;
 		};
 		F7E9FABB26E7C564003F4187 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
