@@ -180,8 +180,7 @@ platform :ios do
   lane :dev_setup do |values| 
     sync_code_signing(
       type: "development",
-      readonly: true,
-      api_key_path: 'app_store_connect_creds.json'
+      readonly: true
     )
   end 
 
@@ -190,9 +189,28 @@ platform :ios do
     sync_code_signing(
       type: "development",
       force_for_new_devices: true,
-      readonly: false,
-      api_key_path: 'app_store_connect_creds.json'
+      readonly: false
     )    
+  end 
+
+  # This is more rare when you need to run this. Run this you encounter a problem when team members are 
+  # receiving errors from XCode with the current certificate and provisioning profiles.  Or, your profiles/certs 
+  # have expired. 
+  # This will delete all of the profiles/certificates on the account and re-create them. 
+  lane :reset_code_signing do |values| 
+    exec "NUKE=true fastlane match nuke development"
+    exec "NUKE=true fastlane match nuke distribution" # distribution is used for adhoc. 
+
+    sync_code_signing(
+      type: "development",
+      force_for_new_devices: true,
+      readonly: false
+    )   
+    sync_code_signing(
+      type: "adhoc",
+      force_for_new_devices: true,
+      readonly: false
+    )   
   end 
 
   # Run if you have a new device that you want to test with. 

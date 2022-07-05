@@ -1,7 +1,20 @@
 # Values in here are meant to be for local development, not CI server. 
 # Makes it easy for developers to get up and running, fast. 
 # Configure CI server with parameters. 
+# 
+# The default values are designed for read-only local development setup. 
 storage_mode "google_cloud"
 google_cloud_bucket_name "remote-habits-ios-signing"
-readonly true
 type "development"
+api_key_path 'app_store_connect_creds.json'
+
+# Dynamically alter the default values for use with "match nuke" to delete 
+# provisioning profiles and certificates. 
+# When running "match nuke" command, also set NUKE=true environment variable.
+if ENV["NUKE"]
+  readonly false 
+  safe_remove_certs true 
+  skip_confirmation true 
+else 
+  readonly true
+end 
