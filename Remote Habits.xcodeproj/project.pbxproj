@@ -1308,7 +1308,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/customerio/customerio-ios/";
 			requirement = {
-				branch = "levi/in-app-sdk";
+				branch = "in-app-sdk";
 				kind = branch;
 			};
 		};
