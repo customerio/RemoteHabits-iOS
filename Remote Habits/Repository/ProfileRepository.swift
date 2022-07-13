@@ -47,7 +47,8 @@ class AppProfileRepository: ProfileRepository {
             let diceRoll = Int.random(in: 0 ..< 100)
 
             if diceRoll < 90 { // successful login!
-                self.cio.identify(identifier: email, body: ["first_name": firstName])
+                let params: [String: Any] = ["first_name": firstName]
+                self.cio.identify(identifier: email, body: params)
 
                 DispatchQueue.main.async {
                     onComplete(.success(()))
