@@ -59,8 +59,6 @@ class GitHub
   end 
 end 
 
-default_platform :ios
-
 platform :ios do  
 
   before_all do |lane, options|
@@ -79,8 +77,8 @@ platform :ios do
     end
   end
 
-  # example for main builds: `bundle exec fastlane android deploy_app version:1.0.0"`
-  # example for develoment builds (pull request, push): `bundle exec fastlane deploy_app`  
+  # example for main builds: `bundle exec fastlane ios deploy_app version:1.0.0"`
+  # example for develoment builds (pull request, push): `bundle exec fastlane ios deploy_app`  
   lane :deploy_app do |values| 
     # download provisioning profile/certs to be able to build and sign app. 
     # automatically creates new profile if new test devices have been added to account 
@@ -180,19 +178,34 @@ platform :ios do
   lane :dev_setup do |values| 
     sync_code_signing(
       type: "development",
-      readonly: true,
-      api_key_path: 'app_store_connect_creds.json'
+      readonly: true      
+    )
+    match(
+      type: "adhoc",
+      readonly: true 
     )
   end 
 
-  # update code signing for development. Usually called by lane `register_new_device`
-  lane :update_dev_signing do |values| 
-    sync_code_signing(
+  lane :delete_code_signing do 
+    match_nuke(
       type: "development",
-      force_for_new_devices: true,
-      readonly: false,
-      api_key_path: 'app_store_connect_creds.json'
-    )    
+      api_key_path: './app_store_connect_creds.json'
+    )
+    match_nuke(
+      type: "adhoc",
+      api_key_path: './app_store_connect_creds.json'
+    )
+  end 
+
+  lane :create_code_signing do 
+    match(
+      type: "development",
+      readonly: false
+    )
+    match(
+      type: "adhoc",
+      readonly: false
+    )
   end 
 
   # Run if you have a new device that you want to test with. 
@@ -213,8 +226,5 @@ platform :ios do
       },
       api_key_path: 'app_store_connect_creds.json'
     )
-
-    UI.success("Device registered. Now, refreshing signing info.")
-    update_dev_signing
   end 
 end 

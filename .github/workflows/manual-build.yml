@@ -41,7 +41,7 @@ jobs:
       - name: Build and re-release app 
         uses: maierj/fastlane-action@v2.0.1
         with:
-          lane: 'deploy_app version:${{ env.LATEST_GIT_TAG }}'
+          lane: 'ios deploy_app version:${{ env.LATEST_GIT_TAG }}'
           skip-tracking: true
         env:
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }} # for firebase app distribution 
