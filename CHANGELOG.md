@@ -1,3 +1,10 @@
+## [1.19.1](https://github.com/customerio/RemoteHabits-iOS/compare/1.19.0...1.19.1) (2022-07-21)
+
+
+### Bug Fixes
+
+* get app to compile from removing SDK classes ([#68](https://github.com/customerio/RemoteHabits-iOS/issues/68)) ([d0efaa4](https://github.com/customerio/RemoteHabits-iOS/commit/d0efaa4939e4097c75f8f15330f8804aeae68016))
+
 # [1.19.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.18.0...1.19.0) (2022-04-19)
 
 
