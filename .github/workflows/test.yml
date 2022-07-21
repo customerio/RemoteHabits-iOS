@@ -27,7 +27,7 @@ jobs:
     - name: Deploy development build via Fastlane 
       uses: maierj/fastlane-action@v2.0.1
       with:
-        lane: 'deploy_app'
+        lane: 'ios deploy_app'
         skip-tracking: true
       env: 
         FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
