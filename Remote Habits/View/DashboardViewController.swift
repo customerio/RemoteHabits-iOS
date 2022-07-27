@@ -10,7 +10,7 @@ class DashboardViewController: BaseViewController {
     @IBOutlet var dashboardTableView: UITableView!
 
     // MARK: - --VARIABLES--
-
+    var floatingButton: UIButton!
     let remoteHabitsData = RemoteHabitsData()
     var dashboardHeaders: [HabitHeadersInfo] = .init()
     var isSourceLogin: Bool = false
@@ -28,6 +28,7 @@ class DashboardViewController: BaseViewController {
         addNotifierObserver()
         addDefaultBackground()
         setupDashboardTableView()
+        floatingSettingButton()
         // Do any additional setup after loading the view.
     }
 
@@ -178,5 +179,19 @@ extension DashboardViewController: DashboardActionHandler {
 
     func switchWorkspace() {
         dashboardRouter?.routeToSwitchWorkspace(withData: nil)
+    }
+    
+    @objc func floatingButtonTapped() {
+        dashboardRouter?.routeToConfigureCioSdk()
+    }
+}
+
+
+extension DashboardViewController {
+    func floatingSettingButton() {
+        floatingButton = UIButton(type: .custom)
+        floatingButton.customiseFloating()
+        floatingButton.addTarget(self, action: #selector(DashboardViewController.floatingButtonTapped), for: .touchUpInside)
+        view.addSubview(floatingButton)
     }
 }
