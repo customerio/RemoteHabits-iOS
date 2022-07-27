@@ -23,7 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CustomerIO.config {
             $0.logLevel = .debug
             $0.autoTrackScreenViews = true
-//            $0.trackingApiUrl = "https://track-debugger.devzilla.customerio.dev"
         }
         // Step 2: To display rich push notification
         UNUserNotificationCenter.current().delegate = self
