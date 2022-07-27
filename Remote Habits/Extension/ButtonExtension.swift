@@ -9,7 +9,7 @@ extension UIButton {
     func customiseFloating() {
         let xCoordinates = Int(UIScreen.main.bounds.width - 56)
         let widthHeight = 40
-        frame = CGRect(x: xCoordinates, y: 50, width: widthHeight, height: widthHeight)
+        frame = CGRect(x: xCoordinates, y: 10, width: widthHeight, height: widthHeight)
         setImage(UIImage(named: "settings")!, for: .normal)
         self.layer.cornerRadius = CGFloat(widthHeight / 2)
 
