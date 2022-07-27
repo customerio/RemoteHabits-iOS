@@ -4,7 +4,6 @@ import UIKit
 protocol LoginRouting {
     func routeToDashboard()
     func routeToWorkspace(withData: WorkspaceData?)
-    func routeToConfigureCioSdk()
 }
 
 class LoginRouter: LoginRouting {
@@ -19,12 +18,6 @@ class LoginRouter: LoginRouting {
     func routeToWorkspace(withData workspaceData: WorkspaceData?) {
         let viewController = SwitchWorkspaceViewController.newInstance()
         viewController.workspaceData = workspaceData
-        let navigation = UINavigationController(rootViewController: viewController)
-        loginViewController?.present(navigation, animated: true, completion: nil)
-    }
-
-    func routeToConfigureCioSdk() {
-        let viewController = ConfigureCioSdkViewController.newInstance()
         let navigation = UINavigationController(rootViewController: viewController)
         loginViewController?.present(navigation, animated: true, completion: nil)
     }
