@@ -175,5 +175,7 @@ class SwitchWorkspaceViewController: BaseViewController, UITextFieldDelegate {
         Env.customerIOSiteId = siteId
         userManager.apiKey = apiKey
         Env.customerIOApiKey = apiKey
+        
+        CustomerIO.initialize(siteId: siteId, apiKey: apiKey, region: Region.US)
     }
 }
