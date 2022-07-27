@@ -18,7 +18,6 @@ class LoginViewController: BaseViewController {
 
     // MARK: - --VARIABLES--
 
-    var floatingButton: UIButton!
     var userManager = DI.shared.userManager
     var textFields: [SkyFloatingLabelTextFieldWithIcon] = []
     var profileViewModel = DI.shared.profileViewModel
@@ -220,10 +219,6 @@ class LoginViewController: BaseViewController {
                     self.actOnError(toShow: true)
                 }
             }
-    }
-
-    @objc func floatingButtonTapped() {
-        loginRouter?.routeToConfigureCioSdk()
     }
 }
 
