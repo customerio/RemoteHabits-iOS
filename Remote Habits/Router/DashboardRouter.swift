@@ -6,6 +6,7 @@ protocol DashboardRouting {
     func routeToSwitchWorkspace(withData: WorkspaceData?)
     func routeToLogin()
     func routeSetToLogin()
+    func routeToConfigureCioSdk()
 }
 
 class DashboardRouter: DashboardRouting {
@@ -37,5 +38,11 @@ class DashboardRouter: DashboardRouting {
     func routeSetToLogin() {
         dashboardViewController?.navigationController?.setViewControllers([LoginViewController.newInstance()],
                                                                           animated: true)
+    }
+    
+    func routeToConfigureCioSdk() {
+        let viewController = ConfigureCioSdkViewController.newInstance()
+        let navigation = UINavigationController(rootViewController: viewController)
+        dashboardViewController?.present(navigation, animated: true, completion: nil)
     }
 }
