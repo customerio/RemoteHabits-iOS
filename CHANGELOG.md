@@ -1,3 +1,10 @@
+# [1.20.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.19.1...1.20.0) (2022-08-08)
+
+
+### Features
+
+* in-app in remote habits ([#72](https://github.com/customerio/RemoteHabits-iOS/issues/72)) ([d555cbf](https://github.com/customerio/RemoteHabits-iOS/commit/d555cbf616482861c277ab46dd5d4ea7bf4fb823))
+
 ## [1.19.1](https://github.com/customerio/RemoteHabits-iOS/compare/1.19.0...1.19.1) (2022-07-21)
 
 
