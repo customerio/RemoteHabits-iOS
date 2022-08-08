@@ -3,6 +3,7 @@ import CioTracking
 import CoreData
 import UIKit
 import UserNotifications
+import CioMessagingInApp
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,6 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Step 3: Register for push notifications
         UIApplication.shared.registerForRemoteNotifications()
+        
+        // In-app
+        MessagingInApp.shared.initialize(organizationId: Env.customerIOInAppOrganizationId)
+        
 
         return true
     }
