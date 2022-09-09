@@ -1309,7 +1309,7 @@
 			repositoryURL = "https://github.com/customerio/customerio-ios/";
 			requirement = {
 				kind = exactVersion;
-				version = "1.2.0-alpha.3";
+				version = "1.2.0-alpha.4";
 			};
 		};
 		F7E9FABA26E7C564003F4187 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
