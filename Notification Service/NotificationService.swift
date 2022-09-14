@@ -1,5 +1,6 @@
 import CioMessagingPushAPN
 import UserNotifications
+import CioTracking
 
 class NotificationService: UNNotificationServiceExtension {
     private let cioMessagingPush: MessagingPush = DI.shared.messagingPush
@@ -11,6 +12,7 @@ class NotificationService: UNNotificationServiceExtension {
         // If you use more service then Customer.io for sending rich push messages,
         // you can check if the SDK handled the rich push for you. If it did not, you
         // know that the push was *not* sent by Customer.io and you can try another way.
+        CustomerIO.initialize(siteId: Env.customerIOSiteId, apiKey: Env.customerIOApiKey, region: Region.US)
         let handled = cioMessagingPush.didReceive(request, withContentHandler: contentHandler)
         if !handled {
             // Either the push was *not* sent by Customer.io or the push is not a rich push.
