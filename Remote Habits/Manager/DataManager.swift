@@ -76,6 +76,7 @@ class HabitDataManager: CoreDataManager {
                     objectUpdate.setValue(endTimeValue.toDate(withFormat: .time12Hour), forKey: "endTime")
                 }
             }
+            managedContext.mergePolicy = NSOverwriteMergePolicy
             do {
                 try managedContext.save()
             } catch let error as NSError {
