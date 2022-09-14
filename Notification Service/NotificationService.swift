@@ -1,6 +1,6 @@
 import CioMessagingPushAPN
-import UserNotifications
 import CioTracking
+import UserNotifications
 
 class NotificationService: UNNotificationServiceExtension {
     private let cioMessagingPush: MessagingPush = DI.shared.messagingPush
