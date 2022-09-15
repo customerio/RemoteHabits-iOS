@@ -8,10 +8,10 @@ jobs:
     runs-on: macos-11
     steps:
       - uses: actions/checkout@v1
-      - name: Install lint tools
-        run: |
-          rm '/usr/local/bin/swiftlint' # uninstall swiftlint to make sure we install the latest version 
-          brew install swiftlint swiftformat
+      # - name: Install lint tools
+      #   run: |
+      #     rm '/usr/local/bin/swiftlint' # uninstall swiftlint to make sure we install the latest version 
+      #     brew install swiftlint swiftformat
       - name: Running lint to verify it was run on local machine 
         # Script will fail if (1) the lint check failed or (2) for formatter formatted some code. 
         # If `make lint` is run on the local dev machine before pushing, this should pass. 
