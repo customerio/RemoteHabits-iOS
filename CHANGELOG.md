@@ -1,3 +1,10 @@
+## [1.21.1](https://github.com/customerio/RemoteHabits-iOS/compare/1.21.0...1.21.1) (2022-09-16)
+
+
+### Bug Fixes
+
+* app crash and workaround for image in rich push ([#74](https://github.com/customerio/RemoteHabits-iOS/issues/74)) ([54effe9](https://github.com/customerio/RemoteHabits-iOS/commit/54effe9980efce5cc8dd6e4e61aa05d0c55ce643))
+
 # [1.21.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.20.0...1.21.0) (2022-09-09)
 
 
