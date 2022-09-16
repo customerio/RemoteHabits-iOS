@@ -76,6 +76,8 @@ class HabitDataManager: CoreDataManager {
                     objectUpdate.setValue(endTimeValue.toDate(withFormat: .time12Hour), forKey: "endTime")
                 }
             }
+            // To overwrite the existing value in case there is a query conflict
+            managedContext.mergePolicy = NSOverwriteMergePolicy
             do {
                 try managedContext.save()
             } catch let error as NSError {
