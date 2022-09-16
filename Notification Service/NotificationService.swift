@@ -9,10 +9,13 @@ class NotificationService: UNNotificationServiceExtension {
         _ request: UNNotificationRequest,
         withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void
     ) {
+        // Adding temporary workaround for the issue https://github.com/customerio/customerio-ios/issues/159
+        // This should be removed once the fix has been made.
+        CustomerIO.initialize(siteId: Env.customerIOSiteId, apiKey: Env.customerIOApiKey, region: Region.US)
+
         // If you use more service then Customer.io for sending rich push messages,
         // you can check if the SDK handled the rich push for you. If it did not, you
         // know that the push was *not* sent by Customer.io and you can try another way.
-        CustomerIO.initialize(siteId: Env.customerIOSiteId, apiKey: Env.customerIOApiKey, region: Region.US)
         let handled = cioMessagingPush.didReceive(request, withContentHandler: contentHandler)
         if !handled {
             // Either the push was *not* sent by Customer.io or the push is not a rich push.
