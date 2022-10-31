@@ -69,13 +69,11 @@ class BaseViewController: UIViewController {
         activityView.startAnimating()
     }
 
-    func configureNavigationBar(
-        titleColor: UIColor? = nil,
-        backgoundColor: UIColor? = nil,
-        title: String,
-        hideBack: Bool,
-        showLogo: Bool = false
-    ) {
+    func configureNavigationBar(titleColor: UIColor? = nil,
+                                backgoundColor: UIColor? = nil,
+                                title: String,
+                                hideBack: Bool,
+                                showLogo: Bool = false) {
         if hideBack {
             navigationItem.setHidesBackButton(hideBack, animated: true)
         } else {
@@ -127,11 +125,9 @@ class BaseViewController: UIViewController {
         loaderView?.removeFromSuperview()
     }
 
-    func updateHabit(
-        forActivity activity: String?,
-        selectedHabit: SelectedHabitData,
-        andSource source: ControllerSource
-    ) {
+    func updateHabit(forActivity activity: String?,
+                     selectedHabit: SelectedHabitData,
+                     andSource source: ControllerSource) {
         habitsDataManager.updateHabit(withData: selectedHabit)
         if let activity = activity {
             trackerViewModel.trackHabitActivity(withName: activity, forHabit: selectedHabit)

@@ -38,6 +38,15 @@
         }
       },
       {
+        "package": "Gist",
+        "repositoryURL": "https://gitlab.com/bourbonltd/gist-apple.git",
+        "state": {
+          "branch": null,
+          "revision": "0a17c71f7d642ddf296eec4d4d7ef631f77d5589",
+          "version": "2.2.0"
+        }
+      },
+      {
         "package": "GoogleAppMeasurement",
         "repositoryURL": "https://github.com/google/GoogleAppMeasurement.git",
         "state": {

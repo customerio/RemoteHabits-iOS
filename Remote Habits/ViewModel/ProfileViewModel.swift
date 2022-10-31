@@ -21,13 +21,11 @@ class ProfileViewModel: ObservableObject {
         self.notificationUtil = notificationUtil
     }
 
-    func loginUser(
-        email: String,
-        password: String,
-        firstName: String,
-        generatedRandom: Bool,
-        completion: @escaping ((Bool) -> Void)
-    ) {
+    func loginUser(email: String,
+                   password: String,
+                   firstName: String,
+                   generatedRandom: Bool,
+                   completion: @escaping ((Bool) -> Void)) {
         loggedInProfileState = LoggedInProfileState(loggingIn: true, loggedInProfile: nil, error: nil)
 
         profileRepository.loginUser(email: email, password: password, firstName: firstName) { [weak self] result in
