@@ -5,10 +5,9 @@ import UserNotifications
 class NotificationService: UNNotificationServiceExtension {
     private let cioMessagingPush: MessagingPush = DI.shared.messagingPush
 
-    override func didReceive(
-        _ request: UNNotificationRequest,
-        withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void
-    ) {
+    override func didReceive(_ request: UNNotificationRequest,
+                             withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void)
+    {
         // Adding temporary workaround for the issue https://github.com/customerio/customerio-ios/issues/159
         // This should be removed once the fix has been made.
         CustomerIO.initialize(siteId: Env.customerIOSiteId, apiKey: Env.customerIOApiKey, region: Region.US)

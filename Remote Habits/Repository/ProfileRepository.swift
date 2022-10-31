@@ -3,12 +3,10 @@ import CioTracking
 import Foundation
 
 protocol ProfileRepository {
-    func loginUser(
-        email: String,
-        password: String,
-        firstName: String,
-        onComplete: @escaping (Result<Void, HumanReadableError>) -> Void
-    )
+    func loginUser(email: String,
+                   password: String,
+                   firstName: String,
+                   onComplete: @escaping (Result<Void, HumanReadableError>) -> Void)
 
     func logoutUser()
 
@@ -61,11 +59,9 @@ class AppProfileRepository: ProfileRepository {
         }
     }
 
-    func validateWorkspace<T: Codable>(
-        forSiteId siteId: String,
-        and apiKey: String,
-        onComplete: @escaping (Result<T, HumanReadableError>) -> Void
-    ) {
+    func validateWorkspace<T: Codable>(forSiteId siteId: String,
+                                       and apiKey: String,
+                                       onComplete: @escaping (Result<T, HumanReadableError>) -> Void) {
         guard let url = URL(string: "https://track.customer.io/dexterity-check") else {
             return onComplete(.failure(cioErrorUtil.parse(.notInitialized)))
         }
