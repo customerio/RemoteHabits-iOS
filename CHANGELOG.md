@@ -1,3 +1,10 @@
+## [1.21.2](https://github.com/customerio/RemoteHabits-iOS/compare/1.21.1...1.21.2) (2022-10-31)
+
+
+### Bug Fixes
+
+* get main branch to build successfully ([#76](https://github.com/customerio/RemoteHabits-iOS/issues/76)) ([06914b9](https://github.com/customerio/RemoteHabits-iOS/commit/06914b91e6bd8415793bcd3ca1c1694b37667345))
+
 ## [1.21.1](https://github.com/customerio/RemoteHabits-iOS/compare/1.21.0...1.21.1) (2022-09-16)
 
 
