@@ -172,8 +172,8 @@ class SwitchWorkspaceViewController: BaseViewController, UITextFieldDelegate {
 
     private func updateWorkspaceInfo(with siteId: String, andApiKey apiKey: String) {
         userManager.workspaceID = siteId
-        Env.customerIOSiteId = siteId
         userManager.apiKey = apiKey
-        Env.customerIOApiKey = apiKey
+
+        appDelegate?.initializeCustomerIOSdk()
     }
 }
