@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        // Step 1: Initialise CustomerIO SDK
+        // Step 1: Initialise CustomerIO SDK and all of it's modules used in this app
         initializeCustomerIOSdk()
 
         // Step 2: To display rich push notification
@@ -21,9 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Step 3: Register for push notifications
         UIApplication.shared.registerForRemoteNotifications()
-
-        // In-app
-        MessagingInApp.shared.initialize(organizationId: Env.customerIOInAppOrganizationId)
 
         return true
     }
@@ -39,6 +36,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Step 1: Initialise CustomerIO SDK
         CustomerIO.initialize(siteId: workspaceId, apiKey: apiKey, region: Region.US, configure: configHandler)
+
+        // Initialize push module
+        MessagingPush.initialize()
+
+        // Initialize in-app module
+        MessagingInApp.initialize(organizationId: Env.customerIOInAppOrganizationId)
     }
 
     // MARK: UISceneSession Lifecycle
