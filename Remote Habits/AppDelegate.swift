@@ -8,6 +8,8 @@ import UserNotifications
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var userManager = DI.shared.userManager
+    let logger = DI.shared.logger
+
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -30,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.registerForRemoteNotifications()
 
         // In-app
-        MessagingInApp.shared.initialize(organizationId: Env.customerIOInAppOrganizationId)
+        MessagingInApp.shared.initialize(organizationId: Env.customerIOInAppOrganizationId, eventListener: self)
 
         return true
     }
@@ -98,5 +100,25 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions)
                                     -> Void) {
         completionHandler([.list, .banner, .badge, .sound])
+    }
+}
+
+extension AppDelegate: InAppEventListener {
+    func messageOpened(message: CioMessagingInApp.InAppMessage) {
+        logger.log("in-app message opened. message: \(message)")
+    }
+
+    func messageDismissed(message: CioMessagingInApp.InAppMessage) {
+        logger.log("in-app message dismissed. message: \(message)")
+    }
+
+    func errorWithMessage(message: CioMessagingInApp.InAppMessage) {
+        logger.log("error with in-app message. message: \(message)")
+    }
+
+    func messageActionTaken(message: CioMessagingInApp.InAppMessage, currentRoute: String, action: String,
+                            name: String) {
+        logger
+            .log("in-app message action taken. current route: \(currentRoute), action: \(action), name: \(name), message: \(message)")
     }
 }

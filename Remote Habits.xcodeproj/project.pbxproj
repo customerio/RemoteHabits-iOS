@@ -1308,8 +1308,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/customerio/customerio-ios/";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.2;
+				branch = "levi/gist-event-listeners";
+				kind = branch;
 			};
 		};
 		F7E9FABA26E7C564003F4187 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
