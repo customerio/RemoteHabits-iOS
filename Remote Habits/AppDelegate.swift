@@ -104,19 +104,19 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 }
 
 extension AppDelegate: InAppEventListener {
-    func messageOpened(message: CioMessagingInApp.InAppMessage) {
-        logger.log("in-app message opened. message: \(message)")
+    func messageShown(message: InAppMessage) {
+        logger.log("in-app message shown. message: \(message)")
     }
 
-    func messageDismissed(message: CioMessagingInApp.InAppMessage) {
+    func messageDismissed(message: InAppMessage) {
         logger.log("in-app message dismissed. message: \(message)")
     }
 
-    func errorWithMessage(message: CioMessagingInApp.InAppMessage) {
+    func errorWithMessage(message: InAppMessage) {
         logger.log("error with in-app message. message: \(message)")
     }
 
-    func messageActionTaken(message: CioMessagingInApp.InAppMessage, currentRoute: String, action: String,
+    func messageActionTaken(message: InAppMessage, currentRoute: String, action: String,
                             name: String) {
         logger
             .log("in-app message action taken. current route: \(currentRoute), action: \(action), name: \(name), message: \(message)")
