@@ -1,3 +1,10 @@
+## [1.21.3](https://github.com/customerio/RemoteHabits-iOS/compare/1.21.2...1.21.3) (2022-11-22)
+
+
+### Bug Fixes
+
+* last git tag release broken ([5e440a9](https://github.com/customerio/RemoteHabits-iOS/commit/5e440a992e7d4c0134679d7ad4afcebb97938a87))
+
 ## [1.21.2](https://github.com/customerio/RemoteHabits-iOS/compare/1.21.1...1.21.2) (2022-10-31)
 
 
