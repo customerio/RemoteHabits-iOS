@@ -64,7 +64,7 @@ platform :ios do
   before_all do |lane, options|    
     if ENV['CI'] 
       # increase timeout for xcodebuild settings. We have seen this command take a bit longer to do on CI server.
-      ENV['FASTLANE_XCODEBUILD_SETTINGS_RETRIES'] = 6
+      ENV['FASTLANE_XCODEBUILD_SETTINGS_RETRIES'] = "6"
       
       setup_ci 
 
