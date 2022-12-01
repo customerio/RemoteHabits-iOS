@@ -1308,8 +1308,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/customerio/customerio-ios/";
 			requirement = {
-				branch = "levi/remove-multiple-sdk-instances";
-				kind = branch;
+				kind = exactVersion;
+				version = "2.0.0-alpha.1";
 			};
 		};
 		F7E9FABA26E7C564003F4187 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
