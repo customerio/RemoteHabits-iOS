@@ -10,7 +10,8 @@ class NotificationService: UNNotificationServiceExtension {
     {
         // Adding temporary workaround for the issue https://github.com/customerio/customerio-ios/issues/159
         // This should be removed once the fix has been made.
-        CustomerIO.initialize(siteId: Env.customerIOSiteId, apiKey: Env.customerIOApiKey, region: Region.US)
+        CustomerIO
+            .initialize(siteId: Env.customerIOSiteId, apiKey: Env.customerIOApiKey, region: Region.US) { config in }
 
         // If you use more service then Customer.io for sending rich push messages,
         // you can check if the SDK handled the rich push for you. If it did not, you
