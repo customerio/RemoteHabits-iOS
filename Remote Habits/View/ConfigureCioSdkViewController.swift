@@ -105,9 +105,10 @@ class ConfigureCioSdkViewController: BaseViewController {
     // MARK: - Actions
 
     @IBAction func updateConfigButtonTapped(_ sender: UIButton) {
-        CustomerIO.config {
-            $0.trackingApiUrl = !trackingApiUrlText.trimTextWithWhiteSpaces ? trackingApiUrlText.text! : ""
-            $0.autoTrackDeviceAttributes = deviceAttributesSwitch.isOn
+        appDelegate?.initializeCustomerIOSdk { config in
+            config.trackingApiUrl = !self.trackingApiUrlText.trimTextWithWhiteSpaces ? self.trackingApiUrlText
+                .text! : ""
+            config.autoTrackDeviceAttributes = self.deviceAttributesSwitch.isOn
 
             // MARK: - Future release
 
@@ -130,12 +131,12 @@ class ConfigureCioSdkViewController: BaseViewController {
                  }
              }*/
 
-            $0.logLevel = findLogLevel()
-            $0.autoTrackScreenViews = screenViewsSwitch.isOn
-            $0.backgroundQueueSecondsDelay = !bgQueueDelayText
-                .trimTextWithWhiteSpaces ? Double(bgQueueDelayText.text!)! : 30
-            $0.backgroundQueueMinNumberOfTasks = !bgQueueMinTasksText
-                .trimTextWithWhiteSpaces ? Int(bgQueueMinTasksText.text!)! : 10
+            config.logLevel = self.findLogLevel()
+            config.autoTrackScreenViews = self.screenViewsSwitch.isOn
+            config.backgroundQueueSecondsDelay = !self.bgQueueDelayText
+                .trimTextWithWhiteSpaces ? Double(self.bgQueueDelayText.text!)! : 30
+            config.backgroundQueueMinNumberOfTasks = !self.bgQueueMinTasksText
+                .trimTextWithWhiteSpaces ? Int(self.bgQueueMinTasksText.text!)! : 10
         }
 
         dismiss(animated: true, completion: nil)

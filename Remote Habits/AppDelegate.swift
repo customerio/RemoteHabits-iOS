@@ -8,31 +8,37 @@ import UserNotifications
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var userManager = DI.shared.userManager
+
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        updateWorkspaceInfo()
-        guard let workspaceId = userManager.workspaceID, let apiKey = userManager.apiKey else {
-            return true
-        }
-        // Step 1: Initialise CustomerIO SDK
-        CustomerIO.initialize(siteId: workspaceId, apiKey: apiKey, region: Region.US)
-        // Optionally configure the CustomerIO SDK:
-        CustomerIO.config {
-            $0.logLevel = .debug
-            $0.autoTrackScreenViews = true
-        }
+        // Step 1: Initialise CustomerIO SDK and all of it's modules used in this app
+        initializeCustomerIOSdk()
+
         // Step 2: To display rich push notification
         UNUserNotificationCenter.current().delegate = self
 
         // Step 3: Register for push notifications
         UIApplication.shared.registerForRemoteNotifications()
 
-        // In-app
-        MessagingInApp.shared.initialize(organizationId: Env.customerIOInAppOrganizationId)
-
         return true
+    }
+
+    public func initializeCustomerIOSdk(configHandler overrideConfigHandler: ((inout CioSdkConfig) -> Void)? = nil) {
+        let workspaceId = userManager.workspaceID ?? Env.customerIOSiteId
+        let apiKey = userManager.apiKey ?? Env.customerIOApiKey
+
+        let configHandler = overrideConfigHandler ?? { config in
+            config.logLevel = .debug
+            config.autoTrackScreenViews = true
+        }
+
+        // Step 1: Initialise CustomerIO SDK
+        CustomerIO.initialize(siteId: workspaceId, apiKey: apiKey, region: Region.US, configure: configHandler)
+
+        // Initialize in-app module
+        MessagingInApp.initialize(organizationId: Env.customerIOInAppOrganizationId)
     }
 
     // MARK: UISceneSession Lifecycle
@@ -59,20 +65,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         MessagingPush.shared.application(application, didFailToRegisterForRemoteNotificationsWithError: error)
-    }
-
-    func updateWorkspaceInfo() {
-        if let workspaceId = userManager.workspaceID {
-            Env.customerIOSiteId = workspaceId
-        } else {
-            userManager.workspaceID = Env.customerIOSiteId
-        }
-
-        if let apiKey = userManager.apiKey {
-            Env.customerIOApiKey = apiKey
-        } else {
-            userManager.apiKey = Env.customerIOApiKey
-        }
     }
 }
 

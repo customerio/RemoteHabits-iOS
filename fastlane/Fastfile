@@ -163,6 +163,7 @@ platform :ios do
       xcode_select "/Applications/Xcode_#{ENV["XCODE_VERSION"]}.app"
     end 
     
+    ENV["FASTLANE_XCODEBUILD_SETTINGS_RETRIES"] = "10" # prevents builds from being flaky. As app sizese get bigger, it takes fastlane longer to initialize the build process. Increase this value to compensate for that. 
     build_ios_app
 
     upload_symbols_to_crashlytics(
