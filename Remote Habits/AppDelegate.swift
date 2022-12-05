@@ -37,9 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Step 1: Initialise CustomerIO SDK
         CustomerIO.initialize(siteId: workspaceId, apiKey: apiKey, region: Region.US, configure: configHandler)
 
-        // Initialize push module
-        MessagingPush.initialize()
-
         // Initialize in-app module
         MessagingInApp.initialize(organizationId: Env.customerIOInAppOrganizationId)
     }
