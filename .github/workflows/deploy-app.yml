@@ -47,6 +47,6 @@ jobs:
           status: 'success'
           version: ${{ steps.semantic-release.outputs.new_release_version }}
           platform: 'iOS Remote Habits new version deployed'
-          channel: '#squad-mobile'
+          channel: '#mobile-deployments'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_NOTIFY_RELEASES_WEBHOOK_URL }}
