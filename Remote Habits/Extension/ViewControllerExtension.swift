@@ -12,4 +12,8 @@ extension UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+
+    var appDelegate: AppDelegate? {
+        UIApplication.shared.delegate as? AppDelegate
+    }
 }
