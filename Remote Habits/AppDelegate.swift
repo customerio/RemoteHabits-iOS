@@ -99,20 +99,26 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
 extension AppDelegate: InAppEventListener {
     func messageShown(message: InAppMessage) {
-        logger.log("in-app message shown. message: \(message)")
+        CustomerIO.shared.track(name: "inapp shown",
+                                data: ["delivery-id": message.deliveryId ?? "(none)", "message-id": message.messageId])
     }
 
     func messageDismissed(message: InAppMessage) {
-        logger.log("in-app message dismissed. message: \(message)")
+        CustomerIO.shared.track(name: "inapp dismissed",
+                                data: ["delivery-id": message.deliveryId ?? "(none)", "message-id": message.messageId])
     }
 
     func errorWithMessage(message: InAppMessage) {
-        logger.log("error with in-app message. message: \(message)")
+        CustomerIO.shared.track(name: "inapp error",
+                                data: ["delivery-id": message.deliveryId ?? "(none)", "message-id": message.messageId])
     }
 
-    func messageActionTaken(message: InAppMessage, currentRoute: String, action: String,
-                            name: String) {
-        logger
-            .log("in-app message action taken. current route: \(currentRoute), action: \(action), name: \(name), message: \(message)")
+    func messageActionTaken(message: InAppMessage, action: String, name: String) {
+        CustomerIO.shared.track(name: "inapp action", data: [
+            "delivery-id": message.deliveryId ?? "(none)",
+            "message-id": message.messageId,
+            "action": action,
+            "name": name
+        ])
     }
 }
