@@ -23,9 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Step 3: Register for push notifications
         UIApplication.shared.registerForRemoteNotifications()
 
-        // In-app
-        MessagingInApp.shared.initialize(organizationId: Env.customerIOInAppOrganizationId, eventListener: self)
-
         return true
     }
 
@@ -42,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CustomerIO.initialize(siteId: workspaceId, apiKey: apiKey, region: Region.US, configure: configHandler)
 
         // Initialize in-app module
-        MessagingInApp.initialize(organizationId: Env.customerIOInAppOrganizationId)
+        MessagingInApp.initialize(eventListener: self)
     }
 
     // MARK: UISceneSession Lifecycle
@@ -113,12 +110,12 @@ extension AppDelegate: InAppEventListener {
                                 data: ["delivery-id": message.deliveryId ?? "(none)", "message-id": message.messageId])
     }
 
-    func messageActionTaken(message: InAppMessage, action: String, name: String) {
+    func messageActionTaken(message: InAppMessage, actionValue: String, actionName: String) {
         CustomerIO.shared.track(name: "inapp action", data: [
             "delivery-id": message.deliveryId ?? "(none)",
             "message-id": message.messageId,
-            "action": action,
-            "name": name
+            "action-value": actionValue,
+            "action-name": actionName
         ])
     }
 }
