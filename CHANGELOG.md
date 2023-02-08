@@ -1,3 +1,10 @@
+# [1.23.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.22.0...1.23.0) (2023-02-08)
+
+
+### Features
+
+* add in-app event listener ([#79](https://github.com/customerio/RemoteHabits-iOS/issues/79)) ([2ef07c8](https://github.com/customerio/RemoteHabits-iOS/commit/2ef07c82c6f36a70e80d4e06090f38ff1453af14))
+
 # [1.22.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.21.3...1.22.0) (2022-12-05)
 
 
