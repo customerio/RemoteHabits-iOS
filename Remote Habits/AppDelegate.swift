@@ -8,6 +8,7 @@ import UserNotifications
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var userManager = DI.shared.userManager
+    let logger = DI.shared.logger
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -38,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CustomerIO.initialize(siteId: workspaceId, apiKey: apiKey, region: Region.US, configure: configHandler)
 
         // Initialize in-app module
-        MessagingInApp.initialize(organizationId: Env.customerIOInAppOrganizationId)
+        MessagingInApp.initialize(eventListener: self)
     }
 
     // MARK: UISceneSession Lifecycle
@@ -90,5 +91,31 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions)
                                     -> Void) {
         completionHandler([.list, .banner, .badge, .sound])
+    }
+}
+
+extension AppDelegate: InAppEventListener {
+    func messageShown(message: InAppMessage) {
+        CustomerIO.shared.track(name: "inapp shown",
+                                data: ["delivery-id": message.deliveryId ?? "(none)", "message-id": message.messageId])
+    }
+
+    func messageDismissed(message: InAppMessage) {
+        CustomerIO.shared.track(name: "inapp dismissed",
+                                data: ["delivery-id": message.deliveryId ?? "(none)", "message-id": message.messageId])
+    }
+
+    func errorWithMessage(message: InAppMessage) {
+        CustomerIO.shared.track(name: "inapp error",
+                                data: ["delivery-id": message.deliveryId ?? "(none)", "message-id": message.messageId])
+    }
+
+    func messageActionTaken(message: InAppMessage, actionValue: String, actionName: String) {
+        CustomerIO.shared.track(name: "inapp action", data: [
+            "delivery-id": message.deliveryId ?? "(none)",
+            "message-id": message.messageId,
+            "action-value": actionValue,
+            "action-name": actionName
+        ])
     }
 }
