@@ -23,6 +23,8 @@ class AppDeepLinksHandlerUtil: DeepLinksHandlerUtil {
         }
     }
 
+    // Pass in a Universal Link URL that the app receives for it to be handled.
+    //
     // URLs accepted:
     // https://remotehabits.page.link/switch_workspace?site_id=AAA&api_key=BBB
     //
@@ -32,6 +34,8 @@ class AppDeepLinksHandlerUtil: DeepLinksHandlerUtil {
     // https://remotehabits.page.link/.well-known/apple-app-site-association
     // Help with universal links:
     // https://developer.apple.com/documentation/xcode/supporting-universal-links-in-your-app?language=objc
+    //
+    // Note: Universal Links are working in your app *if* you can click on a Universal Link URL (iPhone Notes app good for testing), your app should open and not open the Browser.
     func handleUniversalLinkDeepLink(_ url: URL) -> Bool {
         switch url.path {
         case "/switch_workspace":
