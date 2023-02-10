@@ -33,6 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let configHandler = overrideConfigHandler ?? { config in
             config.logLevel = .debug
             config.autoTrackScreenViews = true
+            if !Env.customerIOTrackURL.isEmpty {
+                config.trackingApiUrl = Env.customerIOTrackURL
+            }
         }
 
         // Step 1: Initialise CustomerIO SDK
