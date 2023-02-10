@@ -10,7 +10,7 @@ env:
 jobs:
   deploy-app:
     name: Re-release the latest stable build 
-    runs-on: macos-11
+    runs-on: macos-12
     steps:
       - name: Get latest git tag 
         uses: octokit/request-action@v2.1.4

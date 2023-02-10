@@ -11,7 +11,7 @@ env:
 jobs:
   deploy-app:
     name: Deploy app
-    runs-on: macos-11
+    runs-on: macos-12
     steps:
       - uses: actions/checkout@v2
       - name: Setup environment for building and releasing app 
