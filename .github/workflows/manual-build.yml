@@ -4,7 +4,7 @@ on:
   workflow_dispatch: # manually run the action
 
 env:
-  XCODE_VERSION: "13.0"
+  XCODE_VERSION: "14.0"
   GITHUB_CONTEXT: ${{ toJSON(github) }} # used by fastlane for deploying app 
 
 jobs:
