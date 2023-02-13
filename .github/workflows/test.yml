@@ -7,7 +7,7 @@ on:
     branches: ['*']
 
 env:
-  XCODE_VERSION: "14.0"
+  XCODE_VERSION: "14.2"
   GITHUB_CONTEXT: ${{ toJSON(github) }} # used by fastlane for deploying app 
 
 jobs:

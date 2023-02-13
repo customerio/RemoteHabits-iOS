@@ -28,7 +28,6 @@ runs:
     - name: Setup Ruby to run Fastlane 
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.7.6
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Prepare app for building and deploying 
       shell: bash 
