@@ -12,7 +12,7 @@ To contribute to this project, follow the instructions in [our development docum
 
 You can run the following command in the terminal and it will walk you through the steps needed to be able to build the app and test in the simulator or on device.
 
-	curl -s https://raw.githubusercontent.com/customerio/RemoteHabits-iOS/HEAD/scripts/setup.sh | bash
+	bash -c "$(curl -fsSL https://raw.githubusercontent.com/customerio/RemoteHabits-iOS/HEAD/scripts/setup.sh)"
 
 Or if you have cloned the repo already then you can
 
