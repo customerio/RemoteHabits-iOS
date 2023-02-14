@@ -8,6 +8,17 @@ Let's get your development environment setup so you can get developing.
 
 To contribute to this project, follow the instructions in [our development document](docs/dev-notes/DEVELOPMENT.md) to get your development environment setup. 
 
+## Quick Start (Customer.io team)
+
+You can run the following command in the terminal and it will walk you through the steps needed to be able to build the app and test in the simulator or on device.
+
+	bash -c "$(curl -fsSL https://raw.githubusercontent.com/customerio/RemoteHabits-iOS/HEAD/scripts/setup.sh)"
+
+Or if you have cloned the repo already then you can
+
+	cd RemoteHabits-iOS
+	bash scripts/setup.sh
+
 # Contributing 
 
 Thank you for your interest in wanting to contribute to the project! 
