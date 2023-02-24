@@ -1,11 +1,9 @@
 # Rules: https://realm.github.io/SwiftLint/rule-directory.html
+# Config file learn more: https://github.com/realm/SwiftLint#configuration
 
-disabled_rules: # rule identifiers to exclude from running
-  #- line_length
-opt_in_rules: # some rules are only opt-in
-  # - empty_count
-  # Find all the available rules by running:
-  # swiftlint rules
+disabled_rules: 
+  - line_length # The swiftformat tool formats the swift code for us to not have super long lines. This rule after swiftformat has become more of an annoyance then a value where most errors are error message strings being too long. 
+
 included: # paths to include during linting. `--path` is ignored if present.
   - Remote Habits
 excluded: # paths to ignore during linting. Takes precedence over `included`.
