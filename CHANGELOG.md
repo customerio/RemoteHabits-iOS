@@ -1,3 +1,10 @@
+## [1.23.1](https://github.com/customerio/RemoteHabits-iOS/compare/1.23.0...1.23.1) (2023-02-14)
+
+
+### Bug Fixes
+
+* just trying to trigger the CI to make a new stable build for teammates ([007a224](https://github.com/customerio/RemoteHabits-iOS/commit/007a2247b9d529a35d2aa38a917bf1bfe72a4627))
+
 # [1.23.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.22.0...1.23.0) (2023-02-08)
 
 
