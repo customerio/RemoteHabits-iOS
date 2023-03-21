@@ -23,7 +23,13 @@ fastlane ios deploy_app
 
 ### ios dev_setup
 ```
-fastlane ios dev_setup
+
+
+
+### ios delete_code_signing_development
+
+```sh
+[bundle exec] fastlane ios delete_code_signing_development
 ```
 
 ### ios delete_code_signing_development
@@ -31,9 +37,27 @@ fastlane ios dev_setup
 fastlane ios delete_code_signing_development
 ```
 
+
 ### ios delete_code_signing_release
+
+```sh
+[bundle exec] fastlane ios delete_code_signing_release
 ```
-fastlane ios delete_code_signing_release
+
+
+
+### ios create_code_signing_development
+
+```sh
+[bundle exec] fastlane ios create_code_signing_development
+```
+
+
+
+### ios create_code_signing_release
+
+```sh
+[bundle exec] fastlane ios create_code_signing_release
 ```
 
 ### ios create_code_signing_development

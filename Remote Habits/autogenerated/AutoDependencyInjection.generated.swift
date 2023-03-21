@@ -1,4 +1,4 @@
-// Generated using Sourcery 1.6.1 — https://github.com/krzysztofzablocki/Sourcery
+// Generated using Sourcery 2.0.1 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
 // swiftlint:disable all
 
@@ -61,6 +61,7 @@ import Foundation
  */
 enum Dependency: CaseIterable {
     case customerIOErrorUtil
+    case deepLinksHandlerUtil
     case logger
     case notificationUtil
     case profileRepository
@@ -110,6 +111,7 @@ class DI {
     func inject<T>(_ dep: Dependency) -> T {
         switch dep {
         case .customerIOErrorUtil: return customerIOErrorUtil as! T
+        case .deepLinksHandlerUtil: return deepLinksHandlerUtil as! T
         case .logger: return logger as! T
         case .notificationUtil: return notificationUtil as! T
         case .profileRepository: return profileRepository as! T
@@ -137,6 +139,18 @@ class DI {
 
     private var newCustomerIOErrorUtil: CustomerIOErrorUtil {
         AppCustomerIOErrorUtil(logger: logger)
+    }
+
+    // DeepLinksHandlerUtil
+    internal var deepLinksHandlerUtil: DeepLinksHandlerUtil {
+        if let overridenDep = overrides[.deepLinksHandlerUtil] {
+            return overridenDep as! DeepLinksHandlerUtil
+        }
+        return newDeepLinksHandlerUtil
+    }
+
+    private var newDeepLinksHandlerUtil: DeepLinksHandlerUtil {
+        AppDeepLinksHandlerUtil(userManager: userManager)
     }
 
     // Logger
