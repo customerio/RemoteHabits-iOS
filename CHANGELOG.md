@@ -1,3 +1,10 @@
+# [1.24.0](https://github.com/customerio/RemoteHabits-iOS/compare/1.23.1...1.24.0) (2023-03-21)
+
+
+### Features
+
+* setup universal links for deep links ([#83](https://github.com/customerio/RemoteHabits-iOS/issues/83)) ([d932be1](https://github.com/customerio/RemoteHabits-iOS/commit/d932be1853085a19c9632e9b14e6e59e638cd1d1))
+
 ## [1.23.1](https://github.com/customerio/RemoteHabits-iOS/compare/1.23.0...1.23.1) (2023-02-14)
 
 
