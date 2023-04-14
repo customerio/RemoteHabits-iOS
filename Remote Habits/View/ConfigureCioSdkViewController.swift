@@ -57,7 +57,7 @@ class ConfigureCioSdkViewController: BaseViewController {
         logTypeDropdown.anchorView = logTypeButton
         logTypeDropdown.dataSource = ["debug", "info", "error"]
         logTypeDropdown.selectionAction = { [unowned self] (_: Int, item: String) in
-            self.logTypeButton.setTitle(item, for: .normal)
+            logTypeButton.setTitle(item, for: .normal)
         }
     }
 

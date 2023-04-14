@@ -70,25 +70,25 @@ class ProfileViewModel: ObservableObject {
             .validateWorkspace(forSiteId: siteId,
                                and: apiKey) { (result: Result<ValidateWorkspaceResponse, HumanReadableError>) in
 
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
                     switch result {
-                    case .success:
-                        switch result {
-                        case .success(let response):
-                            guard let message = response.meta?.message,
-                                  message.lowercased() == "nice credentials."
-                            else {
-                                completion(false)
-                                return
-                            }
-                            completion(true)
-                        default:
+                    case .success(let response):
+                        guard let message = response.meta?.message,
+                              message.lowercased() == "nice credentials."
+                        else {
                             completion(false)
+                            return
                         }
-                    case .failure:
+                        completion(true)
+                    default:
                         completion(false)
                     }
+                case .failure:
+                    completion(false)
                 }
             }
+        }
     }
 }
