@@ -41,6 +41,8 @@ class AppCustomerIOErrorUtil: CustomerIOErrorUtil {
             // The SDK is not making any HTTP requests for a moment due to errors from the upstream API.
             // Data will resume syncing shortly.
             case .requestsPaused: break
+            case .badRequest400(apiMessage: let apiMessage):
+                logger.reportError(message: "400 Bad Request \(apiMessage)")
             }
         // Misc error of the SDK. Log it in case need to report to SDK developers.
         case .underlying(let error):
