@@ -1,83 +1,102 @@
 fastlane documentation
-================
+----
+
 # Installation
 
 Make sure you have the latest version of the Xcode command line tools installed:
 
-```
+```sh
 xcode-select --install
 ```
 
-Install _fastlane_ using
-```
-[sudo] gem install fastlane -NV
-```
-or alternatively using `brew install fastlane`
+For _fastlane_ installation instructions, see [Installing _fastlane_](https://docs.fastlane.tools/#installing-fastlane)
 
 # Available Actions
-## iOS
-### ios deploy_app
-```
-fastlane ios deploy_app
-```
 
-### ios dev_setup
-```
-
-
-
-### ios delete_code_signing_development
+### delete_all_code_signing_files
 
 ```sh
-[bundle exec] fastlane ios delete_code_signing_development
-```
-
-### ios delete_code_signing_development
-```
-fastlane ios delete_code_signing_development
+[bundle exec] fastlane delete_all_code_signing_files
 ```
 
 
-### ios delete_code_signing_release
+
+### create_all_code_signing_files
 
 ```sh
-[bundle exec] fastlane ios delete_code_signing_release
+[bundle exec] fastlane create_all_code_signing_files
 ```
 
 
 
-### ios create_code_signing_development
+### register_new_ios_device
 
 ```sh
-[bundle exec] fastlane ios create_code_signing_development
+[bundle exec] fastlane register_new_ios_device
 ```
 
 
 
-### ios create_code_signing_release
+### download_development_code_signing
 
 ```sh
-[bundle exec] fastlane ios create_code_signing_release
+[bundle exec] fastlane download_development_code_signing
 ```
 
-### ios create_code_signing_development
-```
-fastlane ios create_code_signing_development
+
+
+### download_ci_code_signing_files
+
+```sh
+[bundle exec] fastlane download_ci_code_signing_files
 ```
 
-### ios create_code_signing_release
-```
-fastlane ios create_code_signing_release
+
+
+### setup_apple_account_write_access
+
+```sh
+[bundle exec] fastlane setup_apple_account_write_access
 ```
 
-### ios register_new_device
+
+
+### setup_google_bucket_access
+
+```sh
+[bundle exec] fastlane setup_google_bucket_access
 ```
-fastlane ios register_new_device
+
+
+
+### build
+
+```sh
+[bundle exec] fastlane build
 ```
+
+
+
+### update_app_versions
+
+```sh
+[bundle exec] fastlane update_app_versions
+```
+
+
+
+### test
+
+```sh
+[bundle exec] fastlane test
+```
+
 
 
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
-More information about fastlane can be found on [fastlane.tools](https://fastlane.tools).
-The documentation of fastlane can be found on [docs.fastlane.tools](https://docs.fastlane.tools).
+
+More information about _fastlane_ can be found on [fastlane.tools](https://fastlane.tools).
+
+The documentation of _fastlane_ can be found on [docs.fastlane.tools](https://docs.fastlane.tools).

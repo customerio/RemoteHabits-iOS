@@ -1,7 +1,6 @@
 gc_keys.json
 app_store_connect_creds.json
 Remote Habits/Env.swift
-GoogleService-Info.plist
 firebase_appdistribution_service_account.json
 
 # Below from: https://github.com/github/gitignore/blob/master/Swift.gitignore

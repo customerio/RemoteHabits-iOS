@@ -1,37 +1,36 @@
 name: Tests
-on:  
-  push:
-    branches-ignore: [main, beta, alpha] # skip for deployment branches. 
-    tags-ignore: ['*']
-  pull_request:
-    branches: ['*']
 
-env:
-  XCODE_VERSION: "14.2"
-  GITHUB_CONTEXT: ${{ toJSON(github) }} # used by fastlane for deploying app 
+on:
+  pull_request:
 
 jobs:
   deploy-builds:
     runs-on: macos-12
     name: Deploy development builds 
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup environment for building and releasing app 
-      uses: ./.github/actions/prepare-for-app-build
-      with:
-        GOOGLE_SERVICES_BASE64: "${{ secrets.GOOGLE_SERVICES_BASE64 }}"
-        ENV_FILE_B64: "${{ secrets.ENV_FILE_B64 }}"
-        FIREBASE_APP_DISTRIBUTION_GOOGLE_AUTH: ${{ secrets.FIREBASE_APP_DISTRIBUTION_GOOGLE_AUTH }}
-        MATCH_GOOGLE_CLOUD_KEYS_B64: ${{ secrets.MATCH_GOOGLE_CLOUD_KEYS_B64 }}  
+    - uses: actions/checkout@v3
 
-    - name: Deploy development build via Fastlane 
-      uses: maierj/fastlane-action@v2.0.1
+    - name: Set up Xcode to version we determine 
+      uses: maxim-lobanov/setup-xcode@v1
       with:
-        lane: 'ios deploy_app'
-        skip-tracking: true
+        xcode-version: 14
+
+    - name: Install tools from Gemfile (ruby language) used for building our apps with 
+      uses: ruby/setup-ruby@v1
+      with:      
+        ruby-version: '3.0'
+        bundler-cache: true # cache tools to make builds faster in future
+
+    - name: Install tools for Fastlane build to use
+      run: brew install xcbeautify
+
+    - name: Create files needed for building 
+      run: echo "${{ secrets.ENV_FILE_B64 }}" | base64 -d > "Remote Habits/Env.swift"
+
+    - name: Build app via Fastlane 
+      uses: maierj/fastlane-action@v3.0.0
+      with:
+        lane: "build"
       env: 
-        FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
-        APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
-        APP_STORE_CONNECT_API_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}
-        APP_STORE_CONNECT_API_KEY_CONTENT_B64: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT_B64 }}
-
+        GOOGLE_CLOUD_MATCH_READONLY_SERVICE_ACCOUNT_B64: ${{ secrets.GOOGLE_CLOUD_MATCH_READONLY_SERVICE_ACCOUNT_B64 }}
+        FIREBASE_APP_DISTRIBUTION_SERVICE_ACCOUNT_CREDS_B64: ${{ secrets.FIREBASE_APP_DISTRIBUTION_SERVICE_ACCOUNT_CREDS_B64 }}
