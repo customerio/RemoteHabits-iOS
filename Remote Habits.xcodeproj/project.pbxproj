@@ -1310,7 +1310,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/customerio/customerio-ios/";
 			requirement = {
-				branch = main;
+				branch = "shahroz-old-token-fix";
 				kind = branch;
 			};
 		};
