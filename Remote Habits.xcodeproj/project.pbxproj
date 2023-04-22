@@ -1310,7 +1310,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/customerio/customerio-ios/";
 			requirement = {
-				branch = "shahroz/in-app-click-tracking";
+				branch = main;
 				kind = branch;
 			};
 		};
