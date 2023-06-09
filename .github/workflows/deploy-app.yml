@@ -1,52 +1,44 @@
 # Deploy the app to stable. Not builds for development/QA
-name: Deploy non-development builds 
+name: Build app 
+
 on:
   push:
-    branches: [main, beta, alpha]
-
-env:
-  XCODE_VERSION: "14.2"
-  GITHUB_CONTEXT: ${{ toJSON(github) }} # used by fastlane for deploying app 
+    branches: [main]
+  workflow_dispatch: # manually run the action
+  pull_request:
 
 jobs:
   deploy-app:
     name: Deploy app
-    runs-on: macos-12
+    runs-on: macos-13
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup environment for building and releasing app 
-        uses: ./.github/actions/prepare-for-app-build
-        with:
-          GOOGLE_SERVICES_BASE64: "${{ secrets.GOOGLE_SERVICES_BASE64 }}"
-          ENV_FILE_B64: "${{ secrets.ENV_FILE_B64 }}"
-          FIREBASE_APP_DISTRIBUTION_GOOGLE_AUTH: ${{ secrets.FIREBASE_APP_DISTRIBUTION_GOOGLE_AUTH }}
-          MATCH_GOOGLE_CLOUD_KEYS_B64: ${{ secrets.MATCH_GOOGLE_CLOUD_KEYS_B64 }}          
-            
-      # Perform git related tasks inside of semantic-release because `git config user...` is already setup. It's easier to run commands in there with exec plugin.
-      - name: Deploy app via semantic release 
-        uses: cycjimmy/semantic-release-action@v2
-        id: semantic-release
-        with: 
-          # version numbers below can be in many forms: M, M.m, M.m.p
-          semantic_version: 18
-          extra_plugins: |
-            @semantic-release/changelog@6
-            @semantic-release/git@10
-            @semantic-release/exec@6
-        env:
-          GITHUB_TOKEN: ${{ secrets.REPO_PUSH_TOKEN }} # for semantic release git push access 
-          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }} # for firebase app distribution 
-          APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
-          APP_STORE_CONNECT_API_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}
-          APP_STORE_CONNECT_API_KEY_CONTENT_B64: ${{ secrets.APP_STORE_CONNECT_API_KEY_CONTENT_B64 }}
+    - uses: actions/checkout@v3
+
+    - name: Set up Xcode to version we determine 
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: 14
+
+    - name: Install CLI tools used in CI script 
+      run: |
+        brew install xcbeautify # used by fastlane for output 
+    
+    - name: Install tools from Gemfile (ruby language) used for building our apps with 
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.0'
+        bundler-cache: true # cache tools to make builds faster in future 
+
+    - name: Prepare app for building and deploying 
+      shell: bash 
+      run: |
+        echo "${{ secrets.ENV_FILE_B64 }}" | base64 -d > "Remote Habits/Env.swift"        
           
-      - name: Notify team of app deployment 
-        uses: openhousepvt/slack@v1.3.2
-        if: steps.semantic-release.outputs.new_release_published == 'true'
-        with:
-          status: 'success'
-          version: ${{ steps.semantic-release.outputs.new_release_version }}
-          platform: 'iOS Remote Habits new version deployed'
-          channel: '#squad-mobile'
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_NOTIFY_RELEASES_WEBHOOK_URL }}
+    - name: Build app via Fastlane 
+      uses: maierj/fastlane-action@v3.0.0
+      with:
+        lane: "ios build"
+      env: 
+        GOOGLE_CLOUD_MATCH_READONLY_SERVICE_ACCOUNT_B64: ${{ secrets.GOOGLE_CLOUD_MATCH_READONLY_SERVICE_ACCOUNT_B64 }}
+        FIREBASE_APP_DISTRIBUTION_SERVICE_ACCOUNT_CREDS_B64: ${{ secrets.FIREBASE_APP_DISTRIBUTION_SERVICE_ACCOUNT_CREDS_B64 }}
+          
