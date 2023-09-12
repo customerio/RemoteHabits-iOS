@@ -2,6 +2,8 @@
 
 Sample app using the [Customer.io iOS SDK](https://github.com/customerio/customerio-ios). 
 
+**Notice: This repository has been deprecated and is no longer being maintained. We have created a new set of sample apps [in the iOS SDK repository](https://github.com/customerio/customerio-ios/tree/main/Apps). We would love for you to check out our new apps!**
+
 # Getting started 
 
 Let's get your development environment setup so you can get developing.
